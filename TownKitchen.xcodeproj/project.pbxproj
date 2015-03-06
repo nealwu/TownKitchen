@@ -33,6 +33,7 @@
 		91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D7D1AA942A50038FE1F /* OrderStatusViewController.m */; };
 		91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */; };
 		91788D841AA947E20038FE1F /* ParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D831AA947E20038FE1F /* ParseAPI.m */; };
+		91788D861AA94BAF0038FE1F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91788D851AA94BAF0038FE1F /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderStatusViewController.xib; sourceTree = "<group>"; };
 		91788D821AA947E20038FE1F /* ParseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseAPI.h; sourceTree = "<group>"; };
 		91788D831AA947E20038FE1F /* ParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseAPI.m; sourceTree = "<group>"; };
+		91788D851AA94BAF0038FE1F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F02D873F8A16AE6556FF4B7A /* Pods-TownKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 		F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TownKitchen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91788D861AA94BAF0038FE1F /* MapKit.framework in Frameworks */,
 				2755364638D9F2E44A876E03 /* libPods-TownKitchen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +243,7 @@
 		F1639EBC1984B8107DFB54BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91788D851AA94BAF0038FE1F /* MapKit.framework */,
 				F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */,
 			);
 			name = Frameworks;
@@ -296,6 +300,11 @@
 				TargetAttributes = {
 					2B13D0931AA81B9100FC0689 = {
 						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					2B13D0AC1AA81B9100FC0689 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -516,8 +525,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TownKitchen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -527,8 +538,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TownKitchen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
