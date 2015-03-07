@@ -11,4 +11,9 @@
 
 @interface MenuOption : PFObject<PFSubclassing>
 
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) NSNumber *price;
+
 @end
