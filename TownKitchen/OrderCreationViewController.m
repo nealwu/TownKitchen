@@ -58,17 +58,29 @@
     NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
     NSLog(@"start date: %@, end date %@", dateStart, dateEnd);
     
-    PFQuery *query = [Inventory query];
-    [query whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
-    [query whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *inventoryQuery = [Inventory query];
+    [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
+    [inventoryQuery whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
+    [inventoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"failed to find inventory objects: %@", error);
             return;
         }
-        DayInventory *dayInventory = [[DayInventory alloc] init];
-        dayInventory.inventoryItems = objects;
-        NSLog(@"todayInventory: %@", dayInventory.inventoryItems);
+        self.dayInventory = [[DayInventory alloc] init];
+        self.dayInventory.inventoryItems = objects;
+        NSLog(@"todayInventory: %@", self.dayInventory.inventoryItems);
+        
+        // Retrieve corresponding menu options
+        for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
+            PFQuery *menuOptionQuery = [MenuOption query];
+            [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
+            [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (error) {
+                    NSLog(@"failed to find menu item: %@", error);
+                }
+                NSLog(@"menu option query result: %@", objects);
+            }];
+        }
     }];
 }
 
