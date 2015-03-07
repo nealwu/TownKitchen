@@ -8,6 +8,7 @@
 
 #import "OrderCreationViewController.h"
 #import "OrderCreationTableViewCell.h"
+#import "Inventory.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -33,21 +34,14 @@
 #pragma mark Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dayInventory.inventoryItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
-    cell.menuOption = nil;
+    cell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOption];
     return cell;
 }
-
-
-
-
-
-
-
 
 #pragma mark System Methods
 - (void)didReceiveMemoryWarning {

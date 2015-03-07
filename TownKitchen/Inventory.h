@@ -7,7 +7,12 @@
 //
 
 #import <Parse/Parse.h>
+#import "MenuOption.h"
 
 @interface Inventory : PFObject
+
+@property (strong, nonatomic) MenuOption *menuOption;
+@property (strong, nonatomic) NSNumber *quantityOffered;
+@property (strong, nonatomic) NSNumber *quantityRemaining;
 
 @end
