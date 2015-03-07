@@ -7,6 +7,7 @@
 //
 
 #import "OrderCreationViewController.h"
+#import "OrderCreationTableViewCell.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -24,6 +25,7 @@
     // Set up tableView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationTableViewCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationTableViewCell"];
 }
 
 
@@ -35,7 +37,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+    cell.menuOption = nil;
+    return cell;
 }
 
 
