@@ -14,6 +14,7 @@
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *menuOptions;
 
 @end
 
@@ -56,19 +57,19 @@
     NSDate *dateStart = [calendar dateFromComponents:components];
     NSTimeInterval oneDay = 24 * 60 * 60;
     NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
-    NSLog(@"start date: %@, end date %@", dateStart, dateEnd);
+//    NSLog(@"start date: %@, end date %@", dateStart, dateEnd);
     
     PFQuery *inventoryQuery = [Inventory query];
     [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
     [inventoryQuery whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
     [inventoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            NSLog(@"failed to find inventory objects: %@", error);
+            NSLog(@"failed to find inventory objects, error: %@", error);
             return;
         }
         self.dayInventory = [[DayInventory alloc] init];
         self.dayInventory.inventoryItems = objects;
-        NSLog(@"todayInventory: %@", self.dayInventory.inventoryItems);
+        NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
         
         // Retrieve corresponding menu options
         for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
@@ -76,9 +77,10 @@
             [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
             [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (error) {
-                    NSLog(@"failed to find menu item: %@", error);
+                    NSLog(@"failed to find menu option, error: %@", error);
                 }
-                NSLog(@"menu option query result: %@", objects);
+                inventoryItem.menuOptionObject = [objects firstObject];
+                NSLog(@"inventory item: %@", inventoryItem);
             }];
         }
     }];
