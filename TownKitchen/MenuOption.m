@@ -7,7 +7,21 @@
 //
 
 #import "MenuOption.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation MenuOption
+
+@dynamic name;
+@dynamic description;
+@dynamic price;
+@dynamic imageUrl;
+
++ (void)load {
+    [self registerSubclass];    // this is called before application: didFinishLaunchingWithOptions:
+}
+
++ (NSString *)parseClassName {
+    return @"MenuOption";
+}
 
 @end
