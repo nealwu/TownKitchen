@@ -9,10 +9,14 @@
 #import <Parse/Parse.h>
 #import "MenuOption.h"
 
-@interface Inventory : PFObject
+@interface Inventory : PFObject<PFSubclassing>
 
-@property (strong, nonatomic) MenuOption *menuOption;
+@property (strong, nonatomic) NSString *menuOption;
 @property (strong, nonatomic) NSNumber *quantityOffered;
 @property (strong, nonatomic) NSNumber *quantityRemaining;
+
+@property (strong, nonatomic) MenuOption *menuOptionObject;
+
++ (NSString *)parseClassName;
 
 @end

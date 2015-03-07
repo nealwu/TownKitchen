@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "OrderCreationViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,9 @@
     // Initialize Parse
     [Parse setApplicationId:@"GzDzQtpaJvTQhot8t8sTghxRQX5THinfgZ0LuGZa"
                   clientKey:@"x0vME3m9CR0F7QXcV23uqHPKOX4LyInfe8aV7JKK"];
+    
+    OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
+    self.window.rootViewController = ocvc;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
