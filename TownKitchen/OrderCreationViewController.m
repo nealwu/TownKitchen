@@ -53,11 +53,14 @@
     [components setYear:2015];
     [components setMonth:3];
     [components setDay:7];
-    NSDate *date = [calendar dateFromComponents:components];
-    NSLog(@"Date: %@", date);
+    NSDate *dateStart = [calendar dateFromComponents:components];
+    NSTimeInterval oneDay = 24 * 60 * 60;
+    NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
+    NSLog(@"start date: %@, end date %@", dateStart, dateEnd);
     
     PFQuery *query = [Inventory query];
-    [query whereKey:@"dateOffered" lessThanOrEqualTo:date];
+    [query whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
+    [query whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"failed to find inventory objects: %@", error);
