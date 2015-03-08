@@ -13,7 +13,7 @@
 @interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UIButton *setAddressButton;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -52,10 +52,15 @@
     [self.locationManager startUpdatingLocation];
 }
 
+- (void)moveToCoordinates:(CLLocationCoordinate2D)coordinate withVisibleDistance:(CLLocationDistance)distance {
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+}
+
 #pragma mark MKMapViewDelegate Methods
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    // called when user's location changes
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    NSLog(@"new center coordinate: (%f, %f)", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);
 }
 
 #pragma mark CLLocationManagerDelegate Methods
@@ -67,16 +72,16 @@
 #pragma mark Actions
 
 - (IBAction)onLocationButton:(id)sender {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 800, 800);
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    [self moveToCoordinates:self.mapView.userLocation.coordinate withVisibleDistance:800];
 }
 
 - (IBAction)onGetAddress:(id)sender {
-    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:self.currentLocation.coordinate
+    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:self.mapView.centerCoordinate
                                                   service:kLMGeocoderGoogleService
                                         completionHandler:^(LMAddress *address, NSError *error) {
                                             if (address && !error) {
                                                 NSLog(@"Address: %@", address.formattedAddress);
+                                                self.addressTextField.text = address.formattedAddress;
                                             }
                                             else {
                                                 NSLog(@"Error: %@", error.description);
@@ -85,11 +90,12 @@
 }
 
 - (IBAction)onGetCoordinates:(id)sender {
-    [[LMGeocoder sharedInstance] geocodeAddressString:@"100 Mision Street"
-                                              service:kLMGeocoderAppleService
+    [[LMGeocoder sharedInstance] geocodeAddressString:self.addressTextField.text
+                                              service:kLMGeocoderGoogleService
                                     completionHandler:^(LMAddress *address, NSError *error) {
                                         if (address && !error) {
-                                            NSLog(@"Coordinate: (%f, %f)", address.coordinate.latitude, address.coordinate.longitude);
+                                            NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressTextField.text, address.coordinate.latitude, address.coordinate.longitude);
+                                            [self moveToCoordinates:address.coordinate withVisibleDistance:800];
                                         }
                                         else {
                                             NSLog(@"Error: %@", error.description);

@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectViewController">
             <connections>
-                <outlet property="addressLabel" destination="YY1-oQ-pUh" id="8zf-CA-Rcm"/>
+                <outlet property="addressTextField" destination="Tny-cR-6lJ" id="lCO-Ge-0yc"/>
                 <outlet property="mapView" destination="JZd-Eq-OqB" id="zwb-O1-dcf"/>
                 <outlet property="setAddressButton" destination="i9f-fG-rkv" id="LXq-eF-vmW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -19,14 +19,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="463"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
                 </mapView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 Address Street" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YY1-oQ-pUh">
-                    <rect key="frame" x="20" y="475" width="280" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-fG-rkv">
                     <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                     <constraints>
@@ -37,7 +31,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-OD-w3k">
-                    <rect key="frame" x="272" y="415" width="36" height="36"/>
+                    <rect key="frame" x="272" y="413" width="36" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="0Pt-FY-Fr7"/>
                         <constraint firstAttribute="height" constant="36" id="1Fi-9q-H7f"/>
@@ -49,15 +43,6 @@
                         <action selector="onLocationButton:" destination="-1" eventType="touchUpInside" id="OBi-hB-kni"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-AG-Xmc">
-                    <rect key="frame" x="20" y="404" width="107" height="30"/>
-                    <state key="normal" title="get coordinates">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onGetCoordinates:" destination="-1" eventType="touchUpInside" id="ucc-VX-hEd"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-eR-2sv">
                     <rect key="frame" x="20" y="366" width="81" height="30"/>
                     <state key="normal" title="get address">
@@ -67,21 +52,35 @@
                         <action selector="onGetAddress:" destination="-1" eventType="touchUpInside" id="fMl-74-QCI"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-AG-Xmc">
+                    <rect key="frame" x="20" y="404" width="115" height="30"/>
+                    <state key="normal" title="move to address">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onGetCoordinates:" destination="-1" eventType="touchUpInside" id="ucc-VX-hEd"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tny-cR-6lJ">
+                    <rect key="frame" x="20" y="481" width="280" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Vz-EE-rue"/>
                 <constraint firstItem="i9f-fG-rkv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BeA-3E-xgT"/>
+                <constraint firstAttribute="trailing" secondItem="Tny-cR-6lJ" secondAttribute="trailing" constant="20" id="CBk-7g-gj5"/>
                 <constraint firstAttribute="trailing" secondItem="JZd-Eq-OqB" secondAttribute="trailing" id="Hoc-Ra-xWt"/>
+                <constraint firstItem="Tny-cR-6lJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="MeS-WM-Qm9"/>
                 <constraint firstItem="V97-OD-w3k" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-12" id="PKp-nk-m0c"/>
-                <constraint firstItem="YY1-oQ-pUh" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="12" id="ZrF-44-Hww"/>
                 <constraint firstAttribute="trailing" secondItem="i9f-fG-rkv" secondAttribute="trailing" id="bPj-B3-hmb"/>
                 <constraint firstAttribute="trailing" secondItem="V97-OD-w3k" secondAttribute="trailing" constant="12" id="eIO-lh-CrX"/>
-                <constraint firstAttribute="trailing" secondItem="YY1-oQ-pUh" secondAttribute="trailing" constant="20" id="eMa-nD-8ss"/>
+                <constraint firstAttribute="bottom" secondItem="Tny-cR-6lJ" secondAttribute="bottom" constant="57" id="gC3-eF-lBj"/>
                 <constraint firstAttribute="bottom" secondItem="i9f-fG-rkv" secondAttribute="bottom" id="hCM-hD-qdP"/>
-                <constraint firstItem="YY1-oQ-pUh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="nVx-QB-RfD"/>
+                <constraint firstItem="Tny-cR-6lJ" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="20" id="qro-qx-W5L"/>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyy-Jb-uTC"/>
-                <constraint firstItem="i9f-fG-rkv" firstAttribute="top" secondItem="YY1-oQ-pUh" secondAttribute="bottom" constant="12" id="xIR-n1-yAj"/>
             </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </view>
