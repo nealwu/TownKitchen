@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *menuOptions;
+@property (strong, nonatomic) OrderCreationTableViewCell *sizingCell;
 
 @end
 
@@ -50,7 +51,28 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 400;
+    
+    // initialize sizing cell
+    if (!self.sizingCell) {
+        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+    }
+    
+    // populate cell with same data as visible cell
+    self.sizingCell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    
+    [self.sizingCell setNeedsUpdateConstraints];
+    [self.sizingCell updateConstraintsIfNeeded];
+    
+    // set cell width to same as width as tableView
+    self.sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.sizingCell.bounds));
+    [self.sizingCell setNeedsLayout];
+    [self.sizingCell layoutIfNeeded];
+    
+    // get the height of sizing cell
+    CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    height += 1;  // compensate for cell separators
+    
+    return height;
 }
 
 #pragma mark Setup Methods
