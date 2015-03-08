@@ -1,0 +1,1 @@
+PODS_TOWNKITCHEN_RNTIMER_OTHER_LDFLAGS = -framework "Foundation"

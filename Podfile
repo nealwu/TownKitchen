@@ -3,7 +3,9 @@
 target 'TownKitchen' do
 
 pod 'AFNetworking'
+pod 'FormatterKit'
 pod 'Parse'
+pod 'RNTimer'
 
 end
 

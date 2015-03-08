@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import <MapKit/MapKit.h>
 #import "User.h"
 
 typedef enum : NSUInteger {
@@ -15,10 +16,16 @@ typedef enum : NSUInteger {
     TKOrderSTateDelivered
 } TKOrderState;
 
-@interface Order : PFObject
+@interface Order : PFObject <PFSubclassing>
 
-@property (strong, nonatomic) User *user;
-@property (strong, nonatomic) User *driver;
-@property (nonatomic) BOOL isReviewed;
+//@property (strong, nonatomic) User *user;
+//@property (strong, nonatomic) User *driver;
+//@property (nonatomic) BOOL isReviewed;
+
+@property (strong, nonatomic) NSString *deliveryAddress;
+@property (strong, nonatomic) NSDictionary *deliveryOrigin;
+@property (readonly, nonatomic) MKMapItem *deliveryOriginMapItem;
+@property (strong, nonatomic) NSDictionary *driverLocation;
+@property (readonly, nonatomic) MKMapItem *driverLocationMapItem;
 
 @end

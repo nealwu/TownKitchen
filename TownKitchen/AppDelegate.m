@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <Bolts.h>
+#import "OrderStatusViewController.h"
+#import "Order.h"
 
 @interface AppDelegate ()
 
@@ -16,12 +19,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    [Parse setApplicationId:@"GzDzQtpaJvTQhot8t8sTghxRQX5THinfgZ0LuGZa" clientKey:@"x0vME3m9CR0F7QXcV23uqHPKOX4LyInfe8aV7JKK"];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    OrderStatusViewController *osvc =[[OrderStatusViewController alloc] init];
+    PFQuery *query = [Order query];
+    [[query getFirstObjectInBackground] continueWithSuccessBlock:^id(BFTask *task) {
+        osvc.order = task.result;
+        return nil;
+    }];
     
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = osvc;
     [self.window makeKeyAndVisible];
-    return YES;}
+    return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

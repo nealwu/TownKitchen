@@ -1,19 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderStatusViewController">
             <connections>
+                <outlet property="ETAView" destination="aHD-zz-brZ" id="bdq-pn-RQf"/>
+                <outlet property="absoluteETALabel" destination="ffL-zp-mXj" id="Wcx-KK-mnw"/>
+                <outlet property="mapView" destination="MOd-L2-Jdp" id="Es6-Fy-6tl"/>
+                <outlet property="relativeETALabel" destination="0td-lQ-wC6" id="J1j-0O-xU4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MOd-L2-Jdp">
+                    <rect key="frame" x="0.0" y="240" width="320" height="240"/>
+                </mapView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHD-zz-brZ" userLabel="ETA View">
+                    <rect key="frame" x="0.0" y="176" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order should arrive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRK-Ov-uwA">
+                            <rect key="frame" x="68" y="8" width="183" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="14 min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0td-lQ-wC6">
+                            <rect key="frame" x="54" y="35" width="52" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="11:34 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffL-zp-mXj">
+                            <rect key="frame" x="203" y="35" width="74" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="pRK-Ov-uwA" secondAttribute="centerX" id="GhL-UR-8lD"/>
+                        <constraint firstItem="0td-lQ-wC6" firstAttribute="centerX" secondItem="aHD-zz-brZ" secondAttribute="trailing" multiplier="0.25" id="I2I-SQ-3sL"/>
+                        <constraint firstAttribute="bottom" secondItem="ffL-zp-mXj" secondAttribute="bottom" constant="8" id="Jh1-k6-hLF"/>
+                        <constraint firstItem="ffL-zp-mXj" firstAttribute="centerX" secondItem="aHD-zz-brZ" secondAttribute="trailing" multiplier="0.75" id="NPw-1T-aaV"/>
+                        <constraint firstAttribute="bottom" secondItem="0td-lQ-wC6" secondAttribute="bottom" constant="8" id="e7u-A8-moV"/>
+                        <constraint firstItem="pRK-Ov-uwA" firstAttribute="top" secondItem="aHD-zz-brZ" secondAttribute="top" constant="8" id="eDa-iq-VWY"/>
+                        <constraint firstAttribute="height" constant="64" id="sfR-Mh-btk"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aHD-zz-brZ" secondAttribute="trailing" id="I1p-qX-2cy"/>
+                <constraint firstAttribute="bottom" secondItem="MOd-L2-Jdp" secondAttribute="bottom" id="NA2-mA-Juz"/>
+                <constraint firstItem="MOd-L2-Jdp" firstAttribute="top" secondItem="aHD-zz-brZ" secondAttribute="bottom" id="VLz-sY-ouk"/>
+                <constraint firstItem="MOd-L2-Jdp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.5" id="dWF-sP-5hG"/>
+                <constraint firstItem="MOd-L2-Jdp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hAs-9h-zrT"/>
+                <constraint firstItem="aHD-zz-brZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="poj-jt-qIe"/>
+                <constraint firstAttribute="trailing" secondItem="MOd-L2-Jdp" secondAttribute="trailing" id="rfH-tV-WUl"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
 </document>
