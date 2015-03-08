@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectViewController">
             <connections>
+                <outlet property="mapView" destination="JZd-Eq-OqB" id="zwb-O1-dcf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,21 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dIJ-en-JJa">
-                    <rect key="frame" x="108" y="107" width="123" height="29"/>
-                    <segments>
-                        <segment title="First"/>
-                        <segment title="Second"/>
-                    </segments>
-                </segmentedControl>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dab-ec-v3j">
-                    <rect key="frame" x="176" y="461" width="46" height="30"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JZd-Eq-OqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Vz-EE-rue"/>
+                <constraint firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" id="8gW-Hh-caS"/>
+                <constraint firstAttribute="trailing" secondItem="JZd-Eq-OqB" secondAttribute="trailing" id="Hoc-Ra-xWt"/>
+                <constraint firstItem="JZd-Eq-OqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyy-Jb-uTC"/>
+            </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </view>
     </objects>

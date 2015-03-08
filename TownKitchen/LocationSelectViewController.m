@@ -7,8 +7,11 @@
 //
 
 #import "LocationSelectViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface LocationSelectViewController ()
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
