@@ -13,6 +13,7 @@
 		2B13D0A51AA81B9100FC0689 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B13D0A41AA81B9100FC0689 /* Images.xcassets */; };
 		2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */; };
 		2B13D0B41AA81B9100FC0689 /* TownKitchenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */; };
+		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BF2B3051AAB70AA00E10460 /* OrderCreationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */; };
 		2BF2B3061AAB70AA00E10460 /* OrderCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF2B3041AAB70AA00E10460 /* OrderCreationTableViewCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
@@ -59,6 +60,7 @@
 		2B13D0AD1AA81B9100FC0689 /* TownKitchenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TownKitchenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B13D0B21AA81B9100FC0689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TownKitchenTests.m; sourceTree = "<group>"; };
+		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BF2B3021AAB70AA00E10460 /* OrderCreationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationTableViewCell.h; sourceTree = "<group>"; };
 		2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationTableViewCell.m; sourceTree = "<group>"; };
 		2BF2B3041AAB70AA00E10460 /* OrderCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationTableViewCell.xib; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */,
 				91788D861AA94BAF0038FE1F /* MapKit.framework in Frameworks */,
 				2755364638D9F2E44A876E03 /* libPods-TownKitchen.a in Frameworks */,
 			);
@@ -259,6 +262,7 @@
 		F1639EBC1984B8107DFB54BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */,
 				91788D851AA94BAF0038FE1F /* MapKit.framework */,
 				F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */,
 			);

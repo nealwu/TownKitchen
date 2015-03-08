@@ -10,11 +10,14 @@
 #import <MapKit/MapKit.h>
 #import <LMGeocoder.h>
 
-@interface LocationSelectViewController () <MKMapViewDelegate>
+@interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *setAddressButton;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 @end
 
@@ -26,21 +29,39 @@
 }
 
 
+#pragma mark Life Cycle Methods
 
-
-
+- (void) dealloc
+{
+    [self.locationManager stopUpdatingLocation];
+}
 
 #pragma mark Private Methods
 
 - (void)setup {
     // Set up mapkit
     self.mapView.delegate = self;
+    
+    // Set up location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
 }
 
 #pragma mark MKMapViewDelegate Methods
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     // called when user's location changes
+}
+
+#pragma mark CLLocationManagerDelegate Methods
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.currentLocation = [locations lastObject];
 }
 
 #pragma mark Actions
@@ -51,7 +72,7 @@
 }
 
 - (IBAction)onGetAddress:(id)sender {
-    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:CLLocationCoordinate2DMake(37.785834, -122.406417)
+    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:self.currentLocation.coordinate
                                                   service:kLMGeocoderGoogleService
                                         completionHandler:^(LMAddress *address, NSError *error) {
                                             if (address && !error) {
