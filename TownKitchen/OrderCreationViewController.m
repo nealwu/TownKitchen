@@ -42,7 +42,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
     cell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 400;
 }
 
 #pragma mark Setup Methods
@@ -69,7 +77,7 @@
         }
         self.dayInventory = [[DayInventory alloc] init];
         self.dayInventory.inventoryItems = objects;
-//        NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
+        NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
         
         // Retrieve corresponding menu options
         for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
@@ -80,7 +88,6 @@
                     NSLog(@"failed to find menu option, error: %@", error);
                 }
                 inventoryItem.menuOptionObject = [objects firstObject];
-                NSLog(@"inventory menuOptionObject: %@", inventoryItem.menuOptionObject);
                 [self.tableView reloadData];
             }];
         }
