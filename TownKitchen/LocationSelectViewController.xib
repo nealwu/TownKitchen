@@ -46,7 +46,25 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="onLocationButton:" destination="-1" eventType="touchUpInside" id="OBi-hB-kni"/>
+                        <action selector="onCurrentLocationButton:" destination="-1" eventType="touchUpInside" id="9ZT-om-ZLy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzu-kw-T7n">
+                    <rect key="frame" x="31" y="388" width="86" height="30"/>
+                    <state key="normal" title="Get Address">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onGetAddress:" destination="-1" eventType="touchUpInside" id="kYI-hS-hz2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzJ-9a-5N5">
+                    <rect key="frame" x="31" y="350" width="113" height="30"/>
+                    <state key="normal" title="Get Coordinates">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onGetCoordinates:" destination="-1" eventType="touchUpInside" id="eZd-u5-wQj"/>
                     </connections>
                 </button>
             </subviews>
