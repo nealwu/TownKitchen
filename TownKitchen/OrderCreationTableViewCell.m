@@ -30,6 +30,11 @@
     // Configure the view for the selected state
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.mealDescription.preferredMaxLayoutWidth = self.mealDescription.frame.size.width;
+}
+
 #pragma mark Custom Setters
 
 - (void)setMenuOption:(MenuOption *)menuOption {
