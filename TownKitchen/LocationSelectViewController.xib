@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectViewController">
             <connections>
                 <outlet property="addressTextField" destination="Tny-cR-6lJ" id="lCO-Ge-0yc"/>
+                <outlet property="centerIndicatorView" destination="PqX-bI-4Am" id="57K-dw-2Il"/>
                 <outlet property="mapView" destination="JZd-Eq-OqB" id="zwb-O1-dcf"/>
                 <outlet property="setAddressButton" destination="i9f-fG-rkv" id="LXq-eF-vmW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
                 </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-fG-rkv">
@@ -43,17 +44,8 @@
                         <action selector="onLocationButton:" destination="-1" eventType="touchUpInside" id="OBi-hB-kni"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-eR-2sv">
-                    <rect key="frame" x="20" y="366" width="81" height="30"/>
-                    <state key="normal" title="get address">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onGetAddress:" destination="-1" eventType="touchUpInside" id="fMl-74-QCI"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-AG-Xmc">
-                    <rect key="frame" x="20" y="404" width="115" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-AG-Xmc">
+                    <rect key="frame" x="20" y="412" width="115" height="30"/>
                     <state key="normal" title="move to address">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -66,10 +58,19 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqX-bI-4Am" userLabel="centerIndicator">
+                    <rect key="frame" x="156" y="227" width="8" height="8"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="42N-qG-Khs"/>
+                        <constraint firstAttribute="width" constant="8" id="ZUd-9a-Z2i"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Vz-EE-rue"/>
+                <constraint firstItem="0uK-AG-Xmc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="8fs-g5-YA7"/>
                 <constraint firstItem="i9f-fG-rkv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BeA-3E-xgT"/>
                 <constraint firstAttribute="trailing" secondItem="Tny-cR-6lJ" secondAttribute="trailing" constant="20" id="CBk-7g-gj5"/>
                 <constraint firstAttribute="trailing" secondItem="JZd-Eq-OqB" secondAttribute="trailing" id="Hoc-Ra-xWt"/>
@@ -77,10 +78,13 @@
                 <constraint firstItem="V97-OD-w3k" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-12" id="PKp-nk-m0c"/>
                 <constraint firstAttribute="trailing" secondItem="i9f-fG-rkv" secondAttribute="trailing" id="bPj-B3-hmb"/>
                 <constraint firstAttribute="trailing" secondItem="V97-OD-w3k" secondAttribute="trailing" constant="12" id="eIO-lh-CrX"/>
+                <constraint firstItem="PqX-bI-4Am" firstAttribute="centerX" secondItem="JZd-Eq-OqB" secondAttribute="centerX" id="f7R-3c-Lc9"/>
                 <constraint firstAttribute="bottom" secondItem="Tny-cR-6lJ" secondAttribute="bottom" constant="57" id="gC3-eF-lBj"/>
                 <constraint firstAttribute="bottom" secondItem="i9f-fG-rkv" secondAttribute="bottom" id="hCM-hD-qdP"/>
                 <constraint firstItem="Tny-cR-6lJ" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="20" id="qro-qx-W5L"/>
+                <constraint firstItem="0uK-AG-Xmc" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-19" id="sFo-LW-xyI"/>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyy-Jb-uTC"/>
+                <constraint firstItem="PqX-bI-4Am" firstAttribute="centerY" secondItem="JZd-Eq-OqB" secondAttribute="centerY" id="wmx-h9-Msc"/>
             </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </view>
