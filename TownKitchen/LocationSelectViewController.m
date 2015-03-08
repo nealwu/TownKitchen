@@ -8,6 +8,7 @@
 
 #import "LocationSelectViewController.h"
 #import <MapKit/MapKit.h>
+#import <LMGeocoder.h>
 
 @interface LocationSelectViewController () <MKMapViewDelegate>
 
@@ -47,6 +48,32 @@
 - (IBAction)onLocationButton:(id)sender {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+}
+
+- (IBAction)onGetAddress:(id)sender {
+    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:CLLocationCoordinate2DMake(37.785834, -122.406417)
+                                                  service:kLMGeocoderGoogleService
+                                        completionHandler:^(LMAddress *address, NSError *error) {
+                                            if (address && !error) {
+                                                NSLog(@"Address: %@", address.formattedAddress);
+                                            }
+                                            else {
+                                                NSLog(@"Error: %@", error.description);
+                                            }
+                                        }];
+}
+
+- (IBAction)onGetCoordinates:(id)sender {
+    [[LMGeocoder sharedInstance] geocodeAddressString:@"100 Mision Street"
+                                              service:kLMGeocoderAppleService
+                                    completionHandler:^(LMAddress *address, NSError *error) {
+                                        if (address && !error) {
+                                            NSLog(@"Coordinate: (%f, %f)", address.coordinate.latitude, address.coordinate.longitude);
+                                        }
+                                        else {
+                                            NSLog(@"Error: %@", error.description);
+                                        }
+                                    }];
 }
 
 #pragma mark System Methods
