@@ -33,7 +33,7 @@
                             <action selector="onStepperChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="why-I3-H9B"/>
                         </connections>
                     </stepper>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UDr-YV-VQC">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UDr-YV-VQC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="Wbr-gf-n3v"/>
