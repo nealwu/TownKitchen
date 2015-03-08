@@ -30,6 +30,9 @@
                     <state key="normal" title="Set Delivery Address">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="onSetAddress:" destination="-1" eventType="touchUpInside" id="SAJ-B7-KaS"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-OD-w3k">
                     <rect key="frame" x="272" y="413" width="36" height="36"/>

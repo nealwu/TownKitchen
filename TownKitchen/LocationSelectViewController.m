@@ -117,6 +117,15 @@
                                     }];
 }
 
+- (IBAction)onSetAddress:(id)sender {
+    if ([self.addressTextField.text length] <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Address not set" message:@"Please input an address" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    [self.delegate locationSelectViewController:self didSelectAddress:self.addressTextField.text];
+}
+
 #pragma mark System Methods
 
 - (void)didReceiveMemoryWarning {
