@@ -4,6 +4,7 @@ target 'TownKitchen' do
 
 pod 'AFNetworking'
 pod 'Parse'
+pod 'LMGeocoder'
 
 end
 
