@@ -26,7 +26,8 @@
                   clientKey:@"x0vME3m9CR0F7QXcV23uqHPKOX4LyInfe8aV7JKK"];
     
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    self.window.rootViewController = ocvc;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ocvc];
+    self.window.rootViewController = nvc;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

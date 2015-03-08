@@ -10,6 +10,7 @@
 #import "OrderCreationTableViewCell.h"
 #import "DayInventory.h"
 #import "Inventory.h"
+#import "LocationSelectViewController.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -78,6 +79,11 @@
 #pragma mark Setup Methods
 
 - (void)setup {
+    
+    // Customize navigation bar
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(onNext)];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
     // Retrieve all inventory items for today
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -114,6 +120,13 @@
             }];
         }
     }];
+}
+
+#pragma mark Private Methods
+
+- (void)onNext {
+    LocationSelectViewController *lsvc = [[LocationSelectViewController alloc] init];
+    [self.navigationController pushViewController:lsvc animated:YES];
 }
 
 #pragma mark System Methods
