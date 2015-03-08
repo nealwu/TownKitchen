@@ -54,18 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 4
 
-// FCCurrentLocationGeocoder
-#define COCOAPODS_POD_AVAILABLE_FCCurrentLocationGeocoder
-#define COCOAPODS_VERSION_MAJOR_FCCurrentLocationGeocoder 1
-#define COCOAPODS_VERSION_MINOR_FCCurrentLocationGeocoder 1
-#define COCOAPODS_VERSION_PATCH_FCCurrentLocationGeocoder 10
-
-// FCIPAddressGeocoder
-#define COCOAPODS_POD_AVAILABLE_FCIPAddressGeocoder
-#define COCOAPODS_VERSION_MAJOR_FCIPAddressGeocoder 1
-#define COCOAPODS_VERSION_MINOR_FCIPAddressGeocoder 0
-#define COCOAPODS_VERSION_PATCH_FCIPAddressGeocoder 2
-
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse
 #define COCOAPODS_VERSION_MAJOR_Parse 1

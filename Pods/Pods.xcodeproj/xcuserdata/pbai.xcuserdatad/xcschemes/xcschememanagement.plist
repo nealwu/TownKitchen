@@ -14,16 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TownKitchen-FCCurrentLocationGeocoder.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TownKitchen-FCIPAddressGeocoder.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-TownKitchen-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>091D4DA5E8CAFC741B4DAE95</key>
+		<key>5360965E13C7617B24F0FFCE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0E06C692BC7042E38CE4438B</key>
+		<key>8CD3AECBF09C71DCD9BE6F0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2D5789D95EBA7840C7633BBB</key>
+		<key>CD2D4BCACBCEE1D88D0E11C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7A759703150E5E623B5B432</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C7E5B78DD8FFFAC2C496A881</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D3C6DD76816E4D9BC95C2F22</key>
+		<key>D9140531E428C1B4A4FAC51B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -4,7 +4,6 @@ target 'TownKitchen' do
 
 pod 'AFNetworking'
 pod 'Parse'
-pod 'FCCurrentLocationGeocoder'
 
 end
 
