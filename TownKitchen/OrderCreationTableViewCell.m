@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *mealImage;
 @property (weak, nonatomic) IBOutlet UILabel *mealDescription;
-@property (weak, nonatomic) IBOutlet UILabel *orderQuantity;
+@property (weak, nonatomic) IBOutlet UILabel *orderQuantityLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *orderStepper;
 
 @end
@@ -41,6 +41,17 @@
     _menuOption = menuOption;
     self.mealDescription.text = menuOption.mealDescription;
     [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
+    self.orderQuantityLabel.text = @"0";
 }
+
+#pragma mark Actions
+
+- (IBAction)onStepperChanged:(UIStepper *)stepper {
+    NSNumber *value = [NSNumber numberWithDouble:stepper.value];
+    self.orderQuantity = value;
+    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", value];
+}
+
+
 
 @end

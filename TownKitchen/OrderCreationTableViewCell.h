@@ -12,5 +12,6 @@
 @interface OrderCreationTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) MenuOption *menuOption;
+@property (strong, nonatomic) NSNumber *orderQuantity;
 
 @end
