@@ -1,0 +1,1 @@
+PODS_TOWNKITCHEN_FCIPADDRESSGEOCODER_OTHER_LDFLAGS = -framework "CoreLocation" -framework "Foundation" -framework "UIKit"

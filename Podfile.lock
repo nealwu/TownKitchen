@@ -21,16 +21,22 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.4)
+  - FCCurrentLocationGeocoder (1.1.10):
+    - FCIPAddressGeocoder (~> 1.0.0)
+  - FCIPAddressGeocoder (1.0.2)
   - Parse (1.6.4):
     - Bolts (~> 1.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - FCCurrentLocationGeocoder
   - Parse
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  FCCurrentLocationGeocoder: d14471750ab1a9b8d486b5a848c7a07d8d66af27
+  FCIPAddressGeocoder: 52525f87f237f79b872ecaffbece6b0b40e9e0a0
   Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
 
 COCOAPODS: 0.35.0
