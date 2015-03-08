@@ -9,9 +9,11 @@
 #import "LocationSelectViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface LocationSelectViewController ()
+@interface LocationSelectViewController () <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *setAddressButton;
 
 @end
 
@@ -19,22 +21,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setup];
 }
+
+
+
+
+
+
+#pragma mark Private Methods
+
+- (void)setup {
+    // Set up mapkit
+    self.mapView.delegate = self;
+}
+
+#pragma mark MKMapViewDelegate Methods
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    // called when user's location changes
+}
+
+#pragma mark Actions
+
+- (IBAction)onLocationButton:(id)sender {
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 800, 800);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+}
+
+#pragma mark System Methods
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
