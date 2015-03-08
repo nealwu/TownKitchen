@@ -12,7 +12,7 @@
 @implementation MenuOption
 
 @dynamic name;
-@dynamic description;
+@dynamic mealDescription;
 @dynamic price;
 @dynamic imageUrl;
 

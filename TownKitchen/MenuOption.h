@@ -12,7 +12,7 @@
 @interface MenuOption : PFObject<PFSubclassing>
 
 @property (retain) NSString *name;
-@property (retain) NSString *description;
+@property (retain) NSString *mealDescription;
 @property (retain) NSString *imageUrl;
 @property (retain) NSNumber *price;
 

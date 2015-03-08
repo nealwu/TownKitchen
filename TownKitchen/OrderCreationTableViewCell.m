@@ -7,6 +7,7 @@
 //
 
 #import "OrderCreationTableViewCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface OrderCreationTableViewCell ()
 
@@ -33,7 +34,9 @@
 
 - (void)setMenuOption:(MenuOption *)menuOption {
     _menuOption = menuOption;
-    
+    self.mealDescription.text = menuOption.mealDescription;
+    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
+    NSLog(@"menuOption name: %@, description: %@", menuOption.name, menuOption.description);
 }
 
 @end
