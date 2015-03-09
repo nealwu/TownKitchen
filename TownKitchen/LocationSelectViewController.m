@@ -25,6 +25,8 @@
 @property (assign, nonatomic) BOOL didMoveToCurrentLocation;
 @property (assign, nonatomic) BOOL didCompleteFirstRender;
 
+@property NSTimer *mapRegionChangedTimer;  // timer to avoid reverse gecoding too often
+
 @end
 
 @implementation LocationSelectViewController
@@ -67,7 +69,17 @@
     self.navigationController.navigationBar.translucent = NO;
 }
 
+- (void)runDelayedSearch {
+    [self.mapRegionChangedTimer invalidate];
+    self.mapRegionChangedTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f
+                                                              target:self
+                                                            selector:@selector(updateAddressFromMapCenter)
+                                                            userInfo:nil
+                                                             repeats:NO];
+}
+
 - (void)updateAddressFromMapCenter {
+    NSLog(@"updating address from map center");
     self.addressLabel.text = @"Updating location...";
     [[LMGeocoder sharedInstance]
      reverseGeocodeCoordinate:self.mapView.centerCoordinate
@@ -75,7 +87,16 @@
      completionHandler:^(LMAddress *address, NSError *error) {
          if (address && !error) {
              self.addressString = address.formattedAddress;
-             self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route];
+             if (address.streetNumber) {
+                 self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route];
+             }
+             else if (address.route) {
+                 self.addressLabel.text = [NSString stringWithFormat:@"%@", address.route];
+             }
+             else {
+                 self.addressLabel.text = @"Unknown address";
+             }
+             
          }
          else {
              NSLog(@"Error: %@", error.description);
@@ -113,15 +134,17 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     if (self.didCompleteFirstRender) {
-        [self updateAddressFromMapCenter];
+        [self runDelayedSearch];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
-    self.addressLabel.text = @"Updating location...";
+    [self.mapRegionChangedTimer invalidate];
 }
 
+
 - (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
+    // update map address on first load
     if (!self.didCompleteFirstRender) {
         self.didCompleteFirstRender = YES;
         [self updateAddressFromMapCenter];
