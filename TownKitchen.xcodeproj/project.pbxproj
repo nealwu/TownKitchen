@@ -34,6 +34,11 @@
 		91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */; };
 		91788D841AA947E20038FE1F /* ParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D831AA947E20038FE1F /* ParseAPI.m */; };
 		91788D861AA94BAF0038FE1F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91788D851AA94BAF0038FE1F /* MapKit.framework */; };
+		91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */; };
+		91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */; };
+		91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */; };
+		91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */; };
+		91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +97,14 @@
 		91788D821AA947E20038FE1F /* ParseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseAPI.h; sourceTree = "<group>"; };
 		91788D831AA947E20038FE1F /* ParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseAPI.m; sourceTree = "<group>"; };
 		91788D851AA94BAF0038FE1F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSummaryView.h; sourceTree = "<group>"; };
+		91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSummaryView.m; sourceTree = "<group>"; };
+		91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderSummaryView.xib; sourceTree = "<group>"; };
+		91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKMenuOptionCell.h; sourceTree = "<group>"; };
+		91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKMenuOptionCell.m; sourceTree = "<group>"; };
+		91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKMenuOptionCell.xib; sourceTree = "<group>"; };
+		91788D941AAD25830038FE1F /* NSArray+ArrayOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ArrayOps.h"; sourceTree = "<group>"; };
+		91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ArrayOps.m"; sourceTree = "<group>"; };
 		F02D873F8A16AE6556FF4B7A /* Pods-TownKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 		F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TownKitchen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,6 +152,9 @@
 		2B13D0961AA81B9100FC0689 /* TownKitchen */ = {
 			isa = PBXGroup;
 			children = (
+				91788D931AAD25210038FE1F /* Categories */,
+				91788D8D1AAD0BA90038FE1F /* TableViewCells */,
+				91788D871AAD0A1B0038FE1F /* Views */,
 				91788D811AA947D20038FE1F /* API */,
 				91788D5A1AA940700038FE1F /* ViewControllers */,
 				91788D4A1AA93F660038FE1F /* Models */,
@@ -229,6 +245,35 @@
 				91788D831AA947E20038FE1F /* ParseAPI.m */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		91788D871AAD0A1B0038FE1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
+				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
+				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		91788D8D1AAD0BA90038FE1F /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */,
+				91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */,
+				91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		91788D931AAD25210038FE1F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				91788D941AAD25830038FE1F /* NSArray+ArrayOps.h */,
+				91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		C5D4935A9FA1A86F0FA9ADC9 /* Pods */ = {
@@ -339,9 +384,11 @@
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
 				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
+				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D731AA9419E0038FE1F /* ReviewViewController.xib in Resources */,
+				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
 				2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
 				2B13D0A51AA81B9100FC0689 /* Images.xcassets in Resources */,
@@ -396,7 +443,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */,
+				91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */,
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
+				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				91788D721AA9419E0038FE1F /* ReviewViewController.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
@@ -410,6 +459,7 @@
 				91788D591AA9405B0038FE1F /* DayInventory.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,
+				91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

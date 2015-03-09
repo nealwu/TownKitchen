@@ -11,4 +11,9 @@
 
 @interface MenuOption : PFObject<PFSubclassing>
 
++ (BFTask *)menuOptionWithName:(NSString *)name;
+
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *mealDescription;
+
 @end

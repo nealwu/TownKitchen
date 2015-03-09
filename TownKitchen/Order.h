@@ -23,9 +23,20 @@ typedef enum : NSUInteger {
 //@property (nonatomic) BOOL isReviewed;
 
 @property (strong, nonatomic) NSString *deliveryAddress;
+
 @property (strong, nonatomic) NSDictionary *deliveryOrigin;
 @property (readonly, nonatomic) MKMapItem *deliveryOriginMapItem;
+
 @property (strong, nonatomic) NSDictionary *driverLocation;
 @property (readonly, nonatomic) MKMapItem *driverLocationMapItem;
+
+@property (strong, nonatomic) NSDictionary *items;
+@property (strong, nonatomic) NSArray *menuOptions;
+
+/* Fetch MenuOption objects from the network and populate the menuOptions
+ * property. The returned BFTask completes when the menuOptions property
+ * is populated, and returns the menuOptions property as its result.
+ */
+- (BFTask *)fetchMenuOptions;
 
 @end

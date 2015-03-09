@@ -23,7 +23,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     OrderStatusViewController *osvc =[[OrderStatusViewController alloc] init];
     PFQuery *query = [Order query];
-    [[query getFirstObjectInBackground] continueWithSuccessBlock:^id(BFTask *task) {
+    [[[query getFirstObjectInBackground] continueWithSuccessBlock:^id(BFTask *task) {
+        Order *order = task.result;
+        return [[order fetchMenuOptions] continueWithSuccessBlock:^id(BFTask *task) {
+            return order;
+        }];
+    }] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
         osvc.order = task.result;
         return nil;
     }];

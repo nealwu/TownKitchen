@@ -11,10 +11,13 @@
 #import <RNTimer.h>
 #import <Bolts.h>
 #import "OrderStatusViewController.h"
+#import "OrderSummaryView.h"
 
 static const NSTimeInterval kUpdateInterval = 10.0;
 
 @interface OrderStatusViewController () <MKMapViewDelegate>
+
+@property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
 
 @property (weak, nonatomic) IBOutlet UIView *ETAView;
 @property (weak, nonatomic) IBOutlet UILabel *relativeETALabel;
@@ -69,6 +72,12 @@ static const NSTimeInterval kUpdateInterval = 10.0;
     _order = order;
     [self clearMap];
     [self startTimer];
+    [self updateSubviews];
+}
+
+- (void)updateSubviews {
+    self.orderSummaryView.order = self.order;
+    [self.view setNeedsLayout];
 }
 
 /*
