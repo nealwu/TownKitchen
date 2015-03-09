@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface AddressInputViewController : UIViewController
 
 @property (nonatomic, strong) NSString *initialSearchTerm;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 @end

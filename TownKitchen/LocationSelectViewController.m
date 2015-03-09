@@ -43,7 +43,7 @@
 #pragma mark Private Methods
 
 - (void)setup {
-    self.addressLabel.text = @"";
+    self.addressLabel.text = @"Updating location...";
     
     // Set up mapkit
     self.mapView.delegate = self;
@@ -150,7 +150,10 @@
 - (IBAction)onAddressViewTap:(id)sender {
     AddressInputViewController *avc = [[AddressInputViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:avc];
+    
     avc.initialSearchTerm = self.addressLabel.text;
+    avc.currentLocation = self.currentLocation;
+    
     [self presentViewController:nvc animated:YES completion:nil];
 }
 
