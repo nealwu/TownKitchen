@@ -5,6 +5,7 @@ target 'TownKitchen' do
 pod 'AFNetworking'
 pod 'Parse'
 pod 'LMGeocoder'
+pod 'GoogleKit'
 
 end
 

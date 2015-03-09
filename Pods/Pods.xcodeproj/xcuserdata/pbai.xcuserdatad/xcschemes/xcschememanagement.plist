@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TownKitchen-GoogleKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TownKitchen-LMGeocoder.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>15E25BAAD6ABE3E32B49E09E</key>
+		<key>5AB047E06D7E09A8E6ECBDD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>16FC7C226D18F59D8B19C114</key>
+		<key>8B58AAA78D4F9E808945B8B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1E9451F8A36D9AFBC654CE5E</key>
+		<key>C63AB7817F1B393EEF7127FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61E6B11B8F3586F67AC47523</key>
+		<key>C8B4A7146A2F899A3C0DFCBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF0046A5930F40CD37DC3611</key>
+		<key>DD5AACC1A2236B692C4EC3D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F49A701394B303F2AE095814</key>
 		<dict>
 			<key>primary</key>
 			<true/>

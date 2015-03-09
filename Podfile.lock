@@ -21,18 +21,21 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.4)
+  - GoogleKit (0.3.1)
   - LMGeocoder (1.0.1)
   - Parse (1.6.4):
     - Bolts (~> 1.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - GoogleKit
   - LMGeocoder
   - Parse
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  GoogleKit: c2aa0e3fb0db571fb11f5b41e23cac6f5cdeceec
   LMGeocoder: 48debc3f1fa96895738e6c53449c95b511a93718
   Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
 
