@@ -24,11 +24,14 @@
                 </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-fG-rkv">
                     <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                    <color key="backgroundColor" red="0.3667581379" green="0.40420594809999999" blue="0.44214618210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="aea-mF-AAC"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Set Delivery Address">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="onSetAddress:" destination="-1" eventType="touchUpInside" id="SAJ-B7-KaS"/>
@@ -45,15 +48,6 @@
                     </state>
                     <connections>
                         <action selector="onLocationButton:" destination="-1" eventType="touchUpInside" id="OBi-hB-kni"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-AG-Xmc">
-                    <rect key="frame" x="20" y="419" width="115" height="30"/>
-                    <state key="normal" title="move to address">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onMoveToAddressButton:" destination="-1" eventType="touchUpInside" id="YbS-bv-Rx4"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqX-bI-4Am" userLabel="centerIndicator">
@@ -91,7 +85,6 @@
             <constraints>
                 <constraint firstItem="hLt-W6-Qkg" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" id="3qT-rd-LTs"/>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Vz-EE-rue"/>
-                <constraint firstItem="0uK-AG-Xmc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="8fs-g5-YA7"/>
                 <constraint firstItem="i9f-fG-rkv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BeA-3E-xgT"/>
                 <constraint firstAttribute="trailing" secondItem="JZd-Eq-OqB" secondAttribute="trailing" id="Hoc-Ra-xWt"/>
                 <constraint firstAttribute="trailing" secondItem="hLt-W6-Qkg" secondAttribute="trailing" id="J9O-RV-oWG"/>
@@ -101,7 +94,6 @@
                 <constraint firstAttribute="trailing" secondItem="V97-OD-w3k" secondAttribute="trailing" constant="12" id="eIO-lh-CrX"/>
                 <constraint firstItem="PqX-bI-4Am" firstAttribute="centerX" secondItem="JZd-Eq-OqB" secondAttribute="centerX" id="f7R-3c-Lc9"/>
                 <constraint firstAttribute="bottom" secondItem="i9f-fG-rkv" secondAttribute="bottom" id="hCM-hD-qdP"/>
-                <constraint firstItem="0uK-AG-Xmc" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-19" id="sFo-LW-xyI"/>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyy-Jb-uTC"/>
                 <constraint firstItem="hLt-W6-Qkg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wXi-vC-xmM"/>
                 <constraint firstItem="PqX-bI-4Am" firstAttribute="centerY" secondItem="JZd-Eq-OqB" secondAttribute="centerY" id="wmx-h9-Msc"/>

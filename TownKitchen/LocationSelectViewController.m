@@ -8,10 +8,11 @@
 
 #import "LocationSelectViewController.h"
 #import "AddressInputViewController.h"
+#import <GoogleKit.h>
 #import <MapKit/MapKit.h>
 #import <LMGeocoder.h>
 
-@interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate, AddressInputViewController>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -20,6 +21,7 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
+@property (strong, nonatomic) NSString *addressString;
 @property (assign, nonatomic) BOOL didMoveToCurrentLocation;
 @property (assign, nonatomic) BOOL didCompleteFirstRender;
 
@@ -40,9 +42,13 @@
     [self.locationManager stopUpdatingLocation];
 }
 
+#pragma mark Custom Setters
+
+
 #pragma mark Private Methods
 
 - (void)setup {
+    self.addressString = [[NSString alloc] init];
     self.addressLabel.text = @"Updating location...";
     
     // Set up mapkit
@@ -68,8 +74,8 @@
      service:kLMGeocoderGoogleService
      completionHandler:^(LMAddress *address, NSError *error) {
          if (address && !error) {
-//             NSLog(@"Address: %@", address.formattedAddress);
-             self.addressLabel.text = address.formattedAddress;
+             self.addressString = address.formattedAddress;
+             self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route];
          }
          else {
              NSLog(@"Error: %@", error.description);
@@ -84,7 +90,7 @@
      service:kLMGeocoderGoogleService
      completionHandler:^(LMAddress *address, NSError *error) {
          if (address && !error) {
-             NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressLabel.text, address.coordinate.latitude, address.coordinate.longitude);
+             NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressString, address.coordinate.latitude, address.coordinate.longitude);
              [self moveToCoordinates:address.coordinate withSpan:self.mapView.region.span];
          }
          else {
@@ -111,6 +117,10 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    self.addressLabel.text = @"Updating location...";
+}
+
 - (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
     if (!self.didCompleteFirstRender) {
         self.didCompleteFirstRender = YES;
@@ -128,31 +138,37 @@
     }
 }
 
+#pragma mark AddressInputViewController Methods
+
+- (void)addressInputViewController:(AddressInputViewController *)addressInputViewController didSelectPlaceDetails:(GKPlaceDetails *)details {
+    self.addressString = details.formattedAddress;
+    self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", details.streetNumber, details.route];
+    [self moveToInputAddress];
+}
+
 #pragma mark Actions
 
 - (IBAction)onLocationButton:(id)sender {
     [self moveToCoordinates:self.mapView.userLocation.coordinate withSpan:self.mapView.region.span];
 }
 
-- (IBAction)onMoveToAddressButton:(id)sender {
-    [self moveToInputAddress];
-}
-
 - (IBAction)onSetAddress:(id)sender {
-    if ([self.addressLabel.text length] <= 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Address not set" message:@"Please input an address" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    if ([self.addressString length] <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Address not set" message:@"Please select a valid location" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [alert show];
         return;
     }
-    [self.delegate locationSelectViewController:self didSelectAddress:self.addressLabel.text];
+    NSLog(@"Setting address to: %@", self.addressString);
+    [self.delegate locationSelectViewController:self didSelectAddress:self.addressString];
 }
 
 - (IBAction)onAddressViewTap:(id)sender {
     AddressInputViewController *avc = [[AddressInputViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:avc];
     
-    avc.initialSearchTerm = self.addressLabel.text;
+    avc.initialSearchTerm = self.addressString;
     avc.currentLocation = self.currentLocation;
+    avc.delegate = self;
     
     [self presentViewController:nvc animated:YES completion:nil];
 }

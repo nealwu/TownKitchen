@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@class AddressInputViewController, GKPlaceDetails;
+
+@protocol AddressInputViewController <NSObject>
+
+- (void)addressInputViewController:(AddressInputViewController *)addressInputViewController didSelectPlaceDetails:(GKPlaceDetails *)details;
+
+@end
+
 @interface AddressInputViewController : UIViewController
 
 @property (nonatomic, strong) NSString *initialSearchTerm;
 @property (nonatomic, strong) CLLocation *currentLocation;
+@property (nonatomic, weak) id<AddressInputViewController> delegate;
 
 @end
