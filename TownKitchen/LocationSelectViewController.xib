@@ -1,19 +1,117 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectViewController">
             <connections>
+                <outlet property="addressLabel" destination="FtU-t6-k7J" id="JDj-BI-uSn"/>
+                <outlet property="centerIndicatorView" destination="PqX-bI-4Am" id="57K-dw-2Il"/>
+                <outlet property="mapView" destination="JZd-Eq-OqB" id="zwb-O1-dcf"/>
+                <outlet property="setAddressButton" destination="i9f-fG-rkv" id="LXq-eF-vmW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+                </mapView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-fG-rkv">
+                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                    <color key="backgroundColor" red="0.3667581379" green="0.40420594809999999" blue="0.44214618210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="aea-mF-AAC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="Set Delivery Address">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onSetAddress:" destination="-1" eventType="touchUpInside" id="SAJ-B7-KaS"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-OD-w3k">
+                    <rect key="frame" x="272" y="420" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="0Pt-FY-Fr7"/>
+                        <constraint firstAttribute="height" constant="36" id="1Fi-9q-H7f"/>
+                    </constraints>
+                    <state key="normal" image="button-icon-location">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onLocationButton:" destination="-1" eventType="touchUpInside" id="OBi-hB-kni"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqX-bI-4Am" userLabel="centerIndicator">
+                    <rect key="frame" x="156" y="230" width="8" height="8"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="42N-qG-Khs"/>
+                        <constraint firstAttribute="width" constant="8" id="ZUd-9a-Z2i"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLt-W6-Qkg" userLabel="Address View">
+                    <rect key="frame" x="0.0" y="468" width="320" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FtU-t6-k7J" userLabel="Address Label">
+                            <rect key="frame" x="12" y="12" width="296" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="D3S-yg-8VL"/>
+                        <constraint firstAttribute="trailing" secondItem="FtU-t6-k7J" secondAttribute="trailing" constant="12" id="DOH-KG-OAD"/>
+                        <constraint firstItem="FtU-t6-k7J" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="top" constant="12" id="V1s-v9-rcx"/>
+                        <constraint firstItem="FtU-t6-k7J" firstAttribute="leading" secondItem="hLt-W6-Qkg" secondAttribute="leading" constant="12" id="YtU-fq-1Cz"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="XRh-eY-d7q" appends="YES" id="ozr-cq-UYK"/>
+                    </connections>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hLt-W6-Qkg" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" id="3qT-rd-LTs"/>
+                <constraint firstItem="JZd-Eq-OqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Vz-EE-rue"/>
+                <constraint firstItem="i9f-fG-rkv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BeA-3E-xgT"/>
+                <constraint firstAttribute="trailing" secondItem="JZd-Eq-OqB" secondAttribute="trailing" id="Hoc-Ra-xWt"/>
+                <constraint firstAttribute="trailing" secondItem="hLt-W6-Qkg" secondAttribute="trailing" id="J9O-RV-oWG"/>
+                <constraint firstItem="i9f-fG-rkv" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="bottom" id="LD9-tX-dOY"/>
+                <constraint firstItem="V97-OD-w3k" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-12" id="PKp-nk-m0c"/>
+                <constraint firstAttribute="trailing" secondItem="i9f-fG-rkv" secondAttribute="trailing" id="bPj-B3-hmb"/>
+                <constraint firstAttribute="trailing" secondItem="V97-OD-w3k" secondAttribute="trailing" constant="12" id="eIO-lh-CrX"/>
+                <constraint firstItem="PqX-bI-4Am" firstAttribute="centerX" secondItem="JZd-Eq-OqB" secondAttribute="centerX" id="f7R-3c-Lc9"/>
+                <constraint firstAttribute="bottom" secondItem="i9f-fG-rkv" secondAttribute="bottom" id="hCM-hD-qdP"/>
+                <constraint firstItem="JZd-Eq-OqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyy-Jb-uTC"/>
+                <constraint firstItem="hLt-W6-Qkg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wXi-vC-xmM"/>
+                <constraint firstItem="PqX-bI-4Am" firstAttribute="centerY" secondItem="JZd-Eq-OqB" secondAttribute="centerY" id="wmx-h9-Msc"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="154"/>
         </view>
+        <tapGestureRecognizer id="XRh-eY-d7q">
+            <connections>
+                <action selector="onAddressViewTap:" destination="-1" id="K0y-Tp-9rH"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="button-icon-location" width="36" height="36"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

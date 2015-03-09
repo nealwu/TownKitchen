@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DayInventory.h"
 
 @interface OrderCreationViewController : UIViewController
+
+@property (strong, nonatomic) DayInventory *dayInventory;
 
 @end

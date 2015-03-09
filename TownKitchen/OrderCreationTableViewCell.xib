@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="412" id="KGk-i7-Jjw" customClass="OrderCreationTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="412"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="254" text="Not a Live Description Mustard Barbecue Pulled Pork w/ Housemade Chips &amp; Pickles" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCE-10-AxY">
+                        <rect key="frame" x="20" y="220" width="280" height="94"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwu-Vz-943">
+                        <rect key="frame" x="151" y="345" width="25" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Pcy-gn-xnw">
+                        <rect key="frame" x="206" y="344" width="94" height="29"/>
+                        <connections>
+                            <action selector="onStepperChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="why-I3-H9B"/>
+                        </connections>
+                    </stepper>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UDr-YV-VQC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="Wbr-gf-n3v"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Pcy-gn-xnw" secondAttribute="trailing" constant="20" id="6iU-y0-xC2"/>
+                    <constraint firstItem="xCE-10-AxY" firstAttribute="top" secondItem="UDr-YV-VQC" secondAttribute="bottom" constant="20" id="6m3-DE-exT"/>
+                    <constraint firstItem="Xwu-Vz-943" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="ByZ-Ck-LoF"/>
+                    <constraint firstItem="UDr-YV-VQC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ED2-Yp-c6J"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Pcy-gn-xnw" secondAttribute="bottom" constant="30" id="FXR-aq-Ccx"/>
+                    <constraint firstItem="Pcy-gn-xnw" firstAttribute="centerY" secondItem="Xwu-Vz-943" secondAttribute="centerY" id="GPV-vZ-40v"/>
+                    <constraint firstItem="Pcy-gn-xnw" firstAttribute="leading" secondItem="Xwu-Vz-943" secondAttribute="trailing" constant="30" id="LYf-W6-XdX"/>
+                    <constraint firstAttribute="trailing" secondItem="UDr-YV-VQC" secondAttribute="trailing" id="Lga-XK-Mao"/>
+                    <constraint firstItem="Pcy-gn-xnw" firstAttribute="top" secondItem="xCE-10-AxY" secondAttribute="bottom" constant="30" id="Lgi-2u-ApT"/>
+                    <constraint firstAttribute="trailing" secondItem="xCE-10-AxY" secondAttribute="trailing" constant="20" id="OEK-nE-A3E"/>
+                    <constraint firstItem="xCE-10-AxY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="WTx-vS-ofU"/>
+                    <constraint firstItem="UDr-YV-VQC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XZ5-d9-jPD"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ByZ-Ck-LoF"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mealDescription" destination="xCE-10-AxY" id="zNz-St-xOY"/>
+                <outlet property="mealImage" destination="UDr-YV-VQC" id="ThL-YL-EDd"/>
+                <outlet property="orderQuantityLabel" destination="Xwu-Vz-943" id="SXP-FA-gm2"/>
+                <outlet property="orderStepper" destination="Pcy-gn-xnw" id="vJm-ju-km7"/>
+            </connections>
+            <point key="canvasLocation" x="369" y="422"/>
+        </tableViewCell>
+    </objects>
+</document>

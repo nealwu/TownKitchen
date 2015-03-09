@@ -10,4 +10,6 @@
 
 @interface DayInventory : NSObject
 
+@property (strong, nonatomic) NSArray *inventoryItems;
+
 @end

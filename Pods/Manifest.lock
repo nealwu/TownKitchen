@@ -40,6 +40,8 @@ PODS:
   - FormatterKit/TimeIntervalFormatter (1.8.0)
   - FormatterKit/UnitOfInformationFormatter (1.8.0)
   - FormatterKit/URLRequestFormatter (1.8.0)
+  - GoogleKit (0.3.1)
+  - LMGeocoder (1.0.1)
   - Parse (1.6.4):
     - Bolts (~> 1.1)
   - RNTimer (0.0.1)
@@ -47,6 +49,8 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - FormatterKit
+  - GoogleKit
+  - LMGeocoder
   - Parse
   - RNTimer
 
@@ -54,6 +58,8 @@ SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
   FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
+  GoogleKit: c2aa0e3fb0db571fb11f5b41e23cac6f5cdeceec
+  LMGeocoder: 48debc3f1fa96895738e6c53449c95b511a93718
   Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
   RNTimer: cbcfbf2a146cd41a65637f214548ecb0900f2f12
 

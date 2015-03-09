@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Parse.h"
+#import <Parse/Parse.h>
 
 @interface MenuOption : PFObject<PFSubclassing>
 
@@ -15,5 +15,12 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *mealDescription;
+
+@property (retain) NSString *name;
+@property (retain) NSString *mealDescription;
+@property (retain) NSString *imageUrl;
+@property (retain) NSNumber *price;
+
++ (NSString *)parseClassName;
 
 @end

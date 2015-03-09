@@ -6,6 +6,8 @@ pod 'AFNetworking'
 pod 'FormatterKit'
 pod 'Parse'
 pod 'RNTimer'
+pod 'LMGeocoder'
+pod 'GoogleKit'
 
 end
 

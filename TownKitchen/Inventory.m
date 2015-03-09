@@ -10,4 +10,18 @@
 
 @implementation Inventory
 
+@synthesize menuOptionObject;
+
+@dynamic menuOption;
+@dynamic quantityOffered;
+@dynamic quantityRemaining;
+
++ (void)load {
+    [self registerSubclass];
+}
+
++ (NSString *)parseClassName {
+    return @"Inventory";
+}
+
 @end
