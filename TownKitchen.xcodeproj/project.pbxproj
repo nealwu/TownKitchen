@@ -13,6 +13,8 @@
 		2B13D0A51AA81B9100FC0689 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B13D0A41AA81B9100FC0689 /* Images.xcassets */; };
 		2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */; };
 		2B13D0B41AA81B9100FC0689 /* TownKitchenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */; };
+		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
+		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BF2B3051AAB70AA00E10460 /* OrderCreationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */; };
 		2BF2B3061AAB70AA00E10460 /* OrderCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF2B3041AAB70AA00E10460 /* OrderCreationTableViewCell.xib */; };
@@ -60,6 +62,9 @@
 		2B13D0AD1AA81B9100FC0689 /* TownKitchenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TownKitchenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B13D0B21AA81B9100FC0689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TownKitchenTests.m; sourceTree = "<group>"; };
+		2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInputViewController.h; sourceTree = "<group>"; };
+		2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInputViewController.m; sourceTree = "<group>"; };
+		2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInputViewController.xib; sourceTree = "<group>"; };
 		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BF2B3021AAB70AA00E10460 /* OrderCreationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationTableViewCell.h; sourceTree = "<group>"; };
 		2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationTableViewCell.m; sourceTree = "<group>"; };
@@ -234,6 +239,9 @@
 				91788D741AA941BC0038FE1F /* LocationSelectViewController.h */,
 				91788D751AA941BC0038FE1F /* LocationSelectViewController.m */,
 				91788D761AA941BC0038FE1F /* LocationSelectViewController.xib */,
+				2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */,
+				2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */,
+				2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */,
 				91788D7C1AA942A50038FE1F /* OrderStatusViewController.h */,
 				91788D7D1AA942A50038FE1F /* OrderStatusViewController.m */,
 				91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */,
@@ -359,6 +367,7 @@
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
 				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
+				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				2BF2B3061AAB70AA00E10460 /* OrderCreationTableViewCell.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
@@ -425,6 +434,7 @@
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				91788D561AA93FFB0038FE1F /* User.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
+				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				2BF2B3051AAB70AA00E10460 /* OrderCreationTableViewCell.m in Sources */,

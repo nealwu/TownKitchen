@@ -7,13 +7,14 @@
 //
 
 #import "LocationSelectViewController.h"
+#import "AddressInputViewController.h"
 #import <MapKit/MapKit.h>
 #import <LMGeocoder.h>
 
 @interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *setAddressButton;
 @property (weak, nonatomic) IBOutlet UIView *centerIndicatorView;
 
@@ -42,7 +43,7 @@
 #pragma mark Private Methods
 
 - (void)setup {
-    self.didMoveToCurrentLocation = 0;
+    self.addressLabel.text = @"";
     
     // Set up mapkit
     self.mapView.delegate = self;
@@ -61,30 +62,29 @@
 }
 
 - (void)updateAddressFromMapCenter {
-    self.addressTextField.text = @"Loading...";
+    self.addressLabel.text = @"Updating location...";
     [[LMGeocoder sharedInstance]
      reverseGeocodeCoordinate:self.mapView.centerCoordinate
      service:kLMGeocoderGoogleService
      completionHandler:^(LMAddress *address, NSError *error) {
          if (address && !error) {
-             NSLog(@"Address: %@", address.formattedAddress);
-             self.addressTextField.text = address.formattedAddress;
-             [self.addressTextField resignFirstResponder];
+//             NSLog(@"Address: %@", address.formattedAddress);
+             self.addressLabel.text = address.formattedAddress;
          }
          else {
              NSLog(@"Error: %@", error.description);
-             self.addressTextField.text = @"Unable to find address";
+             self.addressLabel.text = @"Unable to find address";
          }
      }];
 }
 
 - (void)moveToInputAddress {
     [[LMGeocoder sharedInstance]
-     geocodeAddressString:self.addressTextField.text
+     geocodeAddressString:self.addressLabel.text
      service:kLMGeocoderGoogleService
      completionHandler:^(LMAddress *address, NSError *error) {
          if (address && !error) {
-             NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressTextField.text, address.coordinate.latitude, address.coordinate.longitude);
+             NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressLabel.text, address.coordinate.latitude, address.coordinate.longitude);
              [self moveToCoordinates:address.coordinate withSpan:self.mapView.region.span];
          }
          else {
@@ -106,14 +106,16 @@
 #pragma mark MKMapViewDelegate Methods
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    NSLog(@"%f, %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);
     if (self.didCompleteFirstRender) {
         [self updateAddressFromMapCenter];
     }
 }
 
 - (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
-    self.didCompleteFirstRender = YES;
+    if (!self.didCompleteFirstRender) {
+        self.didCompleteFirstRender = YES;
+        [self updateAddressFromMapCenter];
+    }
 }
 
 #pragma mark CLLocationManagerDelegate Methods
@@ -137,12 +139,19 @@
 }
 
 - (IBAction)onSetAddress:(id)sender {
-    if ([self.addressTextField.text length] <= 0) {
+    if ([self.addressLabel.text length] <= 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Address not set" message:@"Please input an address" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [alert show];
         return;
     }
-    [self.delegate locationSelectViewController:self didSelectAddress:self.addressTextField.text];
+    [self.delegate locationSelectViewController:self didSelectAddress:self.addressLabel.text];
+}
+
+- (IBAction)onAddressViewTap:(id)sender {
+    AddressInputViewController *avc = [[AddressInputViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:avc];
+    avc.initialSearchTerm = self.addressLabel.text;
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark System Methods

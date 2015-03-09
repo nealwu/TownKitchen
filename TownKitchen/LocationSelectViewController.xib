@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectViewController">
             <connections>
-                <outlet property="addressTextField" destination="Tny-cR-6lJ" id="lCO-Ge-0yc"/>
+                <outlet property="addressLabel" destination="FtU-t6-k7J" id="JDj-BI-uSn"/>
                 <outlet property="centerIndicatorView" destination="PqX-bI-4Am" id="57K-dw-2Il"/>
                 <outlet property="mapView" destination="JZd-Eq-OqB" id="zwb-O1-dcf"/>
                 <outlet property="setAddressButton" destination="i9f-fG-rkv" id="LXq-eF-vmW"/>
@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZd-Eq-OqB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                 </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-fG-rkv">
                     <rect key="frame" x="0.0" y="508" width="320" height="60"/>
@@ -35,7 +35,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-OD-w3k">
-                    <rect key="frame" x="272" y="413" width="36" height="36"/>
+                    <rect key="frame" x="272" y="420" width="36" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="0Pt-FY-Fr7"/>
                         <constraint firstAttribute="height" constant="36" id="1Fi-9q-H7f"/>
@@ -48,7 +48,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-AG-Xmc">
-                    <rect key="frame" x="20" y="412" width="115" height="30"/>
+                    <rect key="frame" x="20" y="419" width="115" height="30"/>
                     <state key="normal" title="move to address">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -56,41 +56,63 @@
                         <action selector="onMoveToAddressButton:" destination="-1" eventType="touchUpInside" id="YbS-bv-Rx4"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tny-cR-6lJ">
-                    <rect key="frame" x="20" y="481" width="280" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqX-bI-4Am" userLabel="centerIndicator">
-                    <rect key="frame" x="156" y="227" width="8" height="8"/>
+                    <rect key="frame" x="156" y="230" width="8" height="8"/>
                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="42N-qG-Khs"/>
                         <constraint firstAttribute="width" constant="8" id="ZUd-9a-Z2i"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLt-W6-Qkg" userLabel="Address View">
+                    <rect key="frame" x="0.0" y="468" width="320" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FtU-t6-k7J" userLabel="Address Label">
+                            <rect key="frame" x="12" y="12" width="296" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="D3S-yg-8VL"/>
+                        <constraint firstAttribute="trailing" secondItem="FtU-t6-k7J" secondAttribute="trailing" constant="12" id="DOH-KG-OAD"/>
+                        <constraint firstItem="FtU-t6-k7J" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="top" constant="12" id="V1s-v9-rcx"/>
+                        <constraint firstItem="FtU-t6-k7J" firstAttribute="leading" secondItem="hLt-W6-Qkg" secondAttribute="leading" constant="12" id="YtU-fq-1Cz"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="XRh-eY-d7q" appends="YES" id="ozr-cq-UYK"/>
+                    </connections>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="hLt-W6-Qkg" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" id="3qT-rd-LTs"/>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Vz-EE-rue"/>
                 <constraint firstItem="0uK-AG-Xmc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="8fs-g5-YA7"/>
                 <constraint firstItem="i9f-fG-rkv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BeA-3E-xgT"/>
-                <constraint firstAttribute="trailing" secondItem="Tny-cR-6lJ" secondAttribute="trailing" constant="20" id="CBk-7g-gj5"/>
                 <constraint firstAttribute="trailing" secondItem="JZd-Eq-OqB" secondAttribute="trailing" id="Hoc-Ra-xWt"/>
-                <constraint firstItem="Tny-cR-6lJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="MeS-WM-Qm9"/>
+                <constraint firstAttribute="trailing" secondItem="hLt-W6-Qkg" secondAttribute="trailing" id="J9O-RV-oWG"/>
+                <constraint firstItem="i9f-fG-rkv" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="bottom" id="LD9-tX-dOY"/>
                 <constraint firstItem="V97-OD-w3k" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-12" id="PKp-nk-m0c"/>
                 <constraint firstAttribute="trailing" secondItem="i9f-fG-rkv" secondAttribute="trailing" id="bPj-B3-hmb"/>
                 <constraint firstAttribute="trailing" secondItem="V97-OD-w3k" secondAttribute="trailing" constant="12" id="eIO-lh-CrX"/>
                 <constraint firstItem="PqX-bI-4Am" firstAttribute="centerX" secondItem="JZd-Eq-OqB" secondAttribute="centerX" id="f7R-3c-Lc9"/>
-                <constraint firstAttribute="bottom" secondItem="Tny-cR-6lJ" secondAttribute="bottom" constant="57" id="gC3-eF-lBj"/>
                 <constraint firstAttribute="bottom" secondItem="i9f-fG-rkv" secondAttribute="bottom" id="hCM-hD-qdP"/>
-                <constraint firstItem="Tny-cR-6lJ" firstAttribute="top" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="20" id="qro-qx-W5L"/>
                 <constraint firstItem="0uK-AG-Xmc" firstAttribute="bottom" secondItem="JZd-Eq-OqB" secondAttribute="bottom" constant="-19" id="sFo-LW-xyI"/>
                 <constraint firstItem="JZd-Eq-OqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyy-Jb-uTC"/>
+                <constraint firstItem="hLt-W6-Qkg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wXi-vC-xmM"/>
                 <constraint firstItem="PqX-bI-4Am" firstAttribute="centerY" secondItem="JZd-Eq-OqB" secondAttribute="centerY" id="wmx-h9-Msc"/>
             </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </view>
+        <tapGestureRecognizer id="XRh-eY-d7q">
+            <connections>
+                <action selector="onAddressViewTap:" destination="-1" id="K0y-Tp-9rH"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="button-icon-location" width="36" height="36"/>
