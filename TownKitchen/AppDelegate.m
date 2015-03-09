@@ -35,7 +35,11 @@
         return nil;
     }];
     
-    self.window.rootViewController = osvc;
+    OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ocvc];
+    
+//    self.window.rootViewController = osvc;
+    self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;
 }
