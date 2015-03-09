@@ -54,7 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 4
 
-<<<<<<< HEAD
 // FormatterKit
 #define COCOAPODS_POD_AVAILABLE_FormatterKit
 #define COCOAPODS_VERSION_MAJOR_FormatterKit 1
@@ -114,7 +113,7 @@
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_UnitOfInformationFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_UnitOfInformationFormatter 8
 #define COCOAPODS_VERSION_PATCH_FormatterKit_UnitOfInformationFormatter 0
-=======
+
 // GoogleKit
 #define COCOAPODS_POD_AVAILABLE_GoogleKit
 #define COCOAPODS_VERSION_MAJOR_GoogleKit 0
@@ -126,7 +125,6 @@
 #define COCOAPODS_VERSION_MAJOR_LMGeocoder 1
 #define COCOAPODS_VERSION_MINOR_LMGeocoder 0
 #define COCOAPODS_VERSION_PATCH_LMGeocoder 1
->>>>>>> pb-OrderCreationViewController
 
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse

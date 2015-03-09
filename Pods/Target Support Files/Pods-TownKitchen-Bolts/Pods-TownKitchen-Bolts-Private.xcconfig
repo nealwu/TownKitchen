@@ -1,9 +1,5 @@
 #include "Pods-TownKitchen-Bolts.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-<<<<<<< HEAD
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/Bolts" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/FormatterKit" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/RNTimer"
-=======
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/Bolts" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/GoogleKit" "${PODS_ROOT}/Headers/Public/LMGeocoder" "${PODS_ROOT}/Headers/Public/Parse"
->>>>>>> pb-OrderCreationViewController
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/Bolts" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/FormatterKit" "${PODS_ROOT}/Headers/Public/GoogleKit" "${PODS_ROOT}/Headers/Public/LMGeocoder" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/RNTimer"
 OTHER_LDFLAGS = -ObjC
 PODS_ROOT = ${SRCROOT}

@@ -16,8 +16,8 @@
 		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
-		2BF2B3051AAB70AA00E10460 /* OrderCreationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */; };
-		2BF2B3061AAB70AA00E10460 /* OrderCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF2B3041AAB70AA00E10460 /* OrderCreationTableViewCell.xib */; };
+		2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */; };
+		2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
 		91788D501AA93FEC0038FE1F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4F1AA93FEC0038FE1F /* Order.m */; };
 		91788D531AA93FF50038FE1F /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D521AA93FF50038FE1F /* Inventory.m */; };
@@ -71,9 +71,9 @@
 		2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInputViewController.m; sourceTree = "<group>"; };
 		2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInputViewController.xib; sourceTree = "<group>"; };
 		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		2BF2B3021AAB70AA00E10460 /* OrderCreationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationTableViewCell.h; sourceTree = "<group>"; };
-		2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationTableViewCell.m; sourceTree = "<group>"; };
-		2BF2B3041AAB70AA00E10460 /* OrderCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationTableViewCell.xib; sourceTree = "<group>"; };
+		2BF8B67B1AAE5D6A00700F3A /* OrderCreationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationTableViewCell.h; sourceTree = "<group>"; };
+		2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationTableViewCell.m; sourceTree = "<group>"; };
+		2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationTableViewCell.xib; sourceTree = "<group>"; };
 		825F5B3F4F21BA28A6689DB1 /* Pods-TownKitchen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.release.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.release.xcconfig"; sourceTree = "<group>"; };
 		91788D4B1AA93FB60038FE1F /* MenuOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuOption.h; sourceTree = "<group>"; };
 		91788D4C1AA93FB60038FE1F /* MenuOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuOption.m; sourceTree = "<group>"; };
@@ -206,16 +206,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2BF2B3011AAB708300E10460 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2BF2B3021AAB70AA00E10460 /* OrderCreationTableViewCell.h */,
-				2BF2B3031AAB70AA00E10460 /* OrderCreationTableViewCell.m */,
-				2BF2B3041AAB70AA00E10460 /* OrderCreationTableViewCell.xib */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		91788D4A1AA93F660038FE1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +276,9 @@
 		91788D8D1AAD0BA90038FE1F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				2BF8B67B1AAE5D6A00700F3A /* OrderCreationTableViewCell.h */,
+				2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */,
+				2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */,
 				91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */,
 				91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */,
 				91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */,
@@ -411,8 +404,8 @@
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
 				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
+				2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
-				2BF2B3061AAB70AA00E10460 /* OrderCreationTableViewCell.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
@@ -481,11 +474,11 @@
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				91788D561AA93FFB0038FE1F /* User.m in Sources */,
+				2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
-				2BF2B3051AAB70AA00E10460 /* OrderCreationTableViewCell.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
 				91788D591AA9405B0038FE1F /* DayInventory.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,

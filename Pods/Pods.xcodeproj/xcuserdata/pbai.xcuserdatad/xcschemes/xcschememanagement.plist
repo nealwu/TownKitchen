@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TownKitchen-FormatterKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TownKitchen-GoogleKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TownKitchen-RNTimer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TownKitchen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5AB047E06D7E09A8E6ECBDD6</key>
+		<key>01E0951B5B163AE20F1CB563</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B58AAA78D4F9E808945B8B9</key>
+		<key>059D018A1E9B34E02683D612</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C63AB7817F1B393EEF7127FD</key>
+		<key>078FACD447F7D1515D8D106A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8B4A7146A2F899A3C0DFCBC</key>
+		<key>17CBF4E599512B7229BFE144</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD5AACC1A2236B692C4EC3D1</key>
+		<key>2CCFAF28DE5BC9A556AAB32C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F49A701394B303F2AE095814</key>
+		<key>88151CF82EE52F60ECDECF3F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA3267C4764A13EA6D58EF1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC079FA09B778D83FF1C559F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

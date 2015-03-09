@@ -15,11 +15,8 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *mealDescription;
-
-@property (retain) NSString *name;
-@property (retain) NSString *mealDescription;
-@property (retain) NSString *imageUrl;
-@property (retain) NSNumber *price;
+@property (strong, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) NSNumber *price;
 
 + (NSString *)parseClassName;
 
