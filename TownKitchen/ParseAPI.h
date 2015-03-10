@@ -16,10 +16,8 @@
 - (NSArray *)ordersForUser:(User *)user;
 - (PFGeoPoint *)locationForOrder:(Order *)order;
 
-
 - (void)createOrder:(Order *)order;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;
-- (void)setDeliveryStateForOrder:(Order *)order location:(PFGeoPoint *)location;
-
+- (void)setDeliveryLocationForOrder:(Order *)order location:(PFGeoPoint *)location;
 
 @end

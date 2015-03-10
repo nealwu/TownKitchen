@@ -10,4 +10,14 @@
 
 @implementation User
 
++ (void)load {
+    [self registerSubclass];
+}
+
++ (NSString *)parseClassName {
+    return @"User";
+}
+
+@dynamic username;
+
 @end

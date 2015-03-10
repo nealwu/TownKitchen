@@ -8,6 +8,8 @@
 
 #import <Parse/Parse.h>
 
-@interface User : PFObject
+@interface User : PFObject <PFSubclassing>
+
+@property (strong, nonatomic) NSString *username;
 
 @end

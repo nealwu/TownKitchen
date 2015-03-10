@@ -27,6 +27,8 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) NSDictionary *deliveryOrigin;
 @property (readonly, nonatomic) MKMapItem *deliveryOriginMapItem;
 
+@property (strong, nonatomic) PFGeoPoint *deliveryLocation;
+
 @property (strong, nonatomic) NSDictionary *driverLocation;
 @property (readonly, nonatomic) MKMapItem *driverLocationMapItem;
 

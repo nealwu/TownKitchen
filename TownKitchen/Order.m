@@ -31,6 +31,7 @@
     return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude.doubleValue,longitude.doubleValue) addressDictionary:nil]];
 }
 
+@dynamic deliveryLocation;
 @dynamic driverLocation;
 
 - (MKMapItem *)driverLocationMapItem {
