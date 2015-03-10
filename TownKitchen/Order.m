@@ -55,9 +55,8 @@
         [tasks addObject:menuOptionTask];
     }
     return [[BFTask taskForCompletionOfAllTasksWithResults:tasks] continueWithSuccessBlock:^id(BFTask *task) {
-        NSArray *menuOptions = task.result;
-        self.menuOptions = menuOptions;
-        return menuOptions;
+        self.menuOptions = task.result;
+        return self.menuOptions;
     }];
 }
 
