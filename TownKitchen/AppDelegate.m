@@ -37,11 +37,11 @@
         osvc.order = task.result;
         return nil;
     }];
-    DaySelectViewController *dvc = [[DaySelectViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dvc];
+//    DaySelectViewController *dvc = [[DaySelectViewController alloc] init];
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dvc];
     
-//    DebugSelectorViewController *dsvc = [[DebugSelectorViewController alloc] init];
-//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
+    DebugSelectorViewController *dsvc = [[DebugSelectorViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
     
 //    self.window.rootViewController = osvc;
     self.window.rootViewController = nvc;

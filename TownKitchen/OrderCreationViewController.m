@@ -12,6 +12,7 @@
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
 #import "MenuOptionOrder.h"
+#import "Order.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -42,7 +43,7 @@
 #pragma mark Actions
 
 - (IBAction)onOrderButton:(id)sender {
-    
+    [self createOrder];
 }
 
 #pragma mark Private Methods
@@ -92,7 +93,7 @@
     }];
 }
 
-- (void)reloadAllTableViewData{
+- (void)reloadAllTableViewData {
     [self.tableView reloadData];
     
     NSMutableArray *menuOptionOrders = [NSMutableArray array];
@@ -101,6 +102,24 @@
     }
     
     self.menuOptionOrders = menuOptionOrders;
+}
+
+- (void)createOrder {
+    Order *order = [Order object];
+    float orderPrice = 0;
+    NSMutableDictionary *items = [NSMutableDictionary dictionary];
+    
+    for (MenuOptionOrder *menuOptionOrder in self.menuOptionOrders) {
+        if ([menuOptionOrder.quantity isEqualToNumber:[NSNumber numberWithInt:0]]) {
+            continue;
+        }
+        NSDictionary *item = @{menuOptionOrder.menuOption.name : menuOptionOrder.quantity};
+        [items addEntriesFromDictionary:item];
+        orderPrice += [menuOptionOrder.totalPrice floatValue];
+    }
+    order.items = items;
+    order.price = [NSNumber numberWithFloat:orderPrice];
+    NSLog(@"Order: %@", order);
 }
 
 - (void)onNext {
