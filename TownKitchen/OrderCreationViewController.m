@@ -42,7 +42,6 @@
 
 #pragma mark OrderCreationTableViewCellDelegate Methods
 
-
 #pragma mark Actions
 
 - (IBAction)onOrderButton:(id)sender {
@@ -59,14 +58,14 @@
     self.navigationItem.rightBarButtonItem = rightButtonItem;
 
     // Retrieve all inventory items for today
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setYear:2015];
-    [components setMonth:3];
-    [components setDay:7];
-    NSDate *dateStart = [calendar dateFromComponents:components];
-    NSTimeInterval oneDay = 24 * 60 * 60;
-    NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDateComponents *components = [[NSDateComponents alloc] init];
+//    [components setYear:2015];
+//    [components setMonth:3];
+//    [components setDay:7];
+//    NSDate *dateStart = [calendar dateFromComponents:components];
+//    NSTimeInterval oneDay = 24 * 60 * 60;
+//    NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
 
 //    PFQuery *inventoryQuery = [Inventory query];
 //    [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
@@ -94,6 +93,18 @@
 //            }];
 //        }
 //    }];
+
+    for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
+        PFQuery *menuOptionQuery = [MenuOption query];
+        [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
+        [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error) {
+                NSLog(@"failed to find menu option, error: %@", error);
+            }
+            inventoryItem.menuOptionObject = [objects firstObject];
+            [self reloadAllTableViewData];
+        }];
+    }
 }
 
 - (void)reloadAllTableViewData {
