@@ -16,12 +16,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderQuantityLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *orderStepper;
 
+@property (strong, nonatomic) NSNumber *orderQuantity;
+
 @end
 
 @implementation OrderCreationTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [self setup];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -37,11 +39,17 @@
 
 #pragma mark Custom Setters
 
-- (void)setMenuOption:(MenuOption *)menuOption {
-    _menuOption = menuOption;
-    self.mealDescription.text = menuOption.mealDescription;
-    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
-    self.orderQuantityLabel.text = @"0";
+- (void)setMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder {
+    _menuOptionOrder = menuOptionOrder;
+    self.mealDescription.text = menuOptionOrder.menuOption.mealDescription;
+    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOptionOrder.menuOption.imageUrl]];
+    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", self.menuOptionOrder.quantity];
+}
+
+#pragma mark Private Methods
+
+- (void)setup{
+    self.menuOptionOrder = [[MenuOptionOrder alloc] init];
 }
 
 #pragma mark Actions
@@ -50,8 +58,8 @@
     NSNumber *value = [NSNumber numberWithDouble:stepper.value];
     self.orderQuantity = value;
     self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", value];
+    self.menuOptionOrder.quantity = value;
+    [self.delegate orderCreationTableViewCell:self didUpdateMenuOptionOrder:self.menuOptionOrder];
 }
-
-
 
 @end

@@ -11,11 +11,12 @@
 #import "DayInventory.h"
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
+#import "MenuOptionOrder.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *menuOptions;
+@property (strong, nonatomic) NSArray *menuOptionOrders;
 @property (strong, nonatomic) OrderCreationTableViewCell *sizingCell;
 
 @end
@@ -35,6 +36,78 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationTableViewCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationTableViewCell"];
 }
 
+#pragma mark OrderCreationTableViewCellDelegate Methods
+
+
+#pragma mark Actions
+
+- (IBAction)onOrderButton:(id)sender {
+    
+}
+
+#pragma mark Private Methods
+
+- (void)setup {
+    self.menuOptionOrders = [NSMutableArray array];
+
+    // Customize navigation bar
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(onNext)];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+
+    // Retrieve all inventory items for today
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setYear:2015];
+    [components setMonth:3];
+    [components setDay:7];
+    NSDate *dateStart = [calendar dateFromComponents:components];
+    NSTimeInterval oneDay = 24 * 60 * 60;
+    NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
+
+    PFQuery *inventoryQuery = [Inventory query];
+    [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
+    [inventoryQuery whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
+    [inventoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"failed to find inventory objects, error: %@", error);
+            return;
+        }
+        self.dayInventory = [[DayInventory alloc] init];
+        self.dayInventory.inventoryItems = objects;
+        NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
+
+        // Retrieve corresponding menu options
+        
+        for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
+            PFQuery *menuOptionQuery = [MenuOption query];
+            [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
+            [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (error) {
+                    NSLog(@"failed to find menu option, error: %@", error);
+                }
+                inventoryItem.menuOptionObject = [objects firstObject];
+                [self reloadAllTableViewData];
+            }];
+        }
+    }];
+}
+
+- (void)reloadAllTableViewData{
+    [self.tableView reloadData];
+    
+    NSMutableArray *menuOptionOrders = [NSMutableArray array];
+    for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
+        [menuOptionOrders addObject:[MenuOptionOrder initWithMenuOption:inventoryItem.menuOptionObject]];
+    }
+    
+    self.menuOptionOrders = menuOptionOrders;
+}
+
+- (void)onNext {
+    LocationSelectViewController *lsvc = [[LocationSelectViewController alloc] init];
+    [self.navigationController pushViewController:lsvc animated:YES];
+}
+
 #pragma mark Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -43,7 +116,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
-    cell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    cell.menuOptionOrder = self.menuOptionOrders[indexPath.row];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -59,7 +132,8 @@
     }
     
     // populate cell with same data as visible cell
-    self.sizingCell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    MenuOption *menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    self.sizingCell.menuOptionOrder = [MenuOptionOrder initWithMenuOption:menuOption];
     
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];
@@ -74,58 +148,6 @@
     height += 1;  // compensate for cell separators
     
     return height;
-}
-
-#pragma mark Setup Methods
-
-- (void)setup {
-    // Customize navigation bar
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(onNext)];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
-
-    // Retrieve all inventory items for today
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setYear:2015];
-    [components setMonth:3];
-    [components setDay:7];
-    NSDate *dateStart = [calendar dateFromComponents:components];
-    NSTimeInterval oneDay = 24 * 60 * 60;
-    NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
-//    NSLog(@"start date: %@, end date %@", dateStart, dateEnd);
-
-    PFQuery *inventoryQuery = [Inventory query];
-    [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
-    [inventoryQuery whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
-    [inventoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"failed to find inventory objects, error: %@", error);
-            return;
-        }
-        self.dayInventory = [[DayInventory alloc] init];
-        self.dayInventory.inventoryItems = objects;
-        NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
-
-        // Retrieve corresponding menu options
-        for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
-            PFQuery *menuOptionQuery = [MenuOption query];
-            [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
-            [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (error) {
-                    NSLog(@"failed to find menu option, error: %@", error);
-                }
-                inventoryItem.menuOptionObject = [objects firstObject];
-                [self.tableView reloadData];
-            }];
-        }
-    }];
-}
-
-#pragma mark Private Methods
-
-- (void)onNext {
-    LocationSelectViewController *lsvc = [[LocationSelectViewController alloc] init];
-    [self.navigationController pushViewController:lsvc animated:YES];
 }
 
 #pragma mark System Methods

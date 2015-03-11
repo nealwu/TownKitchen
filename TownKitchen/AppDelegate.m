@@ -15,6 +15,7 @@
 #import "DaySelectViewController.h"
 
 #import "ReviewViewController.h"
+#import "DebugSelectorViewController.h"
 
 @interface AppDelegate ()
 
@@ -36,10 +37,13 @@
         osvc.order = task.result;
         return nil;
     }];
-
     DaySelectViewController *dvc = [[DaySelectViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dvc];
-
+    
+//    DebugSelectorViewController *dsvc = [[DebugSelectorViewController alloc] init];
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
+    
+//    self.window.rootViewController = osvc;
     self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;

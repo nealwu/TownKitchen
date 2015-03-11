@@ -20,12 +20,37 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRv-26-qfa">
+                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35d-Lv-lba">
+                            <rect key="frame" x="132" y="10" width="57" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <state key="normal" title="Order">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onOrderButton:" destination="-1" eventType="touchUpInside" id="1Fh-mZ-P1H"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="4Mw-Fy-VFm"/>
+                        <constraint firstAttribute="centerY" secondItem="35d-Lv-lba" secondAttribute="centerY" id="Nvr-5T-t0B"/>
+                        <constraint firstAttribute="centerX" secondItem="35d-Lv-lba" secondAttribute="centerX" constant="-0.5" id="ean-M5-ehI"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="fYM-bp-3Bk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FSA-ih-j0e"/>
                 <constraint firstAttribute="bottom" secondItem="fYM-bp-3Bk" secondAttribute="bottom" id="FVB-Wq-oAa"/>
+                <constraint firstItem="KRv-26-qfa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Kdb-mw-hcu"/>
                 <constraint firstAttribute="trailing" secondItem="fYM-bp-3Bk" secondAttribute="trailing" id="SGZ-z4-wNC"/>
+                <constraint firstAttribute="trailing" secondItem="KRv-26-qfa" secondAttribute="trailing" id="UPm-id-DWE"/>
+                <constraint firstAttribute="bottom" secondItem="KRv-26-qfa" secondAttribute="bottom" id="m9T-QS-6Oi"/>
                 <constraint firstItem="fYM-bp-3Bk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qVf-eL-JxS"/>
             </constraints>
             <point key="canvasLocation" x="302" y="480"/>
