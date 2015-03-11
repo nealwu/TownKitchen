@@ -13,6 +13,7 @@
 #import "LocationSelectViewController.h"
 #import "MenuOptionOrder.h"
 #import "Order.h"
+#import "CheckoutViewController.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -119,7 +120,11 @@
     }
     order.items = items;
     order.price = [NSNumber numberWithFloat:orderPrice];
-    NSLog(@"Order: %@", order);
+    NSLog(@"Creating order: %@", order);
+    
+    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
+    checkoutViewController.order = order;
+    [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
 
 - (void)onNext {

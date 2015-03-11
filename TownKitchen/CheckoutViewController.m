@@ -12,6 +12,7 @@
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *orderItems;
 
 @end
 
@@ -27,6 +28,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark custom setters
+
+- (void)setOrder:(Order *)order {
+    _order = order;
+    
+}
+
 #pragma mark Private Methods
 
 - (void)setup{
@@ -39,7 +47,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.order.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,7 +61,6 @@
 #pragma mark Actions
 
 - (IBAction)onPlaceOrder:(id)sender {
-    
     
 }
 
