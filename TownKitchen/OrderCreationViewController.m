@@ -109,18 +109,22 @@
     Order *order = [Order object];
     float orderPrice = 0;
     NSMutableDictionary *items = [NSMutableDictionary dictionary];
+    NSMutableArray *menuOptionOrders = [NSMutableArray array];
     
     for (MenuOptionOrder *menuOptionOrder in self.menuOptionOrders) {
         if ([menuOptionOrder.quantity isEqualToNumber:[NSNumber numberWithInt:0]]) {
             continue;
         }
+        [menuOptionOrders addObject:menuOptionOrder];
+        
         NSDictionary *item = @{menuOptionOrder.menuOption.name : menuOptionOrder.quantity};
         [items addEntriesFromDictionary:item];
         orderPrice += [menuOptionOrder.totalPrice floatValue];
     }
+    order.menuOptionOrders = [NSArray arrayWithArray:menuOptionOrders];
     order.items = items;
     order.price = [NSNumber numberWithFloat:orderPrice];
-    NSLog(@"Creating order: %@", order);
+    NSLog(@"Creating order: %@ with menuOptionOrders: %@", order, order.menuOptionOrders);
     
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
     checkoutViewController.order = order;
