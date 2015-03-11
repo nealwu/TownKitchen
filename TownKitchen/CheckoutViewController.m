@@ -103,10 +103,10 @@
 - (void)setTime {
     TimeSelectViewController *tvc = [[TimeSelectViewController alloc] init];
     tvc.delegate = self;
-    if (self.selectedDate) {
-        tvc.datePicker.date = self.selectedDate;
-    }
     [self presentViewController:tvc animated:YES completion:nil];
+    if (self.selectedDate) {
+        [tvc.datePicker setDate:self.selectedDate animated:NO];
+    }
 }
 
 #pragma mark LocationSelectViewControllerDelegate methods
