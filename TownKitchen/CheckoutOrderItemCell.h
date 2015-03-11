@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuOptionOrder.h"
 
 @interface CheckoutOrderItemCell : UITableViewCell
 
-
+@property (strong, nonatomic) MenuOptionOrder *menuOptionOrder;
 
 @end
