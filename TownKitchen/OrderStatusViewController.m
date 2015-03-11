@@ -12,6 +12,7 @@
 #import <Bolts.h>
 #import "OrderStatusViewController.h"
 #import "OrderSummaryView.h"
+#import "ReviewViewController.h"
 
 static const NSTimeInterval kUpdateInterval = 10.0;
 
@@ -60,6 +61,8 @@ static const NSTimeInterval kUpdateInterval = 10.0;
     self.mapView.delegate = self;
     if (self.order) {
         [self startTimer];
+
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Review" style:UIBarButtonItemStylePlain target:self action:@selector(onReview)];
     }
 }
 
@@ -277,6 +280,11 @@ static const NSTimeInterval kUpdateInterval = 10.0;
             self.driverLocationAnnotation.coordinate = self.order.driverLocationMapItem.placemark.location.coordinate;
         }];
     }
+}
+
+- (void)onReview {
+    ReviewViewController *rvc = [[ReviewViewController alloc] init];
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 @end
