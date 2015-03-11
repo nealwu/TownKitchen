@@ -67,4 +67,6 @@
     }];
 }
 
+@synthesize menuOptionOrders;s
+
 @end

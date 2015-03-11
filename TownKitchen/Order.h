@@ -38,6 +38,7 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) NSDictionary *items;
 @property (strong, nonatomic) NSArray *menuOptions;
+@property (strong, nonatomic) NSArray *menuOptionOrders;
 
 /* Fetch MenuOption objects from the network and populate the menuOptions
  * property. The returned BFTask completes when the menuOptions property
