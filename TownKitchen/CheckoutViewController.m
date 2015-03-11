@@ -8,6 +8,7 @@
 
 #import "CheckoutViewController.h"
 #import "CheckoutOrderItemCell.h"
+#import "MenuOption.h"
 
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -34,7 +35,7 @@
     _order = order;
     NSMutableArray *mutableOrderItems = [NSMutableArray array];
     for (NSString *menuItem in order.items) {
-        [mutableOrderItems addObject:@{ @"menuItem" : menuItem, @"quantity" : order.items[menuItem] }];
+        [mutableOrderItems addObject:@{ @"menuItemName" : menuItem, @"quantity" : order.items[menuItem] }];
     }
     NSLog(@"%@", mutableOrderItems);
     
@@ -49,8 +50,18 @@
             return NSOrderedSame;
         }
     }];
-
-    NSLog(@"%@", mutableOrderItems);
+    self.orderItems = [NSArray arrayWithArray:mutableOrderItems];
+        NSLog(@"%@", self.orderItems);
+    
+    // retrieve menu options from Parse
+    for (NSDictionary *orderItem in self.orderItems) {
+        NSLog(@"looking for: %@", orderItem[@"menuItemName"]);
+        PFQuery *menuOptionQuery = [MenuOption query];
+        [menuOptionQuery whereKey:@"name" containsString:orderItem[@"menuItemName"]];
+        [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSLog(@"got menuItem: %@", [objects firstObject]);
+        }];
+    }
 }
 
 #pragma mark Private Methods
@@ -61,13 +72,9 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
     
-    // retrieve order objects from Parse
+
     
-    for (NSString *orderItem in self.order.items) {
-        
-    }
     
-    PFQuery *orderQuery = [Order query];
     
 
     
