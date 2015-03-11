@@ -18,6 +18,8 @@
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
 		2BD9E6641AAFE83F0072BB59 /* MenuOptionOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E6631AAFE83F0072BB59 /* MenuOptionOrder.m */; };
+		2BD9E6681AAFEAE10072BB59 /* DebugSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */; };
+		2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
@@ -78,6 +80,9 @@
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
 		2BD9E6621AAFE83F0072BB59 /* MenuOptionOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuOptionOrder.h; sourceTree = "<group>"; };
 		2BD9E6631AAFE83F0072BB59 /* MenuOptionOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuOptionOrder.m; sourceTree = "<group>"; };
+		2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSelectorViewController.h; sourceTree = "<group>"; };
+		2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSelectorViewController.m; sourceTree = "<group>"; };
+		2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugSelectorViewController.xib; sourceTree = "<group>"; };
 		2BF8B67B1AAE5D6A00700F3A /* OrderCreationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationTableViewCell.h; sourceTree = "<group>"; };
 		2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationTableViewCell.m; sourceTree = "<group>"; };
 		2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationTableViewCell.xib; sourceTree = "<group>"; };
@@ -260,6 +265,9 @@
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
+				2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */,
+				2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */,
+				2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -422,6 +430,7 @@
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
+				2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
@@ -493,6 +502,7 @@
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
+				2BD9E6681AAFEAE10072BB59 /* DebugSelectorViewController.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "CheckoutViewController.h"
+#import "CheckoutOrderItemCell.h"
 
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -29,16 +30,24 @@
 #pragma mark Private Methods
 
 - (void)setup{
+    // tableView methods
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
     
 }
 #pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CheckoutOrderItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CheckoutOrderItemCell"];
     
+    cell.menuOptionOrder = nil;
+    
+    return cell;
 }
 
 #pragma mark Actions

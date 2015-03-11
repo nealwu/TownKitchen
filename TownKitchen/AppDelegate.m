@@ -12,6 +12,7 @@
 #import "Order.h"
 #import <Parse/Parse.h>
 #import "OrderCreationViewController.h"
+#import "DebugSelectorViewController.h"
 
 @interface AppDelegate ()
 
@@ -34,8 +35,8 @@
         return nil;
     }];
     
-    OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ocvc];
+    DebugSelectorViewController *dsvc = [[DebugSelectorViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
     
 //    self.window.rootViewController = osvc;
     self.window.rootViewController = nvc;
