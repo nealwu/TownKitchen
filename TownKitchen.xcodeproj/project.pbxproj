@@ -24,8 +24,6 @@
 		91788D591AA9405B0038FE1F /* DayInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D581AA9405B0038FE1F /* DayInventory.m */; };
 		91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D5C1AA940930038FE1F /* OrderCreationViewController.m */; };
 		91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */; };
-		91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D611AA940B10038FE1F /* DaySelectViewController.m */; };
-		91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D621AA940B10038FE1F /* DaySelectViewController.xib */; };
 		91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D661AA940DF0038FE1F /* CheckoutViewController.m */; };
 		91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D671AA940DF0038FE1F /* CheckoutViewController.xib */; };
 		91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */; };
@@ -44,6 +42,10 @@
 		9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F198EE31AAF7B0D00C0055D /* Images.xcassets */; };
 		9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */; };
 		9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */; };
+		9FC8AAF11AAFCFE000610500 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAEF1AAFCFE000610500 /* DayViewController.m */; };
+		9FC8AAF21AAFCFE000610500 /* DayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF01AAFCFE000610500 /* DayViewController.xib */; };
+		9FC8AAF61AAFD44200610500 /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF41AAFD44200610500 /* DayCell.m */; };
+		9FC8AAF71AAFD44200610500 /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF51AAFD44200610500 /* DayCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,9 +89,6 @@
 		91788D5B1AA940930038FE1F /* OrderCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationViewController.h; sourceTree = "<group>"; };
 		91788D5C1AA940930038FE1F /* OrderCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationViewController.m; sourceTree = "<group>"; };
 		91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationViewController.xib; sourceTree = "<group>"; };
-		91788D601AA940B10038FE1F /* DaySelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectViewController.h; sourceTree = "<group>"; };
-		91788D611AA940B10038FE1F /* DaySelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectViewController.m; sourceTree = "<group>"; };
-		91788D621AA940B10038FE1F /* DaySelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaySelectViewController.xib; sourceTree = "<group>"; };
 		91788D651AA940DF0038FE1F /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
 		91788D661AA940DF0038FE1F /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		91788D671AA940DF0038FE1F /* CheckoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutViewController.xib; sourceTree = "<group>"; };
@@ -117,6 +116,12 @@
 		9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
+		9FC8AAEE1AAFCFE000610500 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
+		9FC8AAEF1AAFCFE000610500 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
+		9FC8AAF01AAFCFE000610500 /* DayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayViewController.xib; sourceTree = "<group>"; };
+		9FC8AAF31AAFD44200610500 /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
+		9FC8AAF41AAFD44200610500 /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
+		9FC8AAF51AAFD44200610500 /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
 		F02D873F8A16AE6556FF4B7A /* Pods-TownKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 		F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TownKitchen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,17 +170,17 @@
 		2B13D0961AA81B9100FC0689 /* TownKitchen */ = {
 			isa = PBXGroup;
 			children = (
-				9F198EE31AAF7B0D00C0055D /* Images.xcassets */,
-				2B13D09B1AA81B9100FC0689 /* AppDelegate.h */,
-				2B13D09C1AA81B9100FC0689 /* AppDelegate.m */,
 				91788D811AA947D20038FE1F /* API */,
 				91788D931AAD25210038FE1F /* Categories */,
-				2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */,
 				91788D4A1AA93F660038FE1F /* Models */,
-				2B13D0971AA81B9100FC0689 /* Supporting Files */,
-				91788D8D1AAD0BA90038FE1F /* TableViewCells */,
-				91788D5A1AA940700038FE1F /* ViewControllers */,
+				91788D8D1AAD0BA90038FE1F /* Table View Cells */,
+				91788D5A1AA940700038FE1F /* View Controllers */,
 				91788D871AAD0A1B0038FE1F /* Views */,
+				2B13D09B1AA81B9100FC0689 /* AppDelegate.h */,
+				2B13D09C1AA81B9100FC0689 /* AppDelegate.m */,
+				9F198EE31AAF7B0D00C0055D /* Images.xcassets */,
+				2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */,
+				2B13D0971AA81B9100FC0689 /* Supporting Files */,
 			);
 			path = TownKitchen;
 			sourceTree = "<group>";
@@ -223,15 +228,12 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		91788D5A1AA940700038FE1F /* ViewControllers */ = {
+		91788D5A1AA940700038FE1F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				91788D5B1AA940930038FE1F /* OrderCreationViewController.h */,
 				91788D5C1AA940930038FE1F /* OrderCreationViewController.m */,
 				91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */,
-				91788D601AA940B10038FE1F /* DaySelectViewController.h */,
-				91788D611AA940B10038FE1F /* DaySelectViewController.m */,
-				91788D621AA940B10038FE1F /* DaySelectViewController.xib */,
 				91788D651AA940DF0038FE1F /* CheckoutViewController.h */,
 				91788D661AA940DF0038FE1F /* CheckoutViewController.m */,
 				91788D671AA940DF0038FE1F /* CheckoutViewController.xib */,
@@ -250,8 +252,11 @@
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
+				9FC8AAEE1AAFCFE000610500 /* DayViewController.h */,
+				9FC8AAEF1AAFCFE000610500 /* DayViewController.m */,
+				9FC8AAF01AAFCFE000610500 /* DayViewController.xib */,
 			);
-			name = ViewControllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		91788D811AA947D20038FE1F /* API */ = {
@@ -273,7 +278,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		91788D8D1AAD0BA90038FE1F /* TableViewCells */ = {
+		91788D8D1AAD0BA90038FE1F /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
 				2BF8B67B1AAE5D6A00700F3A /* OrderCreationTableViewCell.h */,
@@ -282,8 +287,11 @@
 				91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */,
 				91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */,
 				91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */,
+				9FC8AAF31AAFD44200610500 /* DayCell.h */,
+				9FC8AAF41AAFD44200610500 /* DayCell.m */,
+				9FC8AAF51AAFD44200610500 /* DayCell.xib */,
 			);
-			name = TableViewCells;
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		91788D931AAD25210038FE1F /* Categories */ = {
@@ -402,9 +410,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
-				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
 				9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */,
+				9FC8AAF71AAFD44200610500 /* DayCell.xib in Resources */,
 				2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
@@ -412,6 +420,7 @@
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
+				9FC8AAF21AAFCFE000610500 /* DayViewController.xib in Resources */,
 				2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
 			);
@@ -464,15 +473,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */,
 				91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */,
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
+				9FC8AAF61AAFD44200610500 /* DayCell.m in Sources */,
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				91788D561AA93FFB0038FE1F /* User.m in Sources */,
+				9FC8AAF11AAFCFE000610500 /* DayViewController.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,

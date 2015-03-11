@@ -57,7 +57,7 @@
 }
 
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment {
-    PFObject *review = [PFObject objectWithClassName:@"Reviews"];
+    PFObject *review = [PFObject objectWithClassName:@"Review"];
     review[@"comments"] = comment;
     review[@"order"] = [PFObject objectWithoutDataWithClassName:@"Order" objectId:order.objectId];
     review[@"starRating"] = stars;

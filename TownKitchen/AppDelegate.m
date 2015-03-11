@@ -12,6 +12,7 @@
 #import "Order.h"
 #import <Parse/Parse.h>
 #import "OrderCreationViewController.h"
+#import "DayViewController.h"
 
 #import "ReviewViewController.h"
 
@@ -36,11 +37,10 @@
         return nil;
     }];
 
-    OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ocvc];
-    
-    self.window.rootViewController = osvc;
-//    self.window.rootViewController = [[ReviewViewController alloc] init];
+    DayViewController *dvc = [[DayViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dvc];
+
+    self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;
 }
