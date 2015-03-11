@@ -15,7 +15,6 @@
 + (MenuOptionOrder *)initWithMenuOption:(MenuOption *)menuOption {
     MenuOptionOrder *menuOptionOrder = [[MenuOptionOrder alloc] init];
     menuOptionOrder.menuOption = menuOption;
-    NSLog(@"initing menuoptionorder with quantity: %@", menuOptionOrder.quantity);
     return menuOptionOrder;
 }
 
