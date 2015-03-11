@@ -113,7 +113,7 @@
 }
 
 - (IBAction)onSubmit:(id)sender {
-    NSLog(@"Submitted with %ld star(s) and comment %@", self.ratingStars, self.commentView.text);
+    NSLog(@"Submitted with %ld star(s) and comment %@", (long) self.ratingStars, self.commentView.text);
 }
 
 @end
