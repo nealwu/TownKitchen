@@ -52,10 +52,6 @@
 - (void)setup {
     self.menuOptionOrders = [NSMutableArray array];
 
-    // Customize navigation bar
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(onNext)];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
-
     // Retrieve all inventory items for today
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];

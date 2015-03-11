@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController">
             <connections>
+                <outlet property="addressLabel" destination="xMY-gp-So8" id="oe1-id-L4H"/>
                 <outlet property="tableView" destination="5Na-AX-qBN" id="J9c-wa-IgT"/>
+                <outlet property="timeLabel" destination="vaO-By-MEw" id="SvQ-We-Wl3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,8 +57,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hK-7J-NNG" userLabel="Address View">
                     <rect key="frame" x="20" y="332" width="280" height="48"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-gp-So8">
-                            <rect key="frame" x="26" y="13" width="92" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set address" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-gp-So8">
+                            <rect key="frame" x="20" y="6" width="130" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="130" id="dIn-0k-rDm"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -67,10 +72,41 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LT-Wb-41Q" userLabel="address button">
+                            <rect key="frame" x="0.0" y="0.0" width="162" height="48"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onSetAddressButton:" destination="-1" eventType="touchUpInside" id="V1M-6d-1Su"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-Ys-sjT" userLabel="time button">
+                            <rect key="frame" x="162" y="0.0" width="118" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="118" id="bMu-ae-z2Y"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onSetTimeButton:" destination="-1" eventType="touchUpInside" id="g7g-I6-NfF"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="xMY-gp-So8" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" constant="20" id="0um-2L-99T"/>
+                        <constraint firstItem="UJr-Ys-sjT" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="top" id="DVD-QK-r2S"/>
+                        <constraint firstItem="xMY-gp-So8" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="top" constant="6" id="ICN-E0-aAl"/>
+                        <constraint firstAttribute="trailing" secondItem="UJr-Ys-sjT" secondAttribute="trailing" id="OxI-Xn-Hmb"/>
+                        <constraint firstItem="7LT-Wb-41Q" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="top" id="UeO-R8-r56"/>
+                        <constraint firstAttribute="bottom" secondItem="UJr-Ys-sjT" secondAttribute="bottom" id="UtW-2c-92x"/>
                         <constraint firstAttribute="height" constant="48" id="VQC-mQ-jFf"/>
+                        <constraint firstAttribute="bottom" secondItem="xMY-gp-So8" secondAttribute="bottom" constant="6" id="i7E-Ph-xXt"/>
+                        <constraint firstAttribute="bottom" secondItem="7LT-Wb-41Q" secondAttribute="bottom" id="mHz-Cw-Iic"/>
+                        <constraint firstItem="UJr-Ys-sjT" firstAttribute="leading" secondItem="7LT-Wb-41Q" secondAttribute="trailing" id="u7a-QY-GWY"/>
+                        <constraint firstItem="7LT-Wb-41Q" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" id="wRi-rY-rqe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41Y-VO-qYR" userLabel="Payment View">

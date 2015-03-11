@@ -9,11 +9,18 @@
 #import "CheckoutViewController.h"
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
+#import "AddressInputViewController.h"
+#import <GoogleKit.h>
+#import "LocationSelectViewController.h"
 
-@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic) NSArray *orderItems;
+
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
 
 @end
 
@@ -86,6 +93,18 @@
     [self.tableView reloadData];
 }
 
+- (void)setAddress {
+    LocationSelectViewController *lvc = [[LocationSelectViewController alloc] init];
+    lvc.delegate = self;
+    [self presentViewController:lvc animated:YES completion:nil];
+}
+
+#pragma mark LocationSelectViewControllerDelegate methods
+
+- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address {
+    self.addressLabel.text = address;
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -103,6 +122,15 @@
 - (IBAction)onPlaceOrder:(id)sender {
     
 }
+
+- (IBAction)onSetAddressButton:(id)sender {
+    [self setAddress];
+}
+
+- (IBAction)onSetTimeButton:(id)sender {
+    
+}
+
 
 
 @end

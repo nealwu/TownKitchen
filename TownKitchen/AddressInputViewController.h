@@ -11,7 +11,7 @@
 
 @class AddressInputViewController, GKPlaceDetails;
 
-@protocol AddressInputViewController <NSObject>
+@protocol AddressInputViewControllerDelegate <NSObject>
 
 - (void)addressInputViewController:(AddressInputViewController *)addressInputViewController didSelectPlaceDetails:(GKPlaceDetails *)details;
 
@@ -21,6 +21,6 @@
 
 @property (nonatomic, strong) NSString *initialSearchTerm;
 @property (nonatomic, strong) CLLocation *currentLocation;
-@property (nonatomic, weak) id<AddressInputViewController> delegate;
+@property (nonatomic, weak) id<AddressInputViewControllerDelegate> delegate;
 
 @end

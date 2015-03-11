@@ -12,7 +12,7 @@
 #import <MapKit/MapKit.h>
 #import <LMGeocoder.h>
 
-@interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate, AddressInputViewController>
+@interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate, AddressInputViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -183,6 +183,7 @@
     }
     NSLog(@"Setting address to: %@", self.addressString);
     [self.delegate locationSelectViewController:self didSelectAddress:self.addressString];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onAddressViewTap:(id)sender {
