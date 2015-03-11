@@ -13,6 +13,8 @@
 #import <Parse/Parse.h>
 #import "OrderCreationViewController.h"
 
+#import "ReviewViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -33,12 +35,12 @@
         osvc.order = task.result;
         return nil;
     }];
-    
+
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ocvc];
     
-//    self.window.rootViewController = osvc;
-    self.window.rootViewController = nvc;
+    self.window.rootViewController = osvc;
+//    self.window.rootViewController = [[ReviewViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -79,11 +79,10 @@
 #pragma mark Setup Methods
 
 - (void)setup {
-    
     // Customize navigation bar
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(onNext)];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
-    
+
     // Retrieve all inventory items for today
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -94,7 +93,7 @@
     NSTimeInterval oneDay = 24 * 60 * 60;
     NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
 //    NSLog(@"start date: %@, end date %@", dateStart, dateEnd);
-    
+
     PFQuery *inventoryQuery = [Inventory query];
     [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
     [inventoryQuery whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
@@ -106,7 +105,7 @@
         self.dayInventory = [[DayInventory alloc] init];
         self.dayInventory.inventoryItems = objects;
         NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
-        
+
         // Retrieve corresponding menu options
         for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
             PFQuery *menuOptionQuery = [MenuOption query];

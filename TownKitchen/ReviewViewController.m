@@ -91,7 +91,7 @@
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    if ([textView.text isEqual:@"Leave a review here (optional)"]) {
+    if ([textView.text isEqual:@"Leave a review (optional)"]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor];
     }
@@ -101,7 +101,7 @@
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
     if (textView.text.length == 0) {
-        textView.text = @"Leave a review here (optional)";
+        textView.text = @"Leave a review (optional)";
         textView.textColor = [UIColor grayColor];
     }
 
