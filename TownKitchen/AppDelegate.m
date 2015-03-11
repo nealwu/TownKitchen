@@ -16,6 +16,8 @@
 
 #import "ReviewViewController.h"
 #import "DebugSelectorViewController.h"
+#import "OrderCell.h"
+#import "OrdersViewController.h"
 
 @interface AppDelegate ()
 

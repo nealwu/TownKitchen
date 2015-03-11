@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "OrderCreationViewController.h"
 #import "DayInventory.h"
+#import "DateUtils.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -25,21 +26,9 @@
 
 @implementation DaySelectViewController
 
-- (NSString *)dayOfTheWeekFromDate:(NSDate *)date {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"EEEE"];
-    return [formatter stringFromDate:date];
-}
-
-- (NSString *)monthAndDayFromDate:(NSDate *)date {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM d"];
-    return [formatter stringFromDate:date];
-}
-
 - (NSArray *)filterInventoriesByDate:(NSDate *)date {
     return [self.inventories filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [[self monthAndDayFromDate:((Inventory *) evaluatedObject).dateOffered] isEqual:[self monthAndDayFromDate:date]];
+        return [[DateUtils monthAndDayFromDate:((Inventory *) evaluatedObject).dateOffered] isEqual:[DateUtils monthAndDayFromDate:date]];
     }]];
 }
 
@@ -56,7 +45,7 @@
 
     for (Inventory *inventory in self.inventories) {
         inventory.imageURL = [[ParseAPI getInstance] imageURLForMenuOption:inventory.menuOption];
-        NSString *monthAndDay = [self monthAndDayFromDate:inventory.dateOffered];
+        NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
             [self.uniqueInventories addObject:inventory];
@@ -86,8 +75,8 @@
     Inventory *inventory = self.uniqueInventories[indexPath.row];
     DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
     [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:inventory.imageURL]];
-    cell.dayLabel.text = [self dayOfTheWeekFromDate:inventory.dateOffered];
-    cell.dateLabel.text = [self monthAndDayFromDate:inventory.dateOffered];
+    cell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
+    cell.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
     return cell;
 }
 

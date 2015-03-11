@@ -39,9 +39,9 @@
     return inventories;
 }
 
-- (NSArray *)ordersForUser:(User *)user {
+- (NSArray *)ordersForUser:(NSString *)username {
     PFQuery *query = [PFQuery queryWithClassName:@"Order"];
-    [query whereKey:@"username" equalTo:user.username];
+    [query whereKey:@"username" equalTo:username];
     NSArray *orders = [query findObjects];
     return orders;
 }
@@ -65,6 +65,18 @@
     }
 
     return ((MenuOption *) menuOptions[0]).imageUrl;
+}
+
+- (MenuOption *)menuOptionForName:(NSString *)name {
+    PFQuery *query = [PFQuery queryWithClassName:@"MenuOption"];
+    [query whereKey:@"name" equalTo:name];
+    NSArray *menuOptions = [query findObjects];
+
+    if (menuOptions.count == 0) {
+        return nil;
+    }
+
+    return menuOptions[0];
 }
 
 - (void)createOrder:(Order *)order {

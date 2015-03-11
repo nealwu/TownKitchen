@@ -27,7 +27,6 @@
 @dynamic name;
 @dynamic username;
 @dynamic deliveryTime;
-@dynamic totalAmount;
 
 @dynamic deliveryAddress;
 @dynamic deliveryOrigin;

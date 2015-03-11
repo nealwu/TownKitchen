@@ -17,8 +17,6 @@
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BBABFB91AB008DF0098124D /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBABFB71AB008DF0098124D /* DayCell.m */; };
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
-		2BD402321AB0D4240024D61C /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD402301AB0D4240024D61C /* TimeSelectViewController.m */; };
-		2BD402331AB0D4240024D61C /* TimeSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD402311AB0D4240024D61C /* TimeSelectViewController.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
 		2BD9E6641AAFE83F0072BB59 /* MenuOptionOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E6631AAFE83F0072BB59 /* MenuOptionOrder.m */; };
@@ -53,6 +51,13 @@
 		9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F198EE31AAF7B0D00C0055D /* Images.xcassets */; };
 		9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */; };
 		9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */; };
+		9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF91AB0D37700610500 /* OrdersViewController.m */; };
+		9FC8AAFC1AB0D37700610500 /* OrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */; };
+		9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAFE1AB0D3DB00610500 /* OrderCell.m */; };
+		9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAFF1AB0D3DB00610500 /* OrderCell.xib */; };
+		9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AB031AB0D93100610500 /* DateUtils.m */; };
+		9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */; };
+		9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,9 +87,6 @@
 		2BBABFB61AB008DF0098124D /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
 		2BBABFB71AB008DF0098124D /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
 		2BBABFB81AB008DF0098124D /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
-		2BD4022F1AB0D4240024D61C /* TimeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectViewController.h; sourceTree = "<group>"; };
-		2BD402301AB0D4240024D61C /* TimeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectViewController.m; sourceTree = "<group>"; };
-		2BD402311AB0D4240024D61C /* TimeSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectViewController.xib; sourceTree = "<group>"; };
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
@@ -140,6 +142,17 @@
 		9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
+		9FC8AAF81AB0D37700610500 /* OrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersViewController.h; sourceTree = "<group>"; };
+		9FC8AAF91AB0D37700610500 /* OrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersViewController.m; sourceTree = "<group>"; };
+		9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdersViewController.xib; sourceTree = "<group>"; };
+		9FC8AAFD1AB0D3DB00610500 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		9FC8AAFE1AB0D3DB00610500 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		9FC8AAFF1AB0D3DB00610500 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		9FC8AB021AB0D93100610500 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		9FC8AB031AB0D93100610500 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
+		9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectViewController.h; sourceTree = "<group>"; };
+		9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectViewController.m; sourceTree = "<group>"; };
+		9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectViewController.xib; sourceTree = "<group>"; };
 		F02D873F8A16AE6556FF4B7A /* Pods-TownKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 		F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TownKitchen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -244,6 +257,8 @@
 				91788D551AA93FFB0038FE1F /* User.m */,
 				91788D571AA9405B0038FE1F /* DayInventory.h */,
 				91788D581AA9405B0038FE1F /* DayInventory.m */,
+				9FC8AB021AB0D93100610500 /* DateUtils.h */,
+				9FC8AB031AB0D93100610500 /* DateUtils.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -278,9 +293,12 @@
 				2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */,
 				2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */,
 				2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */,
-				2BD4022F1AB0D4240024D61C /* TimeSelectViewController.h */,
-				2BD402301AB0D4240024D61C /* TimeSelectViewController.m */,
-				2BD402311AB0D4240024D61C /* TimeSelectViewController.xib */,
+				9FC8AAF81AB0D37700610500 /* OrdersViewController.h */,
+				9FC8AAF91AB0D37700610500 /* OrdersViewController.m */,
+				9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */,
+				9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */,
+				9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */,
+				9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -319,6 +337,9 @@
 				2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */,
 				2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */,
 				2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */,
+				9FC8AAFD1AB0D3DB00610500 /* OrderCell.h */,
+				9FC8AAFE1AB0D3DB00610500 /* OrderCell.m */,
+				9FC8AAFF1AB0D3DB00610500 /* OrderCell.xib */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -442,14 +463,16 @@
 				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
 				9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */,
+				9FC8AAFC1AB0D37700610500 /* OrdersViewController.xib in Resources */,
 				2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */,
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
+				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
-				2BD402331AB0D4240024D61C /* TimeSelectViewController.xib in Resources */,
 				2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
+				9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
@@ -519,15 +542,18 @@
 				91788D561AA93FFB0038FE1F /* User.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
+				9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
+				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
 				2BD9E6681AAFEAE10072BB59 /* DebugSelectorViewController.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
-				2BD402321AB0D4240024D61C /* TimeSelectViewController.m in Sources */,
 				91788D591AA9405B0038FE1F /* DayInventory.m in Sources */,
+				9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
+				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,
 				91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */,
 			);

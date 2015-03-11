@@ -13,6 +13,7 @@
 #import <GoogleKit.h>
 #import "LocationSelectViewController.h"
 #import "TimeSelectViewController.h"
+#import "OrdersViewController.h"
 
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate>
 
@@ -141,7 +142,8 @@
 #pragma mark Actions
 
 - (IBAction)onPlaceOrder:(id)sender {
-    
+    OrdersViewController *ovc = [[OrdersViewController alloc] init];
+    [self.navigationController pushViewController:ovc animated:YES];
 }
 
 - (IBAction)onSetAddressButton:(id)sender {

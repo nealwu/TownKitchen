@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <Parse.h>
 #import "Order.h"
+#import "MenuOption.h"
 
 @interface ParseAPI : NSObject
 
 + (ParseAPI *)getInstance;
 
 - (NSArray *)dayInventories;
-- (NSArray *)ordersForUser:(User *)user;
+- (NSArray *)ordersForUser:(NSString *)username;
 - (PFGeoPoint *)locationForOrder:(Order *)order;
 - (NSString *)imageURLForMenuOption:(NSString *)menuOption;
+- (MenuOption *)menuOptionForName:(NSString *)name;
 
 - (void)createOrder:(Order *)order;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;

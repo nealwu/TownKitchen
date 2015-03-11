@@ -28,7 +28,6 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *deliveryAddress;
 @property (strong, nonatomic) NSDate *deliveryTime;
-@property (strong, nonatomic) NSNumber *totalAmount;
 
 @property (strong, nonatomic) NSDictionary *deliveryOrigin;
 @property (readonly, nonatomic) MKMapItem *deliveryOriginMapItem;

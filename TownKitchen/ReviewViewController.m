@@ -114,6 +114,7 @@
 
 - (IBAction)onSubmit:(id)sender {
     NSLog(@"Submitted with %ld star(s) and comment %@", (long) self.ratingStars, self.commentView.text);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
