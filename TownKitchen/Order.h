@@ -22,12 +22,16 @@ typedef enum : NSUInteger {
 //@property (strong, nonatomic) User *driver;
 //@property (nonatomic) BOOL isReviewed;
 
+@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSNumber *price;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *deliveryAddress;
+@property (strong, nonatomic) NSDate *deliveryTime;
+@property (strong, nonatomic) NSNumber *totalAmount;
 
 @property (strong, nonatomic) NSDictionary *deliveryOrigin;
 @property (readonly, nonatomic) MKMapItem *deliveryOriginMapItem;
-
-@property (strong, nonatomic) PFGeoPoint *deliveryLocation;
 
 @property (strong, nonatomic) NSDictionary *driverLocation;
 @property (readonly, nonatomic) MKMapItem *driverLocationMapItem;

@@ -19,5 +19,6 @@
 }
 
 @dynamic username;
+@dynamic createdAt;
 
 @end

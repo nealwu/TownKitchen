@@ -33,7 +33,8 @@
 }
 
 - (PFGeoPoint *)locationForOrder:(Order *)order {
-    return order.deliveryLocation;
+    return [PFGeoPoint geoPointWithLatitude:[order.driverLocation[@"latitude"] doubleValue] longitude:[order.driverLocation[@"longitude"] doubleValue]];
+//    return order.deliveryLocation;
     //    NSDictionary *deliveryLocation = order.deliveryLocation;
     //    double latitude = [deliveryLocation[@"latitude"] doubleValue];
     //    double longitude = [deliveryLocation[@"longitude"] doubleValue];

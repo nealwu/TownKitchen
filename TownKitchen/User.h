@@ -11,5 +11,6 @@
 @interface User : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSDate *createdAt;
 
 @end
