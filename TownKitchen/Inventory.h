@@ -11,10 +11,12 @@
 
 @interface Inventory : PFObject<PFSubclassing>
 
+@property (strong, nonatomic) NSDate *dateOffered;
 @property (strong, nonatomic) NSString *menuOption;
 @property (strong, nonatomic) NSNumber *quantityOffered;
 @property (strong, nonatomic) NSNumber *quantityRemaining;
 
+@property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) MenuOption *menuOptionObject;
 
 + (NSString *)parseClassName;

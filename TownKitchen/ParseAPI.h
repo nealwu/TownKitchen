@@ -12,9 +12,12 @@
 
 @interface ParseAPI : NSObject
 
++ (ParseAPI *)getInstance;
+
 - (NSArray *)dayInventories;
 - (NSArray *)ordersForUser:(User *)user;
 - (PFGeoPoint *)locationForOrder:(Order *)order;
+- (NSString *)imageURLForMenuOption:(NSString *)menuOption;
 
 - (void)createOrder:(Order *)order;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;

@@ -9,8 +9,22 @@
 #import "ParseAPI.h"
 #import "User.h"
 #import "Order.h"
+#import "MenuOption.h"
 
 @implementation ParseAPI
+
++ (ParseAPI *)getInstance {
+    static ParseAPI *instance = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (instance == nil) {
+            instance = [[ParseAPI alloc] init];
+        }
+    });
+
+    return instance;
+}
 
 - (NSArray *)dayInventories {
     PFQuery *query = [PFQuery queryWithClassName:@"Inventory"];
@@ -39,6 +53,18 @@
     //    double latitude = [deliveryLocation[@"latitude"] doubleValue];
     //    double longitude = [deliveryLocation[@"longitude"] doubleValue];
     //    return [PFGeoPoint geoPointWithLatitude:latitude longitude:longitude];
+}
+
+- (NSString *)imageURLForMenuOption:(NSString *)menuOption {
+    PFQuery *query = [PFQuery queryWithClassName:@"MenuOption"];
+    [query whereKey:@"name" equalTo:menuOption];
+    NSArray *menuOptions = [query findObjects];
+
+    if (menuOptions.count == 0) {
+        return nil;
+    }
+
+    return ((MenuOption *) menuOptions[0]).imageUrl;
 }
 
 - (void)createOrder:(Order *)order {

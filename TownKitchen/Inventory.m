@@ -10,8 +10,10 @@
 
 @implementation Inventory
 
+@synthesize imageURL;
 @synthesize menuOptionObject;
 
+@dynamic dateOffered;
 @dynamic menuOption;
 @dynamic quantityOffered;
 @dynamic quantityRemaining;
