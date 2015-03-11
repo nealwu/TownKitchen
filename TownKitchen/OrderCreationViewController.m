@@ -13,11 +13,10 @@
 #import "LocationSelectViewController.h"
 #import "MenuOptionOrder.h"
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *menuOptions;
-@property (strong, nonatomic) NSMutableArray *menuOptionOrders;  // array of MenuOptionOrder objects
+@property (strong, nonatomic) NSArray *menuOptionOrders;
 @property (strong, nonatomic) OrderCreationTableViewCell *sizingCell;
 
 @end
@@ -39,17 +38,6 @@
 
 #pragma mark OrderCreationTableViewCellDelegate Methods
 
-- (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    self.menuOptionOrders[indexPath.row] = menuOptionOrder;
-    NSLog(@"Updating order. Array of orders: %@", self.menuOptionOrders);
-}
-
-- (void)orderCreationTableViewCellDidClearMenuOptionOrder:(OrderCreationTableViewCell *)cell {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    self.menuOptionOrders[indexPath.row] = nil;
-    NSLog(@"Clearing order. Array of orders: %@", self.menuOptionOrders);
-}
 
 #pragma mark Actions
 
@@ -91,6 +79,7 @@
         NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
         
         // Retrieve corresponding menu options
+        
         for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
             PFQuery *menuOptionQuery = [MenuOption query];
             [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
@@ -99,10 +88,21 @@
                     NSLog(@"failed to find menu option, error: %@", error);
                 }
                 inventoryItem.menuOptionObject = [objects firstObject];
-                [self.tableView reloadData];
+                [self reloadAllTableViewData];
             }];
         }
     }];
+}
+
+- (void)reloadAllTableViewData{
+    [self.tableView reloadData];
+    
+    NSMutableArray *menuOptionOrders = [NSMutableArray array];
+    for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
+        [menuOptionOrders addObject:[MenuOptionOrder initWithMenuOption:inventoryItem.menuOptionObject]];
+    }
+    
+    self.menuOptionOrders = menuOptionOrders;
 }
 
 - (void)onNext {
@@ -118,8 +118,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
-    cell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
-    cell.delegate = self;
+    cell.menuOptionOrder = self.menuOptionOrders[indexPath.row];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -135,7 +134,8 @@
     }
     
     // populate cell with same data as visible cell
-    self.sizingCell.menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    MenuOption *menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
+    self.sizingCell.menuOptionOrder = [MenuOptionOrder initWithMenuOption:menuOption];
     
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];

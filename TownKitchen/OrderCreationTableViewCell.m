@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIStepper *orderStepper;
 
 @property (strong, nonatomic) NSNumber *orderQuantity;
-@property (strong, nonatomic) MenuOptionOrder *menuOptionOrder;
 
 @end
 
@@ -40,15 +39,10 @@
 
 #pragma mark Custom Setters
 
-- (void)setMenuOption:(MenuOption *)menuOption {
-    if (!self.menuOptionOrder) {
-        self.menuOptionOrder = [[MenuOptionOrder alloc] init];
-        self.menuOptionOrder.quantity = 0;
-    }
-    _menuOption = menuOption;
-    _menuOptionOrder.menuOption = menuOption;
-    self.mealDescription.text = menuOption.mealDescription;
-    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
+- (void)setMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder {
+    _menuOptionOrder = menuOptionOrder;
+    self.mealDescription.text = menuOptionOrder.menuOption.mealDescription;
+    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOptionOrder.menuOption.imageUrl]];
     self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", self.menuOptionOrder.quantity];
 }
 
@@ -65,13 +59,7 @@
     self.orderQuantity = value;
     self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", value];
     self.menuOptionOrder.quantity = value;
-
-    if ([value isEqualToNumber:[NSNumber numberWithInt:0]]) {
-        [self.delegate orderCreationTableViewCellDidClearMenuOptionOrder:self];
-    }
-    else {
-        [self.delegate orderCreationTableViewCell:self didUpdateMenuOptionOrder:self.menuOptionOrder];
-    }
+    [self.delegate orderCreationTableViewCell:self didUpdateMenuOptionOrder:self.menuOptionOrder];
 }
 
 @end

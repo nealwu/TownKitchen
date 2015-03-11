@@ -15,4 +15,6 @@
 @property (strong, nonatomic) NSNumber *quantity;
 @property (strong, nonatomic) NSNumber *totalPrice;
 
++ (MenuOptionOrder *)initWithMenuOption:(MenuOption *)menuOption;
+
 @end
