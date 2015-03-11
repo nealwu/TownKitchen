@@ -12,7 +12,7 @@
 #import "Order.h"
 #import <Parse/Parse.h>
 #import "OrderCreationViewController.h"
-#import "DayViewController.h"
+#import "DaySelectViewController.h"
 
 #import "ReviewViewController.h"
 
@@ -37,7 +37,7 @@
         return nil;
     }];
 
-    DayViewController *dvc = [[DayViewController alloc] init];
+    DaySelectViewController *dvc = [[DaySelectViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dvc];
 
     self.window.rootViewController = nvc;

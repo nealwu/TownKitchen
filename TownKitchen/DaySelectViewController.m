@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
-#import "DayViewController.h"
+#import "DaySelectViewController.h"
 #import "DayCell.h"
 
-@interface DayViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation DayViewController
+@implementation DaySelectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

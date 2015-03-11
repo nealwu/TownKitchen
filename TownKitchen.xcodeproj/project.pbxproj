@@ -42,8 +42,8 @@
 		9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F198EE31AAF7B0D00C0055D /* Images.xcassets */; };
 		9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */; };
 		9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */; };
-		9FC8AAF11AAFCFE000610500 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAEF1AAFCFE000610500 /* DayViewController.m */; };
-		9FC8AAF21AAFCFE000610500 /* DayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF01AAFCFE000610500 /* DayViewController.xib */; };
+		9FC8AAF11AAFCFE000610500 /* DaySelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAEF1AAFCFE000610500 /* DaySelectViewController.m */; };
+		9FC8AAF21AAFCFE000610500 /* DaySelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF01AAFCFE000610500 /* DaySelectViewController.xib */; };
 		9FC8AAF61AAFD44200610500 /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF41AAFD44200610500 /* DayCell.m */; };
 		9FC8AAF71AAFD44200610500 /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF51AAFD44200610500 /* DayCell.xib */; };
 /* End PBXBuildFile section */
@@ -116,9 +116,9 @@
 		9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
-		9FC8AAEE1AAFCFE000610500 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
-		9FC8AAEF1AAFCFE000610500 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
-		9FC8AAF01AAFCFE000610500 /* DayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayViewController.xib; sourceTree = "<group>"; };
+		9FC8AAEE1AAFCFE000610500 /* DaySelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectViewController.h; sourceTree = "<group>"; };
+		9FC8AAEF1AAFCFE000610500 /* DaySelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectViewController.m; sourceTree = "<group>"; };
+		9FC8AAF01AAFCFE000610500 /* DaySelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaySelectViewController.xib; sourceTree = "<group>"; };
 		9FC8AAF31AAFD44200610500 /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
 		9FC8AAF41AAFD44200610500 /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
 		9FC8AAF51AAFD44200610500 /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
@@ -252,9 +252,9 @@
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
-				9FC8AAEE1AAFCFE000610500 /* DayViewController.h */,
-				9FC8AAEF1AAFCFE000610500 /* DayViewController.m */,
-				9FC8AAF01AAFCFE000610500 /* DayViewController.xib */,
+				9FC8AAEE1AAFCFE000610500 /* DaySelectViewController.h */,
+				9FC8AAEF1AAFCFE000610500 /* DaySelectViewController.m */,
+				9FC8AAF01AAFCFE000610500 /* DaySelectViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -420,7 +420,7 @@
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
-				9FC8AAF21AAFCFE000610500 /* DayViewController.xib in Resources */,
+				9FC8AAF21AAFCFE000610500 /* DaySelectViewController.xib in Resources */,
 				2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
 			);
@@ -482,7 +482,7 @@
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				91788D561AA93FFB0038FE1F /* User.m in Sources */,
-				9FC8AAF11AAFCFE000610500 /* DayViewController.m in Sources */,
+				9FC8AAF11AAFCFE000610500 /* DaySelectViewController.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,

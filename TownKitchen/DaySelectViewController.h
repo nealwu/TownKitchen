@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DayViewController : UIViewController
+@interface DaySelectViewController : UIViewController
 
 @end
