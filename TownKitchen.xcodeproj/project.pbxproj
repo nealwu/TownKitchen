@@ -42,8 +42,8 @@
 		91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */; };
 		91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */; };
 		9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F198EE31AAF7B0D00C0055D /* Images.xcassets */; };
-		9FA5C0A81AAEC5B600080718 /* RatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* RatingViewController.m */; };
-		9FA5C0A91AAEC5B600080718 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* RatingViewController.xib */; };
+		9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */; };
+		9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,9 +114,9 @@
 		91788D941AAD25830038FE1F /* NSArray+ArrayOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ArrayOps.h"; sourceTree = "<group>"; };
 		91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ArrayOps.m"; sourceTree = "<group>"; };
 		9F198EE31AAF7B0D00C0055D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9FA5C0A51AAEC5B600080718 /* RatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingViewController.h; sourceTree = "<group>"; };
-		9FA5C0A61AAEC5B600080718 /* RatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingViewController.m; sourceTree = "<group>"; };
-		9FA5C0A71AAEC5B600080718 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
+		9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
+		9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
 		F02D873F8A16AE6556FF4B7A /* Pods-TownKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 		F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TownKitchen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -247,9 +247,9 @@
 				91788D7C1AA942A50038FE1F /* OrderStatusViewController.h */,
 				91788D7D1AA942A50038FE1F /* OrderStatusViewController.m */,
 				91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */,
-				9FA5C0A51AAEC5B600080718 /* RatingViewController.h */,
-				9FA5C0A61AAEC5B600080718 /* RatingViewController.m */,
-				9FA5C0A71AAEC5B600080718 /* RatingViewController.xib */,
+				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
+				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
+				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 				2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
-				9FA5C0A91AAEC5B600080718 /* RatingViewController.xib in Resources */,
+				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
@@ -477,7 +477,7 @@
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
-				9FA5C0A81AAEC5B600080718 /* RatingViewController.m in Sources */,
+				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
 				91788D591AA9405B0038FE1F /* DayInventory.m in Sources */,

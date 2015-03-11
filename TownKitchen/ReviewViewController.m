@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
-#import "RatingViewController.h"
+#import "ReviewViewController.h"
 
-@interface RatingViewController () <UITextViewDelegate>
+@interface ReviewViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *oneStarView;
 @property (weak, nonatomic) IBOutlet UIImageView *twoStarView;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation RatingViewController
+@implementation ReviewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

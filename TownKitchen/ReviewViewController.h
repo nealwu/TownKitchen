@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RatingViewController : UIViewController
+@interface ReviewViewController : UIViewController
 
 @end
