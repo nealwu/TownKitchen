@@ -15,6 +15,7 @@
 @protocol OrderCreationTableViewCellDelegate <NSObject>
 
 - (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder;
+- (void)orderCreationTableViewCellDidClearMenuOptionOrder:(OrderCreationTableViewCell *)cell;
 
 @end
 

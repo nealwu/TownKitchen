@@ -42,7 +42,13 @@
 - (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     self.menuOptionOrders[indexPath.row] = menuOptionOrder;
-    NSLog(@"array of orders: %@", self.menuOptionOrders);
+    NSLog(@"Updating order. Array of orders: %@", self.menuOptionOrders);
+}
+
+- (void)orderCreationTableViewCellDidClearMenuOptionOrder:(OrderCreationTableViewCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    self.menuOptionOrders[indexPath.row] = nil;
+    NSLog(@"Clearing order. Array of orders: %@", self.menuOptionOrders);
 }
 
 #pragma mark Actions

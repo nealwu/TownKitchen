@@ -43,12 +43,13 @@
 - (void)setMenuOption:(MenuOption *)menuOption {
     if (!self.menuOptionOrder) {
         self.menuOptionOrder = [[MenuOptionOrder alloc] init];
+        self.menuOptionOrder.quantity = 0;
     }
     _menuOption = menuOption;
     _menuOptionOrder.menuOption = menuOption;
     self.mealDescription.text = menuOption.mealDescription;
     [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
-    self.orderQuantityLabel.text = @"0";
+    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", self.menuOptionOrder.quantity];
 }
 
 #pragma mark Private Methods
@@ -64,7 +65,13 @@
     self.orderQuantity = value;
     self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", value];
     self.menuOptionOrder.quantity = value;
-    [self.delegate orderCreationTableViewCell:self didUpdateMenuOptionOrder:self.menuOptionOrder];
+
+    if ([value isEqualToNumber:[NSNumber numberWithInt:0]]) {
+        [self.delegate orderCreationTableViewCellDidClearMenuOptionOrder:self];
+    }
+    else {
+        [self.delegate orderCreationTableViewCell:self didUpdateMenuOptionOrder:self.menuOptionOrder];
+    }
 }
 
 @end
