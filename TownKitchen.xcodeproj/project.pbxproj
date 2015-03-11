@@ -17,6 +17,8 @@
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BBABFB91AB008DF0098124D /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBABFB71AB008DF0098124D /* DayCell.m */; };
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
+		2BD402321AB0D4240024D61C /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD402301AB0D4240024D61C /* TimeSelectViewController.m */; };
+		2BD402331AB0D4240024D61C /* TimeSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD402311AB0D4240024D61C /* TimeSelectViewController.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
 		2BD9E6641AAFE83F0072BB59 /* MenuOptionOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E6631AAFE83F0072BB59 /* MenuOptionOrder.m */; };
@@ -80,6 +82,9 @@
 		2BBABFB61AB008DF0098124D /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
 		2BBABFB71AB008DF0098124D /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
 		2BBABFB81AB008DF0098124D /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
+		2BD4022F1AB0D4240024D61C /* TimeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectViewController.h; sourceTree = "<group>"; };
+		2BD402301AB0D4240024D61C /* TimeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectViewController.m; sourceTree = "<group>"; };
+		2BD402311AB0D4240024D61C /* TimeSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectViewController.xib; sourceTree = "<group>"; };
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
@@ -273,6 +278,9 @@
 				2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */,
 				2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */,
 				2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */,
+				2BD4022F1AB0D4240024D61C /* TimeSelectViewController.h */,
+				2BD402301AB0D4240024D61C /* TimeSelectViewController.m */,
+				2BD402311AB0D4240024D61C /* TimeSelectViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -438,6 +446,7 @@
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
+				2BD402331AB0D4240024D61C /* TimeSelectViewController.xib in Resources */,
 				2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
@@ -516,6 +525,7 @@
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
+				2BD402321AB0D4240024D61C /* TimeSelectViewController.m in Sources */,
 				91788D591AA9405B0038FE1F /* DayInventory.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,

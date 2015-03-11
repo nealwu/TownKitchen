@@ -57,23 +57,20 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hK-7J-NNG" userLabel="Address View">
                     <rect key="frame" x="20" y="332" width="280" height="48"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set address" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-gp-So8">
-                            <rect key="frame" x="20" y="6" width="130" height="36"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="130" id="dIn-0k-rDm"/>
-                            </constraints>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-gp-So8" userLabel="Address label">
+                            <rect key="frame" x="8" y="6" width="146" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaO-By-MEw">
-                            <rect key="frame" x="181" y="13" width="64" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="vaO-By-MEw" userLabel="Time label">
+                            <rect key="frame" x="162" y="13" width="106" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LT-Wb-41Q" userLabel="address button">
-                            <rect key="frame" x="0.0" y="0.0" width="162" height="48"/>
+                            <rect key="frame" x="12" y="0.0" width="150" height="48"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -96,17 +93,21 @@
                     </subviews>
                     <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="xMY-gp-So8" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" constant="20" id="0um-2L-99T"/>
+                        <constraint firstItem="xMY-gp-So8" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" constant="8" id="0um-2L-99T"/>
                         <constraint firstItem="UJr-Ys-sjT" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="top" id="DVD-QK-r2S"/>
                         <constraint firstItem="xMY-gp-So8" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="top" constant="6" id="ICN-E0-aAl"/>
+                        <constraint firstItem="vaO-By-MEw" firstAttribute="leading" secondItem="7LT-Wb-41Q" secondAttribute="trailing" id="KAs-7y-UPy"/>
+                        <constraint firstAttribute="centerY" secondItem="vaO-By-MEw" secondAttribute="centerY" id="Ovr-1E-BX7"/>
                         <constraint firstAttribute="trailing" secondItem="UJr-Ys-sjT" secondAttribute="trailing" id="OxI-Xn-Hmb"/>
                         <constraint firstItem="7LT-Wb-41Q" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="top" id="UeO-R8-r56"/>
                         <constraint firstAttribute="bottom" secondItem="UJr-Ys-sjT" secondAttribute="bottom" id="UtW-2c-92x"/>
                         <constraint firstAttribute="height" constant="48" id="VQC-mQ-jFf"/>
                         <constraint firstAttribute="bottom" secondItem="xMY-gp-So8" secondAttribute="bottom" constant="6" id="i7E-Ph-xXt"/>
                         <constraint firstAttribute="bottom" secondItem="7LT-Wb-41Q" secondAttribute="bottom" id="mHz-Cw-Iic"/>
+                        <constraint firstAttribute="trailing" secondItem="vaO-By-MEw" secondAttribute="trailing" constant="12" id="oEc-2P-Uad"/>
                         <constraint firstItem="UJr-Ys-sjT" firstAttribute="leading" secondItem="7LT-Wb-41Q" secondAttribute="trailing" id="u7a-QY-GWY"/>
-                        <constraint firstItem="7LT-Wb-41Q" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" id="wRi-rY-rqe"/>
+                        <constraint firstItem="UJr-Ys-sjT" firstAttribute="leading" secondItem="xMY-gp-So8" secondAttribute="trailing" constant="8" id="w9q-gX-mN0"/>
+                        <constraint firstItem="7LT-Wb-41Q" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" constant="12" id="wRi-rY-rqe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41Y-VO-qYR" userLabel="Payment View">

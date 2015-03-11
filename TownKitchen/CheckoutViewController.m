@@ -12,15 +12,16 @@
 #import "AddressInputViewController.h"
 #import <GoogleKit.h>
 #import "LocationSelectViewController.h"
+#import "TimeSelectViewController.h"
 
-@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate>
+@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic) NSArray *orderItems;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-
+@property (strong, nonatomic) NSDate *selectedDate;
 
 @end
 
@@ -99,10 +100,30 @@
     [self presentViewController:lvc animated:YES completion:nil];
 }
 
+- (void)setTime {
+    TimeSelectViewController *tvc = [[TimeSelectViewController alloc] init];
+    tvc.delegate = self;
+    if (self.selectedDate) {
+        tvc.datePicker.date = self.selectedDate;
+    }
+    [self presentViewController:tvc animated:YES completion:nil];
+}
+
 #pragma mark LocationSelectViewControllerDelegate methods
 
 - (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address {
     self.addressLabel.text = address;
+}
+
+#pragma mark LocationSelectViewControllerDelegate Methods
+
+- (void)timeSelectViewController:(TimeSelectViewController *)tvc didSetDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    NSString *currentTime = [dateFormatter stringFromDate:date];
+    NSLog(@"got time from selector: %@", currentTime);
+    self.timeLabel.text = currentTime;
+    self.selectedDate = date;
 }
 
 #pragma mark Table view methods
@@ -128,7 +149,7 @@
 }
 
 - (IBAction)onSetTimeButton:(id)sender {
-    
+    [self setTime];
 }
 
 
