@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35d-Lv-lba">
-                            <rect key="frame" x="132" y="10" width="57" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Order">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,11 +35,13 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="4Mw-Fy-VFm"/>
-                        <constraint firstAttribute="centerY" secondItem="35d-Lv-lba" secondAttribute="centerY" id="Nvr-5T-t0B"/>
-                        <constraint firstAttribute="centerX" secondItem="35d-Lv-lba" secondAttribute="centerX" constant="-0.5" id="ean-M5-ehI"/>
+                        <constraint firstItem="35d-Lv-lba" firstAttribute="top" secondItem="KRv-26-qfa" secondAttribute="top" id="D7O-Qf-cKD"/>
+                        <constraint firstItem="35d-Lv-lba" firstAttribute="leading" secondItem="KRv-26-qfa" secondAttribute="leading" id="Tgc-Yz-1XF"/>
+                        <constraint firstAttribute="bottom" secondItem="35d-Lv-lba" secondAttribute="bottom" id="fnw-Ra-IPZ"/>
+                        <constraint firstAttribute="trailing" secondItem="35d-Lv-lba" secondAttribute="trailing" id="wM6-B5-4BU"/>
                     </constraints>
                 </view>
             </subviews>

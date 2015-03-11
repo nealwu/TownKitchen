@@ -49,6 +49,7 @@
 #pragma mark Private Methods
 
 - (void)setup{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.menuOptionOrder = [[MenuOptionOrder alloc] init];
 }
 
