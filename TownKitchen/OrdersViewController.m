@@ -10,6 +10,7 @@
 #import "OrderCell.h"
 #import "ParseAPI.h"
 #import "ReviewViewController.h"
+#import "OrderStatusViewController.h"
 
 @interface OrdersViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -48,8 +49,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ReviewViewController *rvc = [[ReviewViewController alloc] init];
-    [self.navigationController pushViewController:rvc animated:YES];
+//    ReviewViewController *rvc = [[ReviewViewController alloc] init];
+    OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
+    osvc.order = self.orders[indexPath.row];
+    [self.navigationController pushViewController:osvc animated:YES];
 }
 
 @end
