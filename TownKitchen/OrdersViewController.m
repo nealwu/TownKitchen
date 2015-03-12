@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"Orders";
+
     self.orders = [[ParseAPI getInstance] ordersForUser:@"neal@nealwu.com"];
 
     self.tableView.dataSource = self;
