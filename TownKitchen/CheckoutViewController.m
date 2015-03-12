@@ -85,6 +85,7 @@
 
 - (void)setup{
     // tableView methods
+    self.title = @"Checkout";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];

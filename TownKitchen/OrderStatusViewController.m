@@ -58,6 +58,7 @@ static const NSTimeInterval kUpdateInterval = 10.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Order Status";
     self.mapView.delegate = self;
     if (self.order) {
         [self startTimer];

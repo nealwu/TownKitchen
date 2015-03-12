@@ -43,6 +43,7 @@
 
     DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
+    nvc.navigationBar.translucent = NO;
 
 //    DebugSelectorViewController *dsvc = [[DebugSelectorViewController alloc] init];
 //    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];

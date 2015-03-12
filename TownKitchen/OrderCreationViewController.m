@@ -14,6 +14,7 @@
 #import "MenuOptionOrder.h"
 #import "Order.h"
 #import "CheckoutViewController.h"
+#import "DateUtils.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,6 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.title = [DateUtils monthAndDayFromDate:((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered];
 
     [self setup];
     
