@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Review";
     self.commentView.delegate = self;
     self.commentView.textColor = [UIColor grayColor];
     self.commentView.layer.borderWidth = 1;
