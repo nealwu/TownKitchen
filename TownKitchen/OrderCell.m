@@ -21,6 +21,11 @@
 
 @synthesize order = _order;
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.descriptionLabel.preferredMaxLayoutWidth = self.descriptionLabel.frame.size.width;
+}
+
 - (void)setOrder:(Order *)order {
     _order = order;
 
@@ -35,6 +40,7 @@
     }
 
     self.descriptionLabel.text = itemsString;
+    self.descriptionLabel.preferredMaxLayoutWidth = self.descriptionLabel.frame.size.width;
 }
 
 @end

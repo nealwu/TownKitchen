@@ -136,6 +136,7 @@
     order.menuOptionOrders = [NSArray arrayWithArray:menuOptionOrders];
     order.items = items;
     order.price = [NSNumber numberWithFloat:orderPrice];
+    order.deliveryTime = ((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered;
     NSLog(@"Creating order: %@ with menuOptionOrders: %@", order, order.menuOptionOrders);
     
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];

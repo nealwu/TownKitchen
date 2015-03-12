@@ -143,6 +143,8 @@
 #pragma mark Actions
 
 - (IBAction)onPlaceOrder:(id)sender {
+    self.order.username = @"neal@nealwu.com";
+    [self.order save];
     OrdersViewController *ovc = [[OrdersViewController alloc] init];
     [self.navigationController pushViewController:ovc animated:YES];
 }
