@@ -94,13 +94,13 @@
     // Initialize the sizing cell
     if (!self.sizingCell) {
         self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];
-
-        NSString *shortName = self.menuOptionShortNames[indexPath.row];
-        self.sizingCell.menuOption = self.shortNameToObject[shortName];
-        self.sizingCell.quantity = self.shortNameToQuantity[shortName];
     }
 
     // Populate cell with the same data as the visible cell
+    NSString *shortName = self.menuOptionShortNames[indexPath.row];
+    self.sizingCell.menuOption = self.shortNameToObject[shortName];
+    self.sizingCell.quantity = self.shortNameToQuantity[shortName];
+    
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];
 
