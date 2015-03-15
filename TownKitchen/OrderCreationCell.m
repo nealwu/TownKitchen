@@ -47,7 +47,7 @@
 
 - (void)setQuantity:(NSNumber *)quantity {
     self.orderStepper.value = [quantity doubleValue];
-    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%d", [quantity integerValue]];
+    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%ld", [quantity integerValue]];
 }
 
 #pragma mark Private Methods
