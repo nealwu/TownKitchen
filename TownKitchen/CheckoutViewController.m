@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) NSDate *selectedDate;
 
-@property (strong, nonatomic) NSArray *menuOptionShortnames;
+@property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 
 @end
@@ -59,7 +59,7 @@
         else {
             [mutableMenuOptionShortnames addObject:shortName];
             [mutableShortNameToObject addEntriesFromDictionary:@{ shortName : [[ParseAPI getInstance] menuOptionForShortName:shortName] }];
-            self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
+            self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
             self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
             [self reloadTableData];
         }
@@ -119,20 +119,26 @@
 #pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.menuOptionShortnames.count;
+    return self.menuOptionShortNames.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CheckoutOrderItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CheckoutOrderItemCell"];
-    NSString *shortName = self.menuOptionShortnames[indexPath.row];
-    MenuOption *menuOption = self.shortNameToObject[shortName];
-    float menuOptionPrice = [menuOption.price floatValue];
-    float quantity = [self.order.items[shortName] floatValue];
-    float priceForQuantity = menuOptionPrice * quantity;
-    
-    cell.quantity = self.order.items[shortName];
-    cell.price = [NSNumber numberWithFloat:priceForQuantity];
-    cell.menuOption = menuOption;
+
+    if (indexPath.row < self.menuOptionShortNames.count) {
+        NSString *shortName = self.menuOptionShortNames[indexPath.row];
+        MenuOption *menuOption = self.shortNameToObject[shortName];
+        float menuOptionPrice = [menuOption.price floatValue];
+        float quantity = [self.order.items[shortName] floatValue];
+        float priceForQuantity = menuOptionPrice * quantity;
+        cell.quantity = [NSNumber numberWithFloat:quantity];
+        cell.price = [NSNumber numberWithFloat:priceForQuantity];
+        cell.itemDescription = menuOption.mealDescription;
+    } else {
+        cell.itemDescription = @"Total";
+        cell.price = self.order.totalPrice;
+        cell.quantity = @0;
+    }
 
     return cell;
 }
@@ -145,8 +151,8 @@
     NSLog(@"validating order: %@", self.order);
     NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
     
-//    OrdersViewController *ovc = [[OrdersViewController alloc] init];
-//    [self.navigationController pushViewController:ovc animated:YES];
+    OrdersViewController *ovc = [[OrdersViewController alloc] init];
+    [self.navigationController pushViewController:ovc animated:YES];
 }
 
 - (IBAction)onSetAddressButton:(id)sender {

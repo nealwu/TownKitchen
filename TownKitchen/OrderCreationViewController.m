@@ -123,6 +123,14 @@
     Inventory *firstInventory = self.inventoryItems[0];
     order.deliveryDateAndTime = [firstInventory dateOffered];
     order.shortNameToMenuOptionObject = self.shortNameToObject;
+
+    order.totalPrice = @0;
+
+    for (NSString *shortName in order.items) {
+        MenuOption *menuOption = order.shortNameToMenuOptionObject[shortName];
+        order.totalPrice = @([order.totalPrice doubleValue] + [menuOption.price doubleValue] * [order.items[shortName] doubleValue]);
+    }
+
     NSLog(@"Creating order: %@", order);
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];

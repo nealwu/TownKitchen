@@ -14,33 +14,30 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
-
 @end
 
 @implementation CheckoutOrderItemCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
-}
-
 #pragma mark Custom Setters
 
-- (void)setMenuOption:(MenuOption *)menuOption {
-    self.nameLabel.text = menuOption.mealDescription;
-    [self setup];
+- (void)setItemDescription:(NSString *)itemDescription {
+    _itemDescription = itemDescription;
+    self.nameLabel.text = itemDescription;
 }
 
-#pragma mark Private methods
+- (void)setQuantity:(NSNumber *)quantity {
+    _quantity = quantity;
 
-- (void)setup {
-    NSLog(@"%@, %@", self.quantity, self.price);
-    self.quantityLabel.text = [NSString stringWithFormat:@"%@", self.quantity];
-    self.priceLabel.text = [NSString stringWithFormat:@"%@", self.price];
+    if ([quantity doubleValue] > 0) {
+        self.quantityLabel.text = [NSString stringWithFormat:@"%.0f", [quantity floatValue]];
+    } else {
+        self.quantityLabel.text = @"";
+    }
+}
+
+- (void)setPrice:(NSNumber *)price {
+    _price = price;
+    self.priceLabel.text = [NSString stringWithFormat:@"$%.2f", [price floatValue]];
 }
 
 @end
