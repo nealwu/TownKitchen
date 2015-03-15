@@ -10,12 +10,12 @@
 
 @implementation Inventory
 
+@dynamic menuOptionShortName;
+@dynamic dateOffered;
+@dynamic quantityRemaining;
+
 @synthesize imageURL;
 @synthesize menuOptionObject;
-
-@dynamic dateOffered;
-@dynamic menuOptionShortName;
-@dynamic quantityRemaining;
 
 + (void)load {
     [self registerSubclass];
