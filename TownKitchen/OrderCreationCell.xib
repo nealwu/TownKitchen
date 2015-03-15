@@ -66,7 +66,7 @@
                 <outlet property="orderQuantityLabel" destination="Xwu-Vz-943" id="SXP-FA-gm2"/>
                 <outlet property="orderStepper" destination="Pcy-gn-xnw" id="vJm-ju-km7"/>
             </connections>
-            <point key="canvasLocation" x="369" y="414.5"/>
+            <point key="canvasLocation" x="369" y="411.5"/>
         </tableViewCell>
     </objects>
 </document>

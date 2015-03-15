@@ -12,16 +12,13 @@
 
 @protocol CircleStepperViewDelegate <NSObject>
 
-- (void)circleStepperView:(CircleStepperView *)circleStepperView didUpdateValue:(double )value;
+- (void)circleStepperView:(CircleStepperView *)circleStepperView didUpdateValue:(int)value;
 
 @end
 
 @interface CircleStepperView : UIView
 
-@property (assign, nonatomic) double value;
-@property (assign, nonatomic) double minimumValue;
-@property (assign, nonatomic) double maximumValue;
-
+@property (assign, nonatomic) int value;
 @property (weak, nonatomic) id<CircleStepperViewDelegate> delegate;
 
 @end
