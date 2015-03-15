@@ -10,7 +10,6 @@
 		2755364638D9F2E44A876E03 /* libPods-TownKitchen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */; };
 		2B13D09A1AA81B9100FC0689 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0991AA81B9100FC0689 /* main.m */; };
 		2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D09C1AA81B9100FC0689 /* AppDelegate.m */; };
-		2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */; };
 		2B13D0B41AA81B9100FC0689 /* TownKitchenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */; };
 		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
@@ -71,7 +70,6 @@
 		2B13D0991AA81B9100FC0689 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B13D09B1AA81B9100FC0689 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B13D09C1AA81B9100FC0689 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2B13D0A71AA81B9100FC0689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2B13D0AD1AA81B9100FC0689 /* TownKitchenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TownKitchenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B13D0B21AA81B9100FC0689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TownKitchenTests.m; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				2B13D09C1AA81B9100FC0689 /* AppDelegate.m */,
 				91788D811AA947D20038FE1F /* API */,
 				91788D931AAD25210038FE1F /* Categories */,
-				2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */,
 				91788D4A1AA93F660038FE1F /* Models */,
 				2B13D0971AA81B9100FC0689 /* Supporting Files */,
 				91788D8D1AAD0BA90038FE1F /* TableViewCells */,
@@ -452,7 +449,6 @@
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
-				2B13D0A81AA81B9100FC0689 /* LaunchScreen.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,17 +544,6 @@
 			targetProxy = 2B13D0AE1AA81B9100FC0689 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2B13D0A61AA81B9100FC0689 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B13D0A71AA81B9100FC0689 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2B13D0B51AA81B9100FC0689 /* Debug */ = {

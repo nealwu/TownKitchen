@@ -45,7 +45,10 @@
     DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
     nvc.navigationBar.translucent = NO;
-
+    nvc.navigationBar.barTintColor = [UIColor colorWithRed:235.0 / 255
+                                                     green:92.0 / 255
+                                                      blue:87.0 / 255
+                                                     alpha:1.0];
     self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;
