@@ -27,21 +27,22 @@
 #pragma mark Private Methods
 
 - (void)setup {
+    // Orders can be between 11 am and 2 pm
     int startHour = 11;
     int endHour = 14;
 
     NSDate *date1 = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorian components:NSUIntegerMax fromDate:date1];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSUIntegerMax fromDate:date1];
     [components setHour:startHour];
     [components setMinute:0];
     [components setSecond:0];
-    NSDate *startDate = [gregorian dateFromComponents:components];
+    NSDate *startDate = [calendar dateFromComponents:components];
 
     [components setHour:endHour];
     [components setMinute:0];
     [components setSecond:0];
-    NSDate *endDate = [gregorian dateFromComponents:components];
+    NSDate *endDate = [calendar dateFromComponents:components];
 
     self.datePicker.datePickerMode = UIDatePickerModeTime;
     self.datePicker.minimumDate = startDate;
