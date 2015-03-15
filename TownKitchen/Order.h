@@ -18,13 +18,11 @@ typedef enum : NSUInteger {
 
 @interface Order : PFObject <PFSubclassing>
 
-//@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) User *user;
 //@property (strong, nonatomic) User *driver;
 //@property (nonatomic) BOOL isReviewed;
 
-@property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSNumber *price;
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *totalPrice;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *deliveryAddress;
 @property (strong, nonatomic) NSDate *deliveryTime;

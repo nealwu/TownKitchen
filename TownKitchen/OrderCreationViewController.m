@@ -93,10 +93,12 @@
 }
 
 - (void)createOrder {
-//    Order *order = [Order object];
-//    float orderPrice = 0;
+    Order *order = [Order object];
+    float orderPrice = 0;
+    
+    
+    
 //    NSMutableDictionary *items = [NSMutableDictionary dictionary];
-//    NSMutableArray *menuOptionOrders = [NSMutableArray array];
 //    
 //    for (MenuOptionOrder *menuOptionOrder in self.menuOptionOrders) {
 //        if ([menuOptionOrder.quantity isEqualToNumber:[NSNumber numberWithInt:0]]) {

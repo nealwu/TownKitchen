@@ -22,14 +22,15 @@
     return @"Order";
 }
 
-@dynamic description;
-@dynamic price;
-@dynamic name;
-@dynamic username;
 @dynamic deliveryTime;
-
 @dynamic deliveryAddress;
 @dynamic deliveryOrigin;
+
+@dynamic items;
+@dynamic totalPrice;
+
+@dynamic user;
+@dynamic username;
 
 - (MKMapItem *)deliveryOriginMapItem {
     NSNumber *latitude = self.deliveryOrigin[@"latitude"];
@@ -44,8 +45,6 @@
     NSNumber *longitude = self.driverLocation[@"longitude"];
     return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude.doubleValue,longitude.doubleValue) addressDictionary:nil]];
 }
-
-@dynamic items;
 
 @synthesize menuOptions;
 
