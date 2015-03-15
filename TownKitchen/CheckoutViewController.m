@@ -101,6 +101,7 @@
 
 - (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address {
     self.addressLabel.text = address;
+    self.order.deliveryAddress = address;
 }
 
 #pragma mark LocationSelectViewControllerDelegate Methods
@@ -112,6 +113,7 @@
     NSLog(@"got time from selector: %@", currentTime);
     self.timeLabel.text = currentTime;
     self.selectedDate = date;
+    self.order.deliveryDateAndTime = date;
 }
 
 #pragma mark Table view methods
@@ -131,10 +133,7 @@
     cell.quantity = self.order.items[shortName];
     cell.price = [NSNumber numberWithFloat:priceForQuantity];
     cell.menuOption = menuOption;
-    
-    NSLog(@"self.order.items[shortName]: %@", self.order.items[shortName]);
-    NSLog(@"menuOptionPrice: %f", [menuOption.price floatValue]);
-    
+
     return cell;
 }
 
@@ -142,9 +141,13 @@
 
 - (IBAction)onPlaceOrder:(id)sender {
     self.order.user = [PFUser currentUser];
-    [self.order save];
-    OrdersViewController *ovc = [[OrdersViewController alloc] init];
-    [self.navigationController pushViewController:ovc animated:YES];
+    
+    NSLog(@"validating order: %@", self.order);
+    NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
+    
+    
+//    OrdersViewController *ovc = [[OrdersViewController alloc] init];
+//    [self.navigationController pushViewController:ovc animated:YES];
 }
 
 - (IBAction)onSetAddressButton:(id)sender {

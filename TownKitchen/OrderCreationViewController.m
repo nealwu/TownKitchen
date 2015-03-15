@@ -95,7 +95,8 @@
 - (void)createOrder {
     Order *order = [Order object];
     order.items = self.shortNameToQuantity;
-    NSLog(@"Creating order with items: %@", self.shortNameToQuantity);
+    order.user = [PFUser currentUser];
+    NSLog(@"Creating order: %@", order);
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
     checkoutViewController.order = order;
