@@ -8,21 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse.h>
-#import "Order.h"
+
+#import "Inventory.h"
 #import "MenuOption.h"
+#import "Order.h"
+#import "User.h"
 
 @interface ParseAPI : NSObject
 
 + (ParseAPI *)getInstance;
 
-- (NSArray *)dayInventories;
-- (NSArray *)ordersForUser:(NSString *)username;
-- (PFGeoPoint *)locationForOrder:(Order *)order;
-- (NSString *)imageURLForMenuOption:(NSString *)menuOption;
-- (MenuOption *)menuOptionForName:(NSString *)name;
-
-- (void)createOrder:(Order *)order;
+- (MenuOption *)menuOptionForShortName:(NSString *)shortName;
+- (NSArray *)inventoryItems;
+- (NSArray *)inventoryItemsForDay:(NSDate *)date;
+- (Inventory *)inventoryItemForShortName:(NSString *)shortName andDay:(NSDate *)date;
+- (NSArray *)ordersForUser:(User *)user;
+- (BOOL)validateOrder:(Order *)order;
+- (BOOL)createOrder:(Order *)order;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;
-- (void)setDeliveryLocationForOrder:(Order *)order location:(PFGeoPoint *)location;
 
 @end

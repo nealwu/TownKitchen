@@ -34,7 +34,7 @@
     NSMutableString *itemsString = [NSMutableString string];
 
     for (NSString *key in items) {
-        NSString *description = [[ParseAPI getInstance] menuOptionForName:key].mealDescription;
+        NSString *description = [[ParseAPI getInstance] menuOptionForShortName:key].mealDescription;
         [itemsString appendString:description];
         [itemsString appendString:@"\n"];
     }
