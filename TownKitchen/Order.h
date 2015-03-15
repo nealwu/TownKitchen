@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 
 @interface Order : PFObject <PFSubclassing>
 
-@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSDate *deliveryDateAndTime;
 @property (strong, nonatomic) NSString *deliveryAddress;
 @property (strong, nonatomic) NSDictionary *items;

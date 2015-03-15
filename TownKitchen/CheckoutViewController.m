@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) NSDate *selectedDate;
 
+@property (strong, nonatomic) NSArray *menuOptionItems;
+
 @end
 
 @implementation CheckoutViewController
@@ -44,6 +46,15 @@
     _order = order;
     [self reloadTableData];
     
+    for (NSString *shortName in order.items) {
+        NSLog(@"order short name: %@", shortName);
+        if ([order.items[shortName] isEqualToNumber:@0]) {
+            continue;
+        }
+        else {
+            
+        }
+    }
     
 //    NSMutableArray *mutableOrderItems = [NSMutableArray array];
 //    for (NSString *menuItem in order.items) {
@@ -131,7 +142,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.order.menuOptionOrders.count;
+    return self.order.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,7 +153,7 @@
 #pragma mark Actions
 
 - (IBAction)onPlaceOrder:(id)sender {
-    self.order.username = @"neal@nealwu.com";
+    self.order.user = [PFUser currentUser];
     [self.order save];
     OrdersViewController *ovc = [[OrdersViewController alloc] init];
     [self.navigationController pushViewController:ovc animated:YES];

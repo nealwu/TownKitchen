@@ -40,7 +40,7 @@
     // Set up tableView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationTableViewCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationCell"];
 
     [self reloadAllTableViewData];
 }
@@ -109,7 +109,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderCreationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+    OrderCreationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];
     cell.delegate = self;
     
     NSString *shortName = self.menuOptionShortnames[indexPath.row];
@@ -126,7 +126,7 @@
     
     // initialize sizing cell
     if (!self.sizingCell) {
-        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];
     }
     
     // populate cell with same data as visible cell
