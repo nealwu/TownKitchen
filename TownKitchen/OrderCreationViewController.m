@@ -122,13 +122,14 @@
 #pragma mark Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.inventoryItems.count;
+    return self.menuOptionShortnames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
     
-    
+    NSString *shortName = self.menuOptionShortnames[indexPath.row];
+    cell.menuOption = self.shortNameToObject[shortName];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
