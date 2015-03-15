@@ -14,7 +14,7 @@
 @dynamic shortName;
 @dynamic mealDescription;
 @dynamic price;
-@dynamic imageUrl;
+@dynamic imageURL;
 
 + (void)load {
     [self registerSubclass];

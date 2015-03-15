@@ -1,5 +1,5 @@
 //
-//  DayViewController.m
+//  DaySelectViewController.m
 //  TownKitchen
 //
 //  Created by Neal Wu on 3/10/15.
@@ -24,25 +24,17 @@
 
 @implementation DaySelectViewController
 
-- (NSArray *)filterInventoriesByDate:(NSDate *)date {
-    return [self.inventoryItems filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [[DateUtils monthAndDayFromDate:((Inventory *) evaluatedObject).dateOffered] isEqual:[DateUtils monthAndDayFromDate:date]];
-    }]];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.title = @"Town Kitchen";
 
     self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
-    NSLog(@"inventoryItems: %@", self.inventoryItems);
-
     self.uniqueInventories = [NSMutableArray array];
     NSMutableSet *dates = [NSMutableSet set];
 
     for (Inventory *inventory in self.inventoryItems) {
-        inventory.imageURL = [[ParseAPI getInstance] menuOptionForShortName:inventory.menuOptionShortName].imageUrl;
+        inventory.imageURL = [[ParseAPI getInstance] menuOptionForShortName:inventory.menuOptionShortName].imageURL;
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
@@ -50,12 +42,6 @@
             [dates addObject:monthAndDay];
         }
     }
-
-//    Inventory *inventory = inventories[0];
-//    NSLog(@"Inventory date offered: %@", inventory.dateOffered);
-//    NSLog(@"Day of the week: %@", [self dayOfTheWeekFromDate:inventory.dateOffered]);
-//    NSLog(@"Month and day: %@", [self monthAndDayFromDate:inventory.dateOffered]);
-//    NSLog(@"Inventory menu option: %@", inventory.menuOption);
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -80,9 +66,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    ocvc.inventoryItems = [self.inventoryItems subarrayWithRange:NSMakeRange(0, 3)];
+    Inventory *inventory = self.uniqueInventories[indexPath.row];
+    ocvc.inventoryItems = [[ParseAPI getInstance] inventoryItemsForDay:inventory.dateOffered];
     [self.navigationController pushViewController:ocvc animated:YES];
 }
 
