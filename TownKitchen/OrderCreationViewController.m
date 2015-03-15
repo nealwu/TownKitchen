@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
 
-@property (strong, nonatomic) NSArray *menuOptionShortnames;
+@property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
 
@@ -49,7 +49,7 @@
 
 - (void)orderCreationTableViewCell:(OrderCreationCell *)cell didUpdateQuantity:(NSNumber *)quantity {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSString *shortName = self.menuOptionShortnames[indexPath.row];
+    NSString *shortName = self.menuOptionShortNames[indexPath.row];
     self.shortNameToQuantity[shortName] = quantity;
     NSLog(@"updated quantity for %@, quanties dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
@@ -78,7 +78,7 @@
             if (!error && objects.count > 0) {
                 [mutableShortNameToObject addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : [objects firstObject]}];
                 
-                self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
+                self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
                 self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
                 [self reloadAllTableViewData];
             } else {
@@ -96,6 +96,7 @@
     Order *order = [Order object];
     order.items = self.shortNameToQuantity;
     order.user = [PFUser currentUser];
+    order.deliveryDateAndTime = [(Inventory *)[self.inventoryItems firstObject] dateOffered];
     NSLog(@"Creating order: %@", order);
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
@@ -106,14 +107,14 @@
 #pragma mark Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.menuOptionShortnames.count;
+    return self.menuOptionShortNames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];
     cell.delegate = self;
     
-    NSString *shortName = self.menuOptionShortnames[indexPath.row];
+    NSString *shortName = self.menuOptionShortNames[indexPath.row];
     cell.menuOption = self.shortNameToObject[shortName];
     cell.quantity = self.shortNameToQuantity[shortName];
     
