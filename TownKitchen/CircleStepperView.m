@@ -19,7 +19,6 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSLog(@"initwithcoder called");
         [self initSubViews];
     }
     return self;
@@ -28,7 +27,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"initwithframe called");
         [self initSubViews];
     }
     return self;
@@ -39,12 +37,6 @@
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];
-    
-    NSLog(@"self.contentView.frame: %@, self.bounds: %@", NSStringFromCGRect(self.contentView.frame), NSStringFromCGRect(self.bounds));
-}
-- (IBAction)onButton:(id)sender {
-    
-    NSLog(@"button pressed!");
 }
 
 @end
