@@ -51,7 +51,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Na-AX-qBN">
-                    <rect key="frame" x="20" y="61" width="280" height="202"/>
+                    <rect key="frame" x="20" y="61" width="280" height="222"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hK-7J-NNG" userLabel="Address View">
@@ -128,7 +128,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="STl-AH-Ckx" firstAttribute="top" secondItem="5Na-AX-qBN" secondAttribute="bottom" constant="40" id="AWs-1t-2Jq"/>
+                <constraint firstItem="STl-AH-Ckx" firstAttribute="top" secondItem="5Na-AX-qBN" secondAttribute="bottom" constant="20" id="AWs-1t-2Jq"/>
                 <constraint firstAttribute="trailing" secondItem="GKp-Sd-Efo" secondAttribute="trailing" constant="48" id="CuQ-r5-gwS"/>
                 <constraint firstItem="25Y-qO-zHP" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="bottom" constant="20" id="FM2-c6-Fji"/>
                 <constraint firstItem="41Y-VO-qYR" firstAttribute="leading" secondItem="5Na-AX-qBN" secondAttribute="leading" id="OZS-0Z-eXT"/>

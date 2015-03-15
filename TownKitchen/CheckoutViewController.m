@@ -14,6 +14,7 @@
 #import "LocationSelectViewController.h"
 #import "TimeSelectViewController.h"
 #import "OrdersViewController.h"
+#import "ParseAPI.h"
 
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate>
 
@@ -24,7 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) NSDate *selectedDate;
 
-@property (strong, nonatomic) NSArray *menuOptionItems;
+@property (strong, nonatomic) NSArray *menuOptionShortnames;
+@property (strong, nonatomic) NSDictionary *shortNameToObject;
 
 @end
 
@@ -46,50 +48,22 @@
     _order = order;
     [self reloadTableData];
     
+    // populate menu option shortnames and retrieve corresponding objects
+    NSMutableArray *mutableMenuOptionShortnames = [NSMutableArray array];
+    NSMutableDictionary *mutableShortNameToObject = [NSMutableDictionary dictionary];
+    
     for (NSString *shortName in order.items) {
-        NSLog(@"order short name: %@", shortName);
         if ([order.items[shortName] isEqualToNumber:@0]) {
             continue;
         }
         else {
-            
+            [mutableMenuOptionShortnames addObject:shortName];
+            [mutableShortNameToObject addEntriesFromDictionary:@{ shortName : [[ParseAPI getInstance] menuOptionForShortName:shortName] }];
+            self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
+            self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
+            [self reloadTableData];
         }
     }
-    
-//    NSMutableArray *mutableOrderItems = [NSMutableArray array];
-//    for (NSString *menuItem in order.items) {
-//        NSMutableDictionary *orderItem = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//                                          menuItem, @"menuItemName",
-//                                        order.items[menuItem], @"quantity", nil];
-//        [mutableOrderItems addObject:orderItem];
-//    }
-//    NSLog(@"mutableOrderItems: %@", mutableOrderItems);
-//    
-//    [mutableOrderItems sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-//        if (obj1[@"quantity"] > obj2[@"quantity"]) {
-//            return NSOrderedAscending;
-//        }
-//        else if (obj1[@"quantity"] < obj2[@"quantity"]) {
-//            return NSOrderedDescending;
-//        }
-//        else {
-//            return NSOrderedSame;
-//        }
-//    }];
-//    self.orderItems = [NSArray arrayWithArray:mutableOrderItems];
-//        NSLog(@"%@", self.orderItems);
-//    
-//    // retrieve menu options from Parse
-//    for (NSMutableDictionary *orderItem in self.orderItems) {
-//        NSLog(@"looking for: %@", orderItem[@"menuItemName"]);
-//        PFQuery *menuOptionQuery = [MenuOption query];
-//        [menuOptionQuery whereKey:@"name" containsString:orderItem[@"menuItemName"]];
-//        [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            orderItem[@"menuOption"] = [objects firstObject];
-//            NSLog(@"orderItem is now: %@", orderItem);
-//            [self reloadTableData];
-//        }];
-//    }
 }
 
 #pragma mark Private Methods
@@ -101,6 +75,7 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
     [self reloadTableData];
+    
 }
 
 - (void)reloadTableData {
@@ -142,11 +117,24 @@
 #pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.order.items.count;
+    return self.menuOptionShortnames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CheckoutOrderItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CheckoutOrderItemCell"];
+    NSString *shortName = self.menuOptionShortnames[indexPath.row];
+    MenuOption *menuOption = self.shortNameToObject[shortName];
+    float menuOptionPrice = [menuOption.price floatValue];
+    float quantity = [self.order.items[shortName] floatValue];
+    float priceForQuantity = menuOptionPrice * quantity;
+    
+    cell.quantity = self.order.items[shortName];
+    cell.price = [NSNumber numberWithFloat:priceForQuantity];
+    cell.menuOption = menuOption;
+    
+    NSLog(@"self.order.items[shortName]: %@", self.order.items[shortName]);
+    NSLog(@"menuOptionPrice: %f", [menuOption.price floatValue]);
+    
     return cell;
 }
 

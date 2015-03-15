@@ -12,5 +12,7 @@
 @interface CheckoutOrderItemCell : UITableViewCell
 
 @property (strong, nonatomic) MenuOption *menuOption;
+@property (strong, nonatomic) NSNumber *quantity;
+@property (strong, nonatomic) NSNumber *price;
 
 @end

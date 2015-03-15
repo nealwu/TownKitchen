@@ -25,12 +25,22 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
 #pragma mark Custom Setters
 
+- (void)setMenuOption:(MenuOption *)menuOption {
+    self.nameLabel.text = menuOption.mealDescription;
+    [self setup];
+}
 
+#pragma mark Private methods
+
+- (void)setup {
+    NSLog(@"%@, %@", self.quantity, self.price);
+    self.quantityLabel.text = [NSString stringWithFormat:@"%@", self.quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@", self.price];
+}
 
 @end
