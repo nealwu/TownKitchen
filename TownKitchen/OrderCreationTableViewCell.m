@@ -45,6 +45,11 @@
     [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
 }
 
+- (void)setQuantity:(NSNumber *)quantity {
+    self.orderStepper.value = [quantity doubleValue];
+    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%d", [quantity integerValue]];
+}
+
 #pragma mark Private Methods
 
 - (void)setup{

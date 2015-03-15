@@ -20,6 +20,7 @@
 @interface OrderCreationTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) MenuOption *menuOption;
+@property (strong, nonatomic) NSNumber *quantity;
 @property (weak, nonatomic) id<OrderCreationTableViewCellDelegate> delegate;
 
 @end

@@ -12,18 +12,17 @@
 #import "DateUtils.h"
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
-#import "MenuOptionOrder.h"
 #import "Order.h"
 #import "OrderCreationTableViewCell.h"
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) OrderCreationTableViewCell *sizingCell;
 
 @property (strong, nonatomic) NSArray *menuOptionShortnames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
-@property (strong, nonatomic) NSDictionary *shortNameToQuantity;
+@property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
 
 @end
 
@@ -48,6 +47,13 @@
 
 #pragma mark OrderCreationTableViewCellDelegate Methods
 
+- (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateQuantity:(NSNumber *)quantity {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSString *shortName = self.menuOptionShortnames[indexPath.row];
+    self.shortNameToQuantity[shortName] = quantity;
+    NSLog(@"updated quantity for %@, quanties dictionary is now: %@", shortName, self.shortNameToQuantity);
+}
+
 #pragma mark Actions
 
 - (IBAction)onOrderButton:(id)sender {
@@ -59,12 +65,12 @@
 - (void)setup {
     // retrieve MenuOption objects
     NSMutableArray *mutableMenuOptionShortnames = [NSMutableArray array];
-    NSMutableDictionary *mutableShortNameToQuantity = [NSMutableDictionary dictionary];
     NSMutableDictionary *mutableShortNameToObject = [NSMutableDictionary dictionary];
+    self.shortNameToQuantity = [NSMutableDictionary dictionary];
 
     for (Inventory *inventoryItem in self.inventoryItems) {
         [mutableMenuOptionShortnames addObject:inventoryItem.menuOptionShortName];
-        [mutableShortNameToQuantity addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : @0 }];
+        [self.shortNameToQuantity addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : @0 }];
         
         PFQuery *menuOptionQuery = [MenuOption query];
         [menuOptionQuery whereKey:@"shortName" equalTo:inventoryItem.menuOptionShortName];
@@ -73,7 +79,6 @@
                 [mutableShortNameToObject addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : [objects firstObject]}];
                 
                 self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
-                self.shortNameToQuantity = [NSDictionary dictionaryWithDictionary:mutableShortNameToQuantity];
                 self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
                 [self reloadAllTableViewData];
             } else {
@@ -127,9 +132,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+    cell.delegate = self;
     
     NSString *shortName = self.menuOptionShortnames[indexPath.row];
     cell.menuOption = self.shortNameToObject[shortName];
+    cell.quantity = self.shortNameToQuantity[shortName];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
