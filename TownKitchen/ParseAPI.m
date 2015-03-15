@@ -7,9 +7,12 @@
 //
 
 #import "ParseAPI.h"
-#import "User.h"
-#import "Order.h"
+
+#import "DateUtils.h"
+#import "Inventory.h"
 #import "MenuOption.h"
+#import "Order.h"
+#import "User.h"
 
 @implementation ParseAPI
 
@@ -26,50 +29,9 @@
     return instance;
 }
 
-- (NSArray *)dayInventories {
-    PFQuery *query = [PFQuery queryWithClassName:@"Inventory"];
-
-    NSArray *inventories = [query findObjects];
-    //    NSLog(@"DI returned %ld inventories", inventories.count);
-    //    NSLog(@"Inventories: %@", inventories);
-    //    PFObject *inventory = inventories[0];
-    //    NSLog(@"Object ID: %@", inventory.objectId);
-    //    NSLog(@"Date offered: %@", inventory[@"dateOffered"]);
-    //    NSLog(@"Keys: %@", [inventory allKeys]);
-    return inventories;
-}
-
-- (NSArray *)ordersForUser:(NSString *)username {
-    PFQuery *query = [PFQuery queryWithClassName:@"Order"];
-    [query whereKey:@"username" equalTo:username];
-    NSArray *orders = [query findObjects];
-    return orders;
-}
-
-- (PFGeoPoint *)locationForOrder:(Order *)order {
-    return [PFGeoPoint geoPointWithLatitude:[order.driverLocation[@"latitude"] doubleValue] longitude:[order.driverLocation[@"longitude"] doubleValue]];
-//    return order.deliveryLocation;
-    //    NSDictionary *deliveryLocation = order.deliveryLocation;
-    //    double latitude = [deliveryLocation[@"latitude"] doubleValue];
-    //    double longitude = [deliveryLocation[@"longitude"] doubleValue];
-    //    return [PFGeoPoint geoPointWithLatitude:latitude longitude:longitude];
-}
-
-- (NSString *)imageURLForMenuOption:(NSString *)menuOption {
+- (MenuOption *)menuOptionForShortName:(NSString *)shortName {
     PFQuery *query = [PFQuery queryWithClassName:@"MenuOption"];
-    [query whereKey:@"name" equalTo:menuOption];
-    NSArray *menuOptions = [query findObjects];
-
-    if (menuOptions.count == 0) {
-        return nil;
-    }
-
-    return ((MenuOption *) menuOptions[0]).imageUrl;
-}
-
-- (MenuOption *)menuOptionForName:(NSString *)name {
-    PFQuery *query = [PFQuery queryWithClassName:@"MenuOption"];
-    [query whereKey:@"name" equalTo:name];
+    [query whereKey:@"shortName" equalTo:shortName];
     NSArray *menuOptions = [query findObjects];
 
     if (menuOptions.count == 0) {
@@ -79,38 +41,67 @@
     return menuOptions[0];
 }
 
-- (void)createOrder:(Order *)order {
-    //    PFObject *orderObj = [PFObject objectWithClassName:@"Order"];
-    //    orderObj[@"deliveryAddress"] = order.deliveryAddress;
-    //    orderObj[@"deliveryOrigin"] = order.deliveryOrigin;
-    //    orderObj[@"driverLocation"] = order.driverLocation;
-    //    orderObj[@"items"] = order.items;
-    // TODO: fill in the rest of the fields
-    [order saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"Order save succeeded");
-        } else {
-            NSLog(@"Order save failed: %@", error);
+- (NSArray *)inventoryItems {
+    PFQuery *query = [PFQuery queryWithClassName:@"Inventory"];
+    return [query findObjects];
+}
+
+- (NSArray *)inventoryItemsForDay:(NSDate *)date {
+    NSArray *items = [self inventoryItems];
+    NSMutableArray *filteredItems = [NSMutableArray array];
+
+    for (Inventory *inventory in items) {
+        if ([DateUtils compareDayFromDate:inventory.dateOffered withDate:date]) {
+            [filteredItems addObject:inventory];
         }
-    }];
+    }
+
+    return filteredItems;
+}
+
+- (NSArray *)ordersForUser:(NSString *)username {
+    PFQuery *query = [PFQuery queryWithClassName:@"Order"];
+    [query whereKey:@"username" equalTo:username];
+    NSArray *orders = [query findObjects];
+    return orders;
+}
+
+- (BOOL)validateOrder:(Order *)order {
+    NSDictionary *items = order.items;
+
+    for (NSString *shortName in items) {
+        Inventory *inventory = [self inventoryItemForShortName:shortName andDay:order.deliveryDateAndTime];
+
+        if ((NSInteger) items[shortName] > [inventory.quantityRemaining integerValue]) {
+            return NO;
+        }
+    }
+
+    return YES;
+}
+
+- (BOOL)createOrder:(Order *)order {
+    if ([order save]) {
+        NSDictionary *items = order.items;
+
+        for (NSString *shortName in items) {
+            Inventory *inventory = [self inventoryItemForShortName:shortName andDay:order.deliveryDateAndTime];
+            inventory.quantityRemaining = @([inventory.quantityRemaining integerValue] - (NSInteger) items[shortName]);
+            [inventory save];
+        }
+
+        return YES;
+    }
+
+    return NO;
 }
 
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment {
     PFObject *review = [PFObject objectWithClassName:@"Review"];
     review[@"comments"] = comment;
-    review[@"order"] = [PFObject objectWithoutDataWithClassName:@"Order" objectId:order.objectId];
+    review[@"order"] = order;
     review[@"starRating"] = stars;
-    [review saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"Review saved successfully!");
-        } else {
-            NSLog(@"Review saving failed: %@", error);
-        }
-    }];
-}
-
-- (void)setDeliveryLocationForOrder:(Order *)order location:(PFGeoPoint *)location {
-
+    [review save];
 }
 
 @end
