@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *inventoryItems;
-@property (strong, nonatomic) NSMutableArray *uniqueInventories;
+@property (strong, nonatomic) NSArray *displayInventories;
 
 @end
 
@@ -30,7 +30,8 @@
     self.title = @"Town Kitchen";
 
     self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
-    self.uniqueInventories = [NSMutableArray array];
+
+    NSMutableArray *uniqueInventories = [NSMutableArray array];
     NSMutableSet *dates = [NSMutableSet set];
 
     for (Inventory *inventory in self.inventoryItems) {
@@ -38,10 +39,14 @@
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
-            [self.uniqueInventories addObject:inventory];
+            [uniqueInventories addObject:inventory];
             [dates addObject:monthAndDay];
         }
     }
+
+    // Sort uniqueInventories by date
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateOffered" ascending:YES];
+    self.displayInventories = [uniqueInventories sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -52,11 +57,11 @@
 #pragma mark - Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.uniqueInventories.count;
+    return self.displayInventories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Inventory *inventory = self.uniqueInventories[indexPath.row];
+    Inventory *inventory = self.displayInventories[indexPath.row];
     DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
     [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:inventory.imageURL]];
     cell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
@@ -67,7 +72,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    Inventory *inventory = self.uniqueInventories[indexPath.row];
+    Inventory *inventory = self.displayInventories[indexPath.row];
     ocvc.inventoryItems = [[ParseAPI getInstance] inventoryItemsForDay:inventory.dateOffered];
     [self.navigationController pushViewController:ocvc animated:YES];
 }
