@@ -12,5 +12,6 @@
 
 + (NSString *)dayOfTheWeekFromDate:(NSDate *)date;
 + (NSString *)monthAndDayFromDate:(NSDate *)date;
++ (BOOL)compareDayFromDate:(NSDate *)date1 withDate:(NSDate *)date2;
 
 @end

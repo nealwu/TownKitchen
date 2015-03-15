@@ -22,4 +22,11 @@
     return [formatter stringFromDate:date];
 }
 
++ (BOOL)compareDayFromDate:(NSDate *)date1 withDate:(NSDate *)date2 {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components1 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date1];
+    NSDateComponents *components2 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date2];
+    return [components1 day] == [components2 day];
+}
+
 @end
