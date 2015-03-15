@@ -13,7 +13,7 @@
 
 + (BFTask *)menuOptionWithName:(NSString *)name;
 
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *shortName;
 @property (strong, nonatomic) NSString *mealDescription;
 @property (strong, nonatomic) NSString *imageUrl;
 @property (strong, nonatomic) NSNumber *price;

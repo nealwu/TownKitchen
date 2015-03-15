@@ -11,6 +11,11 @@
 
 @implementation MenuOption
 
+@dynamic shortName;
+@dynamic mealDescription;
+@dynamic price;
+@dynamic imageUrl;
+
 + (void)load {
     [self registerSubclass];
 }
@@ -24,10 +29,5 @@
     [query whereKey:@"name" equalTo:name];
     return [query getFirstObjectInBackground];
 }
-
-@dynamic name;
-@dynamic mealDescription;
-@dynamic price;
-@dynamic imageUrl;
 
 @end
