@@ -40,15 +40,13 @@
 //        osvc.order = task.result;
 //        return nil;
 //    }];
+//
+//    self.window.rootViewController = osvc;
 
     DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
     nvc.navigationBar.translucent = NO;
 
-//    DebugSelectorViewController *dsvc = [[DebugSelectorViewController alloc] init];
-//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
-
-//    self.window.rootViewController = osvc;
     self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;

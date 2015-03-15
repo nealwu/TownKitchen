@@ -19,8 +19,6 @@
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
-		2BD9E6681AAFEAE10072BB59 /* DebugSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */; };
-		2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
@@ -87,9 +85,6 @@
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
-		2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSelectorViewController.h; sourceTree = "<group>"; };
-		2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSelectorViewController.m; sourceTree = "<group>"; };
-		2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugSelectorViewController.xib; sourceTree = "<group>"; };
 		2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationCell.h; sourceTree = "<group>"; };
 		2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationCell.m; sourceTree = "<group>"; };
 		2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationCell.xib; sourceTree = "<group>"; };
@@ -260,9 +255,6 @@
 				91788D601AA940B10038FE1F /* DaySelectViewController.h */,
 				91788D611AA940B10038FE1F /* DaySelectViewController.m */,
 				91788D621AA940B10038FE1F /* DaySelectViewController.xib */,
-				2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */,
-				2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */,
-				2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */,
 				91788D6A1AA941620038FE1F /* DeliveryStatusViewController.h */,
 				91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */,
 				91788D6C1AA941620038FE1F /* DeliveryStatusViewController.xib */,
@@ -454,7 +446,6 @@
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
-				2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
 				9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */,
@@ -529,7 +520,6 @@
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
-				2BD9E6681AAFEAE10072BB59 /* DebugSelectorViewController.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
