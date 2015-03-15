@@ -29,7 +29,7 @@
 - (void)setOrder:(Order *)order {
     _order = order;
 
-    self.dateLabel.text = [DateUtils monthAndDayFromDate:order.deliveryTime];
+    self.dateLabel.text = [DateUtils monthAndDayFromDate:order.deliveryDateAndTime];
     NSDictionary *items = order.items;
     NSMutableString *itemsString = [NSMutableString string];
 

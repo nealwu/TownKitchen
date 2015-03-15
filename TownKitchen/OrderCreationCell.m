@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
-#import "OrderCreationTableViewCell.h"
+#import "OrderCreationCell.h"
 
 #import <UIImageView+AFNetworking.h>
 
 
-@interface OrderCreationTableViewCell ()
+@interface OrderCreationCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *mealImage;
 @property (weak, nonatomic) IBOutlet UILabel *mealDescription;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation OrderCreationTableViewCell
+@implementation OrderCreationCell
 
 - (void)awakeFromNib {
     [self setup];
