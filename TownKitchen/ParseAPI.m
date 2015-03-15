@@ -34,6 +34,7 @@
     NSArray *menuOptions = [query findObjects];
 
     if (menuOptions.count == 0) {
+        NSLog(@"Could not find any menu options with short name %@", shortName);
         return nil;
     }
 
@@ -42,7 +43,14 @@
 
 - (NSArray *)inventoryItems {
     PFQuery *query = [PFQuery queryWithClassName:@"Inventory"];
-    return [query findObjects];
+    NSArray *items = [query findObjects];
+
+    // Populate the menuOptionObject field
+    for (Inventory *inventory in items) {
+        inventory.menuOptionObject = [self menuOptionForShortName:inventory.menuOptionShortName];
+    }
+
+    return items;
 }
 
 - (NSArray *)inventoryItemsForDay:(NSDate *)date {

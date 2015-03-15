@@ -28,7 +28,7 @@
 
 @implementation OrderCreationViewController
 
-#pragma mark View Cycle Methods
+#pragma mark - View Cycle Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,8 +36,24 @@
     Inventory *firstInventory = self.inventoryItems[0];
     self.title = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
 
-    [self setup];
-    
+    // retrieve MenuOption objects
+    NSMutableArray *mutableMenuOptionShortNames = [NSMutableArray array];
+    NSMutableDictionary *mutableShortNameToObject = [NSMutableDictionary dictionary];
+    self.shortNameToQuantity = [NSMutableDictionary dictionary];
+
+    for (Inventory *inventoryItem in self.inventoryItems) {
+        NSString *shortName = inventoryItem.menuOptionShortName;
+
+        [mutableMenuOptionShortNames addObject:shortName];
+        [self.shortNameToQuantity setObject:@0 forKey:shortName];
+
+        MenuOption *menuOption = inventoryItem.menuOptionObject;
+        [mutableShortNameToObject setObject:menuOption forKey:shortName];
+
+        self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortNames];
+        self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
+    }
+
     // Set up tableView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -45,7 +61,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark OrderCreationTableViewCellDelegate Methods
+#pragma mark - OrderCreationTableViewCellDelegate Methods
 
 - (void)orderCreationTableViewCell:(OrderCreationCell *)cell didUpdateQuantity:(NSNumber *)quantity {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -54,49 +70,7 @@
     NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
 
-#pragma mark Actions
-
-- (IBAction)onOrderButton:(id)sender {
-    Order *order = [Order object];
-    order.items = self.shortNameToQuantity;
-    order.user = [PFUser currentUser];
-    order.deliveryDateAndTime = [(Inventory *)[self.inventoryItems firstObject] dateOffered];
-    NSLog(@"Creating order: %@", order);
-
-    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
-    checkoutViewController.order = order;
-    [self.navigationController pushViewController:checkoutViewController animated:YES];
-}
-
-#pragma mark Private Methods
-
-- (void)setup {
-    // retrieve MenuOption objects
-    NSMutableArray *mutableMenuOptionShortnames = [NSMutableArray array];
-    NSMutableDictionary *mutableShortNameToObject = [NSMutableDictionary dictionary];
-    self.shortNameToQuantity = [NSMutableDictionary dictionary];
-
-    for (Inventory *inventoryItem in self.inventoryItems) {
-        [mutableMenuOptionShortnames addObject:inventoryItem.menuOptionShortName];
-        [self.shortNameToQuantity addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : @0 }];
-        
-        PFQuery *menuOptionQuery = [MenuOption query];
-        [menuOptionQuery whereKey:@"shortName" equalTo:inventoryItem.menuOptionShortName];
-        [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error && objects.count > 0) {
-                [mutableShortNameToObject addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : [objects firstObject]}];
-                
-                self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
-                self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
-                [self.tableView reloadData];
-            } else {
-                NSLog(@"failed to find menu option, error: %@", error);
-            }
-        }];
-    }
-}
-
-#pragma mark Table View Methods
+#pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.menuOptionShortNames.count;
@@ -105,43 +79,54 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];
     cell.delegate = self;
-    
+
     NSString *shortName = self.menuOptionShortNames[indexPath.row];
     cell.menuOption = self.shortNameToObject[shortName];
     cell.quantity = self.shortNameToQuantity[shortName];
-    
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-    
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // initialize sizing cell
+    // Initialize the sizing cell
     if (!self.sizingCell) {
         self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];
+
+        NSString *shortName = self.menuOptionShortNames[indexPath.row];
+        self.sizingCell.menuOption = self.shortNameToObject[shortName];
+        self.sizingCell.quantity = self.shortNameToQuantity[shortName];
     }
-    
-    // populate cell with same data as visible cell
+
+    // Populate cell with the same data as the visible cell
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];
-    
-    // set cell width to same as width as tableView
+
+    // Set cell width to the same width as tableView
     self.sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.sizingCell.bounds));
     [self.sizingCell setNeedsLayout];
     [self.sizingCell layoutIfNeeded];
-    
-    // get the height of sizing cell
-    CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    height += 1;  // compensate for cell separators
-    
+
+    // Get the height of the sizing cell, adding one to compensate for cell separators
+    CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
     return height;
 }
 
-#pragma mark System Methods
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Actions
+
+- (IBAction)onOrderButton:(id)sender {
+    Order *order = [Order object];
+    order.items = self.shortNameToQuantity;
+    order.user = [PFUser currentUser];
+    Inventory *firstInventory = self.inventoryItems[0];
+    order.deliveryDateAndTime = [firstInventory dateOffered];
+    NSLog(@"Creating order: %@", order);
+
+    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
+    checkoutViewController.order = order;
+    [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
 
 @end

@@ -35,7 +35,6 @@
     NSMutableSet *dates = [NSMutableSet set];
 
     for (Inventory *inventory in self.inventoryItems) {
-        inventory.menuOptionObject = [[ParseAPI getInstance] menuOptionForShortName:inventory.menuOptionShortName];
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
