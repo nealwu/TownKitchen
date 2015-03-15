@@ -12,7 +12,6 @@
 #import "Inventory.h"
 #import "MenuOption.h"
 #import "Order.h"
-#import "User.h"
 
 @implementation ParseAPI
 
@@ -59,9 +58,25 @@
     return filteredItems;
 }
 
-- (NSArray *)ordersForUser:(NSString *)username {
+- (Inventory *)inventoryItemForShortName:(NSString *)shortName andDay:(NSDate *)date {
+    NSArray *items = [self inventoryItems];
+
+    for (Inventory *inventory in items) {
+        if ([DateUtils compareDayFromDate:inventory.dateOffered withDate:date]) {
+            MenuOption *menuOption = [self menuOptionForShortName:[inventory menuOptionShortName]];
+
+            if ([menuOption.shortName isEqualToString:shortName]) {
+                return inventory;
+            }
+        }
+    }
+
+    return nil;
+}
+
+- (NSArray *)ordersForUser:(PFUser *)user {
     PFQuery *query = [PFQuery queryWithClassName:@"Order"];
-    [query whereKey:@"username" equalTo:username];
+    [query whereKey:@"user" equalTo:user];
     NSArray *orders = [query findObjects];
     return orders;
 }

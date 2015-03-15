@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
 
 @interface DeliveryStatusViewController : UIViewController
 
-@property (strong, nonatomic) User *driver;
+@property (strong, nonatomic) PFUser *driver;
 
 @end

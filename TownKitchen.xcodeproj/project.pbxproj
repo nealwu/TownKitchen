@@ -26,7 +26,6 @@
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
 		91788D501AA93FEC0038FE1F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4F1AA93FEC0038FE1F /* Order.m */; };
 		91788D531AA93FF50038FE1F /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D521AA93FF50038FE1F /* Inventory.m */; };
-		91788D561AA93FFB0038FE1F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D551AA93FFB0038FE1F /* User.m */; };
 		91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D5C1AA940930038FE1F /* OrderCreationViewController.m */; };
 		91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */; };
 		91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D611AA940B10038FE1F /* DaySelectViewController.m */; };
@@ -101,8 +100,6 @@
 		91788D4F1AA93FEC0038FE1F /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		91788D511AA93FF50038FE1F /* Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inventory.h; sourceTree = "<group>"; };
 		91788D521AA93FF50038FE1F /* Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inventory.m; sourceTree = "<group>"; };
-		91788D541AA93FFB0038FE1F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		91788D551AA93FFB0038FE1F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		91788D5B1AA940930038FE1F /* OrderCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationViewController.h; sourceTree = "<group>"; };
 		91788D5C1AA940930038FE1F /* OrderCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationViewController.m; sourceTree = "<group>"; };
 		91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationViewController.xib; sourceTree = "<group>"; };
@@ -247,8 +244,6 @@
 				91788D4C1AA93FB60038FE1F /* MenuOption.m */,
 				91788D4E1AA93FEC0038FE1F /* Order.h */,
 				91788D4F1AA93FEC0038FE1F /* Order.m */,
-				91788D541AA93FFB0038FE1F /* User.h */,
-				91788D551AA93FFB0038FE1F /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -528,7 +523,6 @@
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
-				91788D561AA93FFB0038FE1F /* User.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */,
