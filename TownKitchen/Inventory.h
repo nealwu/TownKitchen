@@ -15,7 +15,6 @@
 @property (strong, nonatomic) NSDate *dateOffered;
 @property (strong, nonatomic) NSNumber *quantityRemaining;
 
-@property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) MenuOption *menuOptionObject;
 
 + (NSString *)parseClassName;

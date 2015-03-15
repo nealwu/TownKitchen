@@ -35,7 +35,7 @@
     NSMutableSet *dates = [NSMutableSet set];
 
     for (Inventory *inventory in self.inventoryItems) {
-        inventory.imageURL = [[ParseAPI getInstance] menuOptionForShortName:inventory.menuOptionShortName].imageURL;
+        inventory.menuOptionObject = [[ParseAPI getInstance] menuOptionForShortName:inventory.menuOptionShortName];
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
@@ -63,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Inventory *inventory = self.displayInventories[indexPath.row];
     DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
-    [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:inventory.imageURL]];
+    [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:inventory.menuOptionObject.imageURL]];
     cell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
     cell.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
     return cell;
@@ -72,8 +72,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    Inventory *inventory = self.displayInventories[indexPath.row];
-    ocvc.inventoryItems = [[ParseAPI getInstance] inventoryItemsForDay:inventory.dateOffered];
+    Inventory *firstInventory = self.displayInventories[indexPath.row];
+    ocvc.inventoryItems = [[ParseAPI getInstance] inventoryItemsForDay:firstInventory.dateOffered];
     [self.navigationController pushViewController:ocvc animated:YES];
 }
 

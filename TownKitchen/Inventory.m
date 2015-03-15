@@ -14,7 +14,6 @@
 @dynamic dateOffered;
 @dynamic quantityRemaining;
 
-@synthesize imageURL;
 @synthesize menuOptionObject;
 
 + (void)load {
