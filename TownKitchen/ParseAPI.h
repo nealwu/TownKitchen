@@ -12,7 +12,6 @@
 #import "Inventory.h"
 #import "MenuOption.h"
 #import "Order.h"
-#import "User.h"
 
 @interface ParseAPI : NSObject
 
@@ -22,7 +21,7 @@
 - (NSArray *)inventoryItems;
 - (NSArray *)inventoryItemsForDay:(NSDate *)date;
 - (Inventory *)inventoryItemForShortName:(NSString *)shortName andDay:(NSDate *)date;
-- (NSArray *)ordersForUser:(User *)user;
+- (NSArray *)ordersForUser:(PFUser *)user;
 - (BOOL)validateOrder:(Order *)order;
 - (BOOL)createOrder:(Order *)order;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;

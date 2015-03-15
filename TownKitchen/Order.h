@@ -8,7 +8,6 @@
 
 #import <Parse/Parse.h>
 #import <MapKit/MapKit.h>
-#import "User.h"
 
 typedef enum : NSUInteger {
     TKOrderStateBeingPrepared,

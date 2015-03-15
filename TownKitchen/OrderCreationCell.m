@@ -42,7 +42,7 @@
 - (void)setMenuOption:(MenuOption *)menuOption {
     _menuOption = menuOption;
     self.mealDescription.text = menuOption.mealDescription;
-    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageUrl]];
+    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageURL]];
 }
 
 - (void)setQuantity:(NSNumber *)quantity {

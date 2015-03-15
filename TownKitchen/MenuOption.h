@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) NSString *shortName;
 @property (strong, nonatomic) NSString *mealDescription;
-@property (strong, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSNumber *price;
 
 + (NSString *)parseClassName;

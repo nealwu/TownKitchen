@@ -1,5 +1,5 @@
 //
-//  DayViewController.h
+//  DaySelectViewController.h
 //  TownKitchen
 //
 //  Created by Neal Wu on 3/10/15.
