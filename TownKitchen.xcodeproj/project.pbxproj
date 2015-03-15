@@ -16,6 +16,8 @@
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BBABFB91AB008DF0098124D /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBABFB71AB008DF0098124D /* DayCell.m */; };
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
+		2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D31AB614F6003624DD /* CircleStepperView.m */; };
+		2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D51AB61503003624DD /* CircleStepperView.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
@@ -80,6 +82,9 @@
 		2BBABFB61AB008DF0098124D /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
 		2BBABFB71AB008DF0098124D /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
 		2BBABFB81AB008DF0098124D /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
+		2BC7C2D21AB614F6003624DD /* CircleStepperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleStepperView.h; sourceTree = "<group>"; };
+		2BC7C2D31AB614F6003624DD /* CircleStepperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleStepperView.m; sourceTree = "<group>"; };
+		2BC7C2D51AB61503003624DD /* CircleStepperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleStepperView.xib; sourceTree = "<group>"; };
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
@@ -292,6 +297,9 @@
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
+				2BC7C2D21AB614F6003624DD /* CircleStepperView.h */,
+				2BC7C2D31AB614F6003624DD /* CircleStepperView.m */,
+				2BC7C2D51AB61503003624DD /* CircleStepperView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -442,6 +450,7 @@
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
+				2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
@@ -506,6 +515,7 @@
 				91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */,
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
+				2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
