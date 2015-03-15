@@ -10,8 +10,6 @@
 
 @interface TimeSelectViewController ()
 
-
-
 @end
 
 @implementation TimeSelectViewController
@@ -26,11 +24,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark Private Methods
 
 - (void)setup {
+    int startHour = 11;
+    int endHour = 14;
+
+    NSDate *date1 = [NSDate date];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorian components:NSUIntegerMax fromDate:date1];
+    [components setHour:startHour];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate *startDate = [gregorian dateFromComponents:components];
+
+    [components setHour:endHour];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate *endDate = [gregorian dateFromComponents:components];
+
     self.datePicker.datePickerMode = UIDatePickerModeTime;
+    self.datePicker.minimumDate = startDate;
+    self.datePicker.maximumDate = endDate;
+    self.datePicker.minuteInterval = 30;
 }
 
 #pragma mark Actions
@@ -39,13 +55,5 @@
     [self.delegate timeSelectViewController:self didSetDate:self.datePicker.date];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (IBAction)onDatePickerChanged:(id)sender {
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"hh:mm a"];
-//    NSString *currentTime = [dateFormatter stringFromDate:self.datePicker.date];
-//    NSLog(@"%@", currentTime);
-}
-
 
 @end

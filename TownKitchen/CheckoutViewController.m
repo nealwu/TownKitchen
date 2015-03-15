@@ -145,7 +145,6 @@
     NSLog(@"validating order: %@", self.order);
     NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
     
-    
 //    OrdersViewController *ovc = [[OrdersViewController alloc] init];
 //    [self.navigationController pushViewController:ovc animated:YES];
 }
@@ -157,7 +156,5 @@
 - (IBAction)onSetTimeButton:(id)sender {
     [self setTime];
 }
-
-
 
 @end

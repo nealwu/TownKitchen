@@ -87,7 +87,7 @@
     for (NSString *shortName in items) {
         Inventory *inventory = [self inventoryItemForShortName:shortName andDay:order.deliveryDateAndTime];
 
-        if ((NSInteger) items[shortName] > [inventory.quantityRemaining integerValue]) {
+        if ([items[shortName] integerValue] > [inventory.quantityRemaining integerValue]) {
             return NO;
         }
     }
@@ -101,7 +101,7 @@
 
         for (NSString *shortName in items) {
             Inventory *inventory = [self inventoryItemForShortName:shortName andDay:order.deliveryDateAndTime];
-            inventory.quantityRemaining = @([inventory.quantityRemaining integerValue] - (NSInteger) items[shortName]);
+            inventory.quantityRemaining = @([inventory.quantityRemaining integerValue] - [items[shortName] integerValue]);
             [inventory save];
         }
 

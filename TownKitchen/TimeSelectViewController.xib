@@ -24,9 +24,6 @@
                     <date key="date" timeIntervalSinceReferenceDate="447796298.42810303">
                         <!--2015-03-11 19:51:38 +0000-->
                     </date>
-                    <connections>
-                        <action selector="onDatePickerChanged:" destination="-1" eventType="valueChanged" id="gq9-qi-aOB"/>
-                    </connections>
                 </datePicker>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jv3-xn-uLx">
                     <rect key="frame" x="69" y="354" width="182" height="47"/>
