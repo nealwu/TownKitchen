@@ -52,12 +52,11 @@
 
 - (void)setValue:(int)value {
     _value = value;
-    self.stepper.value = 0;
+    self.stepper.value = value;
     self.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
 }
 
 - (void)stepperValueChanged:(UIStepper *)stepper {
-    NSLog(@"value is now: %f", stepper.value);
     self.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
     [self.delegate circleStepperView:self didUpdateValue:(int)stepper.value];
 }

@@ -7,16 +7,16 @@
 //
 
 #import "OrderCreationCell.h"
+#import "CircleStepperView.h"
 
 #import <UIImageView+AFNetworking.h>
 
 
-@interface OrderCreationCell ()
+@interface OrderCreationCell () <CircleStepperViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *mealImage;
 @property (weak, nonatomic) IBOutlet UILabel *mealDescription;
-@property (weak, nonatomic) IBOutlet UILabel *orderQuantityLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *orderStepper;
+@property (weak, nonatomic) IBOutlet CircleStepperView *circleStepperView;
 
 @end
 
@@ -46,22 +46,21 @@
 }
 
 - (void)setQuantity:(NSNumber *)quantity {
-    self.orderStepper.value = [quantity doubleValue];
-    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%ld", [quantity integerValue]];
+    self.circleStepperView.value = [quantity integerValue];
 }
 
 #pragma mark Private Methods
 
 - (void)setup{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.circleStepperView.delegate = self;
 }
 
-#pragma mark Actions
+#pragma mark CircleStepperViewDelegate Methods
 
-- (IBAction)onStepperChanged:(UIStepper *)stepper {
-    NSNumber *value = [NSNumber numberWithDouble:stepper.value];
-    self.orderQuantityLabel.text = [NSString stringWithFormat:@"%@", value];
-    [self.delegate orderCreationTableViewCell:self didUpdateQuantity:value];
+- (void)circleStepperView:(CircleStepperView *)circleStepperView didUpdateValue:(int)value {
+    NSNumber *numberValue = [NSNumber numberWithInt:value];
+    [self.delegate orderCreationTableViewCell:self didUpdateQuantity:numberValue];
 }
 
 @end
