@@ -3,59 +3,62 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="KGk-i7-Jjw" customClass="DayCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="141" id="KGk-i7-Jjw" customClass="DayCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lE9-5n-WWp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="130" id="30n-CP-pWf"/>
+                        </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRv-fM-Bqm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
-                    </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBp-DP-Vn1">
-                        <rect key="frame" x="16" y="116" width="73" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="March 10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBp-DP-Vn1">
+                        <rect key="frame" x="109" y="72" width="103" height="30"/>
+                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oX-zn-abm">
-                        <rect key="frame" x="16" y="85" width="87" height="29"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oX-zn-abm">
+                        <rect key="frame" x="84" y="18" width="152" height="54"/>
+                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="41"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="MBp-DP-Vn1" secondAttribute="bottom" constant="12" id="30d-bj-95C"/>
-                    <constraint firstAttribute="bottom" secondItem="MRv-fM-Bqm" secondAttribute="bottom" id="3MT-qD-jG1"/>
                     <constraint firstAttribute="trailing" secondItem="lE9-5n-WWp" secondAttribute="trailing" id="DXI-gH-sEO"/>
-                    <constraint firstItem="MBp-DP-Vn1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="DfZ-bq-XVA"/>
-                    <constraint firstAttribute="trailing" secondItem="MRv-fM-Bqm" secondAttribute="trailing" id="N2i-fN-zvW"/>
-                    <constraint firstItem="MRv-fM-Bqm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Z3P-wn-oDN"/>
+                    <constraint firstAttribute="bottom" secondItem="lE9-5n-WWp" secondAttribute="bottom" id="EeS-bq-Mhs"/>
+                    <constraint firstItem="8oX-zn-abm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="HYc-jK-LmT"/>
+                    <constraint firstAttribute="centerX" secondItem="8oX-zn-abm" secondAttribute="centerX" id="QIz-H0-6xT"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lE9-5n-WWp" secondAttribute="bottom" constant="-1" id="Wdt-70-O30"/>
                     <constraint firstItem="lE9-5n-WWp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bOH-77-E0k"/>
-                    <constraint firstItem="MBp-DP-Vn1" firstAttribute="top" secondItem="8oX-zn-abm" secondAttribute="bottom" constant="2" id="cwF-dt-KPy"/>
-                    <constraint firstItem="8oX-zn-abm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="ehq-7A-HDs"/>
                     <constraint firstAttribute="bottom" secondItem="lE9-5n-WWp" secondAttribute="bottom" id="f6x-ae-Jb0"/>
-                    <constraint firstItem="MRv-fM-Bqm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iS5-fw-P6K"/>
                     <constraint firstItem="lE9-5n-WWp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jmO-kQ-FVk"/>
+                    <constraint firstItem="MBp-DP-Vn1" firstAttribute="top" secondItem="8oX-zn-abm" secondAttribute="bottom" id="nue-cI-o7x"/>
+                    <constraint firstAttribute="centerX" secondItem="MBp-DP-Vn1" secondAttribute="centerX" id="xWI-kB-kr1"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="EeS-bq-Mhs"/>
+                        <exclude reference="f6x-ae-Jb0"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundImageView" destination="lE9-5n-WWp" id="gnZ-Bw-env"/>
                 <outlet property="dateLabel" destination="MBp-DP-Vn1" id="p2P-o3-pzV"/>
                 <outlet property="dayLabel" destination="8oX-zn-abm" id="UGl-94-gBg"/>
             </connections>
-            <point key="canvasLocation" x="263" y="407"/>
+            <point key="canvasLocation" x="263" y="400"/>
         </tableViewCell>
     </objects>
 </document>

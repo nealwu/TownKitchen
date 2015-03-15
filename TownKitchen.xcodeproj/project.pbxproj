@@ -190,6 +190,7 @@
 		2B13D0961AA81B9100FC0689 /* TownKitchen */ = {
 			isa = PBXGroup;
 			children = (
+				2BA78A151AB63B3700F5FAB0 /* Animations */,
 				9F198EE31AAF7B0D00C0055D /* Images.xcassets */,
 				2B13D09B1AA81B9100FC0689 /* AppDelegate.h */,
 				2B13D09C1AA81B9100FC0689 /* AppDelegate.m */,
@@ -228,6 +229,13 @@
 				2B13D0B21AA81B9100FC0689 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2BA78A151AB63B3700F5FAB0 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		91788D4A1AA93F660038FE1F /* Models */ = {

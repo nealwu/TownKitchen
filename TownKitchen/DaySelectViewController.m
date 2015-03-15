@@ -20,6 +20,8 @@
 @property (strong, nonatomic) NSArray *inventoryItems;
 @property (strong, nonatomic) NSArray *displayInventories;
 
+@property (strong, nonatomic) DayCell *sizingCell;
+
 @end
 
 @implementation DaySelectViewController
@@ -50,7 +52,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
-    self.tableView.rowHeight = self.tableView.frame.size.height / 3;
 }
 
 #pragma mark - Table view methods
@@ -65,6 +66,10 @@
     [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:inventory.menuOptionObject.imageURL]];
     cell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
     cell.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
     return cell;
 }
 
@@ -74,6 +79,30 @@
     Inventory *firstInventory = self.displayInventories[indexPath.row];
     ocvc.inventoryItems = [self filterInventoryItemsByDay:firstInventory.dateOffered];
     [self.navigationController pushViewController:ocvc animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Initialize the sizing cell
+    if (!self.sizingCell) {
+        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"DayCell"];
+    }
+    
+    // Populate cell with the same data as the visible cell
+    Inventory *inventory = self.displayInventories[indexPath.row];
+    self.sizingCell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
+    self.sizingCell.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+    
+    [self.sizingCell setNeedsUpdateConstraints];
+    [self.sizingCell updateConstraintsIfNeeded];
+    
+    // Set cell width to the same width as tableView
+    self.sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.sizingCell.bounds));
+    [self.sizingCell setNeedsLayout];
+    [self.sizingCell layoutIfNeeded];
+    
+    // Get the height of the sizing cell, adding one to compensate for cell separators
+    CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
+    return height;
 }
 
 #pragma mark - Private methods
