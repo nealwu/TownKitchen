@@ -94,36 +94,12 @@
 
 - (void)createOrder {
     Order *order = [Order object];
-    float orderPrice = 0;
-    
-    
-    
-//    NSMutableDictionary *items = [NSMutableDictionary dictionary];
-//    
-//    for (MenuOptionOrder *menuOptionOrder in self.menuOptionOrders) {
-//        if ([menuOptionOrder.quantity isEqualToNumber:[NSNumber numberWithInt:0]]) {
-//            continue;
-//        }
-//        [menuOptionOrders addObject:menuOptionOrder];
-//        
-//        NSDictionary *item = @{menuOptionOrder.menuOption.name : menuOptionOrder.quantity};
-//        [items addEntriesFromDictionary:item];
-//        orderPrice += [menuOptionOrder.totalPrice floatValue];
-//    }
-//    order.menuOptionOrders = [NSArray arrayWithArray:menuOptionOrders];
-//    order.items = items;
-//    order.price = [NSNumber numberWithFloat:orderPrice];
-//    order.deliveryTime = ((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered;
-//    NSLog(@"Creating order: %@ with menuOptionOrders: %@", order, order.menuOptionOrders);
-//    
-//    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
-//    checkoutViewController.order = order;
-//    [self.navigationController pushViewController:checkoutViewController animated:YES];
-}
+    order.items = self.shortNameToQuantity;
+    NSLog(@"Creating order with items: %@", self.shortNameToQuantity);
 
-- (void)onNext {
-    LocationSelectViewController *lsvc = [[LocationSelectViewController alloc] init];
-    [self.navigationController pushViewController:lsvc animated:YES];
+    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
+    checkoutViewController.order = order;
+    [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
 
 #pragma mark Table View Methods

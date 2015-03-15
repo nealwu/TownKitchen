@@ -17,8 +17,7 @@
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (strong, nonatomic) NSArray *inventories;
+@property (strong, nonatomic) NSArray *inventoryItems;
 @property (strong, nonatomic) NSMutableArray *uniqueInventories;
 
 @end
@@ -26,7 +25,7 @@
 @implementation DaySelectViewController
 
 - (NSArray *)filterInventoriesByDate:(NSDate *)date {
-    return [self.inventories filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    return [self.inventoryItems filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [[DateUtils monthAndDayFromDate:((Inventory *) evaluatedObject).dateOffered] isEqual:[DateUtils monthAndDayFromDate:date]];
     }]];
 }
@@ -36,14 +35,14 @@
 
     self.title = @"Town Kitchen";
 
-    self.inventories = [[ParseAPI getInstance] dayInventories];
-    NSLog(@"Inventories: %@", self.inventories);
+    self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
+    NSLog(@"inventoryItems: %@", self.inventoryItems);
 
     self.uniqueInventories = [NSMutableArray array];
     NSMutableSet *dates = [NSMutableSet set];
 
-    for (Inventory *inventory in self.inventories) {
-        inventory.imageURL = [[ParseAPI getInstance] imageURLForMenuOption:inventory.menuOptionShortName];
+    for (Inventory *inventory in self.inventoryItems) {
+        inventory.imageURL = [[ParseAPI getInstance] menuOptionForShortName:inventory.menuOptionShortName].imageUrl;
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
@@ -83,7 +82,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    ocvc.inventoryItems = [self.inventories subarrayWithRange:NSMakeRange(0, 3)];
+    ocvc.inventoryItems = [self.inventoryItems subarrayWithRange:NSMakeRange(0, 3)];
     [self.navigationController pushViewController:ocvc animated:YES];
 }
 
