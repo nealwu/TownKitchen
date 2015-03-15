@@ -72,8 +72,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
     Inventory *firstInventory = self.displayInventories[indexPath.row];
-    ocvc.inventoryItems = [[ParseAPI getInstance] inventoryItemsForDay:firstInventory.dateOffered];
+    ocvc.inventoryItems = [self filterInventoryItemsByDay:firstInventory.dateOffered];
     [self.navigationController pushViewController:ocvc animated:YES];
+}
+
+#pragma mark - Private methods
+
+- (NSArray *)filterInventoryItemsByDay:(NSDate *)date {
+    NSMutableArray *filteredItems = [NSMutableArray array];
+
+    for (Inventory *inventory in self.inventoryItems) {
+        if ([DateUtils compareDayFromDate:inventory.dateOffered withDate:date]) {
+            [filteredItems addObject:inventory];
+        }
+    }
+
+    return filteredItems;
 }
 
 @end

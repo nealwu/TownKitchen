@@ -24,10 +24,4 @@
     return @"MenuOption";
 }
 
-+ (BFTask *)menuOptionWithName:(NSString *)name {
-    PFQuery *query = [self query];
-    [query whereKey:@"name" equalTo:name];
-    return [query getFirstObjectInBackground];
-}
-
 @end

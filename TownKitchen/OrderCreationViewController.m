@@ -122,6 +122,7 @@
     order.user = [PFUser currentUser];
     Inventory *firstInventory = self.inventoryItems[0];
     order.deliveryDateAndTime = [firstInventory dateOffered];
+    order.shortNameToMenuOptionObject = self.shortNameToObject;
     NSLog(@"Creating order: %@", order);
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];

@@ -8,6 +8,7 @@
 
 #import "OrderSummaryView.h"
 #import "TKMenuOptionCell.h"
+#import "ParseAPI.h"
 
 @interface OrderSummaryView () <UITableViewDataSource>
 
@@ -39,15 +40,13 @@
 - (void)setOrder:(Order *)order {
     NSLog(@"entering setOrder: order = %@", order);
     _order = order;
+    self.menuOptions = [self.order.items allKeys];
     [self updateSubviews];
     [self.tableView reloadData];
 }
 
 - (NSArray *)menuOptions {
-    if (!_menuOptions) {
-        _menuOptions = self.order.menuOptions;
-    }
-    return _menuOptions;
+    return self.menuOptions;
 }
 
 - (void)updateSubviews {
@@ -56,7 +55,6 @@
 }
 
 - (void)updateConstraints {
-    NSLog(@"entering updateConstraints: menuOptions = %@", self.menuOptions);
     self.tableViewHeightConstraint.constant = self.tableView.rowHeight * self.menuOptions.count;
     [super updateConstraints];
 }
@@ -69,9 +67,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TKMenuOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TKMenuOptionCell"];
-    NSDictionary *dict = self.menuOptions[indexPath.row];
-    cell.menuOption = dict[@"menuOption"];
-    cell.quantity = [dict[@"quantity"] integerValue];
+    NSString *shortName = self.menuOptions[indexPath.row];
+    cell.menuOption = self.order.shortNameToMenuOptionObject[shortName];
+    cell.quantity = [self.order.items[shortName] integerValue];
     return cell;
 }
 

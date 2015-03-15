@@ -30,30 +30,13 @@
 @dynamic status;
 @dynamic driverLocation;
 
+@synthesize shortNameToMenuOptionObject;
 @synthesize driverLocationMapItem;
-@synthesize menuOptions;
 
 - (MKMapItem *)driverLocationMapItem {
     double latitude = self.driverLocation.latitude;
     double longitude = self.driverLocation.latitude;
     return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude, longitude) addressDictionary:nil]];
-}
-
-- (BFTask *)fetchMenuOptions {
-    NSDictionary *rawItems = self.items;
-    NSMutableArray *tasks = [NSMutableArray array];
-    for (NSString *optionName in rawItems.keyEnumerator) {
-        NSNumber *quantity = rawItems[optionName];
-        BFTask *menuOptionTask = [[MenuOption menuOptionWithName:optionName] continueWithSuccessBlock:^id(BFTask *task) {
-            MenuOption *menuOption = task.result;
-            return @{@"menuOption":menuOption, @"quantity":quantity};
-        }];
-        [tasks addObject:menuOptionTask];
-    }
-    return [[BFTask taskForCompletionOfAllTasksWithResults:tasks] continueWithSuccessBlock:^id(BFTask *task) {
-        self.menuOptions = task.result;
-        return self.menuOptions;
-    }];
 }
 
 @end

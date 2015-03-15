@@ -25,14 +25,7 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) PFGeoPoint *driverLocation;
 
+@property (strong, nonatomic) NSDictionary *shortNameToMenuOptionObject;
 @property (readonly, nonatomic) MKMapItem *driverLocationMapItem;
-
-@property (strong, nonatomic) NSArray *menuOptions;
-
-/* Fetch MenuOption objects from the network and populate the menuOptions
- * property. The returned BFTask completes when the menuOptions property
- * is populated, and returns the menuOptions property as its result.
- */
-- (BFTask *)fetchMenuOptions;
 
 @end
