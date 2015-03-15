@@ -83,7 +83,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    ocvc.inventoryItems = self.inventories;
+    ocvc.inventoryItems = [self.inventories subarrayWithRange:NSMakeRange(0, 3)];
     [self.navigationController pushViewController:ocvc animated:YES];
 }
 

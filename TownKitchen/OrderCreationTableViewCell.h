@@ -7,19 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MenuOptionOrder.h"
+#import "MenuOption.h"
 
 @class OrderCreationTableViewCell;
 
 @protocol OrderCreationTableViewCellDelegate <NSObject>
 
-- (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder;
+- (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateQuantity:(NSNumber *)quantity;
 
 @end
 
 @interface OrderCreationTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) MenuOptionOrder *menuOptionOrder;
+@property (strong, nonatomic) MenuOption *menuOption;
 @property (weak, nonatomic) id<OrderCreationTableViewCellDelegate> delegate;
 
 @end

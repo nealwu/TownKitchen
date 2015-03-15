@@ -75,7 +75,7 @@
                 self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
                 self.shortNameToQuantity = [NSDictionary dictionaryWithDictionary:mutableShortNameToQuantity];
                 self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
-//                [self reloadAllTableViewData];
+                [self reloadAllTableViewData];
             } else {
                 NSLog(@"failed to find menu option, error: %@", error);
             }
@@ -127,6 +127,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+    
+    
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
