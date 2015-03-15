@@ -8,6 +8,8 @@
 
 #import "ReviewViewController.h"
 
+#import "ParseAPI.h"
+
 @interface ReviewViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *oneStarView;
@@ -114,6 +116,7 @@
 }
 
 - (IBAction)onSubmit:(id)sender {
+    [[ParseAPI getInstance] addReviewForOrder:self.order starCount:@(self.ratingStars) comment:self.commentView.text];
     NSLog(@"Submitted with %ld star(s) and comment %@", (long) self.ratingStars, self.commentView.text);
     [self.navigationController popViewControllerAnimated:YES];
 }

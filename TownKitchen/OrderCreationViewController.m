@@ -33,7 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    self.title = [DateUtils monthAndDayFromDate:((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered];
+    Inventory *firstInventory = self.inventoryItems[0];
+    self.title = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
 
     [self setup];
     
@@ -41,8 +42,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationCell"];
-
-    [self reloadAllTableViewData];
+    [self.tableView reloadData];
 }
 
 #pragma mark OrderCreationTableViewCellDelegate Methods
@@ -51,13 +51,21 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     NSString *shortName = self.menuOptionShortNames[indexPath.row];
     self.shortNameToQuantity[shortName] = quantity;
-    NSLog(@"updated quantity for %@, quanties dictionary is now: %@", shortName, self.shortNameToQuantity);
+    NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
 
 #pragma mark Actions
 
 - (IBAction)onOrderButton:(id)sender {
-    [self createOrder];
+    Order *order = [Order object];
+    order.items = self.shortNameToQuantity;
+    order.user = [PFUser currentUser];
+    order.deliveryDateAndTime = [(Inventory *)[self.inventoryItems firstObject] dateOffered];
+    NSLog(@"Creating order: %@", order);
+
+    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
+    checkoutViewController.order = order;
+    [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
 
 #pragma mark Private Methods
@@ -80,28 +88,12 @@
                 
                 self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
                 self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
-                [self reloadAllTableViewData];
+                [self.tableView reloadData];
             } else {
                 NSLog(@"failed to find menu option, error: %@", error);
             }
         }];
     }
-}
-
-- (void)reloadAllTableViewData {
-    [self.tableView reloadData];
-}
-
-- (void)createOrder {
-    Order *order = [Order object];
-    order.items = self.shortNameToQuantity;
-    order.user = [PFUser currentUser];
-    order.deliveryDateAndTime = [(Inventory *)[self.inventoryItems firstObject] dateOffered];
-    NSLog(@"Creating order: %@", order);
-
-    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
-    checkoutViewController.order = order;
-    [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
 
 #pragma mark Table View Methods
@@ -125,7 +117,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     // initialize sizing cell
     if (!self.sizingCell) {
         self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationCell"];

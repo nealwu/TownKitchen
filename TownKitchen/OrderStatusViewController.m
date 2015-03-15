@@ -96,7 +96,7 @@ static const NSTimeInterval kUpdateInterval = 10.0;
 
 - (void)displayMap {
     MKDirectionsRequest *dirReq = [[MKDirectionsRequest alloc] init];
-    dirReq.source = self.order.deliveryOriginMapItem;
+    dirReq.source = self.order.driverLocationMapItem;
     
     [[[[self geocodeString:self.order.deliveryAddress] continueWithSuccessBlock:^id(BFTask *task) {
         MKMapItem *mapItem = task.result;
@@ -254,7 +254,7 @@ static const NSTimeInterval kUpdateInterval = 10.0;
 - (void)refresh {
     NSLog(@"Refreshing");
     [[self.order fetchInBackground] continueWithExecutor:[BFExecutor mainThreadExecutor] withSuccessBlock:^id(BFTask *task) {
-        if (self.order.deliveryOrigin && !self.didStartRouteCalculation) {
+        if (self.order.driverLocation && !self.didStartRouteCalculation) {
             self.didStartRouteCalculation = YES;
             [self displayMap];
         }
@@ -285,6 +285,7 @@ static const NSTimeInterval kUpdateInterval = 10.0;
 
 - (void)onReview {
     ReviewViewController *rvc = [[ReviewViewController alloc] init];
+    rvc.order = self.order;
     [self.navigationController pushViewController:rvc animated:YES];
 }
 

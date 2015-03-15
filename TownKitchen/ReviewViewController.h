@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Order.h"
 
 @interface ReviewViewController : UIViewController
+
+@property (strong, nonatomic) Order *order;
 
 @end

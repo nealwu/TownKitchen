@@ -27,7 +27,7 @@
 
     self.title = @"Orders";
 
-    self.orders = [[ParseAPI getInstance] ordersForUser:@"neal@nealwu.com"];
+    self.orders = [[ParseAPI getInstance] ordersForUser:[PFUser user]];
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
