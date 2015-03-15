@@ -22,11 +22,30 @@
     return [formatter stringFromDate:date];
 }
 
-+ (BOOL)compareDayFromDate:(NSDate *)date1 withDate:(NSDate *)date2 {
++ (NSDate *)beginningOfDay:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components1 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date1];
-    NSDateComponents *components2 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date2];
-    return [components1 day] == [components2 day];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
+
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+
+    return [calendar dateFromComponents:components];
+}
+
++ (NSDate *)endOfDay:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
+
+    [components setHour:23];
+    [components setMinute:59];
+    [components setSecond:59];
+
+    return [calendar dateFromComponents:components];
+}
+
++ (BOOL)compareDayFromDate:(NSDate *)date1 withDate:(NSDate *)date2 {
+    return [[self beginningOfDay:date1] isEqualToDate:[self beginningOfDay:date2]];
 }
 
 @end

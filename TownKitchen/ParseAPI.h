@@ -19,7 +19,6 @@
 
 - (MenuOption *)menuOptionForShortName:(NSString *)shortName;
 - (NSArray *)inventoryItems;
-- (NSArray *)inventoryItemsForDay:(NSDate *)date;
 - (Inventory *)inventoryItemForShortName:(NSString *)shortName andDay:(NSDate *)date;
 - (NSArray *)ordersForUser:(PFUser *)user;
 - (BOOL)validateOrder:(Order *)order;

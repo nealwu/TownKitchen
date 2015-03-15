@@ -43,6 +43,7 @@
 
 - (NSArray *)inventoryItems {
     PFQuery *query = [PFQuery queryWithClassName:@"Inventory"];
+    [query whereKey:@"dateOffered" greaterThanOrEqualTo:[NSDate date]];
     NSArray *items = [query findObjects];
 
     // Populate the menuOptionObject field
@@ -53,27 +54,19 @@
     return items;
 }
 
-- (NSArray *)inventoryItemsForDay:(NSDate *)date {
-    NSArray *items = [self inventoryItems];
-    NSMutableArray *filteredItems = [NSMutableArray array];
-
-    for (Inventory *inventory in items) {
-        if ([DateUtils compareDayFromDate:inventory.dateOffered withDate:date]) {
-            [filteredItems addObject:inventory];
-        }
-    }
-
-    return filteredItems;
-}
-
 - (Inventory *)inventoryItemForShortName:(NSString *)shortName andDay:(NSDate *)date {
-    NSArray *items = [self inventoryItems];
+    PFQuery *query = [PFQuery queryWithClassName:@"Inventory"];
+    [query whereKey:@"menuOptionShortName" equalTo:shortName];
+    [query whereKey:@"dateOffered" greaterThanOrEqualTo:[DateUtils beginningOfDay:date]];
+    [query whereKey:@"dateOffered" lessThan:[DateUtils endOfDay:date]];
+    NSArray *items = [query findObjects];
 
     for (Inventory *inventory in items) {
         if ([DateUtils compareDayFromDate:inventory.dateOffered withDate:date]) {
             MenuOption *menuOption = [self menuOptionForShortName:[inventory menuOptionShortName]];
 
             if ([menuOption.shortName isEqualToString:shortName]) {
+                inventory.menuOptionObject = [self menuOptionForShortName:inventory.menuOptionShortName];
                 return inventory;
             }
         }
