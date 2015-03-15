@@ -13,12 +13,12 @@
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
 #import "Order.h"
-#import "OrderCreationTableViewCell.h"
+#import "OrderCreationCell.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) OrderCreationTableViewCell *sizingCell;
+@property (strong, nonatomic) OrderCreationCell *sizingCell;
 
 @property (strong, nonatomic) NSArray *menuOptionShortnames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
@@ -47,7 +47,7 @@
 
 #pragma mark OrderCreationTableViewCellDelegate Methods
 
-- (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateQuantity:(NSNumber *)quantity {
+- (void)orderCreationTableViewCell:(OrderCreationCell *)cell didUpdateQuantity:(NSNumber *)quantity {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     NSString *shortName = self.menuOptionShortnames[indexPath.row];
     self.shortNameToQuantity[shortName] = quantity;
@@ -133,7 +133,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
+    OrderCreationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
     cell.delegate = self;
     
     NSString *shortName = self.menuOptionShortnames[indexPath.row];

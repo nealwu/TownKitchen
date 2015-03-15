@@ -22,31 +22,22 @@
     return @"Order";
 }
 
-@dynamic deliveryTime;
+@dynamic user;
+@dynamic deliveryDateAndTime;
 @dynamic deliveryAddress;
-@dynamic deliveryOrigin;
-
 @dynamic items;
 @dynamic totalPrice;
-
-@dynamic user;
-@dynamic username;
-
-- (MKMapItem *)deliveryOriginMapItem {
-    NSNumber *latitude = self.deliveryOrigin[@"latitude"];
-    NSNumber *longitude = self.deliveryOrigin[@"longitude"];
-    return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude.doubleValue,longitude.doubleValue) addressDictionary:nil]];
-}
-
+@dynamic status;
 @dynamic driverLocation;
 
-- (MKMapItem *)driverLocationMapItem {
-    NSNumber *latitude = self.driverLocation[@"latitude"];
-    NSNumber *longitude = self.driverLocation[@"longitude"];
-    return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude.doubleValue,longitude.doubleValue) addressDictionary:nil]];
-}
-
+@synthesize driverLocationMapItem;
 @synthesize menuOptions;
+
+- (MKMapItem *)driverLocationMapItem {
+    double latitude = self.driverLocation.latitude;
+    double longitude = self.driverLocation.latitude;
+    return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude, longitude) addressDictionary:nil]];
+}
 
 - (BFTask *)fetchMenuOptions {
     NSDictionary *rawItems = self.items;
@@ -64,7 +55,5 @@
         return self.menuOptions;
     }];
 }
-
-@synthesize menuOptionOrders;
 
 @end

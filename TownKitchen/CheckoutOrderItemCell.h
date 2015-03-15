@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MenuOptionOrder.h"
+#import "MenuOption.h"
 
 @interface CheckoutOrderItemCell : UITableViewCell
 

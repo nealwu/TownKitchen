@@ -21,8 +21,8 @@
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
 		2BD9E6681AAFEAE10072BB59 /* DebugSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */; };
 		2BD9E6691AAFEAE10072BB59 /* DebugSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */; };
-		2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */; };
-		2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */; };
+		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
+		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
 		91788D501AA93FEC0038FE1F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4F1AA93FEC0038FE1F /* Order.m */; };
 		91788D531AA93FF50038FE1F /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D521AA93FF50038FE1F /* Inventory.m */; };
@@ -91,9 +91,9 @@
 		2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSelectorViewController.h; sourceTree = "<group>"; };
 		2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSelectorViewController.m; sourceTree = "<group>"; };
 		2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugSelectorViewController.xib; sourceTree = "<group>"; };
-		2BF8B67B1AAE5D6A00700F3A /* OrderCreationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationTableViewCell.h; sourceTree = "<group>"; };
-		2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationTableViewCell.m; sourceTree = "<group>"; };
-		2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationTableViewCell.xib; sourceTree = "<group>"; };
+		2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationCell.h; sourceTree = "<group>"; };
+		2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationCell.m; sourceTree = "<group>"; };
+		2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationCell.xib; sourceTree = "<group>"; };
 		825F5B3F4F21BA28A6689DB1 /* Pods-TownKitchen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.release.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.release.xcconfig"; sourceTree = "<group>"; };
 		91788D4B1AA93FB60038FE1F /* MenuOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuOption.h; sourceTree = "<group>"; };
 		91788D4C1AA93FB60038FE1F /* MenuOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuOption.m; sourceTree = "<group>"; };
@@ -239,16 +239,16 @@
 		91788D4A1AA93F660038FE1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9FC8AB021AB0D93100610500 /* DateUtils.h */,
+				9FC8AB031AB0D93100610500 /* DateUtils.m */,
+				91788D511AA93FF50038FE1F /* Inventory.h */,
+				91788D521AA93FF50038FE1F /* Inventory.m */,
 				91788D4B1AA93FB60038FE1F /* MenuOption.h */,
 				91788D4C1AA93FB60038FE1F /* MenuOption.m */,
 				91788D4E1AA93FEC0038FE1F /* Order.h */,
 				91788D4F1AA93FEC0038FE1F /* Order.m */,
-				91788D511AA93FF50038FE1F /* Inventory.h */,
-				91788D521AA93FF50038FE1F /* Inventory.m */,
 				91788D541AA93FFB0038FE1F /* User.h */,
 				91788D551AA93FFB0038FE1F /* User.m */,
-				9FC8AB021AB0D93100610500 /* DateUtils.h */,
-				9FC8AB031AB0D93100610500 /* DateUtils.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -256,36 +256,36 @@
 		91788D5A1AA940700038FE1F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				91788D601AA940B10038FE1F /* DaySelectViewController.h */,
-				91788D611AA940B10038FE1F /* DaySelectViewController.m */,
-				91788D621AA940B10038FE1F /* DaySelectViewController.xib */,
-				91788D5B1AA940930038FE1F /* OrderCreationViewController.h */,
-				91788D5C1AA940930038FE1F /* OrderCreationViewController.m */,
-				91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */,
-				91788D651AA940DF0038FE1F /* CheckoutViewController.h */,
-				91788D661AA940DF0038FE1F /* CheckoutViewController.m */,
-				91788D671AA940DF0038FE1F /* CheckoutViewController.xib */,
-				91788D741AA941BC0038FE1F /* LocationSelectViewController.h */,
-				91788D751AA941BC0038FE1F /* LocationSelectViewController.m */,
-				91788D761AA941BC0038FE1F /* LocationSelectViewController.xib */,
 				2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */,
 				2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */,
 				2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */,
-				91788D6A1AA941620038FE1F /* DeliveryStatusViewController.h */,
-				91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */,
-				91788D6C1AA941620038FE1F /* DeliveryStatusViewController.xib */,
-				91788D7C1AA942A50038FE1F /* OrderStatusViewController.h */,
-				91788D7D1AA942A50038FE1F /* OrderStatusViewController.m */,
-				91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */,
-				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
-				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
-				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
+				91788D651AA940DF0038FE1F /* CheckoutViewController.h */,
+				91788D661AA940DF0038FE1F /* CheckoutViewController.m */,
+				91788D671AA940DF0038FE1F /* CheckoutViewController.xib */,
+				91788D601AA940B10038FE1F /* DaySelectViewController.h */,
+				91788D611AA940B10038FE1F /* DaySelectViewController.m */,
+				91788D621AA940B10038FE1F /* DaySelectViewController.xib */,
 				2BD9E6651AAFEAE10072BB59 /* DebugSelectorViewController.h */,
 				2BD9E6661AAFEAE10072BB59 /* DebugSelectorViewController.m */,
 				2BD9E6671AAFEAE10072BB59 /* DebugSelectorViewController.xib */,
+				91788D6A1AA941620038FE1F /* DeliveryStatusViewController.h */,
+				91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */,
+				91788D6C1AA941620038FE1F /* DeliveryStatusViewController.xib */,
+				91788D741AA941BC0038FE1F /* LocationSelectViewController.h */,
+				91788D751AA941BC0038FE1F /* LocationSelectViewController.m */,
+				91788D761AA941BC0038FE1F /* LocationSelectViewController.xib */,
+				91788D5B1AA940930038FE1F /* OrderCreationViewController.h */,
+				91788D5C1AA940930038FE1F /* OrderCreationViewController.m */,
+				91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */,
+				91788D7C1AA942A50038FE1F /* OrderStatusViewController.h */,
+				91788D7D1AA942A50038FE1F /* OrderStatusViewController.m */,
+				91788D7E1AA942A50038FE1F /* OrderStatusViewController.xib */,
 				9FC8AAF81AB0D37700610500 /* OrdersViewController.h */,
 				9FC8AAF91AB0D37700610500 /* OrdersViewController.m */,
 				9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */,
+				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
+				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
+				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
 				9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */,
 				9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */,
 				9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */,
@@ -315,21 +315,21 @@
 		91788D8D1AAD0BA90038FE1F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				2BBABFB61AB008DF0098124D /* DayCell.h */,
-				2BBABFB71AB008DF0098124D /* DayCell.m */,
-				2BBABFB81AB008DF0098124D /* DayCell.xib */,
-				2BF8B67B1AAE5D6A00700F3A /* OrderCreationTableViewCell.h */,
-				2BF8B67C1AAE5D6A00700F3A /* OrderCreationTableViewCell.m */,
-				2BF8B67D1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib */,
-				91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */,
-				91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */,
-				91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */,
 				2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */,
 				2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */,
 				2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */,
+				2BBABFB61AB008DF0098124D /* DayCell.h */,
+				2BBABFB71AB008DF0098124D /* DayCell.m */,
+				2BBABFB81AB008DF0098124D /* DayCell.xib */,
 				9FC8AAFD1AB0D3DB00610500 /* OrderCell.h */,
 				9FC8AAFE1AB0D3DB00610500 /* OrderCell.m */,
 				9FC8AAFF1AB0D3DB00610500 /* OrderCell.xib */,
+				2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */,
+				2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */,
+				2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */,
+				91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */,
+				91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */,
+				91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
 				9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */,
 				9FC8AAFC1AB0D37700610500 /* OrdersViewController.xib in Resources */,
-				2BF8B67F1AAE5D6A00700F3A /* OrderCreationTableViewCell.xib in Resources */,
+				2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */,
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
@@ -529,7 +529,7 @@
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				91788D561AA93FFB0038FE1F /* User.m in Sources */,
-				2BF8B67E1AAE5D6A00700F3A /* OrderCreationTableViewCell.m in Sources */,
+				2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
 				9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,

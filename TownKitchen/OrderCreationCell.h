@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "MenuOption.h"
 
-@class OrderCreationTableViewCell;
+@class OrderCreationCell;
 
 @protocol OrderCreationTableViewCellDelegate <NSObject>
 
-- (void)orderCreationTableViewCell:(OrderCreationTableViewCell *)cell didUpdateQuantity:(NSNumber *)quantity;
+- (void)orderCreationTableViewCell:(OrderCreationCell *)cell didUpdateQuantity:(NSNumber *)quantity;
 
 @end
 
-@interface OrderCreationTableViewCell : UITableViewCell
+@interface OrderCreationCell : UITableViewCell
 
 @property (strong, nonatomic) MenuOption *menuOption;
 @property (strong, nonatomic) NSNumber *quantity;
