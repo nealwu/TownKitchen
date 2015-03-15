@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DayInventory.h"
 
 @interface OrderCreationViewController : UIViewController
 

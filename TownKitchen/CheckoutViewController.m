@@ -136,7 +136,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CheckoutOrderItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CheckoutOrderItemCell"];
-    cell.menuOptionOrder = self.order.menuOptionOrders[indexPath.row];
     return cell;
 }
 

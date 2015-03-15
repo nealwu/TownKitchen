@@ -67,15 +67,15 @@
         [mutableShortNameToQuantity addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : @0 }];
         
         PFQuery *menuOptionQuery = [MenuOption query];
-        [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOptionShortName];
+        [menuOptionQuery whereKey:@"shortName" equalTo:inventoryItem.menuOptionShortName];
         [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
+            if (!error && objects.count > 0) {
                 [mutableShortNameToObject addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : [objects firstObject]}];
                 
                 self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
                 self.shortNameToQuantity = [NSDictionary dictionaryWithDictionary:mutableShortNameToQuantity];
                 self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
-                [self reloadAllTableViewData];
+//                [self reloadAllTableViewData];
             } else {
                 NSLog(@"failed to find menu option, error: %@", error);
             }

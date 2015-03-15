@@ -11,6 +11,6 @@
 
 @interface CheckoutOrderItemCell : UITableViewCell
 
-@property (strong, nonatomic) MenuOptionOrder *menuOptionOrder;
+@property (strong, nonatomic) MenuOption *menuOption;
 
 @end

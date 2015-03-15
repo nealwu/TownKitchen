@@ -31,12 +31,6 @@
 
 #pragma mark Custom Setters
 
-- (void)setMenuOptionOrder:(MenuOptionOrder *)menuOptionOrder {
-    _menuOptionOrder = menuOptionOrder;
-    self.quantityLabel.text = [NSString stringWithFormat:@"%@", menuOptionOrder.quantity];
-    self.nameLabel.text = menuOptionOrder.menuOption.name;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@", menuOptionOrder.totalPrice];
-}
 
 
 @end

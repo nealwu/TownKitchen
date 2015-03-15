@@ -12,7 +12,6 @@
 #import "Inventory.h"
 #import "UIImageView+AFNetworking.h"
 #import "OrderCreationViewController.h"
-#import "DayInventory.h"
 #import "DateUtils.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -44,7 +43,7 @@
     NSMutableSet *dates = [NSMutableSet set];
 
     for (Inventory *inventory in self.inventories) {
-        inventory.imageURL = [[ParseAPI getInstance] imageURLForMenuOption:inventory.menuOption];
+        inventory.imageURL = [[ParseAPI getInstance] imageURLForMenuOption:inventory.menuOptionShortName];
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
 
         if (![dates containsObject:monthAndDay]) {
@@ -82,12 +81,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Inventory *inventory = self.uniqueInventories[indexPath.row];
+
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    
-    NSArray *inventoryItems = @[@"inventory item 1 for selected day", @"inventory item 2 for selected day"];
-    ocvc.inventoryItems = inventoryItems;
-    
+    ocvc.inventoryItems = self.inventories;
     [self.navigationController pushViewController:ocvc animated:YES];
 }
 
