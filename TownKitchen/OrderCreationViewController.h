@@ -11,7 +11,6 @@
 
 @interface OrderCreationViewController : UIViewController
 
-@property (strong, nonatomic) DayInventory *dayInventory;
 @property (strong, nonatomic) NSArray *inventoryItems;
 
 @end

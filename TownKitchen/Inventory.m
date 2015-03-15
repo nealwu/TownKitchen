@@ -14,8 +14,7 @@
 @synthesize menuOptionObject;
 
 @dynamic dateOffered;
-@dynamic menuOption;
-@dynamic quantityOffered;
+@dynamic menuOptionShortName;
 @dynamic quantityRemaining;
 
 + (void)load {

@@ -7,20 +7,23 @@
 //
 
 #import "OrderCreationViewController.h"
-#import "OrderCreationTableViewCell.h"
-#import "DayInventory.h"
+
+#import "CheckoutViewController.h"
+#import "DateUtils.h"
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
 #import "MenuOptionOrder.h"
 #import "Order.h"
-#import "CheckoutViewController.h"
-#import "DateUtils.h"
+#import "OrderCreationTableViewCell.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *menuOptionOrders;
 @property (strong, nonatomic) OrderCreationTableViewCell *sizingCell;
+
+@property (strong, nonatomic) NSArray *menuOptionShortnames;
+@property (strong, nonatomic) NSDictionary *shortNameToObject;
+@property (strong, nonatomic) NSDictionary *shortNameToQuantity;
 
 @end
 
@@ -31,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = [DateUtils monthAndDayFromDate:((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered];
+//    self.title = [DateUtils monthAndDayFromDate:((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered];
 
     [self setup];
     
@@ -54,94 +57,61 @@
 #pragma mark Private Methods
 
 - (void)setup {
-    self.menuOptionOrders = [NSMutableArray array];
+    // retrieve MenuOption objects
+    NSMutableArray *mutableMenuOptionShortnames = [NSMutableArray array];
+    NSMutableDictionary *mutableShortNameToQuantity = [NSMutableDictionary dictionary];
+    NSMutableDictionary *mutableShortNameToObject = [NSMutableDictionary dictionary];
 
-    // Retrieve all inventory items for today
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDateComponents *components = [[NSDateComponents alloc] init];
-//    [components setYear:2015];
-//    [components setMonth:3];
-//    [components setDay:7];
-//    NSDate *dateStart = [calendar dateFromComponents:components];
-//    NSTimeInterval oneDay = 24 * 60 * 60;
-//    NSDate *dateEnd = [NSDate dateWithTimeInterval:oneDay sinceDate:dateStart];
-
-//    PFQuery *inventoryQuery = [Inventory query];
-//    [inventoryQuery whereKey:@"dateOffered" greaterThanOrEqualTo:dateStart];
-//    [inventoryQuery whereKey:@"dateOffered" lessThanOrEqualTo:dateEnd];
-//    [inventoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (error) {
-//            NSLog(@"failed to find inventory objects, error: %@", error);
-//            return;
-//        }
-//        self.dayInventory = [[DayInventory alloc] init];
-//        self.dayInventory.inventoryItems = objects;
-//        NSLog(@"Today's Inventory: %@", self.dayInventory.inventoryItems);
-//
-//        // Retrieve corresponding menu options
-//        
-//        for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
-//            PFQuery *menuOptionQuery = [MenuOption query];
-//            [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
-//            [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//                if (error) {
-//                    NSLog(@"failed to find menu option, error: %@", error);
-//                }
-//                inventoryItem.menuOptionObject = [objects firstObject];
-//                [self reloadAllTableViewData];
-//            }];
-//        }
-//    }];
-
-    for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
+    for (Inventory *inventoryItem in self.inventoryItems) {
+        [mutableMenuOptionShortnames addObject:inventoryItem.menuOptionShortName];
+        [mutableShortNameToQuantity addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : @0 }];
+        
         PFQuery *menuOptionQuery = [MenuOption query];
-        [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOption];
+        [menuOptionQuery whereKey:@"name" equalTo:inventoryItem.menuOptionShortName];
         [menuOptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (error) {
+            if (!error) {
+                [mutableShortNameToObject addEntriesFromDictionary:@{ inventoryItem.menuOptionShortName : [objects firstObject]}];
+                
+                self.menuOptionShortnames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
+                self.shortNameToQuantity = [NSDictionary dictionaryWithDictionary:mutableShortNameToQuantity];
+                self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
+                [self reloadAllTableViewData];
+            } else {
                 NSLog(@"failed to find menu option, error: %@", error);
             }
-            inventoryItem.menuOptionObject = [objects firstObject];
-            [self reloadAllTableViewData];
         }];
     }
 }
 
 - (void)reloadAllTableViewData {
     [self.tableView reloadData];
-    
-    NSMutableArray *menuOptionOrders = [NSMutableArray array];
-    for (Inventory *inventoryItem in self.dayInventory.inventoryItems) {
-        [menuOptionOrders addObject:[MenuOptionOrder initWithMenuOption:inventoryItem.menuOptionObject]];
-    }
-    
-    self.menuOptionOrders = menuOptionOrders;
 }
 
 - (void)createOrder {
-    Order *order = [Order object];
-    float orderPrice = 0;
-    NSMutableDictionary *items = [NSMutableDictionary dictionary];
-    NSMutableArray *menuOptionOrders = [NSMutableArray array];
-    
-    for (MenuOptionOrder *menuOptionOrder in self.menuOptionOrders) {
-        if ([menuOptionOrder.quantity isEqualToNumber:[NSNumber numberWithInt:0]]) {
-            continue;
-        }
-        [menuOptionOrders addObject:menuOptionOrder];
-        
-        NSDictionary *item = @{menuOptionOrder.menuOption.name : menuOptionOrder.quantity};
-        [items addEntriesFromDictionary:item];
-        orderPrice += [menuOptionOrder.totalPrice floatValue];
-    }
-    order.menuOptionOrders = [NSArray arrayWithArray:menuOptionOrders];
-    order.items = items;
-    order.price = [NSNumber numberWithFloat:orderPrice];
-    order.deliveryTime = ((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered;
-    NSLog(@"Creating order: %@ with menuOptionOrders: %@", order, order.menuOptionOrders);
-    
-    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
-    checkoutViewController.order = order;
-    [self.navigationController pushViewController:checkoutViewController animated:YES];
+//    Order *order = [Order object];
+//    float orderPrice = 0;
+//    NSMutableDictionary *items = [NSMutableDictionary dictionary];
+//    NSMutableArray *menuOptionOrders = [NSMutableArray array];
+//    
+//    for (MenuOptionOrder *menuOptionOrder in self.menuOptionOrders) {
+//        if ([menuOptionOrder.quantity isEqualToNumber:[NSNumber numberWithInt:0]]) {
+//            continue;
+//        }
+//        [menuOptionOrders addObject:menuOptionOrder];
+//        
+//        NSDictionary *item = @{menuOptionOrder.menuOption.name : menuOptionOrder.quantity};
+//        [items addEntriesFromDictionary:item];
+//        orderPrice += [menuOptionOrder.totalPrice floatValue];
+//    }
+//    order.menuOptionOrders = [NSArray arrayWithArray:menuOptionOrders];
+//    order.items = items;
+//    order.price = [NSNumber numberWithFloat:orderPrice];
+//    order.deliveryTime = ((Inventory *)self.dayInventory.inventoryItems[0]).dateOffered;
+//    NSLog(@"Creating order: %@ with menuOptionOrders: %@", order, order.menuOptionOrders);
+//    
+//    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
+//    checkoutViewController.order = order;
+//    [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
 
 - (void)onNext {
@@ -152,14 +122,11 @@
 #pragma mark Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dayInventory.inventoryItems.count;
+    return self.inventoryItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderCreationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderCreationTableViewCell"];
-
-    NSLog(@"menuOptionOrders has %ld items, accessing index %ld", self.menuOptionOrders.count, indexPath.row);
-    cell.menuOptionOrder = self.menuOptionOrders[indexPath.row];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -175,9 +142,6 @@
     }
     
     // populate cell with same data as visible cell
-    MenuOption *menuOption = [(Inventory *)self.dayInventory.inventoryItems[indexPath.row] menuOptionObject];
-    self.sizingCell.menuOptionOrder = [MenuOptionOrder initWithMenuOption:menuOption];
-    
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];
     

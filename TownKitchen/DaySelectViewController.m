@@ -84,10 +84,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Inventory *inventory = self.uniqueInventories[indexPath.row];
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
-    DayInventory *dayInventory = [[DayInventory alloc] init];
-    dayInventory.inventoryItems = [self filterInventoriesByDate:inventory.dateOffered];
-    ocvc.dayInventory = dayInventory;
-    NSLog(@"Inventory items: %@", dayInventory.inventoryItems);
+    
+    NSArray *inventoryItems = @[@"inventory item 1 for selected day", @"inventory item 2 for selected day"];
+    ocvc.inventoryItems = inventoryItems;
+    
     [self.navigationController pushViewController:ocvc animated:YES];
 }
 

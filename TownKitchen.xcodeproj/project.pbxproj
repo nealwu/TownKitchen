@@ -28,7 +28,6 @@
 		91788D501AA93FEC0038FE1F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4F1AA93FEC0038FE1F /* Order.m */; };
 		91788D531AA93FF50038FE1F /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D521AA93FF50038FE1F /* Inventory.m */; };
 		91788D561AA93FFB0038FE1F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D551AA93FFB0038FE1F /* User.m */; };
-		91788D591AA9405B0038FE1F /* DayInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D581AA9405B0038FE1F /* DayInventory.m */; };
 		91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D5C1AA940930038FE1F /* OrderCreationViewController.m */; };
 		91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */; };
 		91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D611AA940B10038FE1F /* DaySelectViewController.m */; };
@@ -107,8 +106,6 @@
 		91788D521AA93FF50038FE1F /* Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inventory.m; sourceTree = "<group>"; };
 		91788D541AA93FFB0038FE1F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		91788D551AA93FFB0038FE1F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		91788D571AA9405B0038FE1F /* DayInventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayInventory.h; sourceTree = "<group>"; };
-		91788D581AA9405B0038FE1F /* DayInventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayInventory.m; sourceTree = "<group>"; };
 		91788D5B1AA940930038FE1F /* OrderCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationViewController.h; sourceTree = "<group>"; };
 		91788D5C1AA940930038FE1F /* OrderCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationViewController.m; sourceTree = "<group>"; };
 		91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationViewController.xib; sourceTree = "<group>"; };
@@ -255,8 +252,6 @@
 				91788D521AA93FF50038FE1F /* Inventory.m */,
 				91788D541AA93FFB0038FE1F /* User.h */,
 				91788D551AA93FFB0038FE1F /* User.m */,
-				91788D571AA9405B0038FE1F /* DayInventory.h */,
-				91788D581AA9405B0038FE1F /* DayInventory.m */,
 				9FC8AB021AB0D93100610500 /* DateUtils.h */,
 				9FC8AB031AB0D93100610500 /* DateUtils.m */,
 			);
@@ -550,7 +545,6 @@
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
-				91788D591AA9405B0038FE1F /* DayInventory.m in Sources */,
 				9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
 				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
