@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DayCell.h"
 
 @interface DaySelectAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (strong, nonatomic) UITableViewCell *selectedCell;
+@property (strong, nonatomic) DayCell *selectedCell;
 @property (assign, nonatomic) CGPoint contentOffset;
 
 @end

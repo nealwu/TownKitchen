@@ -10,6 +10,7 @@
 #import "TKHeader.h"
 #import "DayCell.h"
 #import <FXBlurView.h>
+#import "DateLabelsView.h"
 
 CGFloat const transitionImageInitialHeight = 130;
 CGFloat const transitionImageFinalHeight = 200;
@@ -40,6 +41,7 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
+    CGRect selectedCellBounds = self.selectedCell.bounds;
     selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
 
     // Create transition view with same frame as toVC's image
@@ -50,11 +52,21 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
                                                                       transitionImageFinalHeight)];
     
     UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:transitionView.bounds];
-    transitionImageView.image = [(DayCell *)self.selectedCell blurredImage];
+    transitionImageView.image = self.selectedCell.blurredImage;
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
     
+    DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:CGRectMake(selectedCellBounds.origin.x,
+                                                                                      selectedCellBounds.origin.y + imageCenterYDelta,
+                                                                                      selectedCellBounds.size.width,
+                                                                                      selectedCellBounds.size.height)];
+    dateLabelsView.weekdayLabel.text = @"hehehehe";
+    dateLabelsView.monthAndDayLabel.text = @"Month 34";
+    dateLabelsView.backgroundColor = [UIColor redColor];
+    dateLabelsView.alpha = 0.5;
+    
     [transitionView addSubview:transitionImageView];
+    [transitionView addSubview:dateLabelsView];
     [self.containerView addSubview:transitionView];
     
     // Snapshot cells above selected cell
