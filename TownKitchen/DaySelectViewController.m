@@ -13,14 +13,16 @@
 #import "UIImageView+AFNetworking.h"
 #import "OrderCreationViewController.h"
 #import "DateUtils.h"
+#import "DaySelectAnimationController.h"
 
-@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *inventoryItems;
 @property (strong, nonatomic) NSArray *displayInventories;
 
 @property (strong, nonatomic) DayCell *sizingCell;
+@property (strong, nonatomic) DaySelectAnimationController *daySelectAnimationController;
 
 @end
 
@@ -48,10 +50,14 @@
     // Sort uniqueInventories by date
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateOffered" ascending:YES];
     self.displayInventories = [uniqueInventories sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-
+    
+    // Table view methods
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
+    
+    // Initialize animation controller
+    self.daySelectAnimationController = [DaySelectAnimationController new];
 }
 
 #pragma mark - Table view methods
@@ -78,7 +84,11 @@
     OrderCreationViewController *ocvc = [[OrderCreationViewController alloc] init];
     Inventory *firstInventory = self.displayInventories[indexPath.row];
     ocvc.inventoryItems = [self filterInventoryItemsByDay:firstInventory.dateOffered];
-    [self.navigationController pushViewController:ocvc animated:YES];
+    ocvc.transitioningDelegate = self;
+    
+    [self presentViewController:ocvc animated:YES completion:^{
+        nil;
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,6 +113,12 @@
     // Get the height of the sizing cell, adding one to compensate for cell separators
     CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
     return height;
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate Methods
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self.daySelectAnimationController;
 }
 
 #pragma mark - Private methods
