@@ -8,6 +8,11 @@
 
 #import "DaySelectAnimationController.h"
 #import "TKHeader.h"
+#import "DayCell.h"
+
+CGFloat const transitionImageInitialHeight = 130;
+CGFloat const transitionImageFinalHeight = 200;
+CGFloat const transitionImageYPositionAdjustment = 99.0;
 
 @interface DaySelectAnimationController ()
 
@@ -24,54 +29,54 @@
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-self.toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-self.fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-self.containerView = [transitionContext containerView];
+    self.toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    self.fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    self.containerView = [transitionContext containerView];
 
+    [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
+    
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
     
-    
-    // Create snapshot images of tableview
+    // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
     selectedCellFrame.origin.y += (self.contentOffset.y + header.frame.size.height);
-    
-    [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
 
+    // Create transition image view
+    UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:selectedCellFrame];
+    transitionImageView.image = [(DayCell *)self.selectedCell backgroundImageView].image;
+    transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
+    transitionImageView.clipsToBounds = YES;
+    [self.containerView addSubview:transitionImageView];
     
-    // Selected cell
-    UIImageView *selectedCellImageView = [self imageViewFromSelectedCellFrame:selectedCellFrame];
-//    [self.containerView addSubview:selectedCellImageView];
-    
-    // Above cells
+    // Snapshot cells above selected cell
     UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame];
     [self.containerView addSubview:aboveCellsImageView];
     
-    // Below cells
+    // Snapshot cells below selected cell
     UIImageView *belowCellsImageView = [self imageViewFromCellsBelowSelectedCellFrame:selectedCellFrame];
     [self.containerView addSubview:belowCellsImageView];
     
     // Hide the original tableview
     self.fromViewController.view.hidden = YES;
     
-    // Set final frames
-    CGRect finalToFrame = [transitionContext finalFrameForViewController:self.toViewController];
-    
     // Set initial frames
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    
     CGRect initialToFrame = self.toViewController.view.frame;
-    self.toViewController.view.frame = CGRectMake(initialToFrame.origin.x, selectedCellFrame.origin.y - 99, initialToFrame.size.width, initialToFrame.size.height);
+    self.toViewController.view.frame = CGRectMake(initialToFrame.origin.x, selectedCellFrame.origin.y - transitionImageYPositionAdjustment, initialToFrame.size.width, initialToFrame.size.height);
     
+    // Define final frames
+    CGRect finalToFrame = [transitionContext finalFrameForViewController:self.toViewController];
+    CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
+
     [self.containerView addSubview:header];
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                      animations:^{
-    
                          aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
-                         selectedCellImageView.alpha = 0.0;
+                         transitionImageView.frame = finalTransitionImageFrame;
+
                          self.toViewController.view.frame = finalToFrame;
                      }
                      completion:^(BOOL finished) {
@@ -85,7 +90,7 @@ self.containerView = [transitionContext containerView];
 
 - (UIImageView *)imageViewFromSelectedCellFrame:(CGRect)selectedCellFrame {
     UIImageView *selectedCellImageView = [[UIImageView alloc] initWithFrame:selectedCellFrame];
-    selectedCellImageView.image = [self imageInRect:selectedCellFrame fromView:self.fromViewController.view];
+    selectedCellImageView.image = [self imageInRect:selectedCellFrame fromView:self.toViewController.view];
     return selectedCellImageView;
 }
 
