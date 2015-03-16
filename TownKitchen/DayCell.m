@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (readwrite, nonatomic) UIImage *originalImage;
+@property (readwrite, nonatomic) UIImage *blurredImage;
 
 @end
 
@@ -51,11 +52,11 @@
                                                                    duration:0.3
                                                                     options:UIViewAnimationOptionTransitionCrossDissolve
                                                                  animations:^{
-                                                                     self.backgroundImageView.image = [image blurredImageWithRadius:20.0 iterations:10 tintColor:[UIColor blackColor]];
+                                                                     self.backgroundImageView.image = [image blurredImageWithRadius:40 iterations:10 tintColor:[UIColor blackColor]];
+                                                                     self.blurredImage = self.backgroundImageView.image;
                                                                  } completion:^(BOOL finished) {
                                                                      self.originalImage = image;
                                                                  }];
-
                                              } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                                  NSLog(@"Error setting day view image: %@", error);
                                              }];

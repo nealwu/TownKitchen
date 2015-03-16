@@ -9,6 +9,7 @@
 #import "DaySelectAnimationController.h"
 #import "TKHeader.h"
 #import "DayCell.h"
+#import <FXBlurView.h>
 
 CGFloat const transitionImageInitialHeight = 130;
 CGFloat const transitionImageFinalHeight = 200;
@@ -41,12 +42,19 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     CGRect selectedCellFrame = self.selectedCell.frame;
     selectedCellFrame.origin.y += (self.contentOffset.y + header.frame.size.height);
 
-    // Create transition image view
-    UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:selectedCellFrame];
-    transitionImageView.image = [(DayCell *)self.selectedCell originalImage];
+    // Create transition view with same frame as toVC's image
+    CGFloat imageCenterYDelta = transitionImageFinalHeight / 2 - selectedCellFrame.size.height / 2;
+    UIView *transitionView = [[UIView alloc] initWithFrame:CGRectMake(selectedCellFrame.origin.x,
+                                                                      selectedCellFrame.origin.y - imageCenterYDelta,
+                                                                      selectedCellFrame.size.width,
+                                                                      transitionImageFinalHeight)];
+    
+    UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:transitionView.bounds];
+    transitionImageView.image = [(DayCell *)self.selectedCell blurredImage];
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
-    [self.containerView addSubview:transitionImageView];
+    [transitionView addSubview:transitionImageView];
+    [self.containerView addSubview:transitionView];
     
     // Snapshot cells above selected cell
     UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame];
@@ -75,9 +83,12 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
                      animations:^{
                          aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
-                         transitionImageView.frame = finalTransitionImageFrame;
 
+                         transitionView.frame = finalTransitionImageFrame;
+                         transitionView.alpha = 0;
+                         
                          self.toViewController.view.frame = finalToFrame;
+
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;

@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) Inventory *inventory;
 @property (readonly, nonatomic) UIImage *originalImage;
+@property (readonly, nonatomic) UIImage *blurredImage;
 
 @end
