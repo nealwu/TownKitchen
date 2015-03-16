@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Inventory.h"
 
 @interface DayCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (strong, nonatomic) Inventory *inventory;
+@property (readonly, nonatomic) UIImage *originalImage;
 
 @end

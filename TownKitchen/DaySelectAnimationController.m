@@ -43,7 +43,7 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
 
     // Create transition image view
     UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:selectedCellFrame];
-    transitionImageView.image = [(DayCell *)self.selectedCell backgroundImageView].image;
+    transitionImageView.image = [(DayCell *)self.selectedCell originalImage];
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
     [self.containerView addSubview:transitionImageView];

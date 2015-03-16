@@ -67,10 +67,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Inventory *inventory = self.displayInventories[indexPath.row];
+    
     DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
-    [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:inventory.menuOptionObject.imageURL]];
-    cell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
-    cell.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+    cell.inventory = inventory;
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -102,8 +101,7 @@
     
     // Populate cell with the same data as the visible cell
     Inventory *inventory = self.displayInventories[indexPath.row];
-    self.sizingCell.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
-    self.sizingCell.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+    self.sizingCell.inventory = inventory;
     
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];
