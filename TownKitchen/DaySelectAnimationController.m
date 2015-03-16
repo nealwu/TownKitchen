@@ -97,7 +97,6 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;
-                         [header removeFromSuperview];
                          [transitionContext completeTransition:YES];
                      }];
 }

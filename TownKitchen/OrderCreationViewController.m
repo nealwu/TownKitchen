@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.headerTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     self.header.titleView.alpha = 0;
     
     Inventory *firstInventory = self.inventoryItems[0];
