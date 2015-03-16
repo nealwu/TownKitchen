@@ -11,4 +11,7 @@
 
 @interface DaySelectAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
+@property (strong, nonatomic) UITableViewCell *selectedCell;
+@property (assign, nonatomic) CGPoint contentOffset;
+
 @end

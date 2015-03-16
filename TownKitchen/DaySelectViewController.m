@@ -14,6 +14,7 @@
 #import "OrderCreationViewController.h"
 #import "DateUtils.h"
 #import "DaySelectAnimationController.h"
+#import "TKHeader.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
 
@@ -31,7 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"Town Kitchen";
+    // Navigation bar methods
+    self.navigationItem.titleView = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
 
     self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
 
@@ -86,6 +88,10 @@
     ocvc.inventoryItems = [self filterInventoryItemsByDay:firstInventory.dateOffered];
     ocvc.transitioningDelegate = self;
     
+    // Prepare the animation
+    self.daySelectAnimationController.selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    self.daySelectAnimationController.contentOffset = self.tableView.contentOffset;
+
     [self presentViewController:ocvc animated:YES completion:^{
         nil;
     }];

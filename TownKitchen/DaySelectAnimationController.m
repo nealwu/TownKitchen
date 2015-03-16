@@ -17,19 +17,34 @@
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-
+    
     UIView *containerView = [transitionContext containerView];
     
     CGRect finalFrame = [transitionContext finalFrameForViewController:toViewController];
     
-    CGRect screenBounds = [[UIScreen mainScreen] bounds]; toViewController.view.frame =
-    CGRectOffset(finalFrame, 0, screenBounds.size.height); // 4. add the view
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    toViewController.view.frame = CGRectOffset(finalFrame, 0, screenBounds.size.height);
+    
+    
+    
+    CGRect selectedCellFrame = self.selectedCell.frame;
+    selectedCellFrame.origin.y += self.contentOffset.y;
+    
+    UIView *testOverlayView = [[UIView alloc] initWithFrame: selectedCellFrame];
+    testOverlayView.backgroundColor = [UIColor redColor];
+    
     [containerView addSubview:toViewController.view];
-    NSTimeInterval duration =
-    [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration animations:^{
-        toViewController.view.frame = finalFrame; } completion:^(BOOL finished) {
-            [transitionContext completeTransition:YES]; }];
+    [containerView addSubview:testOverlayView];
+    
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    [UIView animateWithDuration:duration
+                     animations:^{
+                         toViewController.view.frame = finalFrame;
+                         fromViewController.view.alpha = 0.5;
+                     }
+                     completion:^(BOOL finished) {
+                         [transitionContext completeTransition:YES];
+                     }];
 }
 
 @end

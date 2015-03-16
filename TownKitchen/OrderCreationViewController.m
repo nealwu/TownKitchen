@@ -137,5 +137,8 @@
     checkoutViewController.order = order;
     [self.navigationController pushViewController:checkoutViewController animated:YES];
 }
+- (IBAction)onBackButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

@@ -44,6 +44,17 @@
                         <constraint firstAttribute="trailing" secondItem="35d-Lv-lba" secondAttribute="trailing" id="wM6-B5-4BU"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-BZ-SLj">
+                    <rect key="frame" x="16" y="442" width="35" height="30"/>
+                    <color key="backgroundColor" red="0.3667581379" green="0.40420594809999999" blue="0.44214618210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Back">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="QND-hE-ufm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
