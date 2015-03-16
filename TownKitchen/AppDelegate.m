@@ -43,7 +43,7 @@
 //
 //    self.window.rootViewController = osvc;
 
-//    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
     LoginViewController *lvc = [[LoginViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
     nvc.navigationBar.translucent = NO;
