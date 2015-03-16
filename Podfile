@@ -8,6 +8,7 @@ pod 'Parse'
 pod 'RNTimer'
 pod 'LMGeocoder'
 pod 'GoogleKit'
+pod 'FXBlurView'
 
 end
 
