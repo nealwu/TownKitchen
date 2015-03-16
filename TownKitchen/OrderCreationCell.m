@@ -46,7 +46,7 @@
 }
 
 - (void)setQuantity:(NSNumber *)quantity {
-    self.circleStepperView.value = [quantity integerValue];
+    self.circleStepperView.value = (int) [quantity integerValue];
 }
 
 #pragma mark Private Methods

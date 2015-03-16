@@ -40,7 +40,7 @@
 - (void)setOrder:(Order *)order {
     NSLog(@"entering setOrder: order = %@", order);
     _order = order;
-    self.menuOptions = [self.order.items allKeys];
+    self.menuOptions = [order.items allKeys];
     [self updateSubviews];
     [self.tableView reloadData];
 }
