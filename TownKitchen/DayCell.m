@@ -52,7 +52,7 @@
                                                                    duration:0.3
                                                                     options:UIViewAnimationOptionTransitionCrossDissolve
                                                                  animations:^{
-                                                                     self.backgroundImageView.image = [image blurredImageWithRadius:40 iterations:10 tintColor:[UIColor blackColor]];
+                                                                     self.backgroundImageView.image = [image blurredImageWithRadius:20 iterations:10 tintColor:[UIColor blackColor]];
                                                                      self.blurredImage = self.backgroundImageView.image;
                                                                  } completion:^(BOOL finished) {
                                                                      self.originalImage = image;

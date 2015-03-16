@@ -26,7 +26,7 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
 @implementation DaySelectAnimationController
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 1.0;
+    return 0.5;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -40,7 +40,7 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
-    selectedCellFrame.origin.y += (self.contentOffset.y + header.frame.size.height);
+    selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
 
     // Create transition view with same frame as toVC's image
     CGFloat imageCenterYDelta = transitionImageFinalHeight / 2 - selectedCellFrame.size.height / 2;

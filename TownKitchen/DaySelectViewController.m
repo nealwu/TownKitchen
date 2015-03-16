@@ -88,6 +88,8 @@
     self.daySelectAnimationController.selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
     self.daySelectAnimationController.contentOffset = self.tableView.contentOffset;
     
+    NSLog(@"starting animation with content offset: %@", NSStringFromCGPoint(self.tableView.contentOffset));
+    
     [self presentViewController:ocvc animated:YES completion:^{
         nil;
     }];
