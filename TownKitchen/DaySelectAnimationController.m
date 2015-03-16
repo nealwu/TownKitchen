@@ -15,6 +15,7 @@
 CGFloat const transitionImageInitialHeight = 130;
 CGFloat const transitionImageFinalHeight = 200;
 CGFloat const transitionImageYPositionAdjustment = 99.0;
+CGFloat const statusBarHeight = 20.0;
 
 @interface DaySelectAnimationController ()
 
@@ -56,16 +57,16 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
     
-    DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:CGRectMake(selectedCellBounds.origin.x,
-                                                                                      selectedCellBounds.origin.y + imageCenterYDelta,
-                                                                                      selectedCellBounds.size.width,
-                                                                                      selectedCellBounds.size.height)];
+    [transitionView addSubview:transitionImageView];
+    [self.containerView addSubview:transitionView];
+    
+    // Create dateLabels view for transition from cell to header
+    DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:CGRectMake(selectedCellFrame.origin.x,
+                                                                                      selectedCellFrame.origin.y,
+                                                                                      selectedCellFrame.size.width,
+                                                                                      selectedCellFrame.size.height)];
     dateLabelsView.weekdayLabel.text = self.selectedCell.weekday;
     dateLabelsView.monthAndDayLabel.text = self.selectedCell.monthAndDay;
-    
-    [transitionView addSubview:transitionImageView];
-    [transitionView addSubview:dateLabelsView];
-    [self.containerView addSubview:transitionView];
     
     // Snapshot cells above selected cell
     UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame];
@@ -78,7 +79,9 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     // Hide the original tableview
     self.fromViewController.view.hidden = YES;
     
+    // Add subviews that need to be on top
     [self.containerView addSubview:header];
+    [self.containerView addSubview:dateLabelsView];
     
     // Set initial frames
     CGRect initialToFrame = self.toViewController.view.frame;
@@ -89,6 +92,8 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
     CATransform3D headerTitleTransform = CATransform3DIdentity;
     headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * header.frame.size.height), 0);
+    CATransform3D dateLabelsViewTransform = CATransform3DIdentity;
+    dateLabelsViewTransform = CATransform3DTranslate(dateLabelsViewTransform, 0, - selectedCellFrame.origin.y + statusBarHeight, 0);
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
@@ -98,15 +103,17 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
 
                          transitionView.frame = finalTransitionImageFrame;
-                         transitionView.alpha = 0;
+                         transitionImageView.alpha = 0.0;
                          
                          header.titleView.layer.transform = headerTitleTransform;
+                         dateLabelsView.layer.transform = dateLabelsViewTransform;
                          
                          self.toViewController.view.frame = finalToFrame;
 
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;
+                         transitionImageView.hidden = YES;
                          [transitionContext completeTransition:YES];
                      }];
 }
