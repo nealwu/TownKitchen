@@ -30,7 +30,6 @@
     [super viewDidLoad];
 
     self.title = @"Town Kitchen";
-
     self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
 
     NSMutableArray *uniqueInventories = [NSMutableArray array];

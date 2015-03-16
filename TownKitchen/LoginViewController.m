@@ -22,15 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Log In";
-    NSLog(@"viewDidLoad");
+    self.emailTextField.text = @"neal@nealwu.com";
+    self.passwordTextField.text = @"password";
 }
 
 - (IBAction)onLogin:(id)sender {
-    NSLog(@"onLogin");
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-
-    NSLog(@"Attempting to log in...");
 
     [PFUser logInWithUsernameInBackground:email password:password block:^(PFUser *user, NSError *error) {
         if (user && !error) {
@@ -44,7 +42,6 @@
 }
 
 - (IBAction)onSignup:(id)sender {
-    NSLog(@"onSignup");
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
 
@@ -52,8 +49,6 @@
     user.username = email;
     user.email = email;
     user.password = password;
-
-    NSLog(@"Attempting to sign up...");
 
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
