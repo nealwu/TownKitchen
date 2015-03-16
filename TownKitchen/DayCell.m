@@ -26,10 +26,16 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     if (highlighted) {
-        self.backgroundImageView.alpha = 0.5;
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             // do something
+                         }];
     }
     else {
-        self.backgroundImageView.alpha = 1.0;
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             // reverse it
+                         }];
     }
 }
 
