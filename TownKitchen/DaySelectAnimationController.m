@@ -20,7 +20,7 @@
 @implementation DaySelectAnimationController
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 3.0;
+    return 1.0;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -35,9 +35,12 @@ self.containerView = [transitionContext containerView];
     CGRect selectedCellFrame = self.selectedCell.frame;
     selectedCellFrame.origin.y += (self.contentOffset.y + header.frame.size.height);
     
+    [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
+
+    
     // Selected cell
     UIImageView *selectedCellImageView = [self imageViewFromSelectedCellFrame:selectedCellFrame];
-    [self.containerView addSubview:selectedCellImageView];
+//    [self.containerView addSubview:selectedCellImageView];
     
     // Above cells
     UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame];
@@ -51,30 +54,25 @@ self.containerView = [transitionContext containerView];
     self.fromViewController.view.hidden = YES;
     
     // Set final frames
-    CGRect finalFrame = [transitionContext finalFrameForViewController:self.toViewController];
+    CGRect finalToFrame = [transitionContext finalFrameForViewController:self.toViewController];
     
     // Set initial frames
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.toViewController.view.alpha = 0.0;
     
-    [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
+    CGRect initialToFrame = self.toViewController.view.frame;
+    self.toViewController.view.frame = CGRectMake(initialToFrame.origin.x, selectedCellFrame.origin.y - 99, initialToFrame.size.width, initialToFrame.size.height);
+    
     [self.containerView addSubview:header];
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                      animations:^{
-                         self.toViewController.view.alpha = 1.0;
-                         
-                         selectedCellImageView.alpha = 0.0f;
-                         
-                         aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y -aboveCellsImageView.frame.size.height);
-                         aboveCellsImageView.alpha = 0.0f;
-                         
+    
+                         aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
-                         belowCellsImageView.alpha = 0.0f;
-
-                         
+                         selectedCellImageView.alpha = 0.0;
+                         self.toViewController.view.frame = finalToFrame;
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;
