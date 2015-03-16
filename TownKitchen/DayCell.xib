@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="141" id="KGk-i7-Jjw" customClass="DayCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="133" id="KGk-i7-Jjw" customClass="DayCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -20,17 +20,21 @@
                             <constraint firstAttribute="height" constant="130" id="30n-CP-pWf"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-CT-8Kt" customClass="DateLabelsView">
-                        <rect key="frame" x="0.0" y="5" width="320" height="130"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-CT-8Kt" customClass="DateLabelsView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="lE9-5n-WWp" secondAttribute="trailing" id="DXI-gH-sEO"/>
                     <constraint firstAttribute="bottom" secondItem="lE9-5n-WWp" secondAttribute="bottom" id="EeS-bq-Mhs"/>
+                    <constraint firstItem="AqF-CT-8Kt" firstAttribute="width" secondItem="lE9-5n-WWp" secondAttribute="width" id="G1S-G9-Pla"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lE9-5n-WWp" secondAttribute="bottom" constant="-1" id="Wdt-70-O30"/>
                     <constraint firstItem="lE9-5n-WWp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bOH-77-E0k"/>
                     <constraint firstAttribute="bottom" secondItem="lE9-5n-WWp" secondAttribute="bottom" id="f6x-ae-Jb0"/>
                     <constraint firstItem="lE9-5n-WWp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jmO-kQ-FVk"/>
+                    <constraint firstItem="AqF-CT-8Kt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lh1-Tf-g7d"/>
+                    <constraint firstItem="AqF-CT-8Kt" firstAttribute="height" secondItem="lE9-5n-WWp" secondAttribute="height" id="nk6-hR-bdz"/>
+                    <constraint firstItem="AqF-CT-8Kt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qRG-Ap-pJa"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -43,7 +47,7 @@
                 <outlet property="backgroundImageView" destination="lE9-5n-WWp" id="gnZ-Bw-env"/>
                 <outlet property="dateLabelsView" destination="AqF-CT-8Kt" id="qnN-Vm-4cc"/>
             </connections>
-            <point key="canvasLocation" x="263" y="400"/>
+            <point key="canvasLocation" x="263" y="396"/>
         </tableViewCell>
     </objects>
 </document>

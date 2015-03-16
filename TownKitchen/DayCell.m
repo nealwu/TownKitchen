@@ -19,6 +19,9 @@
 
 @property (readwrite, nonatomic) UIImage *originalImage;
 @property (readwrite, nonatomic) UIImage *blurredImage;
+@property (readwrite, nonatomic) NSString *weekday;
+@property (readwrite, nonatomic) NSString *monthAndDay;
+
 
 @end
 
@@ -45,6 +48,8 @@
     _inventory = inventory;
     self.dateLabelsView.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
     self.dateLabelsView.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+    self.weekday = self.dateLabelsView.weekdayLabel.text;
+    self.monthAndDay = self.dateLabelsView.monthAndDayLabel.text;
     
     NSURL *imageUrl = [[NSURL alloc] initWithString:inventory.menuOptionObject.imageURL];
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl];

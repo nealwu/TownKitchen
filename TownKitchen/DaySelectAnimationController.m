@@ -60,10 +60,8 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
                                                                                       selectedCellBounds.origin.y + imageCenterYDelta,
                                                                                       selectedCellBounds.size.width,
                                                                                       selectedCellBounds.size.height)];
-    dateLabelsView.weekdayLabel.text = @"hehehehe";
-    dateLabelsView.monthAndDayLabel.text = @"Month 34";
-    dateLabelsView.backgroundColor = [UIColor redColor];
-    dateLabelsView.alpha = 0.5;
+    dateLabelsView.weekdayLabel.text = self.selectedCell.weekday;
+    dateLabelsView.monthAndDayLabel.text = self.selectedCell.monthAndDay;
     
     [transitionView addSubview:transitionImageView];
     [transitionView addSubview:dateLabelsView];
