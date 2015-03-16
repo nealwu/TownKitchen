@@ -33,9 +33,9 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     self.toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     self.fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     self.containerView = [transitionContext containerView];
-
     [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
     
+    // Create intermediate header
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
     
     // Define snapshot frame
@@ -67,6 +67,8 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     // Hide the original tableview
     self.fromViewController.view.hidden = YES;
     
+    [self.containerView addSubview:header];
+    
     // Set initial frames
     CGRect initialToFrame = self.toViewController.view.frame;
     self.toViewController.view.frame = CGRectMake(initialToFrame.origin.x, selectedCellFrame.origin.y - transitionImageYPositionAdjustment, initialToFrame.size.width, initialToFrame.size.height);
@@ -74,8 +76,8 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     // Define final frames
     CGRect finalToFrame = [transitionContext finalFrameForViewController:self.toViewController];
     CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
-
-    [self.containerView addSubview:header];
+    CATransform3D headerTitleTransform = CATransform3DIdentity;
+    headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * header.frame.size.height), 0);
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
@@ -87,11 +89,14 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
                          transitionView.frame = finalTransitionImageFrame;
                          transitionView.alpha = 0;
                          
+                         header.titleView.layer.transform = headerTitleTransform;
+                         
                          self.toViewController.view.frame = finalToFrame;
 
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;
+                         [header removeFromSuperview];
                          [transitionContext completeTransition:YES];
                      }];
 }

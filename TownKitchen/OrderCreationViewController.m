@@ -14,6 +14,7 @@
 #import "LocationSelectViewController.h"
 #import "Order.h"
 #import "OrderCreationCell.h"
+#import "TKHeader.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
 
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
+@property (weak, nonatomic) IBOutlet TKHeader *header;
+@property (strong, nonatomic) UIView *headerTitleView;
 
 @end
 
@@ -33,6 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.headerTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+    self.header.titleView.alpha = 0;
+    
     Inventory *firstInventory = self.inventoryItems[0];
     self.title = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
 
