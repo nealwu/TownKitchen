@@ -92,8 +92,19 @@ CGFloat const statusBarHeight = 20.0;
     CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
     CATransform3D headerTitleTransform = CATransform3DIdentity;
     headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * header.frame.size.height), 0);
+
+    /*
     CATransform3D dateLabelsViewTransform = CATransform3DIdentity;
     dateLabelsViewTransform = CATransform3DTranslate(dateLabelsViewTransform, 0, - selectedCellFrame.origin.y + statusBarHeight, 0);
+    dateLabelsViewTransform = CATransform3DScale(dateLabelsViewTransform, 1.0, 1.0, 0);
+    */
+    
+    CGAffineTransform dateLabelsViewTransform = CGAffineTransformIdentity;
+    CGFloat scaleFactor = 0.5;
+    CGFloat fudgeFactor = 10.0;
+    CGFloat dateLabelDisplacementY = selectedCellFrame.origin.y + (dateLabelsView.frame.size.height * scaleFactor) / 2.0 - statusBarHeight + fudgeFactor;
+    dateLabelsViewTransform = CGAffineTransformTranslate(dateLabelsViewTransform, 0, - dateLabelDisplacementY);
+    dateLabelsViewTransform = CGAffineTransformScale(dateLabelsViewTransform, 0.5, 0.5);
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
@@ -106,10 +117,9 @@ CGFloat const statusBarHeight = 20.0;
                          transitionImageView.alpha = 0.0;
                          
                          header.titleView.layer.transform = headerTitleTransform;
-                         dateLabelsView.layer.transform = dateLabelsViewTransform;
+                         dateLabelsView.transform = dateLabelsViewTransform;
                          
                          self.toViewController.view.frame = finalToFrame;
-
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;

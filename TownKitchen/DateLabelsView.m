@@ -39,4 +39,16 @@
     [self addSubview:self.contentView];
 }
 
+#pragma mark - Private Methods
+
+- (void)shrinkToHeaderSizeWithAnimation:(BOOL)animated {
+
+}
+
+- (void)returnToNormalSizeWithAnimation:(BOOL)animated {
+    
+}
+
+
+
 @end

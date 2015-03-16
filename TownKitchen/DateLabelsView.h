@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *weekdayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthAndDayLabel;
 
+- (void)shrinkToHeaderSizeWithAnimation:(BOOL)animated;
+- (void)returnToNormalSizeWithAnimation:(BOOL)animated;
+
 @end
