@@ -14,5 +14,5 @@
 @property (strong, nonatomic) Inventory *inventory;
 @property (readonly, nonatomic) UIImage *originalImage;
 @property (readonly, nonatomic) UIImage *blurredImage;
-
+@property (weak, nonatomic) IBOutlet UIView *dateLabelView;
 @end

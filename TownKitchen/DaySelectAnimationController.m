@@ -53,6 +53,7 @@ CGFloat const transitionImageYPositionAdjustment = 99.0;
     transitionImageView.image = [(DayCell *)self.selectedCell blurredImage];
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
+    
     [transitionView addSubview:transitionImageView];
     [self.containerView addSubview:transitionView];
     
