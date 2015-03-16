@@ -48,26 +48,36 @@ self.containerView = [transitionContext containerView];
     [self.containerView addSubview:belowCellsImageView];
     
     // Hide the original tableview
-    self.fromViewController.view.alpha = 0.3;
+    self.fromViewController.view.hidden = YES;
     
     // Set final frames
     CGRect finalFrame = [transitionContext finalFrameForViewController:self.toViewController];
     
     // Set initial frames
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.toViewController.view.frame = CGRectOffset(finalFrame, 0, screenBounds.size.height);
-
+    self.toViewController.view.alpha = 0.0;
     
-    [self.containerView addSubview:self.toViewController.view];
+    [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
     [self.containerView addSubview:header];
     
+    // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                      animations:^{
-                         self.toViewController.view.frame = finalFrame;
+                         self.toViewController.view.alpha = 1.0;
+                         
+                         selectedCellImageView.alpha = 0.0f;
+                         
+                         aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y -aboveCellsImageView.frame.size.height);
+                         aboveCellsImageView.alpha = 0.0f;
+                         
+                         belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
+                         belowCellsImageView.alpha = 0.0f;
+
+                         
                      }
                      completion:^(BOOL finished) {
-                         self.fromViewController.view.alpha = 1.0;
+                         self.fromViewController.view.hidden = NO;
                          [transitionContext completeTransition:YES];
                      }];
 }
