@@ -17,6 +17,7 @@
 #import "ReviewViewController.h"
 #import "OrderCell.h"
 #import "OrdersViewController.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -42,8 +43,9 @@
 //
 //    self.window.rootViewController = osvc;
 
-    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
+//    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+    LoginViewController *lvc = [[LoginViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
     nvc.navigationBar.translucent = NO;
     nvc.navigationBar.barTintColor = [UIColor colorWithRed:235.0 / 255
                                                      green:92.0 / 255

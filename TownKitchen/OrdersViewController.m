@@ -26,8 +26,11 @@
     [super viewDidLoad];
 
     self.title = @"Orders";
-
     self.orders = [[ParseAPI getInstance] ordersForUser:[PFUser currentUser]];
+
+    // Sort orders by date
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"deliveryDateAndTime" ascending:NO];
+    self.orders = [self.orders sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

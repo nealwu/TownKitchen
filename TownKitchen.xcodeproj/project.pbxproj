@@ -57,6 +57,8 @@
 		9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AB031AB0D93100610500 /* DateUtils.m */; };
 		9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */; };
 		9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */; };
+		9FF2AE8F1AB66B5A001BF6BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF2AE8D1AB66B5A001BF6BA /* LoginViewController.m */; };
+		9FF2AE901AB66B5A001BF6BA /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF2AE8E1AB66B5A001BF6BA /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,9 @@
 		9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectViewController.h; sourceTree = "<group>"; };
 		9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectViewController.m; sourceTree = "<group>"; };
 		9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectViewController.xib; sourceTree = "<group>"; };
+		9FF2AE8C1AB66B5A001BF6BA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9FF2AE8D1AB66B5A001BF6BA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9FF2AE8E1AB66B5A001BF6BA /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F02D873F8A16AE6556FF4B7A /* Pods-TownKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 		F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TownKitchen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -198,10 +203,10 @@
 		2B13D0961AA81B9100FC0689 /* TownKitchen */ = {
 			isa = PBXGroup;
 			children = (
-				2BA78A151AB63B3700F5FAB0 /* Animations */,
 				9F198EE31AAF7B0D00C0055D /* Images.xcassets */,
 				2B13D09B1AA81B9100FC0689 /* AppDelegate.h */,
 				2B13D09C1AA81B9100FC0689 /* AppDelegate.m */,
+				2BA78A151AB63B3700F5FAB0 /* Animations */,
 				91788D811AA947D20038FE1F /* API */,
 				91788D931AAD25210038FE1F /* Categories */,
 				91788D4A1AA93F660038FE1F /* Models */,
@@ -281,6 +286,9 @@
 				91788D741AA941BC0038FE1F /* LocationSelectViewController.h */,
 				91788D751AA941BC0038FE1F /* LocationSelectViewController.m */,
 				91788D761AA941BC0038FE1F /* LocationSelectViewController.xib */,
+				9FF2AE8C1AB66B5A001BF6BA /* LoginViewController.h */,
+				9FF2AE8D1AB66B5A001BF6BA /* LoginViewController.m */,
+				9FF2AE8E1AB66B5A001BF6BA /* LoginViewController.xib */,
 				91788D5B1AA940930038FE1F /* OrderCreationViewController.h */,
 				91788D5C1AA940930038FE1F /* OrderCreationViewController.m */,
 				91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */,
@@ -466,6 +474,7 @@
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
 				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
 				91788D781AA941BC0038FE1F /* LocationSelectViewController.xib in Resources */,
+				9FF2AE901AB66B5A001BF6BA /* LoginViewController.xib in Resources */,
 				9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */,
 				9FC8AAFC1AB0D37700610500 /* OrdersViewController.xib in Resources */,
 				2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */,
@@ -533,6 +542,7 @@
 			files = (
 				91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */,
 				2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */,
+				9FF2AE8F1AB66B5A001BF6BA /* LoginViewController.m in Sources */,
 				2BBABFB91AB008DF0098124D /* DayCell.m in Sources */,
 				91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */,
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
