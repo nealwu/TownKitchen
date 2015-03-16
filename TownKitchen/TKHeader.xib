@@ -8,26 +8,51 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TKHeader">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="1lO-fq-1lt"/>
+                <outlet property="headerImage" destination="S5Q-kr-Yea" id="L6I-RR-7Vs"/>
+                <outlet property="titleView" destination="5xJ-ha-608" id="JOW-se-61s"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header-logo" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-kr-Yea">
-                    <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpx-sS-Icb" userLabel="Header Contents">
+                    <rect key="frame" x="0.0" y="24" width="320" height="40"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xJ-ha-608" userLabel="Title View">
+                            <rect key="frame" x="60" y="0.0" width="200" height="40"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header-logo" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-kr-Yea">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="wN2-1C-dmY"/>
+                                        <constraint firstAttribute="width" constant="200" id="yun-CU-FBQ"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="S5Q-kr-Yea" firstAttribute="leading" secondItem="5xJ-ha-608" secondAttribute="leading" id="TEF-aF-VKd"/>
+                                <constraint firstAttribute="width" constant="200" id="XMN-ah-EAy"/>
+                                <constraint firstAttribute="height" constant="40" id="f4g-bh-Tuj"/>
+                                <constraint firstItem="S5Q-kr-Yea" firstAttribute="top" secondItem="5xJ-ha-608" secondAttribute="top" id="zef-6M-vAB"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="wN2-1C-dmY"/>
-                        <constraint firstAttribute="width" constant="200" id="yun-CU-FBQ"/>
+                        <constraint firstAttribute="centerY" secondItem="5xJ-ha-608" secondAttribute="centerY" id="d2o-3o-yLt"/>
+                        <constraint firstAttribute="centerX" secondItem="5xJ-ha-608" secondAttribute="centerX" id="irE-3x-OCy"/>
+                        <constraint firstAttribute="height" constant="40" id="k8h-gO-FeC"/>
                     </constraints>
-                </imageView>
+                </view>
             </subviews>
+            <color key="backgroundColor" red="0.9215686917" green="0.36078432199999999" blue="0.34117648010000001" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="S5Q-kr-Yea" secondAttribute="centerY" id="1ud-BU-gaO"/>
-                <constraint firstAttribute="centerX" secondItem="S5Q-kr-Yea" secondAttribute="centerX" id="HSY-nm-Bty"/>
+                <constraint firstAttribute="bottom" secondItem="Tpx-sS-Icb" secondAttribute="bottom" id="4Vx-v5-Cjd"/>
+                <constraint firstAttribute="trailing" secondItem="Tpx-sS-Icb" secondAttribute="trailing" id="YW5-LD-xQk"/>
+                <constraint firstItem="Tpx-sS-Icb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e8F-q3-kch"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="9" y="-130"/>
         </view>

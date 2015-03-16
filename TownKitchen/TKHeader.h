@@ -10,4 +10,7 @@
 
 @interface TKHeader : UIView
 
+@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
+@property (weak, nonatomic) IBOutlet UIView *titleView;
+
 @end

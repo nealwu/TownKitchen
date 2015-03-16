@@ -50,7 +50,7 @@
                                                       blue:87.0 / 255
                                                      alpha:1.0];
     nvc.navigationBar.tintColor = [UIColor whiteColor];
-    self.window.rootViewController = nvc;
+    self.window.rootViewController = dsvc;
     [self.window makeKeyAndVisible];
     return YES;
 }

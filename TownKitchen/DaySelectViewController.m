@@ -32,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Navigation bar methods
-    self.navigationItem.titleView = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-
     self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
 
     NSMutableArray *uniqueInventories = [NSMutableArray array];
