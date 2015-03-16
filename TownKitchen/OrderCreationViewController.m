@@ -141,7 +141,8 @@
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
     checkoutViewController.order = order;
-    [self.navigationController pushViewController:checkoutViewController animated:YES];
+    
+    [self presentViewController:checkoutViewController animated:YES completion:nil];
 }
 - (IBAction)onBackButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
