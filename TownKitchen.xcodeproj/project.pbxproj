@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2755364638D9F2E44A876E03 /* libPods-TownKitchen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */; };
+		2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0719831AB6B7A600976A43 /* DateLabelsView.m */; };
+		2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0719851AB6B7B100976A43 /* DateLabelsView.xib */; };
 		2B13D09A1AA81B9100FC0689 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0991AA81B9100FC0689 /* main.m */; };
 		2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D09C1AA81B9100FC0689 /* AppDelegate.m */; };
 		2B13D0B41AA81B9100FC0689 /* TownKitchenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */; };
@@ -72,6 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B0719821AB6B7A600976A43 /* DateLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateLabelsView.h; sourceTree = "<group>"; };
+		2B0719831AB6B7A600976A43 /* DateLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateLabelsView.m; sourceTree = "<group>"; };
+		2B0719851AB6B7B100976A43 /* DateLabelsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateLabelsView.xib; sourceTree = "<group>"; };
 		2B13D0941AA81B9100FC0689 /* TownKitchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TownKitchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B13D0981AA81B9100FC0689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B13D0991AA81B9100FC0689 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -329,6 +334,9 @@
 				2BA78A191AB65FDB00F5FAB0 /* TKHeader.h */,
 				2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */,
 				2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */,
+				2B0719821AB6B7A600976A43 /* DateLabelsView.h */,
+				2B0719831AB6B7A600976A43 /* DateLabelsView.m */,
+				2B0719851AB6B7B100976A43 /* DateLabelsView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -490,6 +498,7 @@
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
+				2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +574,7 @@
 				2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */,
 				9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
+				2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */,
 				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,
 				91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */,

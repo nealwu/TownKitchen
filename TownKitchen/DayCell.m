@@ -10,12 +10,12 @@
 #import "DateUtils.h"
 #import <UIImageView+AFNetworking.h>
 #import <FXBlurView.h>
+#import "DateLabelsView.h"
 
 @interface DayCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet DateLabelsView *dateLabelsView;
 
 @property (readwrite, nonatomic) UIImage *originalImage;
 @property (readwrite, nonatomic) UIImage *blurredImage;
@@ -43,8 +43,8 @@
 
 - (void)setInventory:(Inventory *)inventory {
     _inventory = inventory;
-    self.dayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
-    self.dateLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+    self.dateLabelsView.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
+    self.dateLabelsView.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
     
     NSURL *imageUrl = [[NSURL alloc] initWithString:inventory.menuOptionObject.imageURL];
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl];

@@ -20,41 +20,17 @@
                             <constraint firstAttribute="height" constant="130" id="30n-CP-pWf"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIC-Fu-QaF" userLabel="Label View">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oX-zn-abm">
-                                <rect key="frame" x="84" y="18" width="152" height="54"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="41"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="March 10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBp-DP-Vn1">
-                                <rect key="frame" x="109" y="72" width="103" height="30"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="MBp-DP-Vn1" firstAttribute="top" secondItem="8oX-zn-abm" secondAttribute="bottom" id="442-JQ-F3J"/>
-                            <constraint firstAttribute="centerX" secondItem="8oX-zn-abm" secondAttribute="centerX" id="abA-E5-UdI"/>
-                            <constraint firstItem="8oX-zn-abm" firstAttribute="top" secondItem="BIC-Fu-QaF" secondAttribute="top" constant="18" id="go1-xw-LTW"/>
-                            <constraint firstAttribute="centerX" secondItem="MBp-DP-Vn1" secondAttribute="centerX" id="pPN-Gi-eUh"/>
-                        </constraints>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-CT-8Kt" customClass="DateLabelsView">
+                        <rect key="frame" x="0.0" y="5" width="320" height="130"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="lE9-5n-WWp" firstAttribute="height" secondItem="BIC-Fu-QaF" secondAttribute="height" id="Aa3-Lf-sHI"/>
                     <constraint firstAttribute="trailing" secondItem="lE9-5n-WWp" secondAttribute="trailing" id="DXI-gH-sEO"/>
                     <constraint firstAttribute="bottom" secondItem="lE9-5n-WWp" secondAttribute="bottom" id="EeS-bq-Mhs"/>
-                    <constraint firstItem="lE9-5n-WWp" firstAttribute="width" secondItem="BIC-Fu-QaF" secondAttribute="width" id="KDU-uh-D2U"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lE9-5n-WWp" secondAttribute="bottom" constant="-1" id="Wdt-70-O30"/>
                     <constraint firstItem="lE9-5n-WWp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bOH-77-E0k"/>
-                    <constraint firstItem="BIC-Fu-QaF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dm5-zS-vtZ"/>
                     <constraint firstAttribute="bottom" secondItem="lE9-5n-WWp" secondAttribute="bottom" id="f6x-ae-Jb0"/>
                     <constraint firstItem="lE9-5n-WWp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jmO-kQ-FVk"/>
-                    <constraint firstItem="BIC-Fu-QaF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="y3I-J5-M1k"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -65,9 +41,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundImageView" destination="lE9-5n-WWp" id="gnZ-Bw-env"/>
-                <outlet property="dateLabel" destination="MBp-DP-Vn1" id="p2P-o3-pzV"/>
-                <outlet property="dateLabelView" destination="BIC-Fu-QaF" id="m79-Rb-BVY"/>
-                <outlet property="dayLabel" destination="8oX-zn-abm" id="UGl-94-gBg"/>
+                <outlet property="dateLabelsView" destination="AqF-CT-8Kt" id="qnN-Vm-4cc"/>
             </connections>
             <point key="canvasLocation" x="263" y="400"/>
         </tableViewCell>
