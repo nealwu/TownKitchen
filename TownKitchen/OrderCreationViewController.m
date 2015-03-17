@@ -67,13 +67,15 @@
     // set up header
     DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:self.header.titleView.bounds];
     dateLabelsView.backgroundColor = [UIColor blueColor];
-    dateLabelsView.weekdayLabel.text = @"test";
-    dateLabelsView.monthAndDayLabel.text = @"test";
+    dateLabelsView.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
+    dateLabelsView.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
+    
+    
+    
     [self.header.titleView addSubview:dateLabelsView];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-//    backButton.backgroundColor = [UIColor greenColor];
     [backButton addTarget:self action:@selector(onBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.header.leftView addSubview:backButton];
 }

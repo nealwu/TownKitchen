@@ -116,7 +116,6 @@ CGFloat const statusBarHeight = 20.0;
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
 
                          transitionView.frame = finalTransitionImageFrame;
-                         transitionImageView.alpha = 0.0;
                          
                          header.titleView.layer.transform = headerTitleTransform;
                          dateLabelsView.transform = dateLabelsViewTransform;
@@ -127,6 +126,12 @@ CGFloat const statusBarHeight = 20.0;
                          self.fromViewController.view.hidden = NO;
                          transitionImageView.hidden = YES;
                          [transitionContext completeTransition:YES];
+                     }];
+    
+    // Animate image view faster
+    [UIView animateWithDuration:duration * 0.5
+                     animations:^{
+                         transitionImageView.alpha = 0.0;
                      }];
 }
 
