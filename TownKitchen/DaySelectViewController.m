@@ -85,7 +85,7 @@
     ocvc.transitioningDelegate = self;
     
     // Prepare the animation
-    self.daySelectAnimationController.selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    self.daySelectAnimationController.selectedCell = (DayCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     self.daySelectAnimationController.contentOffset = self.tableView.contentOffset;
     
     [self presentViewController:ocvc animated:YES completion:^{

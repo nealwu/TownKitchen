@@ -11,6 +11,7 @@
 #import <UIImageView+AFNetworking.h>
 #import <FXBlurView.h>
 #import "DateLabelsView.h"
+#import "UIImageEffects.h"
 
 @interface DayCell ()
 
@@ -63,9 +64,12 @@
                                                                    duration:0.3
                                                                     options:UIViewAnimationOptionTransitionCrossDissolve
                                                                  animations:^{
-                                                                     self.backgroundImageView.image = [image blurredImageWithRadius:20 iterations:2 tintColor:[UIColor blackColor]];
-//                                                                     self.backgroundImageView.image = image;
-                                                                     self.blurredImage = self.backgroundImageView.image;
+                                                                     self.backgroundImageView.image = [UIImageEffects
+                                                                                                       imageByApplyingBlurToImage:image
+                                                                                                       withRadius:0
+                                                                                                       tintColor:[UIColor colorWithWhite:0.0 alpha:0.5]
+                                                                                                       saturationDeltaFactor:1.0
+                                                                                                       maskImage:nil];
                                                                  } completion:^(BOOL finished) {
                                                                      self.originalImage = image;
                                                                  }];

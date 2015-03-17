@@ -25,6 +25,7 @@
 		2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D51AB61503003624DD /* CircleStepperView.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
+		2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
@@ -103,6 +104,8 @@
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
+		2BEC493F1AB7F3D700A8A267 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationCell.h; sourceTree = "<group>"; };
 		2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationCell.m; sourceTree = "<group>"; };
 		2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationCell.xib; sourceTree = "<group>"; };
@@ -214,6 +217,7 @@
 				2BA78A151AB63B3700F5FAB0 /* Animations */,
 				91788D811AA947D20038FE1F /* API */,
 				91788D931AAD25210038FE1F /* Categories */,
+				2BEC493E1AB7F3C000A8A267 /* Helpers */,
 				91788D4A1AA93F660038FE1F /* Models */,
 				2B13D0971AA81B9100FC0689 /* Supporting Files */,
 				91788D8D1AAD0BA90038FE1F /* TableViewCells */,
@@ -256,6 +260,15 @@
 				2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */,
 			);
 			name = Animations;
+			sourceTree = "<group>";
+		};
+		2BEC493E1AB7F3C000A8A267 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2BEC493F1AB7F3D700A8A267 /* UIImageEffects.h */,
+				2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		91788D4A1AA93F660038FE1F /* Models */ = {
@@ -557,6 +570,7 @@
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */,
+				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
 				2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,

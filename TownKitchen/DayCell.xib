@@ -50,12 +50,12 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="EeS-bq-Mhs"/>
-                        <exclude reference="f6x-ae-Jb0"/>
                         <exclude reference="W3G-a5-jRh"/>
                         <exclude reference="lh1-Tf-g7d"/>
                         <exclude reference="nk6-hR-bdz"/>
                         <exclude reference="qRG-Ap-pJa"/>
+                        <exclude reference="EeS-bq-Mhs"/>
+                        <exclude reference="f6x-ae-Jb0"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
