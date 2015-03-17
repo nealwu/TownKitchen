@@ -7,6 +7,7 @@
 //
 
 #import "CheckoutViewController.h"
+
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
 #import "AddressInputViewController.h"
@@ -106,14 +107,22 @@
 
 #pragma mark LocationSelectViewControllerDelegate Methods
 
-- (void)timeSelectViewController:(TimeSelectViewController *)tvc didSetDate:(NSDate *)date {
+- (void)timeSelectViewController:(TimeSelectViewController *)tvc didSetTime:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"hh:mm a"];
     NSString *currentTime = [dateFormatter stringFromDate:date];
     NSLog(@"got time from selector: %@", currentTime);
     self.timeLabel.text = currentTime;
     self.selectedDate = date;
-    self.order.deliveryDateAndTime = date;
+
+    // Extract only the time portion of the date
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dayComponents = [calendar components:NSUIntegerMax fromDate:self.order.deliveryDateAndTime];
+    NSDateComponents *timeComponents = [calendar components:NSUIntegerMax fromDate:date];
+    [dayComponents setHour:timeComponents.hour];
+    [dayComponents setMinute:timeComponents.minute];
+    [dayComponents setSecond:timeComponents.second];
+    self.order.deliveryDateAndTime = [calendar dateFromComponents:dayComponents];
 }
 
 #pragma mark Table view methods
@@ -147,12 +156,18 @@
 
 - (IBAction)onPlaceOrder:(id)sender {
     self.order.user = [PFUser currentUser];
-    
+    self.order.status = @"paid";
+    self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
+
     NSLog(@"validating order: %@", self.order);
     NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
-    
+
+    if ([[ParseAPI getInstance] validateOrder:self.order]) {
+        [[ParseAPI getInstance] createOrder:self.order];
+    }
+
     OrdersViewController *ovc = [[OrdersViewController alloc] init];
-    [self.navigationController pushViewController:ovc animated:YES];
+    [self presentViewController:ovc animated:YES completion:nil];
 }
 
 - (IBAction)onSetAddressButton:(id)sender {

@@ -34,7 +34,7 @@
         if (user && !error) {
             NSLog(@"Login succeeded!");
             DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-            [self.navigationController pushViewController:dsvc animated:YES];
+            [self presentViewController:dsvc animated:YES completion:nil];
         } else {
             NSLog(@"Login failed: %@", error);
         }
@@ -54,7 +54,7 @@
         if (!error) {
             NSLog(@"Signup succeeded!");
             DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-            [self.navigationController pushViewController:dsvc animated:YES];
+            [self presentViewController:dsvc animated:YES completion:nil];
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Signup failed: %@", errorString);

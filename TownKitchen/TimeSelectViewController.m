@@ -53,7 +53,7 @@
 #pragma mark Actions
 
 - (IBAction)onSetTime:(id)sender {
-    [self.delegate timeSelectViewController:self didSetDate:self.datePicker.date];
+    [self.delegate timeSelectViewController:self didSetTime:self.datePicker.date];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

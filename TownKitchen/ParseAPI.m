@@ -89,6 +89,7 @@
         Inventory *inventory = [self inventoryItemForShortName:shortName andDay:order.deliveryDateAndTime];
 
         if ([items[shortName] integerValue] > [inventory.quantityRemaining integerValue]) {
+            NSLog(@"Inventory for %@ is not enough for order: %@ vs. %@", inventory.menuOptionObject.shortName, items[shortName], inventory.quantityRemaining);
             return NO;
         }
     }
@@ -98,6 +99,7 @@
 
 - (BOOL)createOrder:(Order *)order {
     if ([order save]) {
+        NSLog(@"Successfully saved order");
         NSDictionary *items = order.items;
 
         for (NSString *shortName in items) {
@@ -107,6 +109,8 @@
         }
 
         return YES;
+    } else {
+        NSLog(@"Error saving order");
     }
 
     return NO;
