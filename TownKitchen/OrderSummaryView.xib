@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="eg0-N9-lBa"/>
                 <outlet property="deliveryAddressLabel" destination="SSc-zF-8ZC" id="8LG-6B-AJs"/>
+                <outlet property="deliveryDateAndTimeLabel" destination="yfk-Ri-Zik" id="ZZ8-Hi-zun"/>
                 <outlet property="orderNumberLabel" destination="55r-zC-7FP" id="sAe-v5-ehC"/>
                 <outlet property="tableView" destination="Tod-u6-kcr" id="zKm-c4-NCI"/>
                 <outlet property="tableViewHeightConstraint" destination="Yne-JV-T3a" id="3iO-Kf-daf"/>
@@ -41,9 +42,17 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/17/15 2:00 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfk-Ri-Zik">
+                    <rect key="frame" x="205" y="11" width="108" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="yfk-Ri-Zik" firstAttribute="baseline" secondItem="55r-zC-7FP" secondAttribute="baseline" id="5YF-rT-AwD"/>
+                <constraint firstAttribute="trailing" secondItem="yfk-Ri-Zik" secondAttribute="trailing" constant="8" id="5c2-73-xh5"/>
                 <constraint firstItem="Tod-u6-kcr" firstAttribute="top" secondItem="55r-zC-7FP" secondAttribute="bottom" constant="8" id="5nP-T2-lLu"/>
                 <constraint firstAttribute="trailing" secondItem="Tod-u6-kcr" secondAttribute="trailing" constant="8" id="GvT-gn-N7V"/>
                 <constraint firstItem="SSc-zF-8ZC" firstAttribute="top" secondItem="Tod-u6-kcr" secondAttribute="bottom" constant="8" id="Joh-CR-Byi"/>
@@ -54,7 +63,7 @@
                 <constraint firstItem="Tod-u6-kcr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="vyF-CB-6zd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="133" y="-46.5"/>
+            <point key="canvasLocation" x="-47" y="17.5"/>
         </view>
     </objects>
 </document>

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryDateAndTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryAddressLabel;
 
 @property (strong, nonatomic) NSArray *menuOptions;
@@ -23,6 +24,16 @@
 @end
 
 @implementation OrderSummaryView
+
++ (NSDateFormatter *)deliveryDateAndTimeFormatter {
+    static dispatch_once_t onceToken;
+    static NSDateFormatter *formatter = nil;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"M/d/yy h:mm a";
+    });
+    return formatter;
+}
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -48,6 +59,7 @@
 
 - (void)updateSubviews {
     self.orderNumberLabel.text = [NSString stringWithFormat:@"Order #%@", self.order.objectId];
+    self.deliveryDateAndTimeLabel.text = [[OrderSummaryView deliveryDateAndTimeFormatter] stringFromDate:self.order.deliveryTimeUtc];
     self.deliveryAddressLabel.text = self.order.deliveryAddress;
     [self setNeedsUpdateConstraints];
 }
