@@ -55,7 +55,6 @@ CGFloat const statusBarHeight = 20.0;
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
-    CGRect selectedCellBounds = self.selectedCell.bounds;
     selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
     
     // Create transition view
@@ -69,8 +68,8 @@ CGFloat const statusBarHeight = 20.0;
     transitionImageView.image = self.selectedCell.darkenedImage;
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
-    
     [transitionView addSubview:transitionImageView];
+    
     [self.containerView addSubview:transitionView];
     
     // Create dateLabels view for transition from cell to header
@@ -155,24 +154,9 @@ CGFloat const statusBarHeight = 20.0;
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
     selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
-
-    // Create transition view
-    CGFloat imageCenterYDelta = transitionImageFinalHeight / 2 - selectedCellFrame.size.height / 2;
-    UIView *transitionView = [[UIView alloc] initWithFrame:CGRectMake(selectedCellFrame.origin.x,
-                                                                      selectedCellFrame.origin.y - imageCenterYDelta,
-                                                                      selectedCellFrame.size.width,
-                                                                      transitionImageFinalHeight)];
-    UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:transitionView.bounds];
-    transitionImageView.image = self.selectedCell.darkenedImage;
-    transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
-    transitionImageView.clipsToBounds = YES;
     
-    [transitionView addSubview:transitionImageView];
-    [self.containerView addSubview:transitionView];
-
-    
-    // Snapshot cells above selected cell
-    UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame inViewController:self.toViewController];
+    // Snapshot cells above and including selected cell
+    UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveAndIncludingSelectedCellFrame:selectedCellFrame inViewController:self.toViewController];
     [self.containerView addSubview:aboveCellsImageView];
     
     // Snapshot cells below selected cell
@@ -189,15 +173,13 @@ CGFloat const statusBarHeight = 20.0;
     CGPoint belowCellsImageViewFinalCenter = belowCellsImageView.center;
     aboveCellsImageView.center = CGPointMake(aboveCellsImageViewFinalCenter.x, aboveCellsImageViewFinalCenter.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
     belowCellsImageView.center = CGPointMake(belowCellsImageViewFinalCenter.x, belowCellsImageViewFinalCenter.y + belowCellsImageView.frame.size.height);
+
+    self.toViewController.view.hidden = YES;
     
-    CGRect transitionViewInitialFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
-    transitionView.frame = transitionViewInitialFrame;
 
     // Define final frames
-    CGRect transitionViewFinalFrame = CGRectMake(selectedCellFrame.origin.x,
-                                                 selectedCellFrame.origin.y - imageCenterYDelta,
-                                                 selectedCellFrame.size.width,
-                                                 transitionImageFinalHeight);
+    
+
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
@@ -208,78 +190,13 @@ CGFloat const statusBarHeight = 20.0;
                          aboveCellsImageView.center = aboveCellsImageViewFinalCenter;
                          belowCellsImageView.center = belowCellsImageViewFinalCenter;
                          
-                         transitionView.frame = transitionViewFinalFrame;
+                         self.fromViewController.view.alpha = 0.5;
+
                      }
                      completion:^(BOOL finished) {
+                         self.toViewController.view.hidden = NO;
                          [transitionContext completeTransition:YES];
                      }];
-    
-    
-    
-    // ------------------------
- /*
-    // Define snapshot frame
-    CGRect selectedCellFrame = self.selectedCell.frame;
-    CGRect selectedCellBounds = self.selectedCell.bounds;
-    selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
-    
-    // Create transition view with same frame as toVC's image
-    CGFloat imageCenterYDelta = transitionImageFinalHeight / 2 - selectedCellFrame.size.height / 2;
-    UIView *transitionView = [[UIView alloc] initWithFrame:CGRectMake(selectedCellFrame.origin.x,
-                                                                      selectedCellFrame.origin.y - imageCenterYDelta,
-                                                                      selectedCellFrame.size.width,
-                                                                      transitionImageFinalHeight)];
-    
-    UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:transitionView.bounds];
-    transitionImageView.image = self.selectedCell.darkenedImage;
-    transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
-    transitionImageView.clipsToBounds = YES;
-    
-    [transitionView addSubview:transitionImageView];
-    [self.containerView addSubview:transitionView];
-    
-    // Create dateLabels view for transition from cell to header
-    DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:CGRectMake(selectedCellFrame.origin.x,
-                                                                                      selectedCellFrame.origin.y,
-                                                                                      selectedCellFrame.size.width,
-                                                                                      selectedCellFrame.size.height)];
-    dateLabelsView.weekdayLabel.text = self.selectedCell.weekday;
-    dateLabelsView.monthAndDayLabel.text = self.selectedCell.monthAndDay;
-    
-    // Snapshot cells above selected cell
-    UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame inViewController:self.fromViewController];
-    [self.containerView addSubview:aboveCellsImageView];
-    
-    // Snapshot cells below selected cell
-    UIImageView *belowCellsImageView = [self imageViewFromCellsBelowSelectedCellFrame:selectedCellFrame inViewController:self.fromViewController];
-    [self.containerView addSubview:belowCellsImageView];
-    
-    // Hide the original tableview
-    self.fromViewController.view.hidden = YES;
-    
-  
-    
-    // Set initial frames
-    CGRect initialToFrame = self.toViewController.view.frame;
-    self.toViewController.view.frame = CGRectMake(initialToFrame.origin.x, selectedCellFrame.origin.y - transitionImageYPositionAdjustment, initialToFrame.size.width, initialToFrame.size.height);
-    
-    // Define final frames
-    CGRect finalToFrame = [transitionContext finalFrameForViewController:self.toViewController];
-    CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
-    CATransform3D headerTitleTransform = CATransform3DIdentity;
-    headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * header.frame.size.height), 0);
-    
-    // Define final transforms (date label)
-    CGFloat scaleFactor = 0.5;
-    CGFloat yToOffsetAfterScaling = 8.5;
-    CGAffineTransform dateLabelsViewTransform = CGAffineTransformIdentity;
-    CGFloat dateLabelDisplacementY = selectedCellFrame.origin.y + (dateLabelsView.frame.size.height * scaleFactor) / 2.0 - statusBarHeight + yToOffsetAfterScaling;
-    dateLabelsViewTransform = CGAffineTransformTranslate(dateLabelsViewTransform, 0, - dateLabelDisplacementY);
-    dateLabelsViewTransform = CGAffineTransformScale(dateLabelsViewTransform, 0.5, 0.5);
-    
-    CGFloat monthAndDayLabelDisplacementY = 5.0;
-    CGAffineTransform monthAndDayLabelTransform = CGAffineTransformMakeTranslation(0, - monthAndDayLabelDisplacementY);
-   */
 }
 
 #pragma mark - Helper Methods
@@ -294,6 +211,14 @@ CGFloat const statusBarHeight = 20.0;
 - (UIImageView *)imageViewFromCellsAboveSelectedCellFrame:(CGRect)selectedCellFrame inViewController:(UIViewController *)viewController {
     CGFloat distanceAboveSelectedCell = fmaxf(0, selectedCellFrame.origin.y);
     CGRect aboveCellsFrame = CGRectMake(0, 0, viewController.view.frame.size.width, distanceAboveSelectedCell);
+    UIImageView *aboveCellsImageView = [[UIImageView alloc] initWithFrame:aboveCellsFrame];
+    aboveCellsImageView.image = [self imageInRect:aboveCellsFrame fromView:viewController.view];
+    return aboveCellsImageView;
+}
+
+- (UIImageView *)imageViewFromCellsAboveAndIncludingSelectedCellFrame:(CGRect)selectedCellFrame inViewController:(UIViewController *)viewController {
+    CGFloat distanceAboveSelectedCellBottomEdge = fmaxf(0, selectedCellFrame.origin.y + selectedCellFrame.size.height);
+    CGRect aboveCellsFrame = CGRectMake(0, 0, viewController.view.frame.size.width, distanceAboveSelectedCellBottomEdge);
     UIImageView *aboveCellsImageView = [[UIImageView alloc] initWithFrame:aboveCellsFrame];
     aboveCellsImageView.image = [self imageInRect:aboveCellsFrame fromView:viewController.view];
     return aboveCellsImageView;

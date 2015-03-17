@@ -21,7 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
-
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
@@ -35,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     Inventory *firstInventory = self.inventoryItems[0];
     self.title = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
 
