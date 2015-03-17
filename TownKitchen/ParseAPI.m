@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
+#import <Bolts.h>
 #import "ParseAPI.h"
+#import "Order.h"
+#import "NSArray+ArrayOps.h"
 
 #import "DateUtils.h"
 #import "Inventory.h"
@@ -122,6 +125,27 @@
     review[@"order"] = order;
     review[@"starRating"] = stars;
     [review save];
+}
+
+- (BFTask *)ordersForToday {
+    NSDate *now = [NSDate date];
+    NSCalendar *localCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *nowComponents = [localCalendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:now];
+    NSCalendar *utcCalendar = [NSCalendar currentCalendar];
+    utcCalendar.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    
+    /* create dates for querying as if they were representing UTC, since display in Parse's web UI is in UTC */
+    NSDate *previousMidnight = [utcCalendar dateFromComponents:nowComponents];
+    NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+    oneDay.day = 1;
+    NSDate *nextMidnight = [utcCalendar dateByAddingComponents:oneDay toDate:previousMidnight options:0];
+    NSLog(@"range from: %@ to %@", previousMidnight, nextMidnight);
+
+    PFQuery *query = [Order query];
+    [query whereKey:@"deliveryTime" greaterThanOrEqualTo:previousMidnight];
+    [query whereKey:@"deliveryTime" lessThan:nextMidnight];
+    
+    return [query findObjectsInBackground];
 }
 
 @end

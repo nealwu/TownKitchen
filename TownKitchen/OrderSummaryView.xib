@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderSummaryView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="eg0-N9-lBa"/>
+                <outlet property="deliveryAddressLabel" destination="SSc-zF-8ZC" id="8LG-6B-AJs"/>
                 <outlet property="orderNumberLabel" destination="55r-zC-7FP" id="sAe-v5-ehC"/>
                 <outlet property="tableView" destination="Tod-u6-kcr" id="zKm-c4-NCI"/>
                 <outlet property="tableViewHeightConstraint" destination="Yne-JV-T3a" id="3iO-Kf-daf"/>
@@ -25,7 +26,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tod-u6-kcr">
-                    <rect key="frame" x="8" y="37" width="304" height="100"/>
+                    <rect key="frame" x="8" y="36" width="304" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="Yne-JV-T3a"/>
@@ -35,7 +36,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 Main St, Mountain View, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSc-zF-8ZC">
-                    <rect key="frame" x="8" y="145" width="179" height="15"/>
+                    <rect key="frame" x="8" y="144" width="179" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -46,6 +47,7 @@
                 <constraint firstItem="Tod-u6-kcr" firstAttribute="top" secondItem="55r-zC-7FP" secondAttribute="bottom" constant="8" id="5nP-T2-lLu"/>
                 <constraint firstAttribute="trailing" secondItem="Tod-u6-kcr" secondAttribute="trailing" constant="8" id="GvT-gn-N7V"/>
                 <constraint firstItem="SSc-zF-8ZC" firstAttribute="top" secondItem="Tod-u6-kcr" secondAttribute="bottom" constant="8" id="Joh-CR-Byi"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SSc-zF-8ZC" secondAttribute="bottom" constant="8" id="VT2-bp-a32"/>
                 <constraint firstItem="SSc-zF-8ZC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="f1C-6D-oEn"/>
                 <constraint firstItem="55r-zC-7FP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="s8W-Y8-Di0"/>
                 <constraint firstItem="55r-zC-7FP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="tnA-ne-fBV"/>

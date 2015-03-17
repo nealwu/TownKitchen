@@ -14,7 +14,7 @@
 #import "OrderSummaryView.h"
 #import "ReviewViewController.h"
 
-static const NSTimeInterval kUpdateInterval = 10.0;
+static const NSTimeInterval kUpdateInterval = 30.0;
 
 @interface OrderStatusViewController () <MKMapViewDelegate>
 
@@ -74,6 +74,7 @@ static const NSTimeInterval kUpdateInterval = 10.0;
 
 - (void)setOrder:(Order *)order {
     _order = order;
+    
     [self clearMap];
     [self startTimer];
     [self updateSubviews];

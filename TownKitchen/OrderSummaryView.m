@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryAddressLabel;
 
 @property (strong, nonatomic) NSArray *menuOptions;
 
@@ -45,12 +46,9 @@
     [self.tableView reloadData];
 }
 
-- (NSArray *)menuOptions {
-    return self.menuOptions;
-}
-
 - (void)updateSubviews {
     self.orderNumberLabel.text = [NSString stringWithFormat:@"Order #%@", self.order.objectId];
+    self.deliveryAddressLabel.text = self.order.deliveryAddress;
     [self setNeedsUpdateConstraints];
 }
 

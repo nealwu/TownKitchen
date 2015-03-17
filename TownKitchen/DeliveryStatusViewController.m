@@ -6,9 +6,17 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
+#import <Bolts.h>
 #import "DeliveryStatusViewController.h"
+#import "ParseAPI.h"
+#import "TKOrderSummaryCell.h"
 
-@interface DeliveryStatusViewController ()
+@interface DeliveryStatusViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) TKOrderSummaryCell *sizingCell;
+
+@property (strong, nonatomic) NSArray *orders;
 
 @end
 
@@ -16,7 +24,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UINib *cellNib = [UINib nibWithNibName:@"TKOrderSummaryCell" bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"TKOrderSummaryCell"];
+    
+    self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell"];
+    
+    BFTask *ordersTask = [[ParseAPI getInstance] ordersForToday];
+    [ordersTask continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error while fetching ordersForToday: %@", task.error);
+        } else {
+            self.orders = task.result;
+            NSLog(@"Calling reloadData");
+            [self.tableView reloadData];
+        }
+        return nil;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +57,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.orders.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TKOrderSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell"];
+    cell.order = self.orders[indexPath.row];
+    return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.sizingCell.order = self.orders[indexPath.row];
+    [self.sizingCell layoutIfNeeded];
+    CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    NSLog(@"calculated height %f for cell at row %ld", height, indexPath.row);
+    return height;
+}
 
 @end

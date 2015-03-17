@@ -21,6 +21,8 @@
 - (NSArray *)inventoryItems;
 - (Inventory *)inventoryItemForShortName:(NSString *)shortName andDay:(NSDate *)date;
 - (NSArray *)ordersForUser:(PFUser *)user;
+/* Returns a task that will have an NSArray of fully-populated Order instances as its result. */
+- (BFTask *)ordersForToday;
 - (BOOL)validateOrder:(Order *)order;
 - (BOOL)createOrder:(Order *)order;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;

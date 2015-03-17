@@ -18,7 +18,11 @@ typedef enum : NSUInteger {
 @interface Order : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) PFUser *user;
+/* Delivery time from Parse, which is actually offset by time zone */
 @property (strong, nonatomic) NSDate *deliveryDateAndTime;
+/* Delivery time relative to UTC, as usual for NSDate */
+@property (strong, nonatomic) NSDate *deliveryTimeUtc;
+
 @property (strong, nonatomic) NSString *deliveryAddress;
 @property (strong, nonatomic) NSDictionary *items;
 @property (strong, nonatomic) NSNumber *totalPrice;
