@@ -12,7 +12,7 @@
 
 @protocol TimeSelectViewControllerDelegate <NSObject>
 
-- (void)timeSelectViewController:(TimeSelectViewController *)tvc didSetDate:(NSDate *)date;
+- (void)timeSelectViewController:(TimeSelectViewController *)tvc didSetTime:(NSDate *)date;
 
 @end
 
