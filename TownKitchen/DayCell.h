@@ -14,7 +14,7 @@
 @property (strong, nonatomic) Inventory *inventory;
 
 @property (readonly, nonatomic) UIImage *originalImage;
-@property (readonly, nonatomic) UIImage *blurredImage;
+@property (readonly, nonatomic) UIImage *darkenedImage;
 @property (readonly, nonatomic) NSString *weekday;
 @property (readonly, nonatomic) NSString *monthAndDay;
 

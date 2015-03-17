@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet DateLabelsView *dateLabelsView;
 
 @property (readwrite, nonatomic) UIImage *originalImage;
-@property (readwrite, nonatomic) UIImage *blurredImage;
+@property (readwrite, nonatomic) UIImage *darkenedImage;
 @property (readwrite, nonatomic) NSString *weekday;
 @property (readwrite, nonatomic) NSString *monthAndDay;
 
@@ -70,6 +70,7 @@
                                                                                                        tintColor:[UIColor colorWithWhite:0.0 alpha:0.5]
                                                                                                        saturationDeltaFactor:1.0
                                                                                                        maskImage:nil];
+                                                                     self.darkenedImage = self.backgroundImageView.image;
                                                                  } completion:^(BOOL finished) {
                                                                      self.originalImage = image;
                                                                  }];

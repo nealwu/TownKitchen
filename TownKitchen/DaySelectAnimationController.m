@@ -53,7 +53,7 @@ CGFloat const statusBarHeight = 20.0;
                                                                       transitionImageFinalHeight)];
     
     UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:transitionView.bounds];
-    transitionImageView.image = self.selectedCell.blurredImage;
+    transitionImageView.image = self.selectedCell.darkenedImage;
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
     
