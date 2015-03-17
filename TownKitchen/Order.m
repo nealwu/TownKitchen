@@ -56,7 +56,7 @@
 
 - (MKMapItem *)driverLocationMapItem {
     double latitude = self.driverLocation.latitude;
-    double longitude = self.driverLocation.latitude;
+    double longitude = self.driverLocation.longitude;
     return [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude, longitude) addressDictionary:nil]];
 }
 
