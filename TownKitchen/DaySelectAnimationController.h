@@ -10,9 +10,15 @@
 #import <UIKit/UIKit.h>
 #import "DayCell.h"
 
+typedef NS_ENUM(NSInteger, AnimationType) {
+    AnimationTypePresent = 0,
+    AnimationTypeDismiss = 1,
+};
+
 @interface DaySelectAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (strong, nonatomic) DayCell *selectedCell;
 @property (assign, nonatomic) CGPoint contentOffset;
+@property (assign, nonatomic) AnimationType animationType;
 
 @end

@@ -37,6 +37,17 @@ CGFloat const statusBarHeight = 20.0;
     self.containerView = [transitionContext containerView];
     [self.containerView insertSubview:self.toViewController.view belowSubview:self.fromViewController.view];
     
+    if (self.animationType == AnimationTypePresent) {
+        [self animateTransitionPresent:transitionContext];
+    }
+    else {
+        [self animateTransitionDismiss:transitionContext];
+    }
+}
+
+#pragma mark - Animations
+
+- (void)animateTransitionPresent:(id<UIViewControllerContextTransitioning>)transitionContext {
     // Create intermediate header
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
@@ -46,7 +57,7 @@ CGFloat const statusBarHeight = 20.0;
     CGRect selectedCellFrame = self.selectedCell.frame;
     CGRect selectedCellBounds = self.selectedCell.bounds;
     selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
-
+    
     // Create transition view with same frame as toVC's image
     CGFloat imageCenterYDelta = transitionImageFinalHeight / 2 - selectedCellFrame.size.height / 2;
     UIView *transitionView = [[UIView alloc] initWithFrame:CGRectMake(selectedCellFrame.origin.x,
@@ -71,11 +82,11 @@ CGFloat const statusBarHeight = 20.0;
     dateLabelsView.monthAndDayLabel.text = self.selectedCell.monthAndDay;
     
     // Snapshot cells above selected cell
-    UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame];
+    UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame inViewController:self.fromViewController];
     [self.containerView addSubview:aboveCellsImageView];
     
     // Snapshot cells below selected cell
-    UIImageView *belowCellsImageView = [self imageViewFromCellsBelowSelectedCellFrame:selectedCellFrame];
+    UIImageView *belowCellsImageView = [self imageViewFromCellsBelowSelectedCellFrame:selectedCellFrame inViewController:self.fromViewController];
     [self.containerView addSubview:belowCellsImageView];
     
     // Hide the original tableview
@@ -112,7 +123,7 @@ CGFloat const statusBarHeight = 20.0;
                      animations:^{
                          aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
-
+                         
                          transitionView.frame = finalTransitionImageFrame;
                          
                          header.titleView.layer.transform = headerTitleTransform;
@@ -134,30 +145,34 @@ CGFloat const statusBarHeight = 20.0;
                      }];
 }
 
+- (void)animateTransitionDismiss:(id<UIViewControllerContextTransitioning>)transitionContext {
+    
+}
+
 #pragma mark - Helper Methods
 
 
-- (UIImageView *)imageViewFromSelectedCellFrame:(CGRect)selectedCellFrame {
+- (UIImageView *)imageViewFromSelectedCellFrame:(CGRect)selectedCellFrame inViewController:(UIViewController *)viewController {
     UIImageView *selectedCellImageView = [[UIImageView alloc] initWithFrame:selectedCellFrame];
-    selectedCellImageView.image = [self imageInRect:selectedCellFrame fromView:self.toViewController.view];
+    selectedCellImageView.image = [self imageInRect:selectedCellFrame fromView:viewController.view];
     return selectedCellImageView;
 }
 
-- (UIImageView *)imageViewFromCellsAboveSelectedCellFrame:(CGRect)selectedCellFrame {
+- (UIImageView *)imageViewFromCellsAboveSelectedCellFrame:(CGRect)selectedCellFrame inViewController:(UIViewController *)viewController {
     CGFloat distanceAboveSelectedCell = fmaxf(0, selectedCellFrame.origin.y);
-    CGRect aboveCellsFrame = CGRectMake(0, 0, self.fromViewController.view.frame.size.width, distanceAboveSelectedCell);
+    CGRect aboveCellsFrame = CGRectMake(0, 0, viewController.view.frame.size.width, distanceAboveSelectedCell);
     UIImageView *aboveCellsImageView = [[UIImageView alloc] initWithFrame:aboveCellsFrame];
-    aboveCellsImageView.image = [self imageInRect:aboveCellsFrame fromView:self.fromViewController.view];
+    aboveCellsImageView.image = [self imageInRect:aboveCellsFrame fromView:viewController.view];
     return aboveCellsImageView;
 }
 
-- (UIImageView *)imageViewFromCellsBelowSelectedCellFrame:(CGRect)selectedCellFrame {
+- (UIImageView *)imageViewFromCellsBelowSelectedCellFrame:(CGRect)selectedCellFrame inViewController:(UIViewController *)viewController {
     CGFloat yPositionOfSelectedCellBottomEdge = selectedCellFrame.origin.y + selectedCellFrame.size.height;
     CGFloat distanceBelowSelectedCell =
-        fmaxf(0, self.fromViewController.view.frame.size.height - yPositionOfSelectedCellBottomEdge);
-    CGRect belowCellsFrame = CGRectMake(0, yPositionOfSelectedCellBottomEdge, self.fromViewController.view.frame.size.width, distanceBelowSelectedCell);
+        fmaxf(0, viewController.view.frame.size.height - yPositionOfSelectedCellBottomEdge);
+    CGRect belowCellsFrame = CGRectMake(0, yPositionOfSelectedCellBottomEdge, viewController.view.frame.size.width, distanceBelowSelectedCell);
     UIImageView *belowCellsImageView = [[UIImageView alloc] initWithFrame:belowCellsFrame];
-    belowCellsImageView.image = [self imageInRect:belowCellsFrame fromView:self.fromViewController.view];
+    belowCellsImageView.image = [self imageInRect:belowCellsFrame fromView:viewController.view];
     return belowCellsImageView;
 }
 

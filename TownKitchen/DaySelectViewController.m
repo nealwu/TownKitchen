@@ -124,6 +124,12 @@
 #pragma mark - UIViewControllerTransitioningDelegate Methods
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    self.daySelectAnimationController.animationType = AnimationTypePresent;
+    return self.daySelectAnimationController;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    self.daySelectAnimationController.animationType = AnimationTypeDismiss;
     return self.daySelectAnimationController;
 }
 
