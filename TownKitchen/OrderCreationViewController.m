@@ -15,6 +15,7 @@
 #import "Order.h"
 #import "OrderCreationCell.h"
 #import "TKHeader.h"
+#import "DateLabelsView.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
 
@@ -35,8 +36,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.header.titleView.alpha = 0;
     
     Inventory *firstInventory = self.inventoryItems[0];
     self.title = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
@@ -64,6 +63,12 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationCell"];
     [self.tableView reloadData];
+    
+    // set up header
+    DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:self.header.titleView.frame];
+    dateLabelsView.weekdayLabel.text = @"test";
+    dateLabelsView.monthAndDayLabel.text = @"test";
+    [self.header.titleView addSubview:dateLabelsView];
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
