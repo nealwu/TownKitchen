@@ -12,5 +12,6 @@
 @interface OrderStatusViewController : UIViewController
 
 @property (strong, nonatomic) Order *order;
+@property (nonatomic) BOOL reportLocationAsDriverLocation;
 
 @end

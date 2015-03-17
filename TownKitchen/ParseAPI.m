@@ -119,6 +119,12 @@
     return NO;
 }
 
+- (BFTask *)updateOrder:(Order *)order withDriverLocation:(CLLocation *)location {
+    PFGeoPoint *newLocation = [PFGeoPoint geoPointWithLocation:location];
+    order.driverLocation = newLocation;
+    return [order saveInBackground];
+}
+
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment {
     PFObject *review = [PFObject objectWithClassName:@"Review"];
     review[@"comments"] = comment;
@@ -142,8 +148,8 @@
     NSLog(@"range from: %@ to %@", previousMidnight, nextMidnight);
 
     PFQuery *query = [Order query];
-    [query whereKey:@"deliveryTime" greaterThanOrEqualTo:previousMidnight];
-    [query whereKey:@"deliveryTime" lessThan:nextMidnight];
+    [query whereKey:@"deliveryDateAndTime" greaterThanOrEqualTo:previousMidnight];
+//    [query whereKey:@"deliveryDateAndTime" lessThan:nextMidnight];
     
     return [query findObjectsInBackground];
 }

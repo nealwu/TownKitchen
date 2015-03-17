@@ -8,6 +8,7 @@
 
 #import <Bolts.h>
 #import "DeliveryStatusViewController.h"
+#import "OrderStatusViewController.h"
 #import "ParseAPI.h"
 #import "TKOrderSummaryCell.h"
 
@@ -28,7 +29,7 @@
     UINib *cellNib = [UINib nibWithNibName:@"TKOrderSummaryCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"TKOrderSummaryCell"];
     
-    self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell"];
+    self.sizingCell = [cellNib instantiateWithOwner:nil options:nil].firstObject;
     
     BFTask *ordersTask = [[ParseAPI getInstance] ordersForToday];
     [ordersTask continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
@@ -78,6 +79,13 @@
     CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     NSLog(@"calculated height %f for cell at row %ld", height, indexPath.row);
     return height;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
+    osvc.order = self.orders[indexPath.row];
+    osvc.reportLocationAsDriverLocation = YES;
+    [self presentViewController:osvc animated:YES completion:nil];
 }
 
 @end

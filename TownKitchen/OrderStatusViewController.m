@@ -12,11 +12,12 @@
 #import <Bolts.h>
 #import "OrderStatusViewController.h"
 #import "OrderSummaryView.h"
+#import "ParseAPI.h"
 #import "ReviewViewController.h"
 
-static const NSTimeInterval kUpdateInterval = 30.0;
+static const NSTimeInterval kUpdateInterval = 10.0;
 
-@interface OrderStatusViewController () <MKMapViewDelegate>
+@interface OrderStatusViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
 
@@ -30,6 +31,9 @@ static const NSTimeInterval kUpdateInterval = 30.0;
 @property (strong, nonatomic) RNTimer *updateTimer;
 @property (strong, nonatomic) id<MKAnnotation> deliveryAddressAnnotation;
 @property (strong, nonatomic) id<MKAnnotation> driverLocationAnnotation;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) NSTimeInterval timeOfLastUpdate;
 
 @end
 
@@ -64,6 +68,27 @@ static const NSTimeInterval kUpdateInterval = 30.0;
         [self startTimer];
 
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Review" style:UIBarButtonItemStylePlain target:self action:@selector(onReview)];
+    }
+    [self updateSubviews];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.reportLocationAsDriverLocation) {
+        if (!self.locationManager) {
+            self.locationManager = [[CLLocationManager alloc] init];
+            [self.locationManager requestWhenInUseAuthorization];
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            self.locationManager.delegate = self;
+        }
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (self.reportLocationAsDriverLocation) {
+        [self.locationManager stopUpdatingLocation];
     }
 }
 
@@ -148,6 +173,7 @@ static const NSTimeInterval kUpdateInterval = 30.0;
 
 - (BFTask *)calculateRouteWithRequest:(MKDirectionsRequest *)dirReq {
     BFTaskCompletionSource *taskSource = [BFTaskCompletionSource taskCompletionSource];
+    NSLog(@"calculating directions for request: %@", dirReq);
     [[[MKDirections alloc] initWithRequest:dirReq] calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error from calculateDirections: %@", error);
@@ -170,21 +196,30 @@ static const NSTimeInterval kUpdateInterval = 30.0;
 - (MKCoordinateRegion)regionForRoute:(MKRoute *)route {
     NSUInteger pointCount = route.polyline.pointCount;
     MKMapPoint *points = route.polyline.points;
-    
+    NSMutableArray *locations = [NSMutableArray arrayWithCapacity:pointCount];
+    for (int i = 0; i < pointCount; i++) {
+        CLLocationCoordinate2D coordinate = MKCoordinateForMapPoint(points[i]);
+        [locations addObject:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude]];
+    }
+    return [self regionForLocations:locations];
+}
+
+- (MKCoordinateRegion)regionForLocations:(NSArray *)locations {
     /* Add 360 degrees so we can properly find the bounding box without sign problems */
-    CLLocationCoordinate2D nwCorner = MKCoordinateForMapPoint(points[0]);
+    CLLocation *firstLocation = locations.firstObject;
+    CLLocationCoordinate2D nwCorner = firstLocation.coordinate;
     nwCorner.latitude += 360;
     nwCorner.longitude += 360;
     CLLocationCoordinate2D seCorner = nwCorner;
     
-    for (NSUInteger i = 1; i < pointCount; i++) {
-        CLLocationCoordinate2D point = MKCoordinateForMapPoint(points[i]);
-        point.latitude += 360;
-        point.longitude += 360;
-        if (point.latitude  < seCorner.latitude)  seCorner.latitude  = point.latitude;
-        if (point.latitude  > nwCorner.latitude)  nwCorner.latitude  = point.latitude;
-        if (point.longitude < nwCorner.longitude) nwCorner.longitude = point.longitude;
-        if (point.longitude > seCorner.longitude) seCorner.longitude = point.longitude;
+    for (CLLocation *location in locations) {
+        CLLocationCoordinate2D coordinate = location.coordinate;
+        coordinate.latitude += 360;
+        coordinate.longitude += 360;
+        if (coordinate.latitude  < seCorner.latitude)  seCorner.latitude  = coordinate.latitude;
+        if (coordinate.latitude  > nwCorner.latitude)  nwCorner.latitude  = coordinate.latitude;
+        if (coordinate.longitude < nwCorner.longitude) nwCorner.longitude = coordinate.longitude;
+        if (coordinate.longitude > seCorner.longitude) seCorner.longitude = coordinate.longitude;
     }
     
     /* remove the 360 degree offset we added earlier */
@@ -223,6 +258,17 @@ static const NSTimeInterval kUpdateInterval = 30.0;
     renderer.lineWidth = 3;
     renderer.strokeColor = [UIColor blueColor];
     return renderer;
+}
+
+#pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    /* keep network activity low by only updating occassionally */
+    if (self.timeOfLastUpdate < CACurrentMediaTime() - kUpdateInterval) {
+        [[ParseAPI getInstance] updateOrder:self.order withDriverLocation:locations.lastObject];
+        [self updateDriverLocation];
+        self.timeOfLastUpdate = CACurrentMediaTime();
+    }
 }
 
 #pragma mark RNTimer

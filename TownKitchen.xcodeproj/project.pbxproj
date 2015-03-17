@@ -52,6 +52,8 @@
 		91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */; };
 		91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */; };
 		91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */; };
+		91788D9F1AB8D60F0038FE1F /* TKOrderSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D9D1AB8D60F0038FE1F /* TKOrderSummaryCell.m */; };
+		91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D9E1AB8D60F0038FE1F /* TKOrderSummaryCell.xib */; };
 		9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F198EE31AAF7B0D00C0055D /* Images.xcassets */; };
 		9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */; };
 		9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */; };
@@ -150,6 +152,9 @@
 		91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKMenuOptionCell.xib; sourceTree = "<group>"; };
 		91788D941AAD25830038FE1F /* NSArray+ArrayOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ArrayOps.h"; sourceTree = "<group>"; };
 		91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ArrayOps.m"; sourceTree = "<group>"; };
+		91788D9C1AB8D60F0038FE1F /* TKOrderSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKOrderSummaryCell.h; sourceTree = "<group>"; };
+		91788D9D1AB8D60F0038FE1F /* TKOrderSummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKOrderSummaryCell.m; sourceTree = "<group>"; };
+		91788D9E1AB8D60F0038FE1F /* TKOrderSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKOrderSummaryCell.xib; sourceTree = "<group>"; };
 		9F198EE31AAF7B0D00C0055D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
@@ -365,6 +370,9 @@
 		91788D8D1AAD0BA90038FE1F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				91788D9C1AB8D60F0038FE1F /* TKOrderSummaryCell.h */,
+				91788D9D1AB8D60F0038FE1F /* TKOrderSummaryCell.m */,
+				91788D9E1AB8D60F0038FE1F /* TKOrderSummaryCell.xib */,
 				2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */,
 				2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */,
 				2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */,
@@ -515,6 +523,7 @@
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
+				91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */,
 				9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
@@ -595,6 +604,7 @@
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
+				91788D9F1AB8D60F0038FE1F /* TKOrderSummaryCell.m in Sources */,
 				2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */,
 				9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
