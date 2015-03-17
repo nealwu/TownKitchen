@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DaySelectViewController">
             <connections>
+                <outlet property="header" destination="jMA-Rh-lRq" id="bUI-bk-f7p"/>
                 <outlet property="tableView" destination="HxB-zB-SRP" id="cZ6-gi-vir"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) DayCell *sizingCell;
 @property (strong, nonatomic) DaySelectAnimationController *daySelectAnimationController;
+@property (weak, nonatomic) IBOutlet TKHeader *header;
 
 @end
 
@@ -54,6 +55,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
+
+    // Set up header
+    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
+    [self.header.titleView addSubview:TKLogoImageView];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];

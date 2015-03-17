@@ -39,6 +39,8 @@ CGFloat const statusBarHeight = 20.0;
     
     // Create intermediate header
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
+    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
+    [header.titleView addSubview:TKLogoImageView];
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;

@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6254"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TKHeader">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="1lO-fq-1lt"/>
-                <outlet property="headerImage" destination="S5Q-kr-Yea" id="L6I-RR-7Vs"/>
+                <outlet property="leftView" destination="NLR-70-BdH" id="9FL-FT-M1N"/>
+                <outlet property="rightView" destination="RP4-Ih-J84" id="44f-aF-Fuw"/>
                 <outlet property="titleView" destination="5xJ-ha-608" id="JOW-se-61s"/>
             </connections>
         </placeholder>
@@ -18,31 +19,34 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpx-sS-Icb" userLabel="Header Contents">
-                    <rect key="frame" x="0.0" y="24" width="320" height="40"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xJ-ha-608" userLabel="Title View">
-                            <rect key="frame" x="60" y="0.0" width="200" height="40"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header-logo" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-kr-Yea">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="wN2-1C-dmY"/>
-                                        <constraint firstAttribute="width" constant="200" id="yun-CU-FBQ"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
+                            <rect key="frame" x="60" y="0.0" width="200" height="44"/>
                             <constraints>
-                                <constraint firstItem="S5Q-kr-Yea" firstAttribute="leading" secondItem="5xJ-ha-608" secondAttribute="leading" id="TEF-aF-VKd"/>
                                 <constraint firstAttribute="width" constant="200" id="XMN-ah-EAy"/>
-                                <constraint firstAttribute="height" constant="40" id="f4g-bh-Tuj"/>
-                                <constraint firstItem="S5Q-kr-Yea" firstAttribute="top" secondItem="5xJ-ha-608" secondAttribute="top" id="zef-6M-vAB"/>
+                                <constraint firstAttribute="height" constant="44" id="f4g-bh-Tuj"/>
                             </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLR-70-BdH" userLabel="Left View">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RP4-Ih-J84" userLabel="Right View">
+                            <rect key="frame" x="260" y="0.0" width="60" height="44"/>
                         </view>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="NLR-70-BdH" secondAttribute="bottom" id="LMe-cJ-Zhz"/>
+                        <constraint firstItem="NLR-70-BdH" firstAttribute="leading" secondItem="Tpx-sS-Icb" secondAttribute="leading" id="QoB-Vd-Jb9"/>
+                        <constraint firstItem="RP4-Ih-J84" firstAttribute="top" secondItem="Tpx-sS-Icb" secondAttribute="top" id="THg-La-TTH"/>
+                        <constraint firstAttribute="trailing" secondItem="RP4-Ih-J84" secondAttribute="trailing" id="TVQ-tJ-dH3"/>
                         <constraint firstAttribute="centerY" secondItem="5xJ-ha-608" secondAttribute="centerY" id="d2o-3o-yLt"/>
                         <constraint firstAttribute="centerX" secondItem="5xJ-ha-608" secondAttribute="centerX" id="irE-3x-OCy"/>
-                        <constraint firstAttribute="height" constant="40" id="k8h-gO-FeC"/>
+                        <constraint firstAttribute="height" constant="44" id="k8h-gO-FeC"/>
+                        <constraint firstAttribute="bottom" secondItem="RP4-Ih-J84" secondAttribute="bottom" id="lVZ-2Y-dCs"/>
+                        <constraint firstItem="NLR-70-BdH" firstAttribute="top" secondItem="Tpx-sS-Icb" secondAttribute="top" id="lvE-1Q-ia6"/>
+                        <constraint firstItem="5xJ-ha-608" firstAttribute="leading" secondItem="NLR-70-BdH" secondAttribute="trailing" id="oYb-HV-NTP"/>
+                        <constraint firstItem="RP4-Ih-J84" firstAttribute="leading" secondItem="5xJ-ha-608" secondAttribute="trailing" id="zXD-wG-nZJ"/>
                     </constraints>
                 </view>
             </subviews>
@@ -57,7 +61,4 @@
             <point key="canvasLocation" x="9" y="-130"/>
         </view>
     </objects>
-    <resources>
-        <image name="header-logo" width="200" height="40"/>
-    </resources>
 </document>
