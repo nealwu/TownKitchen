@@ -217,7 +217,7 @@ CGFloat const statusBarHeight = 20.0;
 }
 
 - (UIImageView *)imageViewFromCellsAboveAndIncludingSelectedCellFrame:(CGRect)selectedCellFrame inViewController:(UIViewController *)viewController {
-    CGFloat distanceAboveSelectedCellBottomEdge = fmaxf(0, selectedCellFrame.origin.y + selectedCellFrame.size.height);
+    CGFloat distanceAboveSelectedCellBottomEdge = fminf(viewController.view.frame.size.height, selectedCellFrame.origin.y + selectedCellFrame.size.height);
     CGRect aboveCellsFrame = CGRectMake(0, 0, viewController.view.frame.size.width, distanceAboveSelectedCellBottomEdge);
     UIImageView *aboveCellsImageView = [[UIImageView alloc] initWithFrame:aboveCellsFrame];
     aboveCellsImageView.image = [self imageInRect:aboveCellsFrame fromView:viewController.view];
