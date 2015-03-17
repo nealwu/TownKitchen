@@ -1,20 +1,20 @@
 //
-//  DateLabelsView.m
+//  DateLabelsViewSmall.m
 //  TownKitchen
 //
 //  Created by Peter Bai on 3/16/15.
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
-#import "DateLabelsView.h"
+#import "DateLabelsViewSmall.h"
 
-@interface DateLabelsView ()
+@interface DateLabelsViewSmall ()
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
-@implementation DateLabelsView
+@implementation DateLabelsViewSmall
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -33,7 +33,7 @@
 }
 
 - (void)initSubViews {
-    UINib *nib = [UINib nibWithNibName:@"DateLabelsView" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"DateLabelsViewSmall" bundle:nil];
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];

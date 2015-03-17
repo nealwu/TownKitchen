@@ -18,14 +18,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jk1-G4-NNc" userLabel="Weekday Label">
-                    <rect key="frame" x="61" y="18" width="152" height="54"/>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="41"/>
+                    <rect key="frame" x="63" y="18" width="148" height="52"/>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="March 10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fv3-2c-sc2" userLabel="Month and Day Label">
-                    <rect key="frame" x="86" y="72" width="103" height="30"/>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                    <rect key="frame" x="88" y="70" width="99" height="29"/>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>

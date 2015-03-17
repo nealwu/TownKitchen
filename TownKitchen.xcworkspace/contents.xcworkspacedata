@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:TownKitchen/DateLabelsViewSmall.xib">
+   </FileRef>
+   <FileRef
       location = "group:TownKitchen.xcodeproj">
    </FileRef>
    <FileRef

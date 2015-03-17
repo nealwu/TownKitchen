@@ -94,19 +94,17 @@ CGFloat const statusBarHeight = 20.0;
     CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
     CATransform3D headerTitleTransform = CATransform3DIdentity;
     headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * header.frame.size.height), 0);
-
-    /*
-    CATransform3D dateLabelsViewTransform = CATransform3DIdentity;
-    dateLabelsViewTransform = CATransform3DTranslate(dateLabelsViewTransform, 0, - selectedCellFrame.origin.y + statusBarHeight, 0);
-    dateLabelsViewTransform = CATransform3DScale(dateLabelsViewTransform, 1.0, 1.0, 0);
-    */
     
-    CGAffineTransform dateLabelsViewTransform = CGAffineTransformIdentity;
+    // Define final transforms (date label)
     CGFloat scaleFactor = 0.5;
-    CGFloat fudgeFactor = 10.0;
-    CGFloat dateLabelDisplacementY = selectedCellFrame.origin.y + (dateLabelsView.frame.size.height * scaleFactor) / 2.0 - statusBarHeight + fudgeFactor;
+    CGFloat yToOffsetAfterScaling = 8.5;
+    CGAffineTransform dateLabelsViewTransform = CGAffineTransformIdentity;
+    CGFloat dateLabelDisplacementY = selectedCellFrame.origin.y + (dateLabelsView.frame.size.height * scaleFactor) / 2.0 - statusBarHeight + yToOffsetAfterScaling;
     dateLabelsViewTransform = CGAffineTransformTranslate(dateLabelsViewTransform, 0, - dateLabelDisplacementY);
     dateLabelsViewTransform = CGAffineTransformScale(dateLabelsViewTransform, 0.5, 0.5);
+    
+    CGFloat monthAndDayLabelDisplacementY = 5.0;
+    CGAffineTransform monthAndDayLabelTransform = CGAffineTransformMakeTranslation(0, - monthAndDayLabelDisplacementY);
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
@@ -119,6 +117,7 @@ CGFloat const statusBarHeight = 20.0;
                          
                          header.titleView.layer.transform = headerTitleTransform;
                          dateLabelsView.transform = dateLabelsViewTransform;
+                         dateLabelsView.monthAndDayLabel.transform = monthAndDayLabelTransform;
                          
                          self.toViewController.view.frame = finalToFrame;
                      }

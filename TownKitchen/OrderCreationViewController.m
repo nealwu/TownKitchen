@@ -15,7 +15,7 @@
 #import "Order.h"
 #import "OrderCreationCell.h"
 #import "TKHeader.h"
-#import "DateLabelsView.h"
+#import "DateLabelsViewSmall.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
 
@@ -26,7 +26,6 @@
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
-@property (strong, nonatomic) UIView *headerTitleView;
 
 @end
 
@@ -65,14 +64,10 @@
     [self.tableView reloadData];
     
     // set up header
-    DateLabelsView *dateLabelsView = [[DateLabelsView alloc] initWithFrame:self.header.titleView.bounds];
-    dateLabelsView.backgroundColor = [UIColor blueColor];
-    dateLabelsView.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
-    dateLabelsView.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
-    
-    
-    
-    [self.header.titleView addSubview:dateLabelsView];
+    DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:self.header.titleView.bounds];
+    dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
+    dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
+    [self.header.titleView addSubview:dateLabelsViewSmall];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];

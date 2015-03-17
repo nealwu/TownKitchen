@@ -1,5 +1,5 @@
 //
-//  DateLabelsView.h
+//  DateLabelsViewSmall.h
 //  TownKitchen
 //
 //  Created by Peter Bai on 3/16/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DateLabelsView : UIView
+@interface DateLabelsViewSmall : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *weekdayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthAndDayLabel;
