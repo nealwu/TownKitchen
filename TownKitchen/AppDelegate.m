@@ -11,6 +11,7 @@
 #import "OrderStatusViewController.h"
 #import "Order.h"
 #import <Parse/Parse.h>
+#import "Stripe.h"
 #import "OrderCreationViewController.h"
 #import "DaySelectViewController.h"
 
@@ -23,10 +24,13 @@
 
 @end
 
+NSString * const STRIPE_PUBLISHABLE_KEY = @"pk_test_XABTD877BYdT5GEGUNvUL5W7";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"GzDzQtpaJvTQhot8t8sTghxRQX5THinfgZ0LuGZa" clientKey:@"x0vME3m9CR0F7QXcV23uqHPKOX4LyInfe8aV7JKK"];
+    [Stripe setDefaultPublishableKey:STRIPE_PUBLISHABLE_KEY];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 //    OrderStatusViewController *osvc =[[OrderStatusViewController alloc] init];
@@ -43,7 +47,7 @@
 //
 //    self.window.rootViewController = osvc;
 
-    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+//    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
     LoginViewController *lvc = [[LoginViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
     nvc.navigationBar.translucent = NO;
