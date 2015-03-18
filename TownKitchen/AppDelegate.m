@@ -14,7 +14,6 @@
 #import "Stripe.h"
 #import "OrderCreationViewController.h"
 #import "DaySelectViewController.h"
-
 #import "ReviewViewController.h"
 #import "OrderCell.h"
 #import "OrdersViewController.h"
@@ -57,6 +56,7 @@ NSString * const STRIPE_PUBLISHABLE_KEY = @"pk_test_XABTD877BYdT5GEGUNvUL5W7";
                                                      alpha:1.0];
     nvc.navigationBar.tintColor = [UIColor whiteColor];
     self.window.rootViewController = nvc;
+//    self.window.rootViewController = [[PaymentViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }
