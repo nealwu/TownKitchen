@@ -185,12 +185,7 @@ CGFloat const statusBarHeight = 20.0;
     belowCellsImageView.center = CGPointMake(belowCellsImageViewFinalCenter.x, belowCellsImageViewFinalCenter.y + belowCellsImageView.frame.size.height);
 
     self.toViewController.view.hidden = YES;
-    
 
-    // Define final frames
-    
-
-    
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
@@ -201,7 +196,6 @@ CGFloat const statusBarHeight = 20.0;
                          belowCellsImageView.center = belowCellsImageViewFinalCenter;
                          
                          self.fromViewController.view.alpha = 0.5;
-
                      }
                      completion:^(BOOL finished) {
                          self.toViewController.view.hidden = NO;

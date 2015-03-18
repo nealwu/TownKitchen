@@ -13,6 +13,7 @@
 		2B13D09A1AA81B9100FC0689 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0991AA81B9100FC0689 /* main.m */; };
 		2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D09C1AA81B9100FC0689 /* AppDelegate.m */; };
 		2B13D0B41AA81B9100FC0689 /* TownKitchenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */; };
+		2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B187CAC1AB9319B00FCCF78 /* CheckoutAnimationController.m */; };
 		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
@@ -90,6 +91,8 @@
 		2B13D0AD1AA81B9100FC0689 /* TownKitchenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TownKitchenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B13D0B21AA81B9100FC0689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TownKitchenTests.m; sourceTree = "<group>"; };
+		2B187CAB1AB9319B00FCCF78 /* CheckoutAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutAnimationController.h; sourceTree = "<group>"; };
+		2B187CAC1AB9319B00FCCF78 /* CheckoutAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutAnimationController.m; sourceTree = "<group>"; };
 		2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInputViewController.h; sourceTree = "<group>"; };
 		2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInputViewController.m; sourceTree = "<group>"; };
 		2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInputViewController.xib; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 			children = (
 				2BA78A161AB6558500F5FAB0 /* DaySelectAnimationController.h */,
 				2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */,
+				2B187CAB1AB9319B00FCCF78 /* CheckoutAnimationController.h */,
+				2B187CAC1AB9319B00FCCF78 /* CheckoutAnimationController.m */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */,
+				2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */,
 				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
 				2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
