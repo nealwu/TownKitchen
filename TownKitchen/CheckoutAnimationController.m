@@ -50,6 +50,8 @@ CGFloat const statusAndNavBarHeight = 64.0;
     
     [self.containerView addSubview:header];
     
+    // size up the checkout view
+    
     CGRect endFrame = self.toViewController.view.frame;
     endFrame.size.height -= statusAndNavBarHeight;
     endFrame.origin.y += statusAndNavBarHeight;
