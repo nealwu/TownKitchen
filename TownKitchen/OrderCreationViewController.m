@@ -16,15 +16,18 @@
 #import "OrderCreationCell.h"
 #import "TKHeader.h"
 #import "DateLabelsViewSmall.h"
+#import "CheckoutAnimationController.h"
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
+@property (strong, nonatomic) CheckoutAnimationController *checkoutAnimationController;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
+
 
 @end
 
@@ -71,6 +74,9 @@
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(onBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.header.leftView addSubview:backButton];
+    
+    // Initialize animation controller
+    self.checkoutAnimationController = [[CheckoutAnimationController alloc] init];
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
@@ -130,6 +136,18 @@
     return height;
 }
 
+#pragma mark - UIViewControllerTransitioningDelegate Methods
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    self.checkoutAnimationController.animationType = AnimationTypePresent;
+    return self.checkoutAnimationController;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    self.checkoutAnimationController.animationType = AnimationTypeDismiss;
+    return self.checkoutAnimationController;
+}
+
 #pragma mark - Actions
 
 - (IBAction)onOrderButton:(id)sender {
@@ -151,9 +169,11 @@
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
     checkoutViewController.order = order;
+    checkoutViewController.transitioningDelegate = self;
     
     [self presentViewController:checkoutViewController animated:YES completion:nil];
 }
+
 - (IBAction)onBackButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

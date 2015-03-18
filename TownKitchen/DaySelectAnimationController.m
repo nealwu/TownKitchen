@@ -143,6 +143,7 @@ CGFloat const statusBarHeight = 20.0;
                          [dateLabelsView removeFromSuperview];
                          [header removeFromSuperview];
                          [aboveCellsImageView removeFromSuperview];
+                         [belowCellsImageView removeFromSuperview];
                          
                          [transitionContext completeTransition:YES];
                      }];
