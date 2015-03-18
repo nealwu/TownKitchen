@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TownKitchen-FXBlurView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TownKitchen-FormatterKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TownKitchen-Stripe.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TownKitchen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0348B4D124174846B8845EB9</key>
+		<key>1C6BA5621C08467B1A334D73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1FE94F8C0B50A4EDC64EF1A6</key>
+		<key>23937182A2AB42B6A35EFE64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3FABEB3D883E48F674F088E2</key>
+		<key>3020260C571AAB6436B069B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A7426CD60F138A134BB2F18</key>
+		<key>3D3B86D390A292E7EFB24942</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6247FB93BC18A62950DFC4EB</key>
+		<key>51947D492E79896F62053D85</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90FA8A2DBD2AD7B4F045DE52</key>
+		<key>5FB9C3384C27E69112ABCCBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2D21D0300431B21F19224C2</key>
+		<key>691AD1F6ECEC6D09DBE05863</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1761E69B957278054974ED6</key>
+		<key>AF0C40727533C66CB562604B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAC4C1F33095E003BEBC229C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E04A8E26B856BB04001E0ACA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,6 +9,7 @@ pod 'RNTimer'
 pod 'LMGeocoder'
 pod 'GoogleKit'
 pod 'FXBlurView'
+pod 'Stripe'
 
 end
 
