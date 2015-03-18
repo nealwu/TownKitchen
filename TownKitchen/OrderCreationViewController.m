@@ -21,13 +21,14 @@
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet TKHeader *header;
+
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
 @property (strong, nonatomic) CheckoutAnimationController *checkoutAnimationController;
-@property (weak, nonatomic) IBOutlet TKHeader *header;
-
+@property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 
 @end
 
@@ -65,10 +66,10 @@
     [self.tableView reloadData];
     
     // set up header
-    DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:self.header.titleView.bounds];
-    dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
-    dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
-    [self.header.titleView addSubview:dateLabelsViewSmall];
+    self.dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:self.header.titleView.bounds];
+    self.dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
+    self.dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
+    [self.header.titleView addSubview:self.dateLabelsViewSmall];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
@@ -140,6 +141,7 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     self.checkoutAnimationController.animationType = AnimationTypePresent;
+    self.checkoutAnimationController.dateLabelsViewSmall = self.dateLabelsViewSmall;
     return self.checkoutAnimationController;
 }
 

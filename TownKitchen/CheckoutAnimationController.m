@@ -7,6 +7,9 @@
 //
 
 #import "CheckoutAnimationController.h"
+#import "TKHeader.h"
+
+CGFloat const statusAndNavBarHeight = 64.0;
 
 @interface CheckoutAnimationController ()
 
@@ -19,7 +22,7 @@
 @implementation CheckoutAnimationController
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 2.0;
+    return 1.0;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -37,10 +40,22 @@
 }
 
 - (void)animateTransitionPresent:(id<UIViewControllerContextTransitioning>)transitionContext {
+    // create header for container view// set up header
+    TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
+    
+    DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:header.titleView.bounds];
+    dateLabelsViewSmall.weekdayLabel.text = self.dateLabelsViewSmall.weekdayLabel.text;
+    dateLabelsViewSmall.monthAndDayLabel.text = self.dateLabelsViewSmall.monthAndDayLabel.text;
+    [header.titleView addSubview:dateLabelsViewSmall];
+    
+    [self.containerView addSubview:header];
     
     CGRect endFrame = self.toViewController.view.frame;
-    CGRect startFrame = endFrame;
-    startFrame.origin.x += 320;
+    endFrame.size.height -= statusAndNavBarHeight;
+    endFrame.origin.y += statusAndNavBarHeight;
+    
+    CGRect startFrame = self.toViewController.view.frame;
+    startFrame.origin.y += self.fromViewController.view.frame.size.height;
     self.toViewController.view.frame = startFrame;
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{

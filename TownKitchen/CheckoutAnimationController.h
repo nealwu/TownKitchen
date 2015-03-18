@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DateLabelsViewSmall.h"
 
 typedef NS_ENUM(NSInteger, AnimationType) {
     AnimationTypePresent = 0,
@@ -17,5 +18,6 @@ typedef NS_ENUM(NSInteger, AnimationType) {
 @interface CheckoutAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (assign, nonatomic) AnimationType animationType;
+@property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 
 @end
