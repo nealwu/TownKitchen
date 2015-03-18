@@ -134,6 +134,10 @@ CGFloat const statusBarHeight = 20.0;
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;
                          [transitionView removeFromSuperview];
+                         [dateLabelsView removeFromSuperview];
+                         [header removeFromSuperview];
+                         [aboveCellsImageView removeFromSuperview];
+                         
                          [transitionContext completeTransition:YES];
                      }];
     
