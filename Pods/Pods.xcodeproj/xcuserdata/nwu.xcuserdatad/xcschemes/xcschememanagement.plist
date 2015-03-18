@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TownKitchen-PaymentKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TownKitchen-RNTimer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,52 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C6BA5621C08467B1A334D73</key>
+		<key>17B588F6DB9ADD63AAB02B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23937182A2AB42B6A35EFE64</key>
+		<key>230A0D4E00B257058866E50C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3020260C571AAB6436B069B7</key>
+		<key>2576856DA40D0E74B758A1C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D3B86D390A292E7EFB24942</key>
+		<key>3C2281A2B64C3B7C5BF642DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51947D492E79896F62053D85</key>
+		<key>48887AAA7FF5E5F4F8759B1D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5FB9C3384C27E69112ABCCBA</key>
+		<key>5E8025643A2C19EB4AE2E951</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>691AD1F6ECEC6D09DBE05863</key>
+		<key>7AA97E6688962BF63F8FF58F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF0C40727533C66CB562604B</key>
+		<key>A8B62EF51E0607AEDA438E12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BAC4C1F33095E003BEBC229C</key>
+		<key>D22975ADC467F54AA9B8C094</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E04A8E26B856BB04001E0ACA</key>
+		<key>D2DE670189EE54CEEACB5CC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DB3D94DDC9167CF5052D4AF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

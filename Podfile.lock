@@ -45,6 +45,7 @@ PODS:
   - LMGeocoder (1.0.1)
   - Parse (1.6.4):
     - Bolts (~> 1.1)
+  - PaymentKit (1.1.1)
   - RNTimer (0.0.1)
   - Stripe (3.1.0):
     - Stripe/Core (= 3.1.0)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - GoogleKit
   - LMGeocoder
   - Parse
+  - PaymentKit
   - RNTimer
   - Stripe
 
@@ -68,6 +70,7 @@ SPEC CHECKSUMS:
   GoogleKit: c2aa0e3fb0db571fb11f5b41e23cac6f5cdeceec
   LMGeocoder: 48debc3f1fa96895738e6c53449c95b511a93718
   Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
+  PaymentKit: f77b4d5cee45947949429c3d587e8eb160a3c9e2
   RNTimer: cbcfbf2a146cd41a65637f214548ecb0900f2f12
   Stripe: aaa174b50fac40a16958cbc892457a241d0b4b08
 

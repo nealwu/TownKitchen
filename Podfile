@@ -10,6 +10,7 @@ pod 'LMGeocoder'
 pod 'GoogleKit'
 pod 'FXBlurView'
 pod 'Stripe'
+pod 'PaymentKit'
 
 end
 
