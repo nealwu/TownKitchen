@@ -47,7 +47,6 @@
         NSString *shortName = inventoryItem.menuOptionShortName;
 
         [mutableMenuOptionShortNames addObject:shortName];
-        [self.shortNameToQuantity setObject:@0 forKey:shortName];
 
         MenuOption *menuOption = inventoryItem.menuOptionObject;
         [mutableShortNameToObject setObject:menuOption forKey:shortName];
@@ -79,7 +78,11 @@
 - (void)orderCreationTableViewCell:(OrderCreationCell *)cell didUpdateQuantity:(NSNumber *)quantity {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     NSString *shortName = self.menuOptionShortNames[indexPath.row];
-    self.shortNameToQuantity[shortName] = quantity;
+    if (quantity.integerValue == 0) {
+        [self.shortNameToQuantity removeObjectForKey:shortName];
+    } else {
+        self.shortNameToQuantity[shortName] = quantity;
+    }
     NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
 
