@@ -77,7 +77,9 @@ static const NSTimeInterval kUpdateInterval = 10.0;
     if (self.reportLocationAsDriverLocation) {
         if (!self.locationManager) {
             self.locationManager = [[CLLocationManager alloc] init];
-            [self.locationManager requestWhenInUseAuthorization];
+            if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+                [self.locationManager requestWhenInUseAuthorization];
+            }
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
             self.locationManager.delegate = self;
         }
