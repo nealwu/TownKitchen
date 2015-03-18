@@ -34,6 +34,7 @@
 - (MenuOption *)menuOptionForShortName:(NSString *)shortName {
     PFQuery *query = [PFQuery queryWithClassName:@"MenuOption"];
     [query whereKey:@"shortName" equalTo:shortName];
+    query.cachePolicy = 3;
     NSArray *menuOptions = [query findObjects];
 
     if (menuOptions.count == 0) {
