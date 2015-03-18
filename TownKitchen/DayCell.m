@@ -15,7 +15,6 @@
 
 @interface DayCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet DateLabelsView *dateLabelsView;
 
 @property (readwrite, nonatomic) UIImage *originalImage;
@@ -23,24 +22,12 @@
 @property (readwrite, nonatomic) NSString *weekday;
 @property (readwrite, nonatomic) NSString *monthAndDay;
 
-
 @end
 
 @implementation DayCell
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    if (highlighted) {
-        [UIView animateWithDuration:0.2
-                         animations:^{
-                             // do something
-                         }];
-    }
-    else {
-        [UIView animateWithDuration:0.2
-                         animations:^{
-                             // reverse it
-                         }];
-    }
+
 }
 
 #pragma mark - Custom Setters
@@ -64,12 +51,7 @@
                                                                    duration:0.3
                                                                     options:UIViewAnimationOptionTransitionCrossDissolve
                                                                  animations:^{
-                                                                     self.backgroundImageView.image = [UIImageEffects
-                                                                                                       imageByApplyingBlurToImage:image
-                                                                                                       withRadius:0
-                                                                                                       tintColor:[UIColor colorWithWhite:0.0 alpha:0.5]
-                                                                                                       saturationDeltaFactor:1.0
-                                                                                                       maskImage:nil];
+                                                                     self.backgroundImageView.image = image;
                                                                      self.darkenedImage = self.backgroundImageView.image;
                                                                  } completion:^(BOOL finished) {
                                                                      self.originalImage = image;

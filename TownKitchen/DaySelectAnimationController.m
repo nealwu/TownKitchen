@@ -65,10 +65,14 @@ CGFloat const statusBarHeight = 20.0;
                                                                       transitionImageFinalHeight)];
     
     UIImageView *transitionImageView = [[UIImageView alloc] initWithFrame:transitionView.bounds];
-    transitionImageView.image = self.selectedCell.darkenedImage;
+    transitionImageView.image = self.selectedCell.backgroundImageView.image;
     transitionImageView.contentMode = UIViewContentModeScaleAspectFill;
     transitionImageView.clipsToBounds = YES;
     [transitionView addSubview:transitionImageView];
+
+    UIView *darkFilterView = [[UIView alloc] initWithFrame:transitionView.bounds];
+    darkFilterView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    [transitionView addSubview:darkFilterView];
     
     [self.containerView addSubview:transitionView];
     
@@ -80,6 +84,7 @@ CGFloat const statusBarHeight = 20.0;
     dateLabelsView.weekdayLabel.text = self.selectedCell.weekday;
     dateLabelsView.monthAndDayLabel.text = self.selectedCell.monthAndDay;
     
+
     // Snapshot cells above selected cell
     UIImageView *aboveCellsImageView = [self imageViewFromCellsAboveSelectedCellFrame:selectedCellFrame inViewController:self.fromViewController];
     [self.containerView addSubview:aboveCellsImageView];
@@ -145,7 +150,7 @@ CGFloat const statusBarHeight = 20.0;
     // Animate image view faster
     [UIView animateWithDuration:duration * 0.5
                      animations:^{
-                         transitionImageView.alpha = 0.0;
+                         transitionView.alpha = 0.0;
                      }];
 }
 
