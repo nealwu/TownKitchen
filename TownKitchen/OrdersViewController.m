@@ -7,7 +7,7 @@
 //
 
 #import "OrdersViewController.h"
-#import "OrderCell.h"
+#import "TKOrderSummaryCell.h"
 #import "ParseAPI.h"
 #import "ReviewViewController.h"
 #import "OrderStatusViewController.h"
@@ -15,6 +15,7 @@
 @interface OrdersViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) TKOrderSummaryCell *sizingCell;
 
 @property (strong, nonatomic) NSArray *orders;
 
@@ -34,10 +35,10 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"OrderCell" bundle:nil] forCellReuseIdentifier:@"OrderCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TKOrderSummaryCell" bundle:nil] forCellReuseIdentifier:@"TKOrderSummaryCell"];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 10;
+    self.tableView.estimatedRowHeight = 50;
     [self.tableView reloadData];
 }
 
@@ -48,7 +49,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderCell" forIndexPath:indexPath];
+    TKOrderSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell" forIndexPath:indexPath];
     cell.order = self.orders[indexPath.row];
     return cell;
 }
@@ -57,7 +58,31 @@
 //    ReviewViewController *rvc = [[ReviewViewController alloc] init];
     OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
     osvc.order = self.orders[indexPath.row];
-    [self.navigationController pushViewController:osvc animated:YES];
+    [self presentViewController:osvc animated:YES completion:nil];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Initialize the sizing cell
+    if (!self.sizingCell) {
+        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell"];
+    }
+    
+    // Populate cell with the same data as the visible cell
+    Order *order = self.orders[indexPath.row];
+    self.sizingCell.order = order;
+    
+    [self.sizingCell setNeedsUpdateConstraints];
+    [self.sizingCell updateConstraintsIfNeeded];
+    
+    // Set cell width to the same width as tableView
+    self.sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.sizingCell.bounds));
+    [self.sizingCell setNeedsLayout];
+    [self.sizingCell layoutIfNeeded];
+    
+    // Get the height of the sizing cell, adding one to compensate for cell separators
+    CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
+    NSLog(@"Calculated height %f for row %lu", height, (unsigned long)indexPath.row);
+    return height;
 }
 
 @end
