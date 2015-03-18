@@ -16,16 +16,22 @@
 #import "TimeSelectViewController.h"
 #import "OrdersViewController.h"
 #import "ParseAPI.h"
+#import "PTKView.h"
+#import "STPCard.h"
+#import "STPAPIClient.h"
 
-@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate>
+@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate, PTKViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic) NSArray *orderItems;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (strong, nonatomic) NSDate *selectedDate;
+@property (weak, nonatomic) IBOutlet UIView *tempPaymentView;
+@property (strong, nonatomic) PTKView *paymentView;
+@property (weak, nonatomic) IBOutlet UIButton *orderButton;
 
+@property (strong, nonatomic) NSDate *selectedDate;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 
@@ -76,7 +82,12 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
     [self reloadTableData];
-    
+
+    self.orderButton.enabled = NO;
+    self.paymentView = [[PTKView alloc] initWithFrame:self.tempPaymentView.frame];
+    self.paymentView.delegate = self;
+//    [self.tempPaymentView removeFromSuperview];
+    [self.view addSubview:self.paymentView];
 }
 
 - (void)reloadTableData {
@@ -96,6 +107,25 @@
     if (self.selectedDate) {
         [tvc.datePicker setDate:self.selectedDate animated:NO];
     }
+}
+
+- (void)createBackendChargeWithToken:(STPToken *)token completion:(void (^)(NSError *))completion {
+    NSLog(@"Got the token: %@", token);
+//    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+//    request.HTTPMethod = @"POST";
+//    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
+//    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
+//
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response,
+//                                               NSData *data,
+//                                               NSError *error) {
+//                               if (completion != nil) {
+//                                   completion(error);
+//                               }
+//                           }];
 }
 
 #pragma mark LocationSelectViewControllerDelegate methods
@@ -123,6 +153,13 @@
     [dayComponents setMinute:timeComponents.minute];
     [dayComponents setSecond:timeComponents.second];
     self.order.deliveryDateAndTime = [calendar dateFromComponents:dayComponents];
+}
+
+#pragma mark PTKViewDelegate methods
+
+- (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
+    NSLog(@"Got payment with paymentView %@ and card %@", paymentView, card);
+    self.orderButton.enabled = valid;
 }
 
 #pragma mark Table view methods
@@ -156,13 +193,29 @@
 
 - (IBAction)onPlaceOrder:(id)sender {
     self.order.user = [PFUser currentUser];
-    self.order.status = @"paid";
-    self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
+
+    STPCard *card = [[STPCard alloc] init];
+    card.number = self.paymentView.card.number;
+    card.expMonth = self.paymentView.card.expMonth;
+    card.expYear = self.paymentView.card.expYear;
+    card.cvc = self.paymentView.card.cvc;
+    NSLog(@"Set up card: %@", card);
+    NSLog(@"%@ %ld %ld %@", self.paymentView.card.number, self.paymentView.card.expMonth, self.paymentView.card.expYear, self.paymentView.card.cvc);
+
+    [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
+        if (error) {
+            NSLog(@"Error while handling card: %@", error);
+        } else {
+            [self createBackendChargeWithToken:token completion:nil];
+        }
+    }];
 
     NSLog(@"validating order: %@", self.order);
     NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
 
     if ([[ParseAPI getInstance] validateOrder:self.order]) {
+        self.order.status = @"paid";
+        self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
         [[ParseAPI getInstance] createOrder:self.order];
     }
 

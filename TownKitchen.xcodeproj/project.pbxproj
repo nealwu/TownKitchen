@@ -56,6 +56,8 @@
 		91788D9F1AB8D60F0038FE1F /* TKOrderSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D9D1AB8D60F0038FE1F /* TKOrderSummaryCell.m */; };
 		91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D9E1AB8D60F0038FE1F /* TKOrderSummaryCell.xib */; };
 		9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F198EE31AAF7B0D00C0055D /* Images.xcassets */; };
+		9F6C7F191AB91F1300F49A49 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C7F171AB91F1300F49A49 /* PaymentViewController.m */; };
+		9F6C7F1A1AB91F1300F49A49 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F6C7F181AB91F1300F49A49 /* PaymentViewController.xib */; };
 		9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */; };
 		9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */; };
 		9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAF91AB0D37700610500 /* OrdersViewController.m */; };
@@ -159,6 +161,9 @@
 		91788D9D1AB8D60F0038FE1F /* TKOrderSummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKOrderSummaryCell.m; sourceTree = "<group>"; };
 		91788D9E1AB8D60F0038FE1F /* TKOrderSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKOrderSummaryCell.xib; sourceTree = "<group>"; };
 		9F198EE31AAF7B0D00C0055D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9F6C7F161AB91F1300F49A49 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		9F6C7F171AB91F1300F49A49 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		9F6C7F181AB91F1300F49A49 /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
 		9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
@@ -331,6 +336,9 @@
 				9FC8AAF81AB0D37700610500 /* OrdersViewController.h */,
 				9FC8AAF91AB0D37700610500 /* OrdersViewController.m */,
 				9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */,
+				9F6C7F161AB91F1300F49A49 /* PaymentViewController.h */,
+				9F6C7F171AB91F1300F49A49 /* PaymentViewController.m */,
+				9F6C7F181AB91F1300F49A49 /* PaymentViewController.xib */,
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
@@ -535,6 +543,7 @@
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
 				2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */,
+				9F6C7F1A1AB91F1300F49A49 /* PaymentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +597,7 @@
 				91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */,
 				2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */,
 				9FF2AE8F1AB66B5A001BF6BA /* LoginViewController.m in Sources */,
+				9F6C7F191AB91F1300F49A49 /* PaymentViewController.m in Sources */,
 				2BBABFB91AB008DF0098124D /* DayCell.m in Sources */,
 				2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */,
 				91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */,
