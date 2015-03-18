@@ -133,7 +133,7 @@ CGFloat const statusBarHeight = 20.0;
                      }
                      completion:^(BOOL finished) {
                          self.fromViewController.view.hidden = NO;
-                         transitionImageView.hidden = YES;
+                         [transitionView removeFromSuperview];
                          [transitionContext completeTransition:YES];
                      }];
     
