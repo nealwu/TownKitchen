@@ -94,6 +94,7 @@ CGFloat const statusBarHeight = 20.0;
     // Add subviews that need to be on top
     [self.containerView addSubview:header];
     [self.containerView addSubview:dateLabelsView];
+    [dateLabelsView layoutIfNeeded];
     
     // Set initial frames
     CGRect initialToFrame = self.toViewController.view.frame;
