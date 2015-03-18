@@ -107,7 +107,7 @@
 
 - (void)moveToInputAddress {
     [[LMGeocoder sharedInstance]
-     geocodeAddressString:self.addressLabel.text
+     geocodeAddressString:self.addressString
      service:kLMGeocoderGoogleService
      completionHandler:^(LMAddress *address, NSError *error) {
          if (address && !error) {
