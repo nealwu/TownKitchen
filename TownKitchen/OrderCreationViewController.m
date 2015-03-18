@@ -172,6 +172,7 @@
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
     checkoutViewController.order = order;
     checkoutViewController.transitioningDelegate = self;
+    checkoutViewController.modalPresentationStyle = UIModalPresentationCustom;
     
     [self presentViewController:checkoutViewController animated:YES completion:nil];
 }

@@ -29,7 +29,8 @@ CGFloat const statusAndNavBarHeight = 64.0;
     self.toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     self.fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     self.containerView = [transitionContext containerView];
-    [self.containerView insertSubview:self.toViewController.view aboveSubview:self.fromViewController.view];
+    [self.containerView addSubview:self.toViewController.view];
+    // do not need add fromViewController, or view will blank out after transition completes
     
     if (self.animationType == AnimationTypePresent) {
         [self animateTransitionPresent:transitionContext];
@@ -48,7 +49,7 @@ CGFloat const statusAndNavBarHeight = 64.0;
     dateLabelsViewSmall.monthAndDayLabel.text = self.dateLabelsViewSmall.monthAndDayLabel.text;
     [header.titleView addSubview:dateLabelsViewSmall];
     
-    [self.containerView addSubview:header];
+//    [self.containerView addSubview:header];
     
     // size up the checkout view
     
@@ -63,6 +64,7 @@ CGFloat const statusAndNavBarHeight = 64.0;
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         self.toViewController.view.alpha = 1.0;
         self.toViewController.view.frame = endFrame;
+        self.fromViewController.view.alpha = 0.5;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:YES];
     }];
