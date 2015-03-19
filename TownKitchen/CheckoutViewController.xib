@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController">
@@ -22,19 +22,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STl-AH-Ckx">
-                    <rect key="frame" x="20" y="301" width="129" height="21"/>
+                    <rect key="frame" x="20" y="304" width="129" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25Y-qO-zHP">
-                    <rect key="frame" x="20" y="398" width="68" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25Y-qO-zHP">
+                    <rect key="frame" x="20" y="401" width="68" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-Sd-Efo">
-                    <rect key="frame" x="40" y="505" width="232" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-Sd-Efo">
+                    <rect key="frame" x="40" y="508" width="232" height="40"/>
                     <color key="backgroundColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="3kx-Rl-j14"/>
@@ -47,21 +47,15 @@
                         <action selector="onPlaceOrder:" destination="-1" eventType="touchUpInside" id="YHV-n7-0sk"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Summary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64S-9E-tkf">
-                    <rect key="frame" x="20" y="20" width="280" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Na-AX-qBN">
-                    <rect key="frame" x="20" y="61" width="280" height="220"/>
+                    <rect key="frame" x="20" y="64" width="280" height="220"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="220" id="7Li-9p-C0d"/>
                     </constraints>
                 </tableView>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hK-7J-NNG" userLabel="Address View">
-                    <rect key="frame" x="20" y="330" width="280" height="48"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hK-7J-NNG" userLabel="Address View">
+                    <rect key="frame" x="20" y="333" width="280" height="48"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-gp-So8" userLabel="Address label">
                             <rect key="frame" x="8" y="6" width="146" height="36"/>
@@ -116,8 +110,8 @@
                         <constraint firstItem="7LT-Wb-41Q" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" constant="12" id="wRi-rY-rqe"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="41Y-VO-qYR" userLabel="Payment View">
-                    <rect key="frame" x="20" y="427" width="280" height="48"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41Y-VO-qYR" userLabel="Payment View">
+                    <rect key="frame" x="20" y="430" width="280" height="48"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="xRw-1e-YHs"/>
@@ -127,6 +121,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="STl-AH-Ckx" firstAttribute="top" secondItem="5Na-AX-qBN" secondAttribute="bottom" constant="20" id="AWs-1t-2Jq"/>
+                <constraint firstItem="5Na-AX-qBN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="BzE-qP-lwe"/>
                 <constraint firstAttribute="trailing" secondItem="GKp-Sd-Efo" secondAttribute="trailing" constant="48" id="CuQ-r5-gwS"/>
                 <constraint firstItem="25Y-qO-zHP" firstAttribute="top" secondItem="4hK-7J-NNG" secondAttribute="bottom" constant="20" id="FM2-c6-Fji"/>
                 <constraint firstItem="41Y-VO-qYR" firstAttribute="leading" secondItem="5Na-AX-qBN" secondAttribute="leading" id="OZS-0Z-eXT"/>
@@ -136,14 +131,10 @@
                 <constraint firstItem="41Y-VO-qYR" firstAttribute="trailing" secondItem="4hK-7J-NNG" secondAttribute="trailing" id="U7A-EA-Ynr"/>
                 <constraint firstItem="STl-AH-Ckx" firstAttribute="leading" secondItem="5Na-AX-qBN" secondAttribute="leading" id="ZsW-nd-VXd"/>
                 <constraint firstItem="41Y-VO-qYR" firstAttribute="top" secondItem="25Y-qO-zHP" secondAttribute="bottom" constant="8" id="bQw-Eg-PT6"/>
-                <constraint firstItem="64S-9E-tkf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="gTs-6f-uAD"/>
                 <constraint firstItem="41Y-VO-qYR" firstAttribute="leading" secondItem="4hK-7J-NNG" secondAttribute="leading" id="gdU-lZ-bqN"/>
                 <constraint firstItem="GKp-Sd-Efo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="h4K-07-gFq"/>
                 <constraint firstItem="5Na-AX-qBN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="iI7-Ez-HIC"/>
-                <constraint firstItem="5Na-AX-qBN" firstAttribute="top" secondItem="64S-9E-tkf" secondAttribute="bottom" constant="20" id="qCg-M8-3Pr"/>
                 <constraint firstItem="GKp-Sd-Efo" firstAttribute="top" secondItem="41Y-VO-qYR" secondAttribute="bottom" constant="30" id="r09-6H-0Qm"/>
-                <constraint firstItem="64S-9E-tkf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="swF-e9-P1I"/>
-                <constraint firstAttribute="trailing" secondItem="64S-9E-tkf" secondAttribute="trailing" constant="20" id="yPT-a0-pxv"/>
                 <constraint firstAttribute="trailing" secondItem="5Na-AX-qBN" secondAttribute="trailing" constant="20" id="zMa-ac-A2g"/>
             </constraints>
             <point key="canvasLocation" x="140" y="154"/>

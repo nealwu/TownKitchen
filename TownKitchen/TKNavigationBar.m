@@ -22,7 +22,7 @@
                                         green:92.0 / 255
                                          blue:87.0 / 255
                                         alpha:1.0];
-    
+    self.tintColor = [UIColor whiteColor];  
 }
 
 @end

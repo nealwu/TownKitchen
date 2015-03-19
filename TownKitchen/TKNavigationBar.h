@@ -10,4 +10,6 @@
 
 @interface TKNavigationBar : UINavigationBar
 
+@property (assign, nonatomic) BOOL showTKLogo;
+
 @end

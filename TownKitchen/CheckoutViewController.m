@@ -19,6 +19,9 @@
 #import "PTKView.h"
 #import "STPCard.h"
 #import "STPAPIClient.h"
+#import "TKNavigationBar.h"
+#import "DateLabelsViewSmall.h"
+#import "DateUtils.h"
 
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate, PTKViewDelegate>
 
@@ -48,6 +51,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews {
+    // Set up navbar when frames have loaded
+    TKNavigationBar *navigationBar = [[TKNavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+//    UINavigationItem *titleItem = [[UINavigationItem alloc] init];
+//    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
+//    titleItem.titleView = TKLogoImageView;
+    
+    // Create date label
+    UINavigationItem *dateLabelItem = [[UINavigationItem alloc] init];
+    DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:self.order.deliveryDateAndTime];
+    dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:self.order.deliveryDateAndTime];
+    dateLabelItem.titleView = dateLabelsViewSmall;
+    
+    [navigationBar setItems:@[dateLabelItem]];
+    [self.view addSubview:navigationBar];
 }
 
 #pragma mark custom setters
@@ -95,6 +116,8 @@
     self.addressAndTimeView.clipsToBounds = YES;
     self.orderButton.layer.cornerRadius = 8;
     self.orderButton.clipsToBounds = YES;
+    
+
 }
 
 - (void)reloadTableData {
