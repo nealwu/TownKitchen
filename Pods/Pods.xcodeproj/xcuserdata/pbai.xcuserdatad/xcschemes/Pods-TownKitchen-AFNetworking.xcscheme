@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "447CF675990D9E18507AA2DF"
+               BlueprintIdentifier = "E67FC6D720103E21F70EDB17"
                BuildableName = "libPods-TownKitchen-AFNetworking.a"
                BlueprintName = "Pods-TownKitchen-AFNetworking"
                ReferencedContainer = "container:Pods.xcodeproj">

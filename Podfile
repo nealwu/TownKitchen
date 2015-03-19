@@ -11,6 +11,7 @@ pod 'GoogleKit'
 pod 'FXBlurView'
 pod 'Stripe'
 pod 'PaymentKit'
+pod 'MTAnimation'
 
 end
 

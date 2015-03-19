@@ -43,6 +43,7 @@ PODS:
   - FXBlurView (1.6.3)
   - GoogleKit (0.3.1)
   - LMGeocoder (1.0.1)
+  - MTAnimation (1.2.2)
   - Parse (1.6.4):
     - Bolts (~> 1.1)
   - PaymentKit (1.1.1)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - FXBlurView
   - GoogleKit
   - LMGeocoder
+  - MTAnimation
   - Parse
   - PaymentKit
   - RNTimer
@@ -69,6 +71,7 @@ SPEC CHECKSUMS:
   FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
   GoogleKit: c2aa0e3fb0db571fb11f5b41e23cac6f5cdeceec
   LMGeocoder: 48debc3f1fa96895738e6c53449c95b511a93718
+  MTAnimation: eeedb417b12eb293ad2e32a02f113d9e98641ae0
   Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
   PaymentKit: f77b4d5cee45947949429c3d587e8eb160a3c9e2
   RNTimer: cbcfbf2a146cd41a65637f214548ecb0900f2f12
