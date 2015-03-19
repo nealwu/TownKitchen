@@ -72,8 +72,8 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1r-IL-fC0" userLabel="Price">
-                            <rect key="frame" x="161" y="11" width="91" height="39"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1r-IL-fC0" userLabel="Price">
+                            <rect key="frame" x="162" y="11" width="17" height="39"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="28"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -81,10 +81,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="ws8-to-d01" secondAttribute="centerX" constant="31.5" id="EAR-hy-fv4"/>
+                        <constraint firstAttribute="centerX" secondItem="ws8-to-d01" secondAttribute="centerX" constant="32" id="EAR-hy-fv4"/>
                         <constraint firstAttribute="centerY" secondItem="ws8-to-d01" secondAttribute="centerY" id="Zwt-PR-YC8"/>
-                        <constraint firstAttribute="centerX" secondItem="a1r-IL-fC0" secondAttribute="centerX" constant="-56" id="Zyd-l4-hov"/>
                         <constraint firstAttribute="centerY" secondItem="a1r-IL-fC0" secondAttribute="centerY" id="bUk-U3-1Mi"/>
+                        <constraint firstItem="a1r-IL-fC0" firstAttribute="leading" secondItem="ws8-to-d01" secondAttribute="trailing" constant="12" id="eGm-eK-AZG"/>
                         <constraint firstAttribute="height" constant="60" id="s27-aP-diK"/>
                     </constraints>
                 </view>

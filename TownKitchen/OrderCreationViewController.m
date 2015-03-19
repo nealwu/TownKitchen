@@ -157,6 +157,8 @@
     return self.checkoutAnimationController;
 }
 
+#pragma mark Private methods
+
 #pragma mark - Actions
 
 - (IBAction)onOrderButton:(id)sender {
@@ -187,15 +189,25 @@
     CGFloat parentHeight = self.view.bounds.size.height;
     CGFloat horizontalGapSize = 20.0;
     CGFloat navigationBarHeight = 64;
-    self.checkoutView.frame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
-    [self.view addSubview:self.checkoutView];
-
-    CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
-    checkoutViewController.order = order;
-    checkoutViewController.transitioningDelegate = self;
-    checkoutViewController.modalPresentationStyle = UIModalPresentationCustom;
     
-//    [self presentViewController:checkoutViewController animated:YES completion:nil];
+    // animate checkoutView in
+    CGRect finalFrame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.y += initialFrame.size.height;
+    
+    NSLog(@"initial frame: %@", NSStringFromCGRect(initialFrame));
+    NSLog(@"inital view bounds: %@", NSStringFromCGRect(self.checkoutView.frame));
+    self.checkoutView.frame = initialFrame;
+    [self.view addSubview:self.checkoutView];
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                          self.checkoutView.frame = finalFrame;
+                     } completion:^(BOOL finished) {
+                         nil;
+                     }];
 }
 
 - (IBAction)onBackButton:(id)sender {

@@ -72,10 +72,12 @@
         }
         else {
             [mutableMenuOptionShortnames addObject:shortName];
-            self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
         }
     }
+    self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
     [self.tableView reloadData];
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%.2f", [self.order.totalPrice floatValue]];
 }
 
 #pragma mark Table view methods
