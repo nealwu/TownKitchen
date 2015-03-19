@@ -27,6 +27,8 @@
 		2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D51AB61503003624DD /* CircleStepperView.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
+		2BE81F981ABABCD0009A887C /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE81F961ABABCD0009A887C /* PaymentViewController.m */; };
+		2BE81F991ABABCD0009A887C /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE81F971ABABCD0009A887C /* PaymentViewController.xib */; };
 		2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */; };
 		2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */; };
 		2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */; };
@@ -118,6 +120,9 @@
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
+		2BE81F951ABABCD0009A887C /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		2BE81F961ABABCD0009A887C /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		2BE81F971ABABCD0009A887C /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
 		2BEC493F1AB7F3D700A8A267 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		2BEC49421AB7FD2E00A8A267 /* DateLabelsViewSmall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateLabelsViewSmall.h; sourceTree = "<group>"; };
@@ -347,6 +352,9 @@
 				9FC8AAF81AB0D37700610500 /* OrdersViewController.h */,
 				9FC8AAF91AB0D37700610500 /* OrdersViewController.m */,
 				9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */,
+				2BE81F951ABABCD0009A887C /* PaymentViewController.h */,
+				2BE81F961ABABCD0009A887C /* PaymentViewController.m */,
+				2BE81F971ABABCD0009A887C /* PaymentViewController.xib */,
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
@@ -558,6 +566,7 @@
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
+				2BE81F991ABABCD0009A887C /* PaymentViewController.xib in Resources */,
 				2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +647,7 @@
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
+				2BE81F981ABABCD0009A887C /* PaymentViewController.m in Sources */,
 				91788D9F1AB8D60F0038FE1F /* TKOrderSummaryCell.m in Sources */,
 				2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */,
 				9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */,

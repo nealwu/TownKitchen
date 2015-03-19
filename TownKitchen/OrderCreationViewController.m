@@ -20,7 +20,7 @@
 #import "CheckoutView.h"
 #import <UIView+MTAnimation.h>
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
@@ -98,6 +98,16 @@
         self.shortNameToQuantity[shortName] = quantity;
     }
     NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
+}
+
+#pragma mark - CheckoutViewDelegate Methods
+
+- (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
+    NSLog(@"ocvc heard payment button pressed");
+}
+
+- (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {
+    NSLog(@"ocvc heard order button pressed");
 }
 
 #pragma mark - Table View Methods
@@ -184,6 +194,8 @@
     self.checkoutView.shortNameToObject = self.shortNameToObject;
     self.checkoutView.menuOptionShortNames = self.menuOptionShortNames;
     self.checkoutView.order = order;
+    self.checkoutView.buttonState = ButtonStateEnterPayment;
+    self.checkoutView.delegate = self;
     
     // set checkoutView frame
     CGFloat parentWidth = self.view.bounds.size.width;

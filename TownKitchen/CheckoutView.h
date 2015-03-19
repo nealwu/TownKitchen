@@ -10,11 +10,22 @@
 #import "PayAndOrderButton.h"
 #import "Order.h"
 
+@class CheckoutView;
+
+@protocol CheckoutViewDelegate <NSObject>
+
+- (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view;
+- (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view;
+
+@end
+
 @interface CheckoutView : UIView
 
 @property (strong, nonatomic) Order *order;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
-@property (weak, nonatomic) IBOutlet PayAndOrderButton *orderButton;
+@property (assign, nonatomic) ButtonState buttonState;
+@property (weak, nonatomic) IBOutlet PayAndOrderButton *payAndOrderButton;
+@property (weak, nonatomic) id<CheckoutViewDelegate> delegate;
 
 @end

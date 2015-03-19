@@ -27,6 +27,11 @@
     [super layoutSubviews];
     self.layer.cornerRadius = 8;
     self.clipsToBounds = YES;
+    [self addTarget:self action:@selector(onButton) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)onButton {
+    [self.delegate onPayAndOrderButton:self withButtonState:self.buttonState];
 }
 
 @end

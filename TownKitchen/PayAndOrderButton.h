@@ -9,12 +9,21 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, ButtonState) {
-    ButtonStateEnterPayment = 0,
-    ButtonStatePlaceOrder = 1
+    ButtonStateEnterPayment = 1,
+    ButtonStatePlaceOrder = 2
 };
+
+@class PayAndOrderButton;
+
+@protocol PayAndOrderButtonDelegate <NSObject>
+
+- (void)onPayAndOrderButton:(PayAndOrderButton *)button withButtonState:(ButtonState)buttonState;
+
+@end
 
 @interface PayAndOrderButton : UIButton
 
 @property (assign, nonatomic) ButtonState buttonState;
+@property (weak, nonatomic) id<PayAndOrderButtonDelegate> delegate;
 
 @end

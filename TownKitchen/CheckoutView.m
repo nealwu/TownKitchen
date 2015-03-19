@@ -10,16 +10,14 @@
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
 
-@interface CheckoutView () <UITableViewDataSource, UITableViewDelegate>
+@interface CheckoutView () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
-@property (weak, nonatomic) IBOutlet PayAndOrderButton *payAndOrderButton;
 
 
 @end
@@ -56,7 +54,7 @@
     [self.tableView reloadData];
 
     // initialize button
-    self.orderButton.buttonState = ButtonStateEnterPayment;
+    self.payAndOrderButton.delegate = self;
 }
 
 #pragma mark - Custom setters
@@ -80,7 +78,12 @@
     self.totalPriceLabel.text = [NSString stringWithFormat:@"%.2f", [self.order.totalPrice floatValue]];
 }
 
-#pragma mark Table view methods
+- (void)setButtonState:(ButtonState)buttonState {
+    _buttonState = buttonState;
+    self.payAndOrderButton.buttonState = buttonState;
+}
+
+#pragma mark - Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.menuOptionShortNames.count;
@@ -102,5 +105,15 @@
     return cell;
 }
 
+#pragma mark - PayAndOrderButtonDelegate Methods
+
+- (void)onPayAndOrderButton:(PayAndOrderButton *)button withButtonState:(ButtonState)buttonState {
+    if (buttonState == ButtonStateEnterPayment) {
+        [self.delegate paymentButtonPressedFromCheckoutView:self];
+        
+    } else if (buttonState == ButtonStatePlaceOrder) {
+        [self.delegate orderButtonPressedFromCheckoutView:self];
+    }
+}
 
 @end
