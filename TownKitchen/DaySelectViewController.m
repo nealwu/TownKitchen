@@ -14,6 +14,7 @@
 #import "OrderCreationViewController.h"
 #import "DateUtils.h"
 #import "DaySelectAnimationController.h"
+#import "OrdersViewController.h"
 #import "TKHeader.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
@@ -59,6 +60,10 @@
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
+    UIButton *ordersButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
+    [ordersButton setTitle:@"Orders" forState:UIControlStateNormal];
+    [ordersButton addTarget:self action:@selector(onOrdersButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.header.rightView addSubview:ordersButton];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
@@ -119,6 +124,14 @@
     // Get the height of the sizing cell, adding one to compensate for cell separators
     CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
     return height;
+}
+
+#pragma mark - Button Actions
+
+- (void)onOrdersButton {
+    OrdersViewController *ovc = [[OrdersViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ovc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate Methods
