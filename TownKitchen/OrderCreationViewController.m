@@ -18,6 +18,7 @@
 #import "DateLabelsViewSmall.h"
 #import "CheckoutAnimationController.h"
 #import "CheckoutView.h"
+#import <UIView+MTAnimation.h>
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate>
 
@@ -190,24 +191,45 @@
     CGFloat horizontalGapSize = 20.0;
     CGFloat navigationBarHeight = 64;
     
-    // animate checkoutView in
+    // define initial and final frames, set initial
     CGRect finalFrame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
     CGRect initialFrame = finalFrame;
     initialFrame.origin.y += initialFrame.size.height;
-    
-    NSLog(@"initial frame: %@", NSStringFromCGRect(initialFrame));
-    NSLog(@"inital view bounds: %@", NSStringFromCGRect(self.checkoutView.frame));
     self.checkoutView.frame = initialFrame;
+    
+    // set checkoutView shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.checkoutView.bounds];
+    self.checkoutView.layer.masksToBounds = NO;
+    self.checkoutView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.checkoutView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    self.checkoutView.layer.shadowOpacity = 0.5f;
+    self.checkoutView.layer.shadowPath = shadowPath.CGPath;
+    
+    // create gray filter view
+    UIView *filterView = [[UIView alloc] initWithFrame:CGRectMake(0, navigationBarHeight, parentWidth, parentHeight - navigationBarHeight)];
+    filterView.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
+    filterView.alpha = 0.0;
+    
+    [self.view addSubview:filterView];
     [self.view addSubview:self.checkoutView];
+
+    // animate transition
+    [UIView mt_animateWithViews:@[self.checkoutView]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         self.checkoutView.frame = finalFrame;
+                     } completion:^{
+                         nil;
+                     }];
     
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                          self.checkoutView.frame = finalFrame;
-                     } completion:^(BOOL finished) {
-                         nil;
-                     }];
+                         filterView.alpha = 1.0;
+                     } completion:nil];
 }
 
 - (IBAction)onBackButton:(id)sender {

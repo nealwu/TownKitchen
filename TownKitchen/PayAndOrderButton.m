@@ -15,11 +15,11 @@
     _buttonState = buttonState;
     if (buttonState == ButtonStatePlaceOrder) {
         self.backgroundColor = [UIColor TKRedColor];
-        self.titleLabel.text = @"Place Order";
+        [self setTitle:@"Place Order" forState:UIControlStateNormal];
     }
     else if (buttonState == ButtonStateEnterPayment) {
         self.backgroundColor = [UIColor TKOrangeColor];
-                self.titleLabel.text = @"Enter Payment Information";
+        [self setTitle:@"Enter Payment Info" forState:UIControlStateNormal];
     }
 }
 
@@ -28,4 +28,5 @@
     self.layer.cornerRadius = 8;
     self.clipsToBounds = YES;
 }
+
 @end
