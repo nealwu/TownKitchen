@@ -59,8 +59,24 @@
     self.orderButton.buttonState = ButtonStateEnterPayment;
 }
 
-#pragma mark - Custom Setters
+#pragma mark - Custom setters
 
+- (void)setOrder:(Order *)order {
+    _order = order;
+    
+    // remove menu option shortnames that have zero quantity
+    NSMutableArray *mutableMenuOptionShortnames = [NSMutableArray array];
+    for (NSString *shortName in order.items) {
+        if ([order.items[shortName] isEqualToNumber:@0]) {
+            continue;
+        }
+        else {
+            [mutableMenuOptionShortnames addObject:shortName];
+            self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
+        }
+    }
+    [self.tableView reloadData];
+}
 
 #pragma mark Table view methods
 
