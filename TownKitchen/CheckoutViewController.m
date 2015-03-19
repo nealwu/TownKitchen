@@ -75,14 +75,15 @@
 
 #pragma mark Private Methods
 
-- (void)setup{
+- (void)setup {
     // tableView methods
     self.title = @"Checkout";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
     [self reloadTableData];
-
+    
+    self.orderButton.hidden = YES;
     self.orderButton.enabled = NO;
     self.paymentView = [[PTKView alloc] initWithFrame:self.tempPaymentView.frame];
     self.paymentView.delegate = self;
@@ -160,6 +161,7 @@
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
     NSLog(@"Got payment with paymentView %@ and card %@", paymentView, card);
     self.orderButton.enabled = valid;
+    self.orderButton.hidden = !valid;
 }
 
 #pragma mark Table view methods
@@ -200,7 +202,7 @@
     card.expYear = self.paymentView.card.expYear;
     card.cvc = self.paymentView.card.cvc;
     NSLog(@"Set up card: %@", card);
-    NSLog(@"%@ %ld %ld %@", self.paymentView.card.number, self.paymentView.card.expMonth, self.paymentView.card.expYear, self.paymentView.card.cvc);
+    NSLog(@"%@ %ld %ld %@", self.paymentView.card.number, (long) self.paymentView.card.expMonth, (long) self.paymentView.card.expYear, self.paymentView.card.cvc);
 
     [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
         if (error) {

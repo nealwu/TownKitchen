@@ -77,7 +77,7 @@
     self.sizingCell.order = self.orders[indexPath.row];
     [self.sizingCell layoutIfNeeded];
     CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    NSLog(@"calculated height %f for cell at row %ld", height, indexPath.row);
+    NSLog(@"calculated height %f for cell at row %ld", height, (long) indexPath.row);
     return height;
 }
 

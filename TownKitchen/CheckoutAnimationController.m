@@ -49,13 +49,13 @@ CGFloat const statusAndNavBarHeight = 64.0;
     dateLabelsViewSmall.monthAndDayLabel.text = self.dateLabelsViewSmall.monthAndDayLabel.text;
     [header.titleView addSubview:dateLabelsViewSmall];
     
-//    [self.containerView addSubview:header];
+    [self.containerView addSubview:header];
     
     // size up the checkout view
     
     CGRect endFrame = self.toViewController.view.frame;
-    endFrame.size.height -= statusAndNavBarHeight;
-    endFrame.origin.y += statusAndNavBarHeight;
+//    endFrame.size.height -= statusAndNavBarHeight;
+//    endFrame.origin.y += statusAndNavBarHeight;
     
     CGRect startFrame = self.toViewController.view.frame;
     startFrame.origin.y += self.fromViewController.view.frame.size.height;
@@ -65,6 +65,7 @@ CGFloat const statusAndNavBarHeight = 64.0;
         self.toViewController.view.alpha = 1.0;
         self.toViewController.view.frame = endFrame;
         self.fromViewController.view.alpha = 0.5;
+        header.alpha = 0.0;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:YES];
     }];
