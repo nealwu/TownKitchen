@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSString *itemDescription;
 @property (strong, nonatomic) NSNumber *quantity;
 @property (strong, nonatomic) NSNumber *price;
+@property (weak, nonatomic) IBOutlet UILabel *menuOptionImage;
 
 @end

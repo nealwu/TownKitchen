@@ -37,7 +37,7 @@
 
 - (void)setPrice:(NSNumber *)price {
     _price = price;
-    self.priceLabel.text = [NSString stringWithFormat:@"$%.2f", [price floatValue]];
+    self.priceLabel.text = [NSString stringWithFormat:@"%.2f", [price floatValue]];
 }
 
 @end

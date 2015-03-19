@@ -78,21 +78,12 @@
     [backButton addTarget:self action:@selector(onBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.header.leftView addSubview:backButton];
     
-    // initialize checkoutView
-    self.checkoutView = [[CheckoutView alloc] init];
-    [self.view addSubview:self.checkoutView];
-    
     // Initialize animation controller
     self.checkoutAnimationController = [[CheckoutAnimationController alloc] init];
 }
 
 - (void)viewWillLayoutSubviews {
-    // set checkoutView frame
-    CGFloat parentWidth = self.view.bounds.size.width;
-    CGFloat parentHeight = self.view.bounds.size.height;
-    CGFloat horizontalGapSize = 20.0;
-    CGFloat navigationBarHeight = 64;
-    self.checkoutView.frame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
+    
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
@@ -184,6 +175,20 @@
     }
 
     NSLog(@"Creating order: %@", order);
+    
+    // initialize checkoutView
+    self.checkoutView = [[CheckoutView alloc] init];
+    self.checkoutView.shortNameToObject = self.shortNameToObject;
+    self.checkoutView.menuOptionShortNames = self.menuOptionShortNames;
+    self.checkoutView.order = order;
+    
+    // set checkoutView frame
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    CGFloat horizontalGapSize = 20.0;
+    CGFloat navigationBarHeight = 64;
+    self.checkoutView.frame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
+    [self.view addSubview:self.checkoutView];
 
     CheckoutViewController *checkoutViewController = [[CheckoutViewController alloc] init];
     checkoutViewController.order = order;

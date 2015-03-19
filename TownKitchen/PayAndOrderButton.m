@@ -7,17 +7,19 @@
 //
 
 #import "PayAndOrderButton.h"
-#import "AppDelegate.h"
+#import "UIColor+TKColorPalette.h"
 
 @implementation PayAndOrderButton
 
 - (void)setButtonState:(ButtonState)buttonState {
     _buttonState = buttonState;
     if (buttonState == ButtonStatePlaceOrder) {
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor TKRedColor];
+        self.titleLabel.text = @"Place Order";
     }
     else if (buttonState == ButtonStateEnterPayment) {
-        self.backgroundColor = kTKSecondaryOrangeColor
+        self.backgroundColor = [UIColor TKOrangeColor];
+                self.titleLabel.text = @"Enter Payment Information";
     }
 }
 
