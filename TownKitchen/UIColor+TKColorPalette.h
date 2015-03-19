@@ -1,5 +1,5 @@
 //
-//  CheckoutView.h
+//  UIColor+TKColorPalette.h
 //  TownKitchen
 //
 //  Created by Peter Bai on 3/18/15.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PayAndOrderButton.h"
 
-@interface CheckoutView : UIView
+@interface UIColor (TKColorPalette)
 
-@property (weak, nonatomic) IBOutlet PayAndOrderButton *orderButton;
++ (UIColor *)TKRedColor;
++ (UIColor *)TKOrangeColor;
 
 @end

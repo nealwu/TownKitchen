@@ -7,13 +7,23 @@
 //
 
 #import "PayAndOrderButton.h"
+#import "AppDelegate.h"
 
 @implementation PayAndOrderButton
+
+- (void)setButtonState:(ButtonState)buttonState {
+    _buttonState = buttonState;
+    if (buttonState == ButtonStatePlaceOrder) {
+        self.backgroundColor = [UIColor redColor];
+    }
+    else if (buttonState == ButtonStateEnterPayment) {
+        self.backgroundColor = kTKSecondaryOrangeColor
+    }
+}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.layer.cornerRadius = 8;
     self.clipsToBounds = YES;
 }
-
 @end

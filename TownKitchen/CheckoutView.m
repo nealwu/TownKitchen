@@ -37,7 +37,10 @@
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];
+    
+    self.orderButton.buttonState = ButtonStateEnterPayment;
 }
+
 
 
 @end

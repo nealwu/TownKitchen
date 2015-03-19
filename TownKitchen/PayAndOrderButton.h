@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, ButtonState) {
+    ButtonStateEnterPayment = 0,
+    ButtonStatePlaceOrder = 1
+};
+
 @interface PayAndOrderButton : UIButton
+
+@property (assign, nonatomic) ButtonState buttonState;
 
 @end
