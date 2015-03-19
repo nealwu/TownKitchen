@@ -60,7 +60,7 @@
 //    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
 //    titleItem.titleView = TKLogoImageView;
     
-    UINavigationItem *navigationItem = [[UINavigationItem alloc] init];
+    UINavigationItem *navItem = [[UINavigationItem alloc] init];
     // Create date label
     DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:self.order.deliveryDateAndTime];
@@ -69,10 +69,10 @@
     // Create cancel button
     UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel)];
 
-    navigationItem.titleView = dateLabelsViewSmall;
-    navigationItem.leftBarButtonItem = cancelButtonItem;
+    navItem.titleView = dateLabelsViewSmall;
+    navItem.leftBarButtonItem = cancelButtonItem;
     
-    [navigationBar setItems:@[navigationItem]];
+    [navigationBar setItems:@[navItem]];
     [self.view addSubview:navigationBar];
 }
 

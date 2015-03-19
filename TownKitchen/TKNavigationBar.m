@@ -17,6 +17,7 @@
 @implementation TKNavigationBar
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     self.translucent = NO;
     self.barTintColor = [UIColor colorWithRed:235.0 / 255
                                         green:92.0 / 255
