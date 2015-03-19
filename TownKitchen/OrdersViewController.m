@@ -11,11 +11,12 @@
 #import "ParseAPI.h"
 #import "ReviewViewController.h"
 #import "OrderStatusViewController.h"
+#import "DayCell.h"
 
 @interface OrdersViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) TKOrderSummaryCell *sizingCell;
+@property (strong, nonatomic) DayCell *sizingCell;
 
 @property (strong, nonatomic) NSArray *orders;
 
@@ -25,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneButton)];
 
     self.title = @"Orders";
@@ -37,7 +38,7 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"TKOrderSummaryCell" bundle:nil] forCellReuseIdentifier:@"TKOrderSummaryCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50;
@@ -51,8 +52,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TKOrderSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell" forIndexPath:indexPath];
-    cell.order = self.orders[indexPath.row];
+    DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
+    Order *order = self.orders[indexPath.row];
+    NSDictionary *shortNameToMenuOptionObject = order.shortNameToMenuOptionObject;
+    MenuOption *menuOption = [shortNameToMenuOptionObject objectForKey:[shortNameToMenuOptionObject allKeys][0]];
+    [cell setDate:order.deliveryDateAndTime andMenuOption:menuOption];
+
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+
     return cell;
 }
 
@@ -66,12 +74,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Initialize the sizing cell
     if (!self.sizingCell) {
-        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"TKOrderSummaryCell"];
+        self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"DayCell"];
     }
-    
+
     // Populate cell with the same data as the visible cell
     Order *order = self.orders[indexPath.row];
-    self.sizingCell.order = order;
+    NSDictionary *shortNameToMenuOptionObject = order.shortNameToMenuOptionObject;
+    MenuOption *menuOption = [shortNameToMenuOptionObject objectForKey:[shortNameToMenuOptionObject allKeys][0]];
+    [self.sizingCell setDate:order.deliveryDateAndTime andMenuOption:menuOption];
     
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];

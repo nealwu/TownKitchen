@@ -11,11 +11,11 @@
 
 @interface DayCell : UITableViewCell
 
-@property (strong, nonatomic) Inventory *inventory;
-
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @property (readonly, nonatomic) NSString *weekday;
 @property (readonly, nonatomic) NSString *monthAndDay;
+
+- (void)setDate:(NSDate *)date andMenuOption:(MenuOption *)menuOptionObject;
 
 @end

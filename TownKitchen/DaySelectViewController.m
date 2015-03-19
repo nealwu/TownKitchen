@@ -77,13 +77,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Inventory *inventory = self.displayInventories[indexPath.row];
-    
+
     DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
-    cell.inventory = inventory;
-    
+    [cell setDate:inventory.dateOffered andMenuOption:inventory.menuOptionObject];
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-    
+
     return cell;
 }
 
@@ -111,7 +111,7 @@
     
     // Populate cell with the same data as the visible cell
     Inventory *inventory = self.displayInventories[indexPath.row];
-    self.sizingCell.inventory = inventory;
+    [self.sizingCell setDate:inventory.dateOffered andMenuOption:inventory.menuOptionObject];
     
     [self.sizingCell setNeedsUpdateConstraints];
     [self.sizingCell updateConstraintsIfNeeded];
