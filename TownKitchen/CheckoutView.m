@@ -33,7 +33,7 @@
 }
 
 - (void)initSubViews {
-    UINib *nib = [UINib nibWithNibName:@"CircleStepperView" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"CheckoutView" bundle:nil];
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];

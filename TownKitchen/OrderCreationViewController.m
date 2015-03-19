@@ -17,6 +17,7 @@
 #import "TKHeader.h"
 #import "DateLabelsViewSmall.h"
 #import "CheckoutAnimationController.h"
+#import "CheckoutView.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate>
 
@@ -29,6 +30,7 @@
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
 @property (strong, nonatomic) CheckoutAnimationController *checkoutAnimationController;
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
+@property (strong, nonatomic) CheckoutView *checkoutView;
 
 @end
 
@@ -76,8 +78,21 @@
     [backButton addTarget:self action:@selector(onBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.header.leftView addSubview:backButton];
     
+    // initialize checkoutView
+    self.checkoutView = [[CheckoutView alloc] init];
+    [self.view addSubview:self.checkoutView];
+    
     // Initialize animation controller
     self.checkoutAnimationController = [[CheckoutAnimationController alloc] init];
+}
+
+- (void)viewWillLayoutSubviews {
+    // set checkoutView frame
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    CGFloat horizontalGapSize = 20.0;
+    CGFloat navigationBarHeight = 64;
+    self.checkoutView.frame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
@@ -175,7 +190,7 @@
     checkoutViewController.transitioningDelegate = self;
     checkoutViewController.modalPresentationStyle = UIModalPresentationCustom;
     
-    [self presentViewController:checkoutViewController animated:YES completion:nil];
+//    [self presentViewController:checkoutViewController animated:YES completion:nil];
 }
 
 - (IBAction)onBackButton:(id)sender {

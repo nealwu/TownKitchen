@@ -32,6 +32,7 @@
 		2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */; };
 		2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */; };
 		2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */; };
+		2BF8B51E1ABA8FF100D1C5B5 /* PayAndOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
@@ -124,6 +125,8 @@
 		2BF8B5171ABA8C4700D1C5B5 /* CheckoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutView.h; sourceTree = "<group>"; };
 		2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutView.m; sourceTree = "<group>"; };
 		2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutView.xib; sourceTree = "<group>"; };
+		2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAndOrderButton.h; sourceTree = "<group>"; };
+		2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayAndOrderButton.m; sourceTree = "<group>"; };
 		2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationCell.h; sourceTree = "<group>"; };
 		2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationCell.m; sourceTree = "<group>"; };
 		2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationCell.xib; sourceTree = "<group>"; };
@@ -361,9 +364,6 @@
 		91788D871AAD0A1B0038FE1F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
-				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
-				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
 				2BF8B5171ABA8C4700D1C5B5 /* CheckoutView.h */,
 				2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */,
 				2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */,
@@ -381,6 +381,11 @@
 				2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */,
 				2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */,
 				2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */,
+				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
+				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
+				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
+				2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */,
+				2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
+				2BF8B51E1ABA8FF100D1C5B5 /* PayAndOrderButton.m in Sources */,
 				9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,

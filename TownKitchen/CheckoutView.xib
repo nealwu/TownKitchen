@@ -14,12 +14,103 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="300" height="494"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Summary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="773-Yw-YwD">
+                    <rect key="frame" x="92" y="16" width="117" height="22"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-OB-1Dy" userLabel="Address and Time View">
+                    <rect key="frame" x="0.0" y="54" width="300" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="address-time-view-separator" translatesAutoresizingMaskIntoConstraints="NO" id="MSK-i1-eVp">
+                            <rect key="frame" x="210" y="0.0" width="10" height="30"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 1st Street" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDY-s4-GfD">
+                            <rect key="frame" x="55" y="4" width="108" height="21"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12:30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydh-Lx-xVc">
+                            <rect key="frame" x="228" y="4" width="43" height="21"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="RYO-Yj-juX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zli-qG-r5a" userLabel="Total Price View">
+                    <rect key="frame" x="0.0" y="358" width="300" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ws8-to-d01">
+                            <rect key="frame" x="87" y="10" width="63" height="41"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="30"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1r-IL-fC0" userLabel="Price">
+                            <rect key="frame" x="161" y="11" width="91" height="39"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="28"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="ws8-to-d01" secondAttribute="centerX" constant="31.5" id="EAR-hy-fv4"/>
+                        <constraint firstAttribute="centerY" secondItem="ws8-to-d01" secondAttribute="centerY" id="Zwt-PR-YC8"/>
+                        <constraint firstAttribute="centerX" secondItem="a1r-IL-fC0" secondAttribute="centerX" constant="-56" id="Zyd-l4-hov"/>
+                        <constraint firstAttribute="centerY" secondItem="a1r-IL-fC0" secondAttribute="centerY" id="bUk-U3-1Mi"/>
+                        <constraint firstAttribute="height" constant="60" id="s27-aP-diK"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-9W-wnG">
+                    <rect key="frame" x="0.0" y="84" width="300" height="274"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-Ds-T7N" customClass="PayAndOrderButton">
+                    <rect key="frame" x="12" y="430" width="276" height="50"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="kHO-0C-tUe"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aeg-9W-wnG" secondAttribute="trailing" id="FdO-V9-75I"/>
+                <constraint firstAttribute="centerX" secondItem="773-Yw-YwD" secondAttribute="centerX" id="Icr-Lm-Gsu"/>
+                <constraint firstItem="zli-qG-r5a" firstAttribute="top" secondItem="aeg-9W-wnG" secondAttribute="bottom" id="L4R-zd-PV8"/>
+                <constraint firstItem="AOA-OB-1Dy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="54" id="LD2-93-pS9"/>
+                <constraint firstItem="aeg-9W-wnG" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="bottom" id="MrF-dZ-IVj"/>
+                <constraint firstItem="AOA-OB-1Dy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OhJ-03-u27"/>
+                <constraint firstItem="OGD-Ds-T7N" firstAttribute="top" secondItem="zli-qG-r5a" secondAttribute="bottom" constant="12" id="aHi-ju-uu3"/>
+                <constraint firstAttribute="trailing" secondItem="AOA-OB-1Dy" secondAttribute="trailing" id="bnk-sz-S0c"/>
+                <constraint firstItem="773-Yw-YwD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="dgb-OM-303"/>
+                <constraint firstItem="aeg-9W-wnG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eBE-n8-8b2"/>
+                <constraint firstItem="zli-qG-r5a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jVa-K5-eIg"/>
+                <constraint firstAttribute="trailing" secondItem="zli-qG-r5a" secondAttribute="trailing" id="kvY-Ve-gVg"/>
+                <constraint firstAttribute="bottom" secondItem="OGD-Ds-T7N" secondAttribute="bottom" constant="14" id="q7f-xk-tbN"/>
+                <constraint firstAttribute="trailing" secondItem="OGD-Ds-T7N" secondAttribute="trailing" constant="12" id="uc8-Hp-6bZ"/>
+                <constraint firstItem="OGD-Ds-T7N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="ySi-Og-xGi"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="196" y="399"/>
         </view>
     </objects>
+    <resources>
+        <image name="address-time-view-separator" width="10" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
