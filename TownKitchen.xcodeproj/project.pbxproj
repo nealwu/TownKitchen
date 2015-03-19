@@ -16,6 +16,7 @@
 		2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B187CAC1AB9319B00FCCF78 /* CheckoutAnimationController.m */; };
 		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
+		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */; };
 		2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */; };
@@ -96,6 +97,8 @@
 		2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInputViewController.h; sourceTree = "<group>"; };
 		2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInputViewController.m; sourceTree = "<group>"; };
 		2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInputViewController.xib; sourceTree = "<group>"; };
+		2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavigationBar.h; sourceTree = "<group>"; };
+		2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavigationBar.m; sourceTree = "<group>"; };
 		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BA78A161AB6558500F5FAB0 /* DaySelectAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectAnimationController.h; sourceTree = "<group>"; };
 		2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectAnimationController.m; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 				2BEC49421AB7FD2E00A8A267 /* DateLabelsViewSmall.h */,
 				2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */,
 				2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */,
+				2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */,
+				2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
+				2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
