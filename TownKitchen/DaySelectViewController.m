@@ -15,6 +15,7 @@
 #import "DateUtils.h"
 #import "DaySelectAnimationController.h"
 #import "OrdersViewController.h"
+#import "DeliveryStatusViewController.h"
 #import "TKHeader.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
@@ -60,13 +61,32 @@
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
-    UIButton *ordersButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
-    [ordersButton setTitle:@"Orders" forState:UIControlStateNormal];
-    [ordersButton addTarget:self action:@selector(onOrdersButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.header.rightView addSubview:ordersButton];
+    [self setupButtons];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
+}
+
+- (void)setupButtons {
+    NSString *buttonTitle;
+    SEL action;
+    if ([[[PFUser currentUser] valueForKey:@"isDriver"] boolValue]) {
+        buttonTitle = @"Deliver";
+        action = @selector(onDeliveriesButton);
+    } else {
+        buttonTitle = @"Orders";
+        action = @selector(onOrdersButton);
+    }
+    
+    UIButton *ordersButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
+    [ordersButton setTitle:buttonTitle forState:UIControlStateNormal];
+    [ordersButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    ordersButton.autoresizingMask =
+          UIViewAutoresizingFlexibleLeftMargin
+        | UIViewAutoresizingFlexibleRightMargin
+        | UIViewAutoresizingFlexibleTopMargin
+        | UIViewAutoresizingFlexibleBottomMargin;
+    [self.header.rightView addSubview:ordersButton];
 }
 
 #pragma mark - Table view methods
@@ -131,6 +151,12 @@
 - (void)onOrdersButton {
     OrdersViewController *ovc = [[OrdersViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:ovc];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+
+- (void)onDeliveriesButton {
+    DeliveryStatusViewController *dsvc = [[DeliveryStatusViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
     [self presentViewController:nvc animated:YES completion:nil];
 }
 
