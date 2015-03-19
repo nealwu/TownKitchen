@@ -147,6 +147,7 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     self.checkoutAnimationController.animationType = AnimationTypeDismiss;
+    return nil;
     return self.checkoutAnimationController;
 }
 

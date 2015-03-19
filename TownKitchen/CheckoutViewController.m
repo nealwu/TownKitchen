@@ -60,14 +60,19 @@
 //    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
 //    titleItem.titleView = TKLogoImageView;
     
+    UINavigationItem *navigationItem = [[UINavigationItem alloc] init];
     // Create date label
-    UINavigationItem *dateLabelItem = [[UINavigationItem alloc] init];
     DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:self.order.deliveryDateAndTime];
     dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:self.order.deliveryDateAndTime];
-    dateLabelItem.titleView = dateLabelsViewSmall;
     
-    [navigationBar setItems:@[dateLabelItem]];
+    // Create cancel button
+    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel)];
+
+    navigationItem.titleView = dateLabelsViewSmall;
+    navigationItem.leftBarButtonItem = cancelButtonItem;
+    
+    [navigationBar setItems:@[navigationItem]];
     [self.view addSubview:navigationBar];
 }
 
@@ -117,7 +122,6 @@
     self.orderButton.layer.cornerRadius = 8;
     self.orderButton.clipsToBounds = YES;
     
-
 }
 
 - (void)reloadTableData {
@@ -156,6 +160,10 @@
 //                                   completion(error);
 //                               }
 //                           }];
+}
+
+- (void)onCancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark LocationSelectViewControllerDelegate methods
