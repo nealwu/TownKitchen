@@ -59,19 +59,19 @@
 //    UINavigationItem *titleItem = [[UINavigationItem alloc] init];
 //    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
 //    titleItem.titleView = TKLogoImageView;
-    
+
     UINavigationItem *navItem = [[UINavigationItem alloc] init];
     // Create date label
     DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:self.order.deliveryDateAndTime];
     dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:self.order.deliveryDateAndTime];
-    
+
     // Create cancel button
     UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel)];
 
     navItem.titleView = dateLabelsViewSmall;
     navItem.leftBarButtonItem = cancelButtonItem;
-    
+
     [navigationBar setItems:@[navItem]];
     [self.view addSubview:navigationBar];
 }
@@ -81,18 +81,17 @@
 - (void)setOrder:(Order *)order {
     _order = order;
     [self reloadTableData];
-    
+
     // populate menu option shortnames and retrieve corresponding objects
     NSMutableArray *mutableMenuOptionShortnames = [NSMutableArray array];
     NSMutableDictionary *mutableShortNameToObject = [NSMutableDictionary dictionary];
-    
+
     for (NSString *shortName in order.items) {
         if ([order.items[shortName] isEqualToNumber:@0]) {
             continue;
-        }
-        else {
+        } else {
             [mutableMenuOptionShortnames addObject:shortName];
-            [mutableShortNameToObject addEntriesFromDictionary:@{ shortName : [[ParseAPI getInstance] menuOptionForShortName:shortName] }];
+            [mutableShortNameToObject setObject:[[ParseAPI getInstance] menuOptionForShortName:shortName] forKey:shortName];
             self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortnames];
             self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
             [self reloadTableData];
@@ -109,7 +108,7 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
     [self reloadTableData];
-    
+
     self.orderButton.hidden = YES;
     self.paymentView = [[PTKView alloc] initWithFrame:self.tempPaymentView.frame];
     self.paymentView.delegate = self;
@@ -121,7 +120,6 @@
     self.addressAndTimeView.clipsToBounds = YES;
     self.orderButton.layer.cornerRadius = 8;
     self.orderButton.clipsToBounds = YES;
-    
 }
 
 - (void)reloadTableData {
