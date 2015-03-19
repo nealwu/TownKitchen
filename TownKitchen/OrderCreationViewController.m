@@ -19,6 +19,7 @@
 #import "CheckoutAnimationController.h"
 #import "CheckoutView.h"
 #import <UIView+MTAnimation.h>
+#import "PaymentViewController.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate>
 
@@ -104,6 +105,9 @@
 
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"ocvc heard payment button pressed");
+    PaymentViewController *pvc = [[PaymentViewController alloc] init];
+    [self presentViewController:pvc animated:YES completion:nil];
+
 }
 
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {

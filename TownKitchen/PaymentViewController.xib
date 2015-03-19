@@ -17,18 +17,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-Xu-HSC" userLabel="Payment View Placeholder">
-                    <rect key="frame" x="0.0" y="74" width="320" height="80"/>
+                    <rect key="frame" x="15" y="84" width="290" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="290" id="5PL-3B-uwB"/>
                         <constraint firstAttribute="height" constant="80" id="zK5-4t-sm9"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="bVh-Xu-HSC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SrP-2R-gBx"/>
-                <constraint firstItem="bVh-Xu-HSC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="Xfi-cK-9rw"/>
-                <constraint firstAttribute="trailing" secondItem="bVh-Xu-HSC" secondAttribute="trailing" id="thb-21-pRR"/>
+                <constraint firstAttribute="centerX" secondItem="bVh-Xu-HSC" secondAttribute="centerX" id="G2B-Rc-VJZ"/>
+                <constraint firstItem="bVh-Xu-HSC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="Xfi-cK-9rw"/>
             </constraints>
             <point key="canvasLocation" x="347" y="332"/>
         </view>
