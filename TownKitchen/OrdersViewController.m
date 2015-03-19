@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneButton)];
 
     self.title = @"Orders";
     self.orders = [[ParseAPI getInstance] ordersForUser:[PFUser currentUser]];
@@ -83,6 +85,12 @@
     CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
     NSLog(@"Calculated height %f for row %lu", height, (unsigned long)indexPath.row);
     return height;
+}
+
+#pragma mark - Button Actions
+
+- (void)onDoneButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
