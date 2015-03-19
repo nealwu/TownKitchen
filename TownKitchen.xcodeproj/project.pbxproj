@@ -30,6 +30,8 @@
 		2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */; };
 		2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */; };
 		2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */; };
+		2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */; };
+		2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
@@ -119,6 +121,9 @@
 		2BEC49421AB7FD2E00A8A267 /* DateLabelsViewSmall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateLabelsViewSmall.h; sourceTree = "<group>"; };
 		2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateLabelsViewSmall.m; sourceTree = "<group>"; };
 		2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateLabelsViewSmall.xib; sourceTree = "<group>"; };
+		2BF8B5171ABA8C4700D1C5B5 /* CheckoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutView.h; sourceTree = "<group>"; };
+		2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutView.m; sourceTree = "<group>"; };
+		2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutView.xib; sourceTree = "<group>"; };
 		2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationCell.h; sourceTree = "<group>"; };
 		2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationCell.m; sourceTree = "<group>"; };
 		2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationCell.xib; sourceTree = "<group>"; };
@@ -359,6 +364,9 @@
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
+				2BF8B5171ABA8C4700D1C5B5 /* CheckoutView.h */,
+				2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */,
+				2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */,
 				2BC7C2D21AB614F6003624DD /* CircleStepperView.h */,
 				2BC7C2D31AB614F6003624DD /* CircleStepperView.m */,
 				2BC7C2D51AB61503003624DD /* CircleStepperView.xib */,
@@ -527,6 +535,7 @@
 				2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */,
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */,
+				2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
 				2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */,
@@ -602,6 +611,7 @@
 				2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */,
 				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
 				2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */,
+				2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
