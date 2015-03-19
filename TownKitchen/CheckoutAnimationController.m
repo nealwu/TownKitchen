@@ -53,11 +53,11 @@ CGFloat const statusAndNavBarHeight = 64.0;
     
     // size up the checkout view
     
-    CGRect endFrame = self.toViewController.view.frame;
+    CGRect endFrame = self.fromViewController.view.frame;
 //    endFrame.size.height -= statusAndNavBarHeight;
 //    endFrame.origin.y += statusAndNavBarHeight;
     
-    CGRect startFrame = self.toViewController.view.frame;
+    CGRect startFrame = self.fromViewController.view.frame;
     startFrame.origin.y += self.fromViewController.view.frame.size.height;
     self.toViewController.view.frame = startFrame;
     
