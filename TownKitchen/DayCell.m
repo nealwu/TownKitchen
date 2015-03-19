@@ -32,14 +32,13 @@
 
 #pragma mark - Custom Setters
 
-- (void)setInventory:(Inventory *)inventory {
-    _inventory = inventory;
-    self.dateLabelsView.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:inventory.dateOffered];
-    self.dateLabelsView.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:inventory.dateOffered];
+- (void)setDate:(NSDate *)date andMenuOption:(MenuOption *)menuOptionObject {
+    self.dateLabelsView.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:date];
+    self.dateLabelsView.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:date];
     self.weekday = self.dateLabelsView.weekdayLabel.text;
     self.monthAndDay = self.dateLabelsView.monthAndDayLabel.text;
     
-    NSURL *imageUrl = [[NSURL alloc] initWithString:inventory.menuOptionObject.imageURL];
+    NSURL *imageUrl = [[NSURL alloc] initWithString:menuOptionObject.imageURL];
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl];
     
     [self.backgroundImageView setImageWithURLRequest:imageRequest
