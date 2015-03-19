@@ -27,10 +27,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIView *addressAndTimeView;
 @property (weak, nonatomic) IBOutlet UIView *tempPaymentView;
-@property (strong, nonatomic) PTKView *paymentView;
 @property (weak, nonatomic) IBOutlet UIButton *orderButton;
 
+@property (strong, nonatomic) PTKView *paymentView;
 @property (strong, nonatomic) NSDate *selectedDate;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
@@ -84,11 +85,16 @@
     [self reloadTableData];
     
     self.orderButton.hidden = YES;
-    self.orderButton.enabled = NO;
     self.paymentView = [[PTKView alloc] initWithFrame:self.tempPaymentView.frame];
     self.paymentView.delegate = self;
 //    [self.tempPaymentView removeFromSuperview];
     [self.view addSubview:self.paymentView];
+
+    // Rounded corners
+    self.addressAndTimeView.layer.cornerRadius = 8;
+    self.addressAndTimeView.clipsToBounds = YES;
+    self.orderButton.layer.cornerRadius = 8;
+    self.orderButton.clipsToBounds = YES;
 }
 
 - (void)reloadTableData {
@@ -160,7 +166,6 @@
 
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
     NSLog(@"Got payment with paymentView %@ and card %@", paymentView, card);
-    self.orderButton.enabled = valid;
     self.orderButton.hidden = !valid;
 }
 
