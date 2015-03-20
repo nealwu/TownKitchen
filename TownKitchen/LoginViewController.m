@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *signupButton;
 
 @end
 
@@ -21,9 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Log In";
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     self.emailTextField.text = @"neal@nealwu.com";
     self.passwordTextField.text = @"password";
+
+    // Rounded corners
+    self.loginButton.layer.cornerRadius = 8;
+    self.loginButton.clipsToBounds = YES;
+    self.signupButton.layer.cornerRadius = 8;
+    self.signupButton.clipsToBounds = YES;
 }
 
 - (IBAction)onLogin:(id)sender {
