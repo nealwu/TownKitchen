@@ -68,7 +68,7 @@
 #pragma mark Private Methods
 
 - (IBAction)onSetPayment:(id)sender {
-     NSLog(@"sizing view frame: %@", NSStringFromCGRect(self.paymentViewPlaceholder.frame));
+    
 }
 
 @end

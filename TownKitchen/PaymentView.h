@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class PaymentView;
+
+@protocol PaymentViewDelegate <NSObject>
+
+- (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view;
+
+@end
+
 @interface PaymentView : UIView
 
 @end
