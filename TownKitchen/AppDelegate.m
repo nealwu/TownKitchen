@@ -23,13 +23,11 @@
 
 @end
 
-NSString * const STRIPE_PUBLISHABLE_KEY = @"pk_test_XABTD877BYdT5GEGUNvUL5W7";
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"GzDzQtpaJvTQhot8t8sTghxRQX5THinfgZ0LuGZa" clientKey:@"x0vME3m9CR0F7QXcV23uqHPKOX4LyInfe8aV7JKK"];
-    [Stripe setDefaultPublishableKey:STRIPE_PUBLISHABLE_KEY];
+    [Stripe setDefaultPublishableKey:@"pk_test_XABTD877BYdT5GEGUNvUL5W7"];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 //    OrderStatusViewController *osvc =[[OrderStatusViewController alloc] init];

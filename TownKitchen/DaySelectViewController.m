@@ -17,6 +17,7 @@
 #import "OrdersViewController.h"
 #import "DeliveryStatusViewController.h"
 #import "TKHeader.h"
+#import "LoginViewController.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
 
@@ -87,6 +88,16 @@
         | UIViewAutoresizingFlexibleTopMargin
         | UIViewAutoresizingFlexibleBottomMargin;
     [self.header.rightView addSubview:ordersButton];
+
+    UIButton *logoutButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
+    [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+    [logoutButton addTarget:self action:@selector(onLogoutButton) forControlEvents:UIControlEventTouchUpInside];
+    logoutButton.autoresizingMask =
+    UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleTopMargin
+    | UIViewAutoresizingFlexibleBottomMargin;
+    [self.header.leftView addSubview:logoutButton];
 }
 
 #pragma mark - Table view methods
@@ -158,6 +169,10 @@
     DeliveryStatusViewController *dsvc = [[DeliveryStatusViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+- (void)onLogoutButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate Methods
