@@ -19,7 +19,7 @@
 #import "TKHeader.h"
 #import "LoginViewController.h"
 
-@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate>
+@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *inventoryItems;
@@ -66,6 +66,13 @@
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"current user = %@", [PFUser currentUser]);
+    if (![PFUser currentUser]) {
+        [self onLogoutButton];
+    }
 }
 
 - (void)setupButtons {
@@ -171,14 +178,23 @@
     [self presentViewController:dsvc animated:YES completion:nil];
 }
 
+- (void)onLogoutButton {
+    [PFUser logOut];
+    LoginViewController *lvc = [[LoginViewController alloc] init];
+    lvc.delegate = self;
+    [self presentViewController:lvc animated:YES completion:nil];
+}
+
+#pragma mark - LoginViewControllerDelegate Methods
+
+- (void)loginViewController:(LoginViewController *)loginViewController didLoginUser:(PFUser *)user {
+    [loginViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - DeliveryStatusViewControllerDelegate Methods
 
 - (void)deliveryStatusViewControllerShouldBeDismissed:(DeliveryStatusViewController *)deliveryStatusViewController {
     [deliveryStatusViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)onLogoutButton {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate Methods

@@ -44,17 +44,21 @@
 //
 //    self.window.rootViewController = osvc;
 
-//    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-    LoginViewController *lvc = [[LoginViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
-    nvc.navigationBar.translucent = NO;
-    nvc.navigationBar.barTintColor = [UIColor colorWithRed:235.0 / 255
-                                                     green:92.0 / 255
-                                                      blue:87.0 / 255
-                                                     alpha:1.0];
-    nvc.navigationBar.tintColor = [UIColor whiteColor];
-    self.window.rootViewController = nvc;
+    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+    self.window.rootViewController = dsvc;
+    
+//    LoginViewController *lvc = [[LoginViewController alloc] init];
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
+//    nvc.navigationBar.translucent = NO;
+//    nvc.navigationBar.barTintColor = [UIColor colorWithRed:235.0 / 255
+//                                                     green:92.0 / 255
+//                                                      blue:87.0 / 255
+//                                                     alpha:1.0];
+//    nvc.navigationBar.tintColor = [UIColor whiteColor];
+//    self.window.rootViewController = nvc;
+    
 //    self.window.rootViewController = [[PaymentViewController alloc] init];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

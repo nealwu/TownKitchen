@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse.h>
+
+@class LoginViewController;
+
+@protocol LoginViewControllerDelegate
+
+- (void)loginViewController:(LoginViewController *)loginViewController didLoginUser:(PFUser *)user;
+
+@end
 
 @interface LoginViewController : UIViewController
+
+@property (weak, nonatomic) id<LoginViewControllerDelegate> delegate;
 
 @end

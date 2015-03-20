@@ -33,8 +33,7 @@
     [PFUser logInWithUsernameInBackground:email password:password block:^(PFUser *user, NSError *error) {
         if (user && !error) {
             NSLog(@"Login succeeded!");
-            DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-            [self presentViewController:dsvc animated:YES completion:nil];
+            [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
         } else {
             NSLog(@"Login failed: %@", error);
         }
@@ -53,8 +52,7 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             NSLog(@"Signup succeeded!");
-            DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-            [self presentViewController:dsvc animated:YES completion:nil];
+            [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Signup failed: %@", errorString);
