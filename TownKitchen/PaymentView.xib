@@ -18,11 +18,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMU-Gz-Zuf" userLabel="Payment View Placeholder">
-                    <rect key="frame" x="2" y="73" width="290" height="46"/>
+                    <rect key="frame" x="5" y="73" width="284" height="46"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="W8y-VG-lcc"/>
-                        <constraint firstAttribute="width" constant="290" id="bBg-cL-kxf"/>
+                        <constraint firstAttribute="width" constant="284" id="bBg-cL-kxf"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Payment Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="px2-eN-UPT">
