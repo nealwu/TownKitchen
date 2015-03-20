@@ -22,12 +22,19 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tofu-rice-plate-overhead-boxed" translatesAutoresizingMaskIntoConstraints="NO" id="HQc-nT-mEz">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZn-4Q-5PJ">
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZn-4Q-5PJ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="town-kitchen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="g2F-2p-eMm">
+                    <rect key="frame" x="60" y="60" width="200" height="160"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="TEF-Rl-IEE"/>
+                        <constraint firstAttribute="height" constant="160" id="bxj-CM-YEA"/>
+                    </constraints>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Y3-rC-pU7">
-                    <rect key="frame" x="8" y="400" width="304" height="48"/>
+                    <rect key="frame" x="8" y="460" width="304" height="48"/>
                     <color key="backgroundColor" red="0.94117647058823528" green="0.56470588235294117" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="0jn-Hb-X8F"/>
@@ -42,7 +49,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taK-F0-zgH">
-                    <rect key="frame" x="8" y="340" width="304" height="48"/>
+                    <rect key="frame" x="8" y="400" width="304" height="48"/>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.36078431372549019" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="446-BU-6Kz"/>
@@ -57,24 +64,24 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VR-qk-xp4">
-                    <rect key="frame" x="20" y="120" width="43" height="23.5"/>
+                    <rect key="frame" x="20" y="275" width="43" height="23.5"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45S-HC-Tuw">
-                    <rect key="frame" x="20" y="158" width="73" height="23.5"/>
+                    <rect key="frame" x="20" y="313" width="73" height="23.5"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QV9-Rd-heu">
-                    <rect key="frame" x="101" y="117" width="199" height="30"/>
+                    <rect key="frame" x="101" y="272" width="199" height="30"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-Pe-7xe">
-                    <rect key="frame" x="101" y="155" width="199" height="30"/>
+                    <rect key="frame" x="101" y="310" width="199" height="30"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
@@ -85,11 +92,10 @@
                 <constraint firstItem="taK-F0-zgH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="0zC-i1-c1l"/>
                 <constraint firstItem="4Y3-rC-pU7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="4Mp-Dk-0I9"/>
                 <constraint firstAttribute="bottom" secondItem="HQc-nT-mEz" secondAttribute="bottom" id="4QX-C4-ogx"/>
-                <constraint firstAttribute="bottom" secondItem="4Y3-rC-pU7" secondAttribute="bottom" constant="120" id="5AT-2c-DRv"/>
+                <constraint firstAttribute="bottom" secondItem="4Y3-rC-pU7" secondAttribute="bottom" constant="60" id="5AT-2c-DRv"/>
                 <constraint firstItem="QZn-4Q-5PJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CKS-Zl-ypD"/>
                 <constraint firstItem="QV9-Rd-heu" firstAttribute="centerY" secondItem="8VR-qk-xp4" secondAttribute="centerY" id="Fyl-ul-8e9"/>
                 <constraint firstItem="tbO-Pe-7xe" firstAttribute="top" secondItem="QV9-Rd-heu" secondAttribute="bottom" constant="8" id="Gjs-Ms-inr"/>
-                <constraint firstItem="8VR-qk-xp4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="HFp-fB-JNd"/>
                 <constraint firstItem="8VR-qk-xp4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="JAg-Zc-IbA"/>
                 <constraint firstAttribute="trailing" secondItem="QZn-4Q-5PJ" secondAttribute="trailing" id="Qtb-Ho-rbd"/>
                 <constraint firstAttribute="trailing" secondItem="QV9-Rd-heu" secondAttribute="trailing" constant="20" id="RFR-8Z-X1V"/>
@@ -98,10 +104,13 @@
                 <constraint firstItem="HQc-nT-mEz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eA7-9C-qre"/>
                 <constraint firstItem="HQc-nT-mEz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kE1-Kw-RbF"/>
                 <constraint firstItem="QV9-Rd-heu" firstAttribute="centerX" secondItem="tbO-Pe-7xe" secondAttribute="centerX" id="kOC-Rr-sgE"/>
+                <constraint firstAttribute="centerX" secondItem="g2F-2p-eMm" secondAttribute="centerX" id="kRg-Py-pcU"/>
                 <constraint firstItem="QZn-4Q-5PJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o1k-SY-8dK"/>
+                <constraint firstItem="taK-F0-zgH" firstAttribute="top" secondItem="tbO-Pe-7xe" secondAttribute="bottom" constant="60" id="ogQ-BO-Ndt"/>
                 <constraint firstAttribute="trailing" secondItem="HQc-nT-mEz" secondAttribute="trailing" id="p80-It-8V1"/>
                 <constraint firstAttribute="trailing" secondItem="taK-F0-zgH" secondAttribute="trailing" constant="8" id="scx-VE-l0b"/>
                 <constraint firstItem="QV9-Rd-heu" firstAttribute="leading" secondItem="tbO-Pe-7xe" secondAttribute="leading" id="shH-Nr-nkr"/>
+                <constraint firstItem="g2F-2p-eMm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="uoQ-D2-prj"/>
                 <constraint firstItem="45S-HC-Tuw" firstAttribute="centerY" secondItem="tbO-Pe-7xe" secondAttribute="centerY" id="vS2-fi-UiI"/>
                 <constraint firstAttribute="trailing" secondItem="4Y3-rC-pU7" secondAttribute="trailing" constant="8" id="wmO-35-cgf"/>
                 <constraint firstAttribute="bottom" secondItem="QZn-4Q-5PJ" secondAttribute="bottom" id="y8X-V6-Zlq"/>
@@ -112,6 +121,7 @@
     </objects>
     <resources>
         <image name="tofu-rice-plate-overhead-boxed" width="1000" height="667"/>
+        <image name="town-kitchen-logo" width="200" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
