@@ -10,10 +10,12 @@
 #import "DeliveryStatusViewController.h"
 #import "OrderStatusViewController.h"
 #import "ParseAPI.h"
+#import "TKHeader.h"
 #import "TKOrderSummaryCell.h"
 
 @interface DeliveryStatusViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet TKHeader *headerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) TKOrderSummaryCell *sizingCell;
 
@@ -25,6 +27,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton *doneButton = [[UIButton alloc] initWithFrame:self.headerView.leftView.bounds];
+    [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+    doneButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
+    [doneButton addTarget:self action:@selector(onDoneButton) forControlEvents:UIControlEventTouchUpInside];
+    doneButton.autoresizingMask =
+        UIViewAutoresizingFlexibleLeftMargin
+        | UIViewAutoresizingFlexibleRightMargin
+        | UIViewAutoresizingFlexibleTopMargin
+        | UIViewAutoresizingFlexibleBottomMargin;
+    [self.headerView.leftView addSubview:doneButton];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.headerView.titleView.bounds];
+    titleLabel.text = @"Deliveries";
+    titleLabel.font = [UIFont fontWithName:@"Futura" size:24];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.autoresizingMask =
+        UIViewAutoresizingFlexibleLeftMargin
+        | UIViewAutoresizingFlexibleRightMargin
+        | UIViewAutoresizingFlexibleTopMargin
+        | UIViewAutoresizingFlexibleBottomMargin;
+
+    [self.headerView.titleView addSubview:titleLabel];
     
     UINib *cellNib = [UINib nibWithNibName:@"TKOrderSummaryCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"TKOrderSummaryCell"];
@@ -58,6 +84,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Button Actions
+
+- (void)onDoneButton {
+    [self.delegate deliveryStatusViewControllerShouldBeDismissed:self];
+}
 
 #pragma mark UITableViewDataSource
 

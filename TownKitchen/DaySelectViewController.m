@@ -19,7 +19,7 @@
 #import "TKHeader.h"
 #import "LoginViewController.h"
 
-@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate>
+@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *inventoryItems;
@@ -167,8 +167,14 @@
 
 - (void)onDeliveriesButton {
     DeliveryStatusViewController *dsvc = [[DeliveryStatusViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:dsvc];
-    [self presentViewController:nvc animated:YES completion:nil];
+    dsvc.delegate = self;
+    [self presentViewController:dsvc animated:YES completion:nil];
+}
+
+#pragma mark - DeliveryStatusViewControllerDelegate Methods
+
+- (void)deliveryStatusViewControllerShouldBeDismissed:(DeliveryStatusViewController *)deliveryStatusViewController {
+    [deliveryStatusViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)onLogoutButton {
