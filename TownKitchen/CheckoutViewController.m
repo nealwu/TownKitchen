@@ -22,8 +22,9 @@
 #import "TKNavigationBar.h"
 #import "DateLabelsViewSmall.h"
 #import "DateUtils.h"
+#import "PaymentView.h"
 
-@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate, PTKViewDelegate>
+@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, LocationSelectViewControllerDelegate, TimeSelectViewControllerDelegate, PTKViewDelegate, PaymentViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic) NSArray *orderItems;
@@ -191,14 +192,14 @@
     self.order.deliveryDateAndTime = [calendar dateFromComponents:dayComponents];
 }
 
-#pragma mark PTKViewDelegate methods
+#pragma mark - PTKViewDelegate methods
 
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
     NSLog(@"Got payment with paymentView %@ and card %@", paymentView, card);
     self.orderButton.hidden = !valid;
 }
 
-#pragma mark Table view methods
+#pragma mark - Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.menuOptionShortNames.count + 1;

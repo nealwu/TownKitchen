@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PTKView.h"
 
 @class PaymentView;
 
 @protocol PaymentViewDelegate <NSObject>
 
-- (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view;
+- (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view withCardValidity:(BOOL)valid;
 
 @end
 
 @interface PaymentView : UIView
+
+@property (strong, nonatomic) PTKView *paymentEntryView;
+@property (assign, nonatomic) BOOL valid;
+@property (weak, nonatomic) id<PaymentViewDelegate> delegate;
 
 @end

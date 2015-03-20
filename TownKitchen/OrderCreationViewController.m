@@ -9,6 +9,7 @@
 #import "OrderCreationViewController.h"
 
 #import "CheckoutViewController.h"
+#import "ParseAPI.h"
 #import "DateUtils.h"
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
@@ -20,8 +21,18 @@
 #import "CheckoutView.h"
 #import <UIView+MTAnimation.h>
 #import "PaymentView.h"
+#import "STPCard.h"
+#import "STPAPIClient.h"
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate>
+#import "OrdersViewController.h"
+
+
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate, PaymentViewDelegate>
+
+@property (assign, nonatomic) CGFloat parentWidth;
+@property (assign, nonatomic) CGFloat parentHeight;
+@property (assign, nonatomic) CGFloat horizontalGapSize;
+@property (assign, nonatomic) CGFloat navigationBarHeight;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
@@ -30,10 +41,14 @@
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
+
+@property (strong, nonatomic) Order *order;
 @property (strong, nonatomic) CheckoutAnimationController *checkoutAnimationController;
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 @property (strong, nonatomic) CheckoutView *checkoutView;
 @property (strong, nonatomic) PaymentView *paymentView;
+
+//@property (strong, nonatomic) 
 
 @end
 
@@ -81,8 +96,11 @@
     [backButton addTarget:self action:@selector(onBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.header.leftView addSubview:backButton];
     
-    // Initialize animation controller
-    self.checkoutAnimationController = [[CheckoutAnimationController alloc] init];
+    // define frame variables
+    self.parentWidth = self.view.bounds.size.width;
+    self.parentHeight = self.view.bounds.size.height;
+    self.horizontalGapSize = 20.0;
+    self.navigationBarHeight = 64;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -104,11 +122,13 @@
 
 #pragma mark - CheckoutViewDelegate Methods
 
+// Show paymentView
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"ocvc heard payment button pressed");
 
     // initialize paymentView
     self.paymentView = [[PaymentView alloc] init];
+    self.paymentView.delegate = self;
     
     // define frame variables
     CGFloat parentWidth = self.view.bounds.size.width;
@@ -144,8 +164,65 @@
                      }];
 }
 
+// Place order
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"ocvc heard order button pressed");
+    
+    self.order.user = [PFUser currentUser];
+    
+    STPCard *card = [[STPCard alloc] init];
+    PTKView *paymentEntryView = self.paymentView.paymentEntryView;
+    
+    card.number = paymentEntryView.card.number;
+    card.expMonth = paymentEntryView.card.expMonth;
+    card.expYear = paymentEntryView.card.expYear;
+    card.cvc = paymentEntryView.card.cvc;
+    NSLog(@"Set up card: %@", card);
+    NSLog(@"%@ %ld %ld %@", paymentEntryView.card.number, (long) paymentEntryView.card.expMonth, (long) paymentEntryView.card.expYear, paymentEntryView.card.cvc);
+    
+    [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
+        if (error) {
+            NSLog(@"Error while handling card: %@", error);
+        } else {
+            [self createBackendChargeWithToken:token completion:nil];
+        }
+    }];
+    
+    NSLog(@"validating order: %@", self.order);
+    NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
+    
+    if ([[ParseAPI getInstance] validateOrder:self.order]) {
+        self.order.status = @"paid";
+        self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
+        [[ParseAPI getInstance] createOrder:self.order];
+    }
+    
+    OrdersViewController *ovc = [[OrdersViewController alloc] init];
+    [self presentViewController:ovc animated:YES completion:nil];
+}
+
+#pragma mark - PaymentViewDelegate Methods
+
+// Set payment and dismiss paymentView
+- (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view withCardValidity:(BOOL)valid {
+    
+    if (valid) {
+        self.checkoutView.buttonState = ButtonStatePlaceOrder;
+    } else {
+        self.checkoutView.buttonState = ButtonStateEnterPayment;
+    }
+    
+    CGRect finalFrame = self.paymentView.frame;
+    finalFrame.origin.x += finalFrame.size.width;
+
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.paymentView.frame = finalFrame;
+                     } completion:^(BOOL finished) {
+                         [self.paymentView removeFromSuperview];
+                     }];
 }
 
 #pragma mark - Table View Methods
@@ -206,7 +283,26 @@
     return self.checkoutAnimationController;
 }
 
-#pragma mark Private methods
+#pragma mark - Private methods
+
+- (void)createBackendChargeWithToken:(STPToken *)token completion:(void (^)(NSError *))completion {
+    NSLog(@"Got the token: %@", token);
+    //    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
+    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    //    request.HTTPMethod = @"POST";
+    //    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
+    //    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
+    //
+    //    [NSURLConnection sendAsynchronousRequest:request
+    //                                       queue:[NSOperationQueue mainQueue]
+    //                           completionHandler:^(NSURLResponse *response,
+    //                                               NSData *data,
+    //                                               NSError *error) {
+    //                               if (completion != nil) {
+    //                                   completion(error);
+    //                               }
+    //                           }];
+}
 
 #pragma mark - Actions
 
