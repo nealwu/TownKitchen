@@ -19,7 +19,7 @@
 #import "CheckoutAnimationController.h"
 #import "CheckoutView.h"
 #import <UIView+MTAnimation.h>
-#import "PaymentViewController.h"
+#import "PaymentView.h"
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate>
 
@@ -33,6 +33,7 @@
 @property (strong, nonatomic) CheckoutAnimationController *checkoutAnimationController;
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 @property (strong, nonatomic) CheckoutView *checkoutView;
+@property (strong, nonatomic) PaymentView *paymentView;
 
 @end
 
@@ -105,9 +106,42 @@
 
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"ocvc heard payment button pressed");
-    PaymentViewController *pvc = [[PaymentViewController alloc] init];
-    [self presentViewController:pvc animated:YES completion:nil];
 
+    // initialize paymentView
+    self.paymentView = [[PaymentView alloc] init];
+    
+    // define frame variables
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    CGFloat horizontalGapSize = 20.0;
+    CGFloat navigationBarHeight = 64;
+    
+    // define initial and final frames, set initial
+    CGRect finalFrame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.x += initialFrame.size.width;
+    self.paymentView.frame = initialFrame;
+    
+    // set paymentView shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.checkoutView.bounds];
+    self.paymentView.layer.masksToBounds = NO;
+    self.paymentView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.paymentView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    self.paymentView.layer.shadowOpacity = 0.5f;
+    self.paymentView.layer.shadowPath = shadowPath.CGPath;
+
+    [self.view addSubview:self.paymentView];
+    
+    // animate transition
+    [UIView mt_animateWithViews:@[self.paymentView]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         self.paymentView.frame = finalFrame;
+                     } completion:^{
+                         nil;
+                     }];
 }
 
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {

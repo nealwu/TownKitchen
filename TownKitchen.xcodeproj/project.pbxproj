@@ -17,6 +17,8 @@
 		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
+		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
+		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */; };
 		2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */; };
@@ -105,6 +107,9 @@
 		2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInputViewController.xib; sourceTree = "<group>"; };
 		2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavigationBar.h; sourceTree = "<group>"; };
 		2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavigationBar.m; sourceTree = "<group>"; };
+		2B58D0141ABBC36500BE5EFA /* PaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView.h; sourceTree = "<group>"; };
+		2B58D0151ABBC36500BE5EFA /* PaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView.m; sourceTree = "<group>"; };
+		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
 		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BA78A161AB6558500F5FAB0 /* DaySelectAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectAnimationController.h; sourceTree = "<group>"; };
 		2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectAnimationController.m; sourceTree = "<group>"; };
@@ -399,6 +404,9 @@
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
 				2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */,
 				2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */,
+				2B58D0141ABBC36500BE5EFA /* PaymentView.h */,
+				2B58D0151ABBC36500BE5EFA /* PaymentView.m */,
+				2B58D0171ABBC37100BE5EFA /* PaymentView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -561,6 +569,7 @@
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
 				91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */,
+				2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */,
 				9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
@@ -634,6 +643,7 @@
 				2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
+				2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */,
