@@ -312,6 +312,9 @@
 
 // Create CheckoutView and animate onto screen
 - (IBAction)onOrderButton:(id)sender {
+
+    #warning TODO: don't activate order button until user has selected >0 quantity
+    
     self.order = [Order object];
     self.order.items = self.shortNameToQuantity;
     self.order.user = [PFUser currentUser];
@@ -333,7 +336,9 @@
     self.checkoutView.shortNameToObject = self.shortNameToObject;
     self.checkoutView.menuOptionShortNames = self.menuOptionShortNames;
     self.checkoutView.order = self.order;
-    self.checkoutView.buttonState = ButtonStateEnterPayment;
+
+    #warning TODO: return this to ButtonStateEnterPayment
+    self.checkoutView.buttonState = ButtonStatePlaceOrder;
     self.checkoutView.delegate = self;
     
     // set checkoutView frame

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
+@property (weak, nonatomic) IBOutlet UIView *addressAndTimeView;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
@@ -23,6 +24,13 @@
 @property (strong, nonatomic) NSArray *timeOptionTitles;
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
 @property (strong, nonatomic) NSDateFormatter *timePickerDateFormatter;
+
+@property (assign, nonatomic) BOOL didSetTime;
+@property (assign, nonatomic) BOOL didSetAddress;
+
+@property (strong, nonatomic) UIDynamicAnimator *animator;
+@property (strong, nonatomic) UIGravityBehavior *gravityBehavior;
+@property (strong, nonatomic) UIPushBehavior *timePickerPushBehavior;
 
 @end
 
@@ -178,6 +186,11 @@
         label.textColor = [UIColor whiteColor];
     }
     label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    
+    // hide separators
+    [[pickerView.subviews objectAtIndex:1] setHidden:TRUE];
+    [[pickerView.subviews objectAtIndex:2] setHidden:TRUE];
+    
     return label;
 }
 
@@ -225,8 +238,47 @@
 
 - (BOOL)validateInput {
     
+    if (!self.didSetAddress) {
+        [self bounceAddressLabel];
+                [self bounceTimePicker];
+    }
     
+    else if (!self.didSetTime) {
+        [self bounceTimePicker];
+    }
     return NO;
+}
+
+- (void)bounceTimePicker {
+    NSLog(@"bouncing timepicker");
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.addressAndTimeView];
+    
+    CGFloat pickerViewHeight = self.timePickerView.bounds.size.height;
+    CGFloat addressAndTimeViewHeight = self.addressAndTimeView.bounds.size.height;
+    CGFloat bottomBoundaryOffset = pickerViewHeight / 2 - addressAndTimeViewHeight / 2;
+    
+    UICollisionBehavior *collisionBehaviour = [[UICollisionBehavior alloc] initWithItems:@[self.timePickerView]];
+    [collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(-(bottomBoundaryOffset + 200), 0, -bottomBoundaryOffset, -1)];
+    [self.animator addBehavior:collisionBehaviour];
+    
+    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.timePickerView]];
+    [self.animator addBehavior:self.gravityBehavior];
+    
+    self.timePickerPushBehavior = [[UIPushBehavior alloc] initWithItems:@[self.timePickerView] mode:UIPushBehaviorModeInstantaneous];
+    self.timePickerPushBehavior.magnitude = 0.0f;
+    self.timePickerPushBehavior.angle = 0.0f;
+    [self.animator addBehavior:self.timePickerPushBehavior];
+
+    UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.timePickerView]];
+    itemBehaviour.elasticity = 0.45f;
+    [self.animator addBehavior:itemBehaviour];
+    
+    self.timePickerPushBehavior.pushDirection = CGVectorMake(0.0f, 5.0f);
+    self.timePickerPushBehavior.active = YES;
+}
+
+- (void)bounceAddressLabel {
+    
 }
 
 @end

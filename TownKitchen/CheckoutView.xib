@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutView">
             <connections>
+                <outlet property="addressAndTimeView" destination="AOA-OB-1Dy" id="apH-KB-AQ5"/>
                 <outlet property="addressLabel" destination="IDY-s4-GfD" id="esx-FU-A69"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="XYd-bN-rPc"/>
                 <outlet property="deliveryTimeLabel" destination="ydh-Lx-xVc" id="H5o-JA-VdP"/>
@@ -27,6 +28,11 @@
                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-9W-wnG">
+                    <rect key="frame" x="0.0" y="84" width="300" height="274"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-OB-1Dy" userLabel="Address and Time View">
                     <rect key="frame" x="0.0" y="54" width="300" height="30"/>
                     <subviews>
@@ -55,6 +61,9 @@
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-o7-q09" userLabel="Time Picker View">
                             <rect key="frame" x="220" y="-66" width="80" height="162"/>
                             <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="162" id="GVN-Se-Mne"/>
+                            </constraints>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="7rg-f4-zkb" appends="YES" id="bk3-Ur-rxa"/>
                             </connections>
@@ -65,11 +74,10 @@
                         <constraint firstAttribute="trailing" secondItem="HoM-o7-q09" secondAttribute="trailing" id="0YI-p9-BDX"/>
                         <constraint firstAttribute="centerY" secondItem="ydh-Lx-xVc" secondAttribute="centerY" id="0mA-YL-aYT"/>
                         <constraint firstItem="ydh-Lx-xVc" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" constant="6" id="2cR-8G-Jre"/>
-                        <constraint firstAttribute="bottom" secondItem="HoM-o7-q09" secondAttribute="bottom" id="Bcw-Yf-oTR"/>
                         <constraint firstAttribute="centerY" secondItem="IDY-s4-GfD" secondAttribute="centerY" id="Hqw-Nb-1xE"/>
                         <constraint firstItem="HoM-o7-q09" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" id="LEH-ho-u5N"/>
-                        <constraint firstItem="HoM-o7-q09" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="Mdf-XQ-c1H"/>
                         <constraint firstAttribute="height" constant="30" id="RYO-Yj-juX"/>
+                        <constraint firstAttribute="centerY" secondItem="HoM-o7-q09" secondAttribute="centerY" id="ScV-Ej-ioq"/>
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="leading" secondItem="IDY-s4-GfD" secondAttribute="trailing" constant="6" id="YNE-XS-TAh"/>
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="dfX-TU-Pzl"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="leading" secondItem="AOA-OB-1Dy" secondAttribute="leading" constant="6" id="r23-9j-PX5"/>
@@ -113,11 +121,6 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-9W-wnG">
-                    <rect key="frame" x="0.0" y="84" width="300" height="274"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -139,7 +142,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="196" y="399"/>
+            <point key="canvasLocation" x="196" y="402"/>
         </view>
         <tapGestureRecognizer id="7rg-f4-zkb">
             <connections>
