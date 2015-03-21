@@ -122,7 +122,7 @@
 
 #pragma mark - CheckoutViewDelegate Methods
 
-// Show paymentView
+// create paymentView and animate onto screen
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"ocvc heard payment button pressed");
 
@@ -203,7 +203,7 @@
 
 #pragma mark - PaymentViewDelegate Methods
 
-// Set payment and dismiss paymentView
+// Dismiss paymentView and set payment
 - (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view withCardValidity:(BOOL)valid {
     
     if (valid) {
@@ -213,16 +213,27 @@
     }
     
     CGRect finalFrame = self.paymentView.frame;
-    finalFrame.origin.x += finalFrame.size.width;
+    finalFrame.origin.x += (finalFrame.size.width + self.horizontalGapSize);
 
-    [UIView animateWithDuration:0.5
+//    [UIView animateWithDuration:0.5
+//                          delay:0.0
+//                        options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//                         self.paymentView.frame = finalFrame;
+//                     } completion:^(BOOL finished) {
+//                         [self.paymentView removeFromSuperview];
+//                     }];
+    
+    [UIView mt_animateWithViews:@[self.paymentView]
+                       duration:0.5
                           delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
+                 timingFunction:kMTEaseOutQuart
                      animations:^{
                          self.paymentView.frame = finalFrame;
-                     } completion:^(BOOL finished) {
+                     } completion:^{
                          [self.paymentView removeFromSuperview];
                      }];
+
 }
 
 #pragma mark - Table View Methods
@@ -306,6 +317,7 @@
 
 #pragma mark - Actions
 
+// Create CheckoutView and animate onto screen
 - (IBAction)onOrderButton:(id)sender {
     Order *order = [Order object];
     order.items = self.shortNameToQuantity;

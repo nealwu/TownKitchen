@@ -87,8 +87,8 @@
                         <constraint firstAttribute="height" constant="60" id="s27-aP-diK"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-Ds-T7N" customClass="PayAndOrderButton">
-                    <rect key="frame" x="12" y="430" width="276" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-Ds-T7N" userLabel="Place Order Button" customClass="PayAndOrderButton">
+                    <rect key="frame" x="20" y="430" width="260" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="kHO-0C-tUe"/>
                     </constraints>
@@ -119,8 +119,8 @@
                 <constraint firstItem="zli-qG-r5a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jVa-K5-eIg"/>
                 <constraint firstAttribute="trailing" secondItem="zli-qG-r5a" secondAttribute="trailing" id="kvY-Ve-gVg"/>
                 <constraint firstAttribute="bottom" secondItem="OGD-Ds-T7N" secondAttribute="bottom" constant="14" id="q7f-xk-tbN"/>
-                <constraint firstAttribute="trailing" secondItem="OGD-Ds-T7N" secondAttribute="trailing" constant="12" id="uc8-Hp-6bZ"/>
-                <constraint firstItem="OGD-Ds-T7N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="ySi-Og-xGi"/>
+                <constraint firstAttribute="trailing" secondItem="OGD-Ds-T7N" secondAttribute="trailing" constant="20" id="uc8-Hp-6bZ"/>
+                <constraint firstItem="OGD-Ds-T7N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="ySi-Og-xGi"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
