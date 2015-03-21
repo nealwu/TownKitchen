@@ -25,7 +25,7 @@
 #import "OrdersViewController.h"
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -122,8 +122,8 @@
 // create location select view and animate onto screen
 - (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view {
     LocationSelectViewController *locationSelectVC = [[LocationSelectViewController alloc] init];
-    
-    [self displayViewController:locationSelectVC];
+    locationSelectVC.delegate = self;
+    [self displayViewControllerAnimatedFromBottom:locationSelectVC];
 }
 
 // create paymentView and animate onto screen
@@ -149,11 +149,12 @@
     self.paymentView.frame = initialFrame;
     
     // set paymentView shadow
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.checkoutView.bounds];
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.paymentView.bounds];
     self.paymentView.layer.masksToBounds = NO;
     self.paymentView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.paymentView.layer.shadowRadius = 6;
     self.paymentView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    self.paymentView.layer.shadowOpacity = 0.5f;
+    self.paymentView.layer.shadowOpacity = 0.3f;
     self.paymentView.layer.shadowPath = shadowPath.CGPath;
 
     [self.view addSubview:self.paymentView];
@@ -207,6 +208,12 @@
     [self presentViewController:ovc animated:YES completion:nil];
 }
 
+#pragma mark - LocationSelectViewControllerDelegate Methods
+
+// user selected delivery address
+- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address {
+    [self hideViewController:locationSelectViewController];
+}
 
 #pragma mark - PaymentViewDelegate Methods
 
@@ -299,11 +306,50 @@
     //                           }];
 }
 
-- (void)displayViewController:(UIViewController *) viewController {
+- (void)displayViewController:(UIViewController *)viewController {
     [self addChildViewController:viewController];
     viewController.view.frame = [self frameForModalViewController];
     [self.view addSubview:viewController.view];
     [viewController didMoveToParentViewController:self];
+}
+
+- (void)hideViewController:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    [viewController.view removeFromSuperview];
+    [viewController removeFromParentViewController];
+}
+
+- (void)displayViewControllerAnimatedFromBottom:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    
+    // define initial and final frames
+    CGRect finalFrame = [self frameForModalViewController];
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.y += initialFrame.size.height;
+    viewController.view.frame = initialFrame;
+    
+    [self.view addSubview:viewController.view];
+    
+    // set shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:viewController.view.bounds];
+    viewController.view.layer.masksToBounds = NO;
+    viewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    viewController.view.layer.shadowRadius = 6;
+    viewController.view.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    viewController.view.layer.shadowOpacity = 0.3;
+    viewController.view.layer.shadowPath = shadowPath.CGPath;
+    
+    // animate transition
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         // complete the transition
+                         [viewController didMoveToParentViewController:self];
+                     }];
 }
 
 - (CGRect)frameForModalViewController {
@@ -345,7 +391,7 @@
     self.checkoutView.order = self.order;
 
     #warning TODO: return this to ButtonStateEnterPayment
-    self.checkoutView.buttonState = ButtonStatePlaceOrder;
+    self.checkoutView.buttonState = ButtonStateEnterPayment;
     self.checkoutView.delegate = self;
     
     // set checkoutView frame
@@ -364,8 +410,9 @@
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.checkoutView.bounds];
     self.checkoutView.layer.masksToBounds = NO;
     self.checkoutView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.checkoutView.layer.shadowRadius = 6;
     self.checkoutView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    self.checkoutView.layer.shadowOpacity = 0.5f;
+    self.checkoutView.layer.shadowOpacity = 0.3f;
     self.checkoutView.layer.shadowPath = shadowPath.CGPath;
     
     // create gray filter view
