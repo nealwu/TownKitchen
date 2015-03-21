@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 
 @property (strong, nonatomic) NSArray *timeOptionTitles;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *timePickerTapGestureRecognizer;
 
 @end
 
@@ -31,7 +32,7 @@
 
 - (void)setup {
     
-    self.timeOptionTitles = @[@"Item 1", @"Item 2", @"Item 3", @"Item 4", @"Item 5", @"Item 6"];
+    self.timeOptionTitles = @[@"Set time", @"11:00am", @"11:30am", @"12:00pm", @"12:30pm", @"1:00pm", @"1:30pm", @"2:00pm"];
     self.timePickerView.dataSource = self;
     self.timePickerView.delegate = self;
     
@@ -65,14 +66,36 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
+    NSLog(@"picker view tapped!");
+    [self.timePickerView selectRow:1 inComponent:1 animated:YES];
+}
+
 #pragma mark - UIPickerViewDelegate Methods
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return self.timeOptionTitles[row];
 }
 
--(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    return 100;
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UILabel *)recycledLabel {
+    UILabel *label = recycledLabel;
+    if (!label) {
+        label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+        label.textColor = [UIColor redColor];
+    }
+    label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    return label;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 32;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    NSLog(@"picker selected row %ld with title %@", (long)row, self.timeOptionTitles[row]);
 }
 
 #pragma mark - UIPickerViewDataSource Methods

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimeSelectViewController">
             <connections>
                 <outlet property="datePicker" destination="map-5Q-mRd" id="VWU-KD-egL"/>
+                <outlet property="timePickerTapGestureRecognizer" destination="1ri-Cs-Gcf" id="xAA-PK-o0X"/>
                 <outlet property="timePickerView" destination="nl0-IK-lX2" id="Wvr-tq-m20"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -43,9 +44,13 @@
                 </button>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nl0-IK-lX2">
                     <rect key="frame" x="120" y="-6" width="80" height="162"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="W7f-9m-9bU"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="1ri-Cs-Gcf" appends="YES" id="4qC-m4-e5R"/>
+                    </connections>
                 </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -60,6 +65,11 @@
             </constraints>
             <point key="canvasLocation" x="139" y="151"/>
         </view>
+        <tapGestureRecognizer id="1ri-Cs-Gcf">
+            <connections>
+                <action selector="onTimePickerViewTapped:" destination="-1" id="vHL-5X-p2e"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
