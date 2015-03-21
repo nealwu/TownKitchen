@@ -127,8 +127,10 @@
     NSLog(@"orderCreationViewController heard payment button pressed");
     
     // initialize paymentView
-    self.paymentView = [[PaymentView alloc] init];
-    self.paymentView.delegate = self;
+    if (!self.paymentView) {
+        self.paymentView = [[PaymentView alloc] init];
+        self.paymentView.delegate = self;
+    }
     
     // define frame variables
     CGFloat parentWidth = self.view.bounds.size.width;
@@ -166,7 +168,7 @@
 
 // Place order
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {
-    NSLog(@"orderCreationViewController heard order button pressed");
+    NSLog(@"attempting to place order: %@", self.order);
     
     self.order.user = [PFUser currentUser];
     
@@ -214,15 +216,6 @@
     
     CGRect finalFrame = self.paymentView.frame;
     finalFrame.origin.x += (finalFrame.size.width + self.horizontalGapSize);
-
-//    [UIView animateWithDuration:0.5
-//                          delay:0.0
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         self.paymentView.frame = finalFrame;
-//                     } completion:^(BOOL finished) {
-//                         [self.paymentView removeFromSuperview];
-//                     }];
     
     [UIView mt_animateWithViews:@[self.paymentView]
                        duration:0.5
@@ -319,27 +312,27 @@
 
 // Create CheckoutView and animate onto screen
 - (IBAction)onOrderButton:(id)sender {
-    Order *order = [Order object];
-    order.items = self.shortNameToQuantity;
-    order.user = [PFUser currentUser];
+    self.order = [Order object];
+    self.order.items = self.shortNameToQuantity;
+    self.order.user = [PFUser currentUser];
     Inventory *firstInventory = self.inventoryItems[0];
-    order.deliveryDateAndTime = [firstInventory dateOffered];
-    order.shortNameToMenuOptionObject = self.shortNameToObject;
+    self.order.deliveryDateAndTime = [firstInventory dateOffered];
+    self.order.shortNameToMenuOptionObject = self.shortNameToObject;
 
-    order.totalPrice = @0;
+    self.order.totalPrice = @0;
 
-    for (NSString *shortName in order.items) {
-        MenuOption *menuOption = order.shortNameToMenuOptionObject[shortName];
-        order.totalPrice = @([order.totalPrice doubleValue] + [menuOption.price doubleValue] * [order.items[shortName] doubleValue]);
+    for (NSString *shortName in self.order.items) {
+        MenuOption *menuOption = self.order.shortNameToMenuOptionObject[shortName];
+        self.order.totalPrice = @([self.order.totalPrice doubleValue] + [menuOption.price doubleValue] * [self.order.items[shortName] doubleValue]);
     }
 
-    NSLog(@"Creating order: %@", order);
+    NSLog(@"Creating order: %@", self.order);
     
     // initialize checkoutView
     self.checkoutView = [[CheckoutView alloc] init];
     self.checkoutView.shortNameToObject = self.shortNameToObject;
     self.checkoutView.menuOptionShortNames = self.menuOptionShortNames;
-    self.checkoutView.order = order;
+    self.checkoutView.order = self.order;
     self.checkoutView.buttonState = ButtonStateEnterPayment;
     self.checkoutView.delegate = self;
     

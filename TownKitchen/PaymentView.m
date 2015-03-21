@@ -41,7 +41,6 @@
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];
-    NSLog(@"sizing view frame: %@", NSStringFromCGRect(self.paymentViewPlaceholder.frame));
 
     self.paymentEntryView = [[PTKView alloc] init];
     self.paymentEntryView.delegate = self;

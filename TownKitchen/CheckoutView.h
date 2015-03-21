@@ -21,7 +21,7 @@
 
 @interface CheckoutView : UIView
 
-@property (strong, nonatomic) Order *order;
+@property (weak, nonatomic) Order *order;  // orderCreationViewController owns Order object
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (assign, nonatomic) ButtonState buttonState;

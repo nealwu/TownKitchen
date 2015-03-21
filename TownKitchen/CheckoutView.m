@@ -22,6 +22,7 @@
 
 @property (strong, nonatomic) NSArray *timeOptionTitles;
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
+@property (strong, nonatomic) NSDateFormatter *timePickerDateFormatter;
 
 @end
 
@@ -68,6 +69,24 @@
                               @"1:00pm",
                               @"1:30pm",
                               @"2:00pm"];
+    self.timePickerDateFormatter = [[NSDateFormatter alloc] init];
+    [self.timePickerDateFormatter setDateFormat:@"hh:mma"];
+
+    // populate corresponding date objects (UTC)
+    NSMutableArray *mutableTimeOptionDateObjects = [NSMutableArray array];
+    for (NSString *dateString in self.timeOptionTitles) {
+        NSDate *date = [self.timePickerDateFormatter dateFromString:dateString];
+        if (date) {
+            [mutableTimeOptionDateObjects addObject: date];
+            
+        } else {
+            NSDate *dummyDate = [NSDate dateWithTimeIntervalSince1970:0];
+            [mutableTimeOptionDateObjects addObject: dummyDate];
+        }
+    }
+    self.timeOptionDateObjects = [NSArray arrayWithArray:mutableTimeOptionDateObjects];
+    NSLog(@"date objects: %@", self.timeOptionDateObjects);
+
     self.timePickerView.dataSource = self;
     self.timePickerView.delegate = self;
 }
@@ -127,7 +146,9 @@
         [self.delegate paymentButtonPressedFromCheckoutView:self];
         
     } else if (buttonState == ButtonStatePlaceOrder) {
-        [self.delegate orderButtonPressedFromCheckoutView:self];
+        if ([self validateInput]){
+            [self.delegate orderButtonPressedFromCheckoutView:self];
+        }
     }
 }
 
@@ -165,7 +186,23 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    // select time
     NSLog(@"picker selected row %ld with title %@", (long)row, self.timeOptionTitles[row]);
+    if (row == 0) {
+        [pickerView selectRow:1 inComponent:0 animated:YES];
+        [self pickerView:pickerView didSelectRow:1 inComponent:0];
+    } else {
+        NSDate *selectedDate = self.timeOptionDateObjects[row];
+        
+        // Extract only the time portion of the date
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *dayComponents = [calendar components:NSUIntegerMax fromDate:self.order.deliveryDateAndTime];
+        NSDateComponents *timeComponents = [calendar components:NSUIntegerMax fromDate:selectedDate];
+        [dayComponents setHour:timeComponents.hour];
+        [dayComponents setMinute:timeComponents.minute];
+        [dayComponents setSecond:timeComponents.second];
+        self.order.deliveryDateAndTime = [calendar dateFromComponents:dayComponents];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate Methods
@@ -180,7 +217,16 @@
     // scroll two rows to show that more options exist
     if ([self.timePickerView selectedRowInComponent:0] == 0) {
         [self.timePickerView selectRow:2 inComponent:0 animated:YES];
+        [self pickerView:self.timePickerView didSelectRow:2 inComponent:0];
     }
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)validateInput {
+    
+    
+    return NO;
 }
 
 @end

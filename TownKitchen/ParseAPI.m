@@ -87,6 +87,9 @@
 }
 
 - (BOOL)validateOrder:(Order *)order {
+    if (!order) {
+        return NO;
+    }
     NSDictionary *items = order.items;
 
     for (NSString *shortName in items) {
