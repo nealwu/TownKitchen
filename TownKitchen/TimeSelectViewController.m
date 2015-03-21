@@ -69,7 +69,7 @@
 - (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"picker view tapped!");
     if ([self.timePickerView selectedRowInComponent:0] == 0) {
-        [self.timePickerView selectRow:1 inComponent:0 animated:YES];
+        [self.timePickerView selectRow:2 inComponent:0 animated:YES];  // scroll two rows to show that more options exist
     }
 }
 
