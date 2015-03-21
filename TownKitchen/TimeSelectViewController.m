@@ -8,7 +8,10 @@
 
 #import "TimeSelectViewController.h"
 
-@interface TimeSelectViewController ()
+@interface TimeSelectViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
+
+@property (strong, nonatomic) NSArray *timeOptionTitles;
 
 @end
 
@@ -27,6 +30,11 @@
 #pragma mark Private Methods
 
 - (void)setup {
+    
+    self.timeOptionTitles = @[@"Item 1", @"Item 2", @"Item 3", @"Item 4", @"Item 5", @"Item 6"];
+    self.timePickerView.dataSource = self;
+    self.timePickerView.delegate = self;
+    
     // Orders can be between 11 am and 2 pm
     int startHour = 11;
     int endHour = 14;
@@ -55,6 +63,26 @@
 - (IBAction)onSetTime:(id)sender {
     [self.delegate timeSelectViewController:self didSetTime:self.datePicker.date];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIPickerViewDelegate Methods
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.timeOptionTitles[row];
+}
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 100;
+}
+
+#pragma mark - UIPickerViewDataSource Methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.timeOptionTitles.count;
 }
 
 @end

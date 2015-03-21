@@ -10,15 +10,18 @@
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
 
-@interface CheckoutView () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate>
+@interface CheckoutView () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
+@property (strong, nonatomic) NSArray *timeOptions;
+@property (strong, nonatomic) NSArray *timeOptionDateObjects;
 
 @end
 
@@ -55,6 +58,20 @@
 
     // initialize button
     self.payAndOrderButton.delegate = self;
+    
+    // initialize time picker view
+    self.timeOptions = @[
+                         @"11:00",
+                         @"11:30",
+                         @"12:00",
+                         @"12:30",
+                         @"1:00",
+                         @"1:30",
+                         @"2:00"
+                         ];
+    
+    
+    NSLog(@"pickerview frame: %@", NSStringFromCGRect(self.timePicker.frame));
 }
 
 #pragma mark - Custom setters
@@ -104,6 +121,10 @@
     
     return cell;
 }
+
+#pragma mark - UIPickerViewDelegate Methods
+
+
 
 #pragma mark - PayAndOrderButtonDelegate Methods
 

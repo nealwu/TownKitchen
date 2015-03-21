@@ -12,6 +12,7 @@
                 <outlet property="deliveryTimeLabel" destination="ydh-Lx-xVc" id="H5o-JA-VdP"/>
                 <outlet property="payAndOrderButton" destination="OGD-Ds-T7N" id="H8Q-Rk-SHU"/>
                 <outlet property="tableView" destination="aeg-9W-wnG" id="Q96-2u-Nhn"/>
+                <outlet property="timePicker" destination="HoM-o7-q09" id="BRx-dQ-ZPX"/>
                 <outlet property="totalPriceLabel" destination="a1r-IL-fC0" id="jFt-dJ-O4K"/>
             </connections>
         </placeholder>
@@ -48,12 +49,19 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-o7-q09" userLabel="Time Picker View">
+                            <rect key="frame" x="220" y="-66" width="80" height="162"/>
+                        </pickerView>
                     </subviews>
                     <color key="backgroundColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HoM-o7-q09" secondAttribute="trailing" id="0YI-p9-BDX"/>
                         <constraint firstAttribute="centerY" secondItem="ydh-Lx-xVc" secondAttribute="centerY" id="0mA-YL-aYT"/>
                         <constraint firstItem="ydh-Lx-xVc" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" constant="6" id="2cR-8G-Jre"/>
+                        <constraint firstAttribute="bottom" secondItem="HoM-o7-q09" secondAttribute="bottom" id="Bcw-Yf-oTR"/>
                         <constraint firstAttribute="centerY" secondItem="IDY-s4-GfD" secondAttribute="centerY" id="Hqw-Nb-1xE"/>
+                        <constraint firstItem="HoM-o7-q09" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" id="LEH-ho-u5N"/>
+                        <constraint firstItem="HoM-o7-q09" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="Mdf-XQ-c1H"/>
                         <constraint firstAttribute="height" constant="30" id="RYO-Yj-juX"/>
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="leading" secondItem="IDY-s4-GfD" secondAttribute="trailing" constant="6" id="YNE-XS-TAh"/>
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="dfX-TU-Pzl"/>

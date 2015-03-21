@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimeSelectViewController">
             <connections>
                 <outlet property="datePicker" destination="map-5Q-mRd" id="VWU-KD-egL"/>
+                <outlet property="timePickerView" destination="nl0-IK-lX2" id="Wvr-tq-m20"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,16 +41,24 @@
                         <action selector="onSetTime:" destination="-1" eventType="touchUpInside" id="0Tu-YA-ofq"/>
                     </connections>
                 </button>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nl0-IK-lX2">
+                    <rect key="frame" x="120" y="-6" width="80" height="162"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="W7f-9m-9bU"/>
+                    </constraints>
+                </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="nl0-IK-lX2" secondAttribute="centerX" id="1om-aD-Tt2"/>
+                <constraint firstItem="map-5Q-mRd" firstAttribute="top" secondItem="nl0-IK-lX2" secondAttribute="bottom" constant="20" id="GI0-3M-Vrr"/>
                 <constraint firstItem="Jv3-xn-uLx" firstAttribute="top" secondItem="map-5Q-mRd" secondAttribute="bottom" constant="16" id="Ixg-dH-r9r"/>
                 <constraint firstAttribute="centerY" secondItem="map-5Q-mRd" secondAttribute="centerY" constant="27" id="L49-2b-ADD"/>
                 <constraint firstItem="map-5Q-mRd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dHM-fR-hqo"/>
                 <constraint firstAttribute="trailing" secondItem="map-5Q-mRd" secondAttribute="trailing" id="npT-NW-VaA"/>
                 <constraint firstAttribute="centerX" secondItem="Jv3-xn-uLx" secondAttribute="centerX" id="viu-N4-N7y"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="154"/>
+            <point key="canvasLocation" x="139" y="151"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
