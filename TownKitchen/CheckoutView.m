@@ -18,18 +18,18 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 @property (weak, nonatomic) IBOutlet UIView *addressAndTimeView;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
-@property (weak, nonatomic) IBOutlet UIButton *addressButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *addressButton;
 @property (strong, nonatomic) NSArray *timeOptionTitles;
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
 @property (strong, nonatomic) NSDateFormatter *timePickerDateFormatter;
 
 @property (assign, nonatomic) BOOL didSetTime;
-@property (assign, nonatomic) BOOL didSetAddress;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
 @property (strong, nonatomic) UIGravityBehavior *gravityBehavior;
 @property (strong, nonatomic) UIPushBehavior *timePickerPushBehavior;
+@property (strong, nonatomic) UIPushBehavior *addressLabelPushBehavior;
 
 @end
 
@@ -229,6 +229,15 @@
 
 - (IBAction)onAddressButton:(UIButton *)sender {
     [self.delegate addressButtonPressedFromCheckoutView:self];
+    [self unhighlightAddressLabel];
+}
+
+- (IBAction)onAddressButtonTouchDown:(UIButton *)sender {
+    [self highlightAddressLabel];
+}
+
+- (IBAction)onAddressButtonTouchDragOutside:(UIButton *)sender {
+    [self unhighlightAddressLabel];
 }
 
 - (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
@@ -243,18 +252,19 @@
 
 - (BOOL)validateInput {
     
-    if (!self.didSetTime) {
-        [self bounceTimePicker];
+    if (self.didSetTime && self.didSetAddress) {
+        return YES;
     }
-    
     else if (!self.didSetAddress) {
         [self bounceAddressLabel];
+    }
+    else if (!self.didSetTime) {
+        [self bounceTimePicker];
     }
     return NO;
 }
 
 - (void)bounceTimePicker {
-    NSLog(@"bouncing timepicker");
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.addressAndTimeView];
     
     CGFloat pickerViewHeight = self.timePickerView.bounds.size.height;
@@ -282,7 +292,39 @@
 }
 
 - (void)bounceAddressLabel {
+    NSLog(@"bouncing address label");
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.addressAndTimeView];
+
+    UICollisionBehavior *collisionBehaviour = [[UICollisionBehavior alloc] initWithItems:@[self.addressLabel]];
+    [collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(-200, -0.2, -1, 0)];
+    [self.animator addBehavior:collisionBehaviour];
     
+    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.addressLabel]];
+    [self.animator addBehavior:self.gravityBehavior];
+    
+    self.addressLabelPushBehavior = [[UIPushBehavior alloc] initWithItems:@[self.addressLabel] mode:UIPushBehaviorModeInstantaneous];
+    self.addressLabelPushBehavior.magnitude = 0.0f;
+    self.addressLabelPushBehavior.angle = 0.0f;
+    [self.animator addBehavior:self.addressLabelPushBehavior];
+    
+    UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.addressLabel]];
+    itemBehaviour.elasticity = 0.45f;
+    [self.animator addBehavior:itemBehaviour];
+    
+    self.addressLabelPushBehavior.pushDirection = CGVectorMake(0.0f, 2.0f);
+    self.addressLabelPushBehavior.active = YES;
+}
+
+- (void)highlightAddressLabel {
+    [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.addressLabel setTextColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+    } completion:nil];
+}
+
+- (void)unhighlightAddressLabel {
+    [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.addressLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
+    } completion:nil];
 }
 
 @end

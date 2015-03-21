@@ -12,7 +12,7 @@
 
 @protocol LocationSelectViewControllerDelegate
 
-- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address;
+- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address withShortString:(NSString *)shortString;
 
 @end
 

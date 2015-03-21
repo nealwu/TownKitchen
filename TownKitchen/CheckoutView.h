@@ -27,6 +27,11 @@
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (assign, nonatomic) ButtonState buttonState;
 @property (weak, nonatomic) IBOutlet PayAndOrderButton *payAndOrderButton;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (assign, nonatomic) BOOL didSetAddress;
+
 @property (weak, nonatomic) id<CheckoutViewDelegate> delegate;
+
 
 @end

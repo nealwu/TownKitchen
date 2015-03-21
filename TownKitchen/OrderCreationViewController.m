@@ -211,8 +211,11 @@
 #pragma mark - LocationSelectViewControllerDelegate Methods
 
 // user selected delivery address
-- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address {
-    [self hideViewController:locationSelectViewController];
+- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address withShortString:(NSString *)shortString {
+    self.order.deliveryAddress = address;
+    self.checkoutView.addressLabel.text = shortString;
+    self.checkoutView.didSetAddress = YES;
+    [self hideViewControllerAnimateToBottom:locationSelectViewController];
 }
 
 #pragma mark - PaymentViewDelegate Methods
@@ -352,6 +355,24 @@
                      }];
 }
 
+- (void)hideViewControllerAnimateToBottom:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    
+    CGRect finalFrame = [self frameForModalViewController];
+    finalFrame.origin.y += finalFrame.size.height;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         [viewController.view removeFromSuperview];
+                         [viewController removeFromParentViewController];
+                     }];
+}
+
 - (CGRect)frameForModalViewController {
     CGFloat parentWidth = self.view.bounds.size.width;
     CGFloat parentHeight = self.view.bounds.size.height;
@@ -391,7 +412,7 @@
     self.checkoutView.order = self.order;
 
     #warning TODO: return this to ButtonStateEnterPayment
-    self.checkoutView.buttonState = ButtonStateEnterPayment;
+    self.checkoutView.buttonState = ButtonStatePlaceOrder;
     self.checkoutView.delegate = self;
     
     // set checkoutView frame
