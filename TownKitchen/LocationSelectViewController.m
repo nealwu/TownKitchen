@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *setAddressButton;
 @property (weak, nonatomic) IBOutlet UIView *centerIndicatorView;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
@@ -42,92 +43,6 @@
 - (void) dealloc
 {
     [self.locationManager stopUpdatingLocation];
-}
-
-#pragma mark Custom Setters
-
-
-#pragma mark Private Methods
-
-- (void)setup {
-    self.addressString = [[NSString alloc] init];
-    self.addressLabel.text = @"Updating location...";
-    
-    // Set up mapkit
-    self.mapView.delegate = self;
-    
-    // Set up location manager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-    [self.locationManager startUpdatingLocation];
-    
-    // Customize navigation bar
-    self.navigationController.navigationBar.translucent = NO;
-}
-
-- (void)runDelayedSearch {
-    [self.mapRegionChangedTimer invalidate];
-    self.mapRegionChangedTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f
-                                                              target:self
-                                                            selector:@selector(updateAddressFromMapCenter)
-                                                            userInfo:nil
-                                                             repeats:NO];
-}
-
-- (void)updateAddressFromMapCenter {
-    NSLog(@"updating address from map center");
-    self.addressLabel.text = @"Updating location...";
-    [[LMGeocoder sharedInstance]
-     reverseGeocodeCoordinate:self.mapView.centerCoordinate
-     service:kLMGeocoderGoogleService
-     completionHandler:^(LMAddress *address, NSError *error) {
-         if (address && !error) {
-             self.addressString = address.formattedAddress;
-             if (address.streetNumber) {
-                 self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route];
-             }
-             else if (address.route) {
-                 self.addressLabel.text = [NSString stringWithFormat:@"%@", address.route];
-             }
-             else {
-                 self.addressLabel.text = @"Unknown address";
-             }
-             
-         }
-         else {
-             NSLog(@"Error: %@", error.description);
-             self.addressLabel.text = @"Unable to find address";
-         }
-     }];
-}
-
-- (void)moveToInputAddress {
-    [[LMGeocoder sharedInstance]
-     geocodeAddressString:self.addressString
-     service:kLMGeocoderGoogleService
-     completionHandler:^(LMAddress *address, NSError *error) {
-         if (address && !error) {
-             NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressString, address.coordinate.latitude, address.coordinate.longitude);
-             [self moveToCoordinates:address.coordinate withSpan:self.mapView.region.span];
-         }
-         else {
-             NSLog(@"Error: %@", error.description);
-         }
-     }];
-}
-
-- (void)moveToCoordinates:(CLLocationCoordinate2D)coordinate withVisibleDistance:(CLLocationDistance)distance {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
-}
-
-- (void)moveToCoordinates:(CLLocationCoordinate2D)coordinate withSpan:(MKCoordinateSpan)span {
-    MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, span);
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
 }
 
 #pragma mark MKMapViewDelegate Methods
@@ -185,7 +100,7 @@
     [self.delegate locationSelectViewController:self didSelectAddress:self.addressString];
 }
 
-- (IBAction)onAddressViewTap:(id)sender {
+- (IBAction)onInputAddressButtonTapped:(UIButton *)sender {
     AddressInputViewController *avc = [[AddressInputViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:avc];
     
@@ -194,13 +109,116 @@
     avc.delegate = self;
     
     [self presentViewController:nvc animated:YES completion:nil];
+    [self unhighlightAddressLabel];
 }
 
-#pragma mark System Methods
+- (IBAction)onInputAddressButtonTouchDown:(UIButton *)sender {
+    [self highlightAddressLabel];
+}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)onInputAddressButtonTouchDragOutside:(UIButton *)sender {
+    [self unhighlightAddressLabel];
+}
+
+#pragma mark Private Methods
+
+- (void)setup {
+    self.addressString = [[NSString alloc] init];
+    self.addressLabel.text = @"Updating location...";
+    
+    // Set up mapkit
+    self.mapView.delegate = self;
+    
+    // Set up location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    // add shadow to location button
+    self.locationButton.layer.masksToBounds = NO;
+    self.locationButton.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.locationButton.layer.shadowOpacity = 0.3;
+    self.locationButton.layer.shadowRadius = 1.5f;
+    self.locationButton.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    
+    //
+}
+
+- (void)runDelayedSearch {
+    [self.mapRegionChangedTimer invalidate];
+    self.mapRegionChangedTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f
+                                                                  target:self
+                                                                selector:@selector(updateAddressFromMapCenter)
+                                                                userInfo:nil
+                                                                 repeats:NO];
+}
+
+- (void)updateAddressFromMapCenter {
+    NSLog(@"updating address from map center");
+    self.addressLabel.text = @"Updating location...";
+    [[LMGeocoder sharedInstance]
+     reverseGeocodeCoordinate:self.mapView.centerCoordinate
+     service:kLMGeocoderGoogleService
+     completionHandler:^(LMAddress *address, NSError *error) {
+         if (address && !error) {
+             self.addressString = address.formattedAddress;
+             if (address.streetNumber) {
+                 self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route];
+             }
+             else if (address.route) {
+                 self.addressLabel.text = [NSString stringWithFormat:@"%@", address.route];
+             }
+             else {
+                 self.addressLabel.text = @"Unknown address";
+             }
+             
+         }
+         else {
+             NSLog(@"Error: %@", error.description);
+             self.addressLabel.text = @"Unable to find address";
+         }
+     }];
+}
+
+- (void)moveToInputAddress {
+    [[LMGeocoder sharedInstance]
+     geocodeAddressString:self.addressString
+     service:kLMGeocoderGoogleService
+     completionHandler:^(LMAddress *address, NSError *error) {
+         if (address && !error) {
+             NSLog(@"Moving to address: %@, with coordinate: (%f, %f)", self.addressString, address.coordinate.latitude, address.coordinate.longitude);
+             [self moveToCoordinates:address.coordinate withSpan:self.mapView.region.span];
+         }
+         else {
+             NSLog(@"Error: %@", error.description);
+         }
+     }];
+}
+
+- (void)moveToCoordinates:(CLLocationCoordinate2D)coordinate withVisibleDistance:(CLLocationDistance)distance {
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+}
+
+- (void)moveToCoordinates:(CLLocationCoordinate2D)coordinate withSpan:(MKCoordinateSpan)span {
+    MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, span);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+}
+
+- (void)highlightAddressLabel {
+    [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.addressLabel setTextColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+    } completion:nil];
+}
+
+- (void)unhighlightAddressLabel {
+    [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.addressLabel setTextColor:[UIColor colorWithWhite:0.2 alpha:1.0]];
+    } completion:nil];
 }
 
 @end

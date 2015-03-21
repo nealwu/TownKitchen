@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="addressLabel" destination="FtU-t6-k7J" id="JDj-BI-uSn"/>
                 <outlet property="centerIndicatorView" destination="PqX-bI-4Am" id="57K-dw-2Il"/>
+                <outlet property="locationButton" destination="V97-OD-w3k" id="f68-8k-cVc"/>
                 <outlet property="mapView" destination="JZd-Eq-OqB" id="zwb-O1-dcf"/>
                 <outlet property="setAddressButton" destination="i9f-fG-rkv" id="LXq-eF-vmW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,7 +25,7 @@
                 </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-fG-rkv">
                     <rect key="frame" x="0.0" y="508" width="320" height="60"/>
-                    <color key="backgroundColor" red="0.3667581379" green="0.40420594809999999" blue="0.44214618210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.36078431370000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="aea-mF-AAC"/>
                     </constraints>
@@ -37,11 +38,11 @@
                         <action selector="onSetAddress:" destination="-1" eventType="touchUpInside" id="SAJ-B7-KaS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-OD-w3k">
-                    <rect key="frame" x="272" y="420" width="36" height="36"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-OD-w3k" userLabel="Location Button">
+                    <rect key="frame" x="276" y="424" width="32" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="0Pt-FY-Fr7"/>
-                        <constraint firstAttribute="height" constant="36" id="1Fi-9q-H7f"/>
+                        <constraint firstAttribute="width" constant="32" id="0Pt-FY-Fr7"/>
+                        <constraint firstAttribute="height" constant="32" id="1Fi-9q-H7f"/>
                     </constraints>
                     <state key="normal" image="button-icon-location">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,23 +63,33 @@
                     <rect key="frame" x="0.0" y="468" width="320" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FtU-t6-k7J" userLabel="Address Label">
-                            <rect key="frame" x="12" y="12" width="296" height="24"/>
+                            <rect key="frame" x="12" y="10" width="296" height="24"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diB-gP-K2E">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                            <connections>
+                                <action selector="onInputAddressButtonTapped:" destination="-1" eventType="touchUpInside" id="q4W-NJ-9xU"/>
+                                <action selector="onInputAddressButtonTouchDown:" destination="-1" eventType="touchDown" id="hlt-G7-t6h"/>
+                                <action selector="onInputAddressButtonTouchDragOutside:" destination="-1" eventType="touchDragExit" id="HHe-Ue-lDT"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="D3S-yg-8VL"/>
                         <constraint firstAttribute="trailing" secondItem="FtU-t6-k7J" secondAttribute="trailing" constant="12" id="DOH-KG-OAD"/>
-                        <constraint firstItem="FtU-t6-k7J" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="top" constant="12" id="V1s-v9-rcx"/>
+                        <constraint firstItem="diB-gP-K2E" firstAttribute="leading" secondItem="hLt-W6-Qkg" secondAttribute="leading" id="HQE-AD-rDU"/>
+                        <constraint firstAttribute="trailing" secondItem="diB-gP-K2E" secondAttribute="trailing" id="L0K-Mc-rPU"/>
+                        <constraint firstItem="diB-gP-K2E" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="top" id="R8Z-Hq-4HX"/>
+                        <constraint firstItem="FtU-t6-k7J" firstAttribute="top" secondItem="hLt-W6-Qkg" secondAttribute="top" constant="10" id="V1s-v9-rcx"/>
                         <constraint firstItem="FtU-t6-k7J" firstAttribute="leading" secondItem="hLt-W6-Qkg" secondAttribute="leading" constant="12" id="YtU-fq-1Cz"/>
+                        <constraint firstAttribute="bottom" secondItem="diB-gP-K2E" secondAttribute="bottom" id="esZ-TM-mFY"/>
                     </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="XRh-eY-d7q" appends="YES" id="ozr-cq-UYK"/>
-                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -100,14 +111,9 @@
             </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </view>
-        <tapGestureRecognizer id="XRh-eY-d7q">
-            <connections>
-                <action selector="onAddressViewTap:" destination="-1" id="K0y-Tp-9rH"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="button-icon-location" width="36" height="36"/>
+        <image name="button-icon-location" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
