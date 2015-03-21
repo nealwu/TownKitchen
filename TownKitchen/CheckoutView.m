@@ -9,6 +9,7 @@
 #import "CheckoutView.h"
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
+#import "AddressInputViewController.h"
 
 @interface CheckoutView () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -16,10 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 @property (weak, nonatomic) IBOutlet UIView *addressAndTimeView;
-
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addressButton;
 
 @property (strong, nonatomic) NSArray *timeOptionTitles;
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
@@ -227,6 +226,10 @@
 }
 
 #pragma mark - Actions
+
+- (IBAction)onAddressButton:(UIButton *)sender {
+    [self.delegate addressButtonPressedFromCheckoutView:self];
+}
 
 - (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
     // scroll two rows to show that more options exist

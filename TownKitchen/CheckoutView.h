@@ -16,6 +16,7 @@
 
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view;
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view;
+- (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view;
 
 @end
 

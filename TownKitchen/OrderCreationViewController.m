@@ -8,7 +8,6 @@
 
 #import "OrderCreationViewController.h"
 
-#import "CheckoutViewController.h"
 #import "ParseAPI.h"
 #import "DateUtils.h"
 #import "Inventory.h"
@@ -17,7 +16,6 @@
 #import "OrderCreationCell.h"
 #import "TKHeader.h"
 #import "DateLabelsViewSmall.h"
-#import "CheckoutAnimationController.h"
 #import "CheckoutView.h"
 #import <UIView+MTAnimation.h>
 #import "PaymentView.h"
@@ -27,7 +25,7 @@
 #import "OrdersViewController.h"
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate, PaymentViewDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -43,7 +41,6 @@
 @property (strong, nonatomic) NSMutableDictionary *shortNameToQuantity;
 
 @property (strong, nonatomic) Order *order;
-@property (strong, nonatomic) CheckoutAnimationController *checkoutAnimationController;
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 @property (strong, nonatomic) CheckoutView *checkoutView;
 @property (strong, nonatomic) PaymentView *paymentView;
@@ -121,6 +118,12 @@
 }
 
 #pragma mark - CheckoutViewDelegate Methods
+
+// create location select view and animate onto screen
+- (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view {
+    LocationSelectViewController *locationSelectVC = [[LocationSelectViewController alloc] init];
+    [self presentViewController:locationSelectVC animated:YES completion:nil];
+}
 
 // create paymentView and animate onto screen
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
@@ -203,6 +206,7 @@
     [self presentViewController:ovc animated:YES completion:nil];
 }
 
+
 #pragma mark - PaymentViewDelegate Methods
 
 // Dismiss paymentView and set payment
@@ -271,20 +275,6 @@
     // Get the height of the sizing cell, adding one to compensate for cell separators
     CGFloat height = [self.sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
     return height;
-}
-
-#pragma mark - UIViewControllerTransitioningDelegate Methods
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    self.checkoutAnimationController.animationType = AnimationTypePresent;
-    self.checkoutAnimationController.dateLabelsViewSmall = self.dateLabelsViewSmall;
-    return self.checkoutAnimationController;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    self.checkoutAnimationController.animationType = AnimationTypeDismiss;
-    return nil;
-    return self.checkoutAnimationController;
 }
 
 #pragma mark - Private methods
