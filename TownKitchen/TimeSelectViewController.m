@@ -8,7 +8,7 @@
 
 #import "TimeSelectViewController.h"
 
-@interface TimeSelectViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface TimeSelectViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 
 @property (strong, nonatomic) NSArray *timeOptionTitles;
@@ -68,7 +68,9 @@
 
 - (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"picker view tapped!");
-    [self.timePickerView selectRow:1 inComponent:1 animated:YES];
+    if ([self.timePickerView selectedRowInComponent:0] == 0) {
+        [self.timePickerView selectRow:1 inComponent:0 animated:YES];
+    }
 }
 
 #pragma mark - UIPickerViewDelegate Methods
@@ -106,6 +108,13 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return self.timeOptionTitles.count;
+}
+
+#pragma mark - UIGestureRecognizerDelegate Methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    NSLog(@"gesture recognizer simultaneous method called");
+    return YES;
 }
 
 @end
