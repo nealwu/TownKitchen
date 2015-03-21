@@ -25,7 +25,6 @@
 #import "STPAPIClient.h"
 
 #import "OrdersViewController.h"
-#import "TimeSelectViewController.h"
 
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, UIViewControllerTransitioningDelegate, CheckoutViewDelegate, PaymentViewDelegate>
@@ -125,10 +124,7 @@
 
 // create paymentView and animate onto screen
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
-    NSLog(@"ocvc heard payment button pressed");
-
-    TimeSelectViewController *ovc = [[TimeSelectViewController alloc] init];
-    [self presentViewController:ovc animated:YES completion:nil];
+    NSLog(@"orderCreationViewController heard payment button pressed");
     
     // initialize paymentView
     self.paymentView = [[PaymentView alloc] init];
@@ -170,7 +166,7 @@
 
 // Place order
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {
-    NSLog(@"ocvc heard order button pressed");
+    NSLog(@"orderCreationViewController heard order button pressed");
     
     self.order.user = [PFUser currentUser];
     

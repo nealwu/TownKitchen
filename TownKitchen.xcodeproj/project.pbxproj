@@ -299,6 +299,9 @@
 				91788D651AA940DF0038FE1F /* CheckoutViewController.h */,
 				91788D661AA940DF0038FE1F /* CheckoutViewController.m */,
 				91788D671AA940DF0038FE1F /* CheckoutViewController.xib */,
+				9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */,
+				9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */,
+				9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */,
 			);
 			name = Unused;
 			sourceTree = "<group>";
@@ -371,9 +374,6 @@
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
-				9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */,
-				9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */,
-				9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

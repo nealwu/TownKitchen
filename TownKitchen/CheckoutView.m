@@ -10,17 +10,17 @@
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
 
-@interface CheckoutView () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate>
+@interface CheckoutView () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
-@property (strong, nonatomic) NSArray *timeOptions;
+@property (strong, nonatomic) NSArray *timeOptionTitles;
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
 
 @end
@@ -60,18 +60,16 @@
     self.payAndOrderButton.delegate = self;
     
     // initialize time picker view
-    self.timeOptions = @[
-                         @"11:00",
-                         @"11:30",
-                         @"12:00",
-                         @"12:30",
-                         @"1:00",
-                         @"1:30",
-                         @"2:00"
-                         ];
-    
-    
-    NSLog(@"pickerview frame: %@", NSStringFromCGRect(self.timePicker.frame));
+    self.timeOptionTitles = @[@"Set time",
+                              @"11:00am",
+                              @"11:30am",
+                              @"12:00pm",
+                              @"12:30pm",
+                              @"1:00pm",
+                              @"1:30pm",
+                              @"2:00pm"];
+    self.timePickerView.dataSource = self;
+    self.timePickerView.delegate = self;
 }
 
 #pragma mark - Custom setters
@@ -122,10 +120,6 @@
     return cell;
 }
 
-#pragma mark - UIPickerViewDelegate Methods
-
-
-
 #pragma mark - PayAndOrderButtonDelegate Methods
 
 - (void)onPayAndOrderButton:(PayAndOrderButton *)button withButtonState:(ButtonState)buttonState {
@@ -134,6 +128,58 @@
         
     } else if (buttonState == ButtonStatePlaceOrder) {
         [self.delegate orderButtonPressedFromCheckoutView:self];
+    }
+}
+
+#pragma mark - UIPickerViewDataSource Methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.timeOptionTitles.count;
+}
+
+#pragma mark - UIPickerViewDelegate Methods
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.timeOptionTitles[row];
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UILabel *)recycledLabel {
+    UILabel *label = recycledLabel;
+    if (!label) {
+        label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+        label.textColor = [UIColor whiteColor];
+    }
+    label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    return label;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 32;  // taller than parent view height to hide selection bars
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    NSLog(@"picker selected row %ld with title %@", (long)row, self.timeOptionTitles[row]);
+}
+
+#pragma mark - UIGestureRecognizerDelegate Methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+#pragma mark - Actions
+
+- (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
+    // scroll two rows to show that more options exist
+    if ([self.timePickerView selectedRowInComponent:0] == 0) {
+        [self.timePickerView selectRow:2 inComponent:0 animated:YES];
     }
 }
 
