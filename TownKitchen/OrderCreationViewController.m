@@ -122,7 +122,8 @@
 // create location select view and animate onto screen
 - (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view {
     LocationSelectViewController *locationSelectVC = [[LocationSelectViewController alloc] init];
-    [self presentViewController:locationSelectVC animated:YES completion:nil];
+    
+    [self displayViewController:locationSelectVC];
 }
 
 // create paymentView and animate onto screen
@@ -296,6 +297,22 @@
     //                                   completion(error);
     //                               }
     //                           }];
+}
+
+- (void)displayViewController:(UIViewController *) viewController {
+    [self addChildViewController:viewController];
+    viewController.view.frame = [self frameForModalViewController];
+    [self.view addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self];
+}
+
+- (CGRect)frameForModalViewController {
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    CGFloat horizontalGapSize = 20.0;
+    CGFloat navigationBarHeight = 64;
+    
+    return CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
 }
 
 #pragma mark - Actions

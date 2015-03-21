@@ -183,7 +183,6 @@
     }
     NSLog(@"Setting address to: %@", self.addressString);
     [self.delegate locationSelectViewController:self didSelectAddress:self.addressString];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onAddressViewTap:(id)sender {
