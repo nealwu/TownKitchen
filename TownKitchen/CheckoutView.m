@@ -195,7 +195,7 @@
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    return 32;  // taller than parent view height to hide selection bars
+    return 30;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
@@ -215,6 +215,8 @@
         [dayComponents setMinute:timeComponents.minute];
         [dayComponents setSecond:timeComponents.second];
         self.order.deliveryDateAndTime = [calendar dateFromComponents:dayComponents];
+        
+        self.didSetTime = YES;
     }
 }
 
@@ -238,13 +240,12 @@
 
 - (BOOL)validateInput {
     
-    if (!self.didSetAddress) {
-        [self bounceAddressLabel];
-                [self bounceTimePicker];
+    if (!self.didSetTime) {
+        [self bounceTimePicker];
     }
     
-    else if (!self.didSetTime) {
-        [self bounceTimePicker];
+    else if (!self.didSetAddress) {
+        [self bounceAddressLabel];
     }
     return NO;
 }
