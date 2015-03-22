@@ -104,7 +104,15 @@
     | UIViewAutoresizingFlexibleRightMargin
     | UIViewAutoresizingFlexibleTopMargin
     | UIViewAutoresizingFlexibleBottomMargin;
-    [self.header.leftView addSubview:logoutButton];
+//    [self.header.leftView addSubview:logoutButton];
+    
+    // Create profile button
+    CGRect profileButtonFrame = self.header.leftView.bounds;
+    UIButton *profileButton = [[UIButton alloc] initWithFrame:profileButtonFrame];
+    [profileButton addTarget:self action:@selector(onLogoutButton) forControlEvents:UIControlEventTouchUpInside];
+    [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
+    [profileButton setImage:[UIImage imageNamed:@"user-profile-button-highlighted"] forState:UIControlStateHighlighted];
+    [self.header.leftView addSubview:profileButton];
 }
 
 #pragma mark - Table view methods

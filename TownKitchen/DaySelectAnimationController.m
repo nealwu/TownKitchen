@@ -64,6 +64,11 @@ CGFloat const statusBarHeight = 20.0;
     [header.leftView addSubview:backButton];
     backButton.alpha = 0;
     
+    // Create profile button for header
+    UIButton *profileButton = [[UIButton alloc] initWithFrame:header.leftView.bounds];
+    [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
+    [header.leftView addSubview:profileButton];
+    
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
     selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
@@ -148,7 +153,6 @@ CGFloat const statusBarHeight = 20.0;
                          header.titleView.layer.transform = headerTitleTransform;
                          dateLabelsView.transform = dateLabelsViewTransform;
                          dateLabelsView.monthAndDayLabel.transform = monthAndDayLabelTransform;
-                         backButton.alpha = 1.0;
                          
                          self.toViewController.view.frame = finalToFrame;
                      } completion:^{
@@ -171,6 +175,18 @@ CGFloat const statusBarHeight = 20.0;
                      } completion:^{
                          nil;
                      }];
+    
+    [UIView animateWithDuration:duration * 0.5
+                     animations:^{
+                         profileButton.alpha = 0.0;
+                     } completion:^(BOOL finished) {
+                         [UIView animateWithDuration:duration * 0.5
+                                          animations:^{
+                                              backButton.alpha = 1.0;
+                                          } completion:^(BOOL finished) {
+                                              nil;
+                                          }];
+    }];
 }
 
 - (void)animateTransitionDismiss:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -186,13 +202,19 @@ CGFloat const statusBarHeight = 20.0;
     dateLabelsViewSmall.monthAndDayLabel.text = self.selectedCell.monthAndDay;
     [header.titleView addSubview:dateLabelsViewSmall];
     
-    // Create back button
+    // Create back button for header
     UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
     CGRect backButtonFrame = header.leftView.bounds;
     backButtonFrame.origin.x -= 12;
     UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
     [backButton setImage:backButtonImage forState:UIControlStateNormal];
     [header.leftView addSubview:backButton];
+    
+    // Create profile button for header
+    UIButton *profileButton = [[UIButton alloc] initWithFrame:header.leftView.bounds];
+    [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
+    [header.leftView addSubview:profileButton];
+    profileButton.alpha = 0.0;
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
@@ -225,7 +247,6 @@ CGFloat const statusBarHeight = 20.0;
                      animations:^{
                          TKLogoImageView.layer.transform = CATransform3DIdentity;
                          dateLabelsViewSmall.alpha = 0.0;
-                         backButton.alpha = 0.0;
                          
                          aboveCellsImageView.center = aboveCellsImageViewFinalCenter;
                          belowCellsImageView.center = belowCellsImageViewFinalCenter;
@@ -237,6 +258,17 @@ CGFloat const statusBarHeight = 20.0;
                          [self.toViewController removeFromParentViewController];
                          [header removeFromSuperview];
                          [transitionContext completeTransition:YES];
+                     }];
+    [UIView animateWithDuration:duration * 0.5
+                     animations:^{
+                         backButton.alpha = 0.0;
+                     } completion:^(BOOL finished) {
+                         [UIView animateWithDuration:duration * 0.5
+                                          animations:^{
+                                              profileButton.alpha = 1.0;
+                                          } completion:^(BOOL finished) {
+                                              nil;
+                                          }];
                      }];
 }
 
