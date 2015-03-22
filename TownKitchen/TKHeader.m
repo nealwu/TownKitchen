@@ -37,13 +37,14 @@
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];
-    
+
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.layer.shadowOpacity = 0.3;
     self.layer.shadowRadius = 1.0;
     self.layer.shadowOffset = CGSizeMake(0,1);
     CGRect shadowPath = CGRectMake(self.layer.bounds.origin.x - 10, self.layer.bounds.size.height - 6, self.layer.bounds.size.width + 20, 5);
     self.layer.shadowPath = [UIBezierPath bezierPathWithRect:shadowPath].CGPath;
+    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     self.layer.shouldRasterize = YES;
 }
 

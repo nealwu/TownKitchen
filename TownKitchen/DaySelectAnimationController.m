@@ -135,7 +135,7 @@ CGFloat const statusBarHeight = 20.0;
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView mt_animateWithViews:@[aboveCellsImageView, belowCellsImageView, transitionView, header, dateLabelsView, dateLabelsView.monthAndDayLabel, backButton, self.toViewController.view]
+    [UIView mt_animateWithViews:@[aboveCellsImageView, belowCellsImageView, transitionView, header, header.titleView, dateLabelsView, dateLabelsView.monthAndDayLabel, backButton, self.toViewController.view]
                        duration:duration
                           delay:0.0
                  timingFunction:kMTEaseInOutCubic
