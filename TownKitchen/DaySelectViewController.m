@@ -75,6 +75,7 @@
     }
 }
 
+
 - (void)setupButtons {
     NSString *buttonTitle;
     SEL action;
@@ -94,7 +95,7 @@
         | UIViewAutoresizingFlexibleRightMargin
         | UIViewAutoresizingFlexibleTopMargin
         | UIViewAutoresizingFlexibleBottomMargin;
-    [self.header.rightView addSubview:ordersButton];
+//    [self.header.rightView addSubview:ordersButton];
 
     UIButton *logoutButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
     [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
@@ -113,6 +114,13 @@
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button-highlighted"] forState:UIControlStateHighlighted];
     [self.header.leftView addSubview:profileButton];
+    
+    // Create active delivery button
+    CGRect activeDeliveryButtonFrame = self.header.rightView.bounds;
+    UIButton *activeDeliveryButton = [[UIButton alloc] initWithFrame:activeDeliveryButtonFrame];
+//    [activeDeliveryButton addTarget:self action:@selector(onActiveOrder) forControlEvents:UIControlEventTouchUpInside];
+    [activeDeliveryButton setImage:[UIImage imageNamed:@"map-button"] forState:UIControlStateNormal];
+    [self.header.rightView addSubview:activeDeliveryButton];
 }
 
 #pragma mark - Table view methods
