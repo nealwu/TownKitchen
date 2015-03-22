@@ -42,7 +42,25 @@
 - (void)setMenuOption:(MenuOption *)menuOption {
     _menuOption = menuOption;
     self.mealDescription.text = menuOption.mealDescription;
-    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageURL]];
+//    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageURL]];
+    
+    NSURL *imageUrl = [[NSURL alloc] initWithString:menuOption.imageURL];
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl];
+    
+    [self.mealImage setImageWithURLRequest:imageRequest
+                                    placeholderImage:[UIImage imageNamed:@"day-image-placeholder"]
+                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) { 
+                                                 [UIView transitionWithView:self.mealImage
+                                                                   duration:0.3
+                                                                    options:UIViewAnimationOptionTransitionCrossDissolve
+                                                                 animations:^{
+                                                                     self.mealImage.image = image;
+                                                                 } completion:^(BOOL finished) {
+                                                                     nil;
+                                                                 }];
+                                             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 NSLog(@"Error setting order creation view image: %@", error);
+                                             }];
 }
 
 - (void)setQuantity:(NSNumber *)quantity {

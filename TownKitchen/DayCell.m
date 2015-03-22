@@ -44,8 +44,6 @@
     [self.backgroundImageView setImageWithURLRequest:imageRequest
                                     placeholderImage:[UIImage imageNamed:@"day-image-placeholder"]
                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                                 nil;
-                                                 
                                                  [UIView transitionWithView:self.backgroundImageView
                                                                    duration:0.3
                                                                     options:UIViewAnimationOptionTransitionCrossDissolve
