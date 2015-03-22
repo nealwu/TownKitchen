@@ -11,6 +11,8 @@
 #import "DayCell.h"
 #import <FXBlurView.h>
 #import "DateLabelsView.h"
+#import "DateLabelsViewSmall.h"
+#import <UIView+MTAnimation.h>
 
 CGFloat const transitionImageInitialHeight = 130;
 CGFloat const transitionImageFinalHeight = 200;
@@ -52,6 +54,15 @@ CGFloat const statusBarHeight = 20.0;
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [header.titleView addSubview:TKLogoImageView];
+    
+    // Create back button for header
+    UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
+    CGRect backButtonFrame = header.leftView.bounds;
+    backButtonFrame.origin.x -= 12;
+    UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    [header.leftView addSubview:backButton];
+    backButton.alpha = 0;
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
@@ -124,7 +135,10 @@ CGFloat const statusBarHeight = 20.0;
     
     // Animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration
+    [UIView mt_animateWithViews:@[aboveCellsImageView, belowCellsImageView, transitionView, header, dateLabelsView, dateLabelsView.monthAndDayLabel, backButton, self.toViewController.view]
+                       duration:duration
+                          delay:0.0
+                 timingFunction:kMTEaseInOutCubic
                      animations:^{
                          aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
@@ -134,10 +148,10 @@ CGFloat const statusBarHeight = 20.0;
                          header.titleView.layer.transform = headerTitleTransform;
                          dateLabelsView.transform = dateLabelsViewTransform;
                          dateLabelsView.monthAndDayLabel.transform = monthAndDayLabelTransform;
+                         backButton.alpha = 1.0;
                          
                          self.toViewController.view.frame = finalToFrame;
-                     }
-                     completion:^(BOOL finished) {
+                     } completion:^{
                          self.fromViewController.view.hidden = NO;
                          [transitionView removeFromSuperview];
                          [dateLabelsView removeFromSuperview];
@@ -148,10 +162,14 @@ CGFloat const statusBarHeight = 20.0;
                          [transitionContext completeTransition:YES];
                      }];
     
-    // Animate image view faster
-    [UIView animateWithDuration:duration * 0.5
+    [UIView mt_animateWithViews:@[transitionView]
+                       duration:duration * 0.5
+                          delay:0.0
+                 timingFunction:kMTEaseInCubic
                      animations:^{
                          transitionView.alpha = 0.0;
+                     } completion:^{
+                         nil;
                      }];
 }
 
@@ -161,6 +179,20 @@ CGFloat const statusBarHeight = 20.0;
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [header.titleView addSubview:TKLogoImageView];
     [self.containerView addSubview:header];
+    
+    // Create date label
+    DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:header.titleView.bounds];
+    dateLabelsViewSmall.weekdayLabel.text = self.selectedCell.weekday;
+    dateLabelsViewSmall.monthAndDayLabel.text = self.selectedCell.monthAndDay;
+    [header.titleView addSubview:dateLabelsViewSmall];
+    
+    // Create back button
+    UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
+    CGRect backButtonFrame = header.leftView.bounds;
+    backButtonFrame.origin.x -= 12;
+    UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    [header.leftView addSubview:backButton];
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
@@ -178,7 +210,7 @@ CGFloat const statusBarHeight = 20.0;
     // Define and set initial frames
     CATransform3D headerTitleInitialTransform = CATransform3DIdentity;
     headerTitleInitialTransform = CATransform3DTranslate(headerTitleInitialTransform, 0, - (1.5 * header.frame.size.height), 0);
-    header.titleView.layer.transform = headerTitleInitialTransform;
+    TKLogoImageView.layer.transform = headerTitleInitialTransform;
 
     CGPoint aboveCellsImageViewFinalCenter = aboveCellsImageView.center;
     CGPoint belowCellsImageViewFinalCenter = belowCellsImageView.center;
@@ -191,7 +223,9 @@ CGFloat const statusBarHeight = 20.0;
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                      animations:^{
-                         header.titleView.layer.transform = CATransform3DIdentity;
+                         TKLogoImageView.layer.transform = CATransform3DIdentity;
+                         dateLabelsViewSmall.alpha = 0.0;
+                         backButton.alpha = 0.0;
                          
                          aboveCellsImageView.center = aboveCellsImageViewFinalCenter;
                          belowCellsImageView.center = belowCellsImageViewFinalCenter;
@@ -200,6 +234,8 @@ CGFloat const statusBarHeight = 20.0;
                      }
                      completion:^(BOOL finished) {
                          self.toViewController.view.hidden = NO;
+                         [self.toViewController removeFromParentViewController];
+                         [header removeFromSuperview];
                          [transitionContext completeTransition:YES];
                      }];
 }
