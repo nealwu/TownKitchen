@@ -92,7 +92,7 @@
         }
     }
     self.timeOptionDateObjects = [NSArray arrayWithArray:mutableTimeOptionDateObjects];
-    NSLog(@"date objects: %@", self.timeOptionDateObjects);
+//    NSLog(@"date objects: %@", self.timeOptionDateObjects);
 
     self.timePickerView.dataSource = self;
     self.timePickerView.delegate = self;
