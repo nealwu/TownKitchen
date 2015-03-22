@@ -15,11 +15,12 @@
 #import "DateUtils.h"
 #import "DaySelectAnimationController.h"
 #import "OrdersViewController.h"
+#import "OrderStatusViewController.h"
 #import "DeliveryStatusViewController.h"
 #import "TKHeader.h"
 #import "LoginViewController.h"
 
-@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate>
+@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate, OrderStatusViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *inventoryItems;
@@ -28,6 +29,8 @@
 @property (strong, nonatomic) DayCell *sizingCell;
 @property (strong, nonatomic) DaySelectAnimationController *daySelectAnimationController;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
+
+@property (strong, nonatomic) Order *activeOrder;
 
 @end
 
@@ -59,13 +62,18 @@
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
 
+    self.activeOrder = [[ParseAPI getInstance] orderBeingDeliveredForUser:[PFUser currentUser]];
+    
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
-    [self setupButtons];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self setupButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -75,37 +83,16 @@
     }
 }
 
-
 - (void)setupButtons {
-    NSString *buttonTitle;
-    SEL action;
-    if ([[[PFUser currentUser] valueForKey:@"isDriver"] boolValue]) {
-        buttonTitle = @"Deliver";
-        action = @selector(onDeliveriesButton);
-    } else {
-        buttonTitle = @"Orders";
-        action = @selector(onOrdersButton);
-    }
-    
-    UIButton *ordersButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
-    [ordersButton setTitle:buttonTitle forState:UIControlStateNormal];
-    [ordersButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    ordersButton.autoresizingMask =
+    UIButton *deliveriesButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
+    [deliveriesButton setTitle:@"Deliver" forState:UIControlStateNormal];
+    deliveriesButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
+    [deliveriesButton addTarget:self action:@selector(onDeliveriesButton) forControlEvents:UIControlEventTouchUpInside];
+    deliveriesButton.autoresizingMask =
           UIViewAutoresizingFlexibleLeftMargin
         | UIViewAutoresizingFlexibleRightMargin
         | UIViewAutoresizingFlexibleTopMargin
         | UIViewAutoresizingFlexibleBottomMargin;
-//    [self.header.rightView addSubview:ordersButton];
-
-    UIButton *logoutButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
-    [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-    [logoutButton addTarget:self action:@selector(onLogoutButton) forControlEvents:UIControlEventTouchUpInside];
-    logoutButton.autoresizingMask =
-    UIViewAutoresizingFlexibleLeftMargin
-    | UIViewAutoresizingFlexibleRightMargin
-    | UIViewAutoresizingFlexibleTopMargin
-    | UIViewAutoresizingFlexibleBottomMargin;
-//    [self.header.leftView addSubview:logoutButton];
     
     // Create profile button
     CGRect profileButtonFrame = self.header.leftView.bounds;
@@ -113,14 +100,28 @@
     [profileButton addTarget:self action:@selector(onLogoutButton) forControlEvents:UIControlEventTouchUpInside];
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button-highlighted"] forState:UIControlStateHighlighted];
+    [self.header.leftView.subviews.firstObject removeFromSuperview];
     [self.header.leftView addSubview:profileButton];
     
     // Create active delivery button
     CGRect activeDeliveryButtonFrame = self.header.rightView.bounds;
     UIButton *activeDeliveryButton = [[UIButton alloc] initWithFrame:activeDeliveryButtonFrame];
-//    [activeDeliveryButton addTarget:self action:@selector(onActiveOrder) forControlEvents:UIControlEventTouchUpInside];
+    [activeDeliveryButton addTarget:self action:@selector(onActiveOrderButton) forControlEvents:UIControlEventTouchUpInside];
+    if (self.activeOrder) {
+        activeDeliveryButton.alpha = 1.0;
+        activeDeliveryButton.userInteractionEnabled = YES;
+    } else {
+        activeDeliveryButton.alpha = 0.5;
+        activeDeliveryButton.userInteractionEnabled = NO;
+    }
     [activeDeliveryButton setImage:[UIImage imageNamed:@"map-button"] forState:UIControlStateNormal];
-    [self.header.rightView addSubview:activeDeliveryButton];
+    
+    [self.header.rightView.subviews.firstObject removeFromSuperview];
+    if ([[[PFUser currentUser] valueForKey:@"isDriver"] boolValue]) {
+        [self.header.rightView addSubview:deliveriesButton];
+    } else {
+        [self.header.rightView addSubview:activeDeliveryButton];
+    }
 }
 
 #pragma mark - Table view methods
@@ -201,6 +202,13 @@
     [self presentViewController:lvc animated:YES completion:nil];
 }
 
+- (void)onActiveOrderButton {
+    OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
+    osvc.delegate = self;
+    osvc.order = self.activeOrder;
+    [self presentViewController:osvc animated:YES completion:nil];
+}
+
 #pragma mark - LoginViewControllerDelegate Methods
 
 - (void)loginViewController:(LoginViewController *)loginViewController didLoginUser:(PFUser *)user {
@@ -211,6 +219,12 @@
 
 - (void)deliveryStatusViewControllerShouldBeDismissed:(DeliveryStatusViewController *)deliveryStatusViewController {
     [deliveryStatusViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - OrderStatusViewControllerDelegate Methods
+
+- (void)orderStatusViewControllerShouldBeDismissed:(OrderStatusViewController *)orderStatusViewController {
+    [orderStatusViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate Methods

@@ -104,6 +104,14 @@
     return YES;
 }
 
+- (Order *)orderBeingDeliveredForUser:(PFUser *)user {
+    PFQuery *query = [PFQuery queryWithClassName:@"Order"];
+    [query whereKey:@"status" equalTo:@"delivering"];
+    [query orderByAscending:@"deliveryDateAndTime"];
+    NSArray *orders = [query findObjects];
+    return orders.firstObject;
+}
+
 - (BOOL)createOrder:(Order *)order {
     if ([order save]) {
         NSLog(@"Successfully saved order");
