@@ -52,6 +52,7 @@ CGFloat const statusBarHeight = 20.0;
 - (void)animateTransitionPresent:(id<UIViewControllerContextTransitioning>)transitionContext {
     // Create intermediate header
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
+    header.titleView.backgroundColor = [UIColor clearColor];
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [header.titleView addSubview:TKLogoImageView];
     
