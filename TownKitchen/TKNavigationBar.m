@@ -10,8 +10,6 @@
 
 @interface TKNavigationBar ()
 
-
-
 @end
 
 @implementation TKNavigationBar

@@ -7,7 +7,7 @@
 //
 
 #import "DaySelectAnimationController.h"
-#import "TKHeader.h"
+#import "TKNavigationBar.h"
 #import "DayCell.h"
 #import <FXBlurView.h>
 #import "DateLabelsView.h"
@@ -41,7 +41,7 @@ CGFloat const statusBarHeight = 20.0;
         [self animateTransitionPresent:transitionContext];
     }
     else {
-        [self animateTransitionDismiss:transitionContext];
+//        [self animateTransitionDismiss:transitionContext];
     }
 }
 
@@ -49,13 +49,24 @@ CGFloat const statusBarHeight = 20.0;
 
 - (void)animateTransitionPresent:(id<UIViewControllerContextTransitioning>)transitionContext {
     // Create intermediate header
-    TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
-    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
-    [header.titleView addSubview:TKLogoImageView];
+//    TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
+//    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
+//    [header.titleView addSubview:TKLogoImageView];
+    
+    
+    // Create intermediate nav bar ----
+    TKNavigationBar *navigationBar = [[TKNavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.fromViewController.view.bounds), 64.0)];
+    UINavigationItem *navItem = [[UINavigationItem alloc] init];
+    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    TKLogoImageView.image = [UIImage imageNamed:@"header-logo"];
+//    UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
+    navItem.titleView = TKLogoImageView;
+//    [navigationBar setItems:@[navItem]];
+    [navigationBar addSubview:TKLogoImageView];
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
-    selectedCellFrame.origin.y += (header.frame.size.height - self.contentOffset.y);
+    selectedCellFrame.origin.y += (navigationBar.frame.size.height - self.contentOffset.y);
     
     // Create transition view
     CGFloat imageCenterYDelta = transitionImageFinalHeight / 2 - selectedCellFrame.size.height / 2;
@@ -97,7 +108,7 @@ CGFloat const statusBarHeight = 20.0;
     self.fromViewController.view.hidden = YES;
     
     // Add subviews that need to be on top
-    [self.containerView addSubview:header];
+    [self.containerView addSubview:navigationBar];
     [self.containerView addSubview:dateLabelsView];
     [dateLabelsView layoutIfNeeded];
     
@@ -107,9 +118,12 @@ CGFloat const statusBarHeight = 20.0;
     
     // Define final frames
     CGRect finalToFrame = [transitionContext finalFrameForViewController:self.toViewController];
-    CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, header.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
+    CGRect finalTransitionImageFrame = CGRectMake(selectedCellFrame.origin.x, navigationBar.frame.size.height, selectedCellFrame.size.width, transitionImageFinalHeight);
     CATransform3D headerTitleTransform = CATransform3DIdentity;
-    headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * header.frame.size.height), 0);
+    headerTitleTransform = CATransform3DTranslate(headerTitleTransform, 0, - (1.5 * navigationBar.frame.size.height), 0);
+    
+
+    CGAffineTransform navigationTitleTransform = CGAffineTransformMakeTranslation(0, - (1.5 * navigationBar.frame.size.height));
     
     // Define final transforms (date label)
     CGFloat scaleFactor = 0.5;
@@ -126,12 +140,13 @@ CGFloat const statusBarHeight = 20.0;
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                      animations:^{
-                         aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + header.frame.size.height);
+                         aboveCellsImageView.center = CGPointMake(aboveCellsImageView.center.x, aboveCellsImageView.center.y - aboveCellsImageView.frame.size.height + navigationBar.frame.size.height);
                          belowCellsImageView.center = CGPointMake(belowCellsImageView.center.x, belowCellsImageView.center.y + belowCellsImageView.frame.size.height);
                          
                          transitionView.frame = finalTransitionImageFrame;
                          
-                         header.titleView.layer.transform = headerTitleTransform;
+                         TKLogoImageView.transform = navigationTitleTransform;
+                         
                          dateLabelsView.transform = dateLabelsViewTransform;
                          dateLabelsView.monthAndDayLabel.transform = monthAndDayLabelTransform;
                          
@@ -141,7 +156,7 @@ CGFloat const statusBarHeight = 20.0;
                          self.fromViewController.view.hidden = NO;
                          [transitionView removeFromSuperview];
                          [dateLabelsView removeFromSuperview];
-                         [header removeFromSuperview];
+//                         [navigationBar removeFromSuperview];
                          [aboveCellsImageView removeFromSuperview];
                          [belowCellsImageView removeFromSuperview];
                          
@@ -154,7 +169,7 @@ CGFloat const statusBarHeight = 20.0;
                          transitionView.alpha = 0.0;
                      }];
 }
-
+/*
 - (void)animateTransitionDismiss:(id<UIViewControllerContextTransitioning>)transitionContext {
     // Create intermediate header
     TKHeader *header = [[TKHeader alloc] initWithFrame:CGRectMake(0, 0, self.fromViewController.view.frame.size.width, 64)];
@@ -203,6 +218,7 @@ CGFloat const statusBarHeight = 20.0;
                          [transitionContext completeTransition:YES];
                      }];
 }
+ */
 
 #pragma mark - Helper Methods
 
