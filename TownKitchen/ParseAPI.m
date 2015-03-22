@@ -87,7 +87,7 @@
 }
 
 - (BOOL)validateOrder:(Order *)order {
-    if (!order) {
+    if (!order || order.items.count < 1) {
         return NO;
     }
     NSDictionary *items = order.items;
