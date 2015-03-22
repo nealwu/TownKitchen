@@ -20,6 +20,8 @@
 		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
 		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
 		2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */; };
+		2B7110031ABE84E900A9B896 /* OrderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7110021ABE84E900A9B896 /* OrderButtonView.m */; };
+		2B7110051ABE84F100A9B896 /* OrderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7110041ABE84F100A9B896 /* OrderButtonView.xib */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */; };
 		2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */; };
@@ -113,6 +115,9 @@
 		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
 		2B710FFE1ABE7B2600A9B896 /* UIImage+SolidColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SolidColors.h"; sourceTree = "<group>"; };
 		2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SolidColors.m"; sourceTree = "<group>"; };
+		2B7110011ABE84E900A9B896 /* OrderButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderButtonView.h; sourceTree = "<group>"; };
+		2B7110021ABE84E900A9B896 /* OrderButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderButtonView.m; sourceTree = "<group>"; };
+		2B7110041ABE84F100A9B896 /* OrderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderButtonView.xib; sourceTree = "<group>"; };
 		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BA78A161AB6558500F5FAB0 /* DaySelectAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectAnimationController.h; sourceTree = "<group>"; };
 		2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectAnimationController.m; sourceTree = "<group>"; };
@@ -408,6 +413,9 @@
 				2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */,
 				2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */,
 				2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */,
+				2B7110011ABE84E900A9B896 /* OrderButtonView.h */,
+				2B7110021ABE84E900A9B896 /* OrderButtonView.m */,
+				2B7110041ABE84F100A9B896 /* OrderButtonView.xib */,
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
@@ -579,6 +587,7 @@
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
 				2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
+				2B7110051ABE84F100A9B896 /* OrderButtonView.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
 				91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */,
@@ -651,6 +660,7 @@
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */,
 				2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */,
+				2B7110031ABE84E900A9B896 /* OrderButtonView.m in Sources */,
 				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
 				2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */,
 				2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */,

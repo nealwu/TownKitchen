@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderCreationViewController">
             <connections>
                 <outlet property="header" destination="8d3-yv-X55" id="rjv-3f-oXo"/>
+                <outlet property="orderButtonView" destination="KRv-26-qfa" id="peq-6f-xMe"/>
                 <outlet property="tableView" destination="fYM-bp-3Bk" id="ScR-ZJ-Y4E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -18,32 +19,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fYM-bp-3Bk">
-                    <rect key="frame" x="0.0" y="64" width="320" height="444"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRv-26-qfa">
-                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35d-Lv-lba">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" title="Order">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="onOrderButton:" destination="-1" eventType="touchUpInside" id="1Fh-mZ-P1H"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRv-26-qfa" customClass="OrderButtonView">
+                    <rect key="frame" x="20" y="506" width="280" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="4Mw-Fy-VFm"/>
-                        <constraint firstItem="35d-Lv-lba" firstAttribute="top" secondItem="KRv-26-qfa" secondAttribute="top" id="D7O-Qf-cKD"/>
-                        <constraint firstItem="35d-Lv-lba" firstAttribute="leading" secondItem="KRv-26-qfa" secondAttribute="leading" id="Tgc-Yz-1XF"/>
-                        <constraint firstAttribute="bottom" secondItem="35d-Lv-lba" secondAttribute="bottom" id="fnw-Ra-IPZ"/>
-                        <constraint firstAttribute="trailing" secondItem="35d-Lv-lba" secondAttribute="trailing" id="wM6-B5-4BU"/>
+                        <constraint firstAttribute="height" constant="50" id="4Mw-Fy-VFm"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8d3-yv-X55" userLabel="TKHeader" customClass="TKHeader">
@@ -57,14 +40,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="fYM-bp-3Bk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FSA-ih-j0e"/>
-                <constraint firstItem="KRv-26-qfa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Kdb-mw-hcu"/>
+                <constraint firstAttribute="bottom" secondItem="KRv-26-qfa" secondAttribute="bottom" constant="12" id="Oo0-fn-5im"/>
                 <constraint firstAttribute="trailing" secondItem="fYM-bp-3Bk" secondAttribute="trailing" id="SGZ-z4-wNC"/>
-                <constraint firstAttribute="trailing" secondItem="KRv-26-qfa" secondAttribute="trailing" id="UPm-id-DWE"/>
-                <constraint firstItem="KRv-26-qfa" firstAttribute="top" secondItem="fYM-bp-3Bk" secondAttribute="bottom" id="X5U-tZ-MT5"/>
                 <constraint firstItem="fYM-bp-3Bk" firstAttribute="top" secondItem="8d3-yv-X55" secondAttribute="bottom" id="XTb-Pr-xwR"/>
+                <constraint firstAttribute="bottom" secondItem="fYM-bp-3Bk" secondAttribute="bottom" id="Ym0-7J-mhd"/>
                 <constraint firstItem="8d3-yv-X55" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gJW-2G-N7t"/>
                 <constraint firstItem="8d3-yv-X55" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="glm-dd-Ofu"/>
-                <constraint firstAttribute="bottom" secondItem="KRv-26-qfa" secondAttribute="bottom" id="m9T-QS-6Oi"/>
+                <constraint firstItem="KRv-26-qfa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="oaj-kS-MdN"/>
+                <constraint firstAttribute="trailing" secondItem="KRv-26-qfa" secondAttribute="trailing" constant="20" id="voi-DJ-aI7"/>
                 <constraint firstAttribute="trailing" secondItem="8d3-yv-X55" secondAttribute="trailing" id="yy0-kz-2e2"/>
             </constraints>
             <point key="canvasLocation" x="302" y="480"/>

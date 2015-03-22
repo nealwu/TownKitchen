@@ -14,6 +14,7 @@
 #import "LocationSelectViewController.h"
 #import "Order.h"
 #import "OrderCreationCell.h"
+#import "OrderButtonView.h"
 #import "TKHeader.h"
 #import "DateLabelsViewSmall.h"
 #import "CheckoutView.h"
@@ -25,7 +26,7 @@
 #import "OrdersViewController.h"
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -36,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet TKHeader *header;
 @property (strong, nonatomic) UIButton *backButton;
 @property (strong, nonatomic) UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet OrderButtonView *orderButtonView;
 
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
@@ -87,6 +89,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationCell"];
+    
+    // add a footer so button does not hide menu options
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
+    footerView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footerView;
     [self.tableView reloadData];
     
     // Set up custom header
@@ -121,6 +128,9 @@
     self.parentHeight = self.view.bounds.size.height;
     self.horizontalGapSize = 20.0;
     self.navigationBarHeight = 64;
+    
+    // set up order button
+    self.orderButtonView.delegate = self;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -137,6 +147,7 @@
     } else {
         self.shortNameToQuantity[shortName] = quantity;
     }
+    [self updateOrderObjectItems];
     NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
 
@@ -262,6 +273,14 @@
                          [self.paymentView removeFromSuperview];
                      }];
 
+}
+
+#pragma mark - OrderButtonViewDelegate Methods
+
+- (void)orderButtonPressedFromOrderButtonView:(OrderButtonView *)view {
+    if (self.order.items.count > 0) {
+        [self createOrder];
+    }
 }
 
 #pragma mark - Table View Methods
@@ -442,12 +461,29 @@
 
 #pragma mark - Actions
 
-// Create CheckoutView and animate onto screen
-- (IBAction)onOrderButton:(id)sender {
-
-    #warning TODO: don't activate order button until user has selected >0 quantity
+- (void)updateOrderObjectItems {
+    if (!self.order) {
+        self.order = [Order object];
+    }
+    self.order.items = self.shortNameToQuantity;
+    self.order.totalPrice = @0;
+    int totalQuantity = 0;
     
-    self.order = [Order object];
+    for (NSString *shortName in self.order.items) {
+        MenuOption *menuOption = self.shortNameToObject[shortName];
+        self.order.totalPrice = @([self.order.totalPrice doubleValue] + [menuOption.price doubleValue] * [self.order.items[shortName] doubleValue]);
+        
+        totalQuantity += [self.shortNameToQuantity[shortName] intValue];
+    }
+    self.orderButtonView.price = self.order.totalPrice;
+    self.orderButtonView.quantity = totalQuantity;
+}
+
+// Create CheckoutView and animate onto screen
+- (void)createOrder {
+    if (!self.order) {
+        self.order = [Order object];
+    }
     self.order.items = self.shortNameToQuantity;
     self.order.user = [PFUser currentUser];
     Inventory *firstInventory = self.inventoryItems[0];
