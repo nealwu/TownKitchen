@@ -11,6 +11,7 @@
 #import <GoogleKit.h>
 #import <MapKit/MapKit.h>
 #import <LMGeocoder.h>
+#import <UIView+MTAnimation.h>
 
 @interface LocationSelectViewController () <MKMapViewDelegate, CLLocationManagerDelegate, AddressInputViewControllerDelegate>
 
@@ -84,6 +85,10 @@
     [self moveToInputAddress];
 }
 
+- (void)addressInputViewController:(AddressInputViewController *)addressInputViewController shouldDismissAddressInputNavigationController:(UINavigationController *)navigationController {
+    [self hideViewControllerAnimateToBottom:navigationController];
+}
+
 #pragma mark Actions
 
 - (IBAction)onLocationButton:(id)sender {
@@ -108,7 +113,7 @@
     avc.currentLocation = self.currentLocation;
     avc.delegate = self;
     
-    [self presentViewController:nvc animated:YES completion:nil];
+    [self displayViewControllerAnimatedFromBottom:nvc];
     [self unhighlightAddressLabel];
 }
 
@@ -219,6 +224,61 @@
     [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.addressLabel setTextColor:[UIColor colorWithWhite:0.2 alpha:1.0]];
     } completion:nil];
+}
+
+- (void)displayViewControllerAnimatedFromBottom:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    
+    // define initial and final frames
+    CGRect finalFrame = [self frameForModalViewController];
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.y += initialFrame.size.height;
+    viewController.view.frame = initialFrame;
+    
+    [self.view addSubview:viewController.view];
+    
+    // set shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:viewController.view.bounds];
+    viewController.view.layer.masksToBounds = NO;
+    viewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    viewController.view.layer.shadowRadius = 6;
+    viewController.view.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    viewController.view.layer.shadowOpacity = 0.3;
+    viewController.view.layer.shadowPath = shadowPath.CGPath;
+    
+    // animate transition
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         // complete the transition
+                         [viewController didMoveToParentViewController:self];
+                     }];
+}
+
+- (void)hideViewControllerAnimateToBottom:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    
+    CGRect finalFrame = [self frameForModalViewController];
+    finalFrame.origin.y += finalFrame.size.height;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         [viewController.view removeFromSuperview];
+                         [viewController removeFromParentViewController];
+                     }];
+}
+
+- (CGRect)frameForModalViewController {
+    return self.view.bounds;
 }
 
 @end

@@ -76,7 +76,7 @@
     if (!self.sizingCell) {
         self.sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"DayCell"];
     }
-
+#warning This crashes if order object has nil items (can fix temporarily by modifying it on Parse)
     // Populate cell with the same data as the visible cell
     Order *order = self.orders[indexPath.row];
     NSDictionary *shortNameToMenuOptionObject = order.shortNameToMenuOptionObject;

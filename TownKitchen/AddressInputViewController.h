@@ -14,6 +14,7 @@
 @protocol AddressInputViewControllerDelegate <NSObject>
 
 - (void)addressInputViewController:(AddressInputViewController *)addressInputViewController didSelectPlaceDetails:(GKPlaceDetails *)details;
+- (void)addressInputViewController:(AddressInputViewController *)addressInputViewController shouldDismissAddressInputNavigationController:(UINavigationController *)navigationController;
 
 @end
 

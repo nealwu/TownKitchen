@@ -411,8 +411,7 @@
     self.checkoutView.menuOptionShortNames = self.menuOptionShortNames;
     self.checkoutView.order = self.order;
 
-    #warning TODO: return this to ButtonStateEnterPayment
-    self.checkoutView.buttonState = ButtonStatePlaceOrder;
+    self.checkoutView.buttonState = ButtonStateEnterPayment;
     self.checkoutView.delegate = self;
     
     // set checkoutView frame

@@ -91,7 +91,7 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate addressInputViewController:self shouldDismissAddressInputNavigationController:self.navigationController];
 }
 
 #pragma mark Table view methods
@@ -114,7 +114,7 @@
     query.placeId = placeResult.placeId;
     [query fetchDetails:^(GKPlaceDetails *place, NSError *error) {
         [self.delegate addressInputViewController:self didSelectPlaceDetails:place];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.delegate addressInputViewController:self shouldDismissAddressInputNavigationController:self.navigationController];
     }];
 }
 
