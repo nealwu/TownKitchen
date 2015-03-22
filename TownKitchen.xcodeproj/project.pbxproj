@@ -19,6 +19,7 @@
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
 		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
 		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
+		2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */; };
 		2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */; };
 		2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */; };
 		2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */; };
@@ -110,6 +111,8 @@
 		2B58D0141ABBC36500BE5EFA /* PaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView.h; sourceTree = "<group>"; };
 		2B58D0151ABBC36500BE5EFA /* PaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView.m; sourceTree = "<group>"; };
 		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
+		2B710FFE1ABE7B2600A9B896 /* UIImage+SolidColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SolidColors.h"; sourceTree = "<group>"; };
+		2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SolidColors.m"; sourceTree = "<group>"; };
 		2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BA78A161AB6558500F5FAB0 /* DaySelectAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectAnimationController.h; sourceTree = "<group>"; };
 		2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectAnimationController.m; sourceTree = "<group>"; };
@@ -322,8 +325,6 @@
 			children = (
 				2BEC493F1AB7F3D700A8A267 /* UIImageEffects.h */,
 				2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */,
-				2BF8B5221ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.h */,
-				2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -449,6 +450,10 @@
 			children = (
 				91788D941AAD25830038FE1F /* NSArray+ArrayOps.h */,
 				91788D951AAD25830038FE1F /* NSArray+ArrayOps.m */,
+				2B710FFE1ABE7B2600A9B896 /* UIImage+SolidColors.h */,
+				2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */,
+				2BF8B5221ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.h */,
+				2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,
+				2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
 				2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,

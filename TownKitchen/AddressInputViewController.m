@@ -8,6 +8,8 @@
 
 #import "AddressInputViewController.h"
 #import <GoogleKit.h>
+#import "UIImage+SolidColors.h"
+#import "UIColor+TKColorPalette.h"
 
 @interface AddressInputViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -40,9 +42,26 @@
     self.searchBar.delegate = self;
     self.searchBar.text = self.initialSearchTerm;
     [self.searchBar becomeFirstResponder];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
+     setDefaultTextAttributes:@{
+                                NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:14],
+                                NSForegroundColorAttributeName: [UIColor colorWithWhite:0.1 alpha:1.0]
+                                }];
+
+    NSDictionary *attributes =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     [UIColor whiteColor], NSForegroundColorAttributeName,
+     [UIFont fontWithName:@"AvenirNext-Regular" size:17], NSFontAttributeName,
+     nil];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
     
     // Set up navigation bar
     self.navigationItem.titleView = self.searchBar;
+    self.navigationController.navigationBar.translucent = NO;;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor TKRedColor]] forBarMetrics:UIBarMetricsDefault];
     
     // Set up tableview
     self.tableView.delegate = self;
@@ -104,7 +123,12 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"SearchCell"];
     GKPlaceAutocomplete *placeResult = self.searchResults[indexPath.row];
     cell.textLabel.text = [(GKPlaceAutocompleteTerm *)[placeResult.terms firstObject] value];
+    cell.textLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16];
+    cell.textLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+    
     cell.detailTextLabel.text = placeResult.textDescription;
+    cell.detailTextLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12];
+    cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
     return cell;
 }
 
