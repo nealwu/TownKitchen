@@ -29,7 +29,7 @@
 }
 
 - (void)updateSubviews {
-    self.quantityLabel.text = [NSString stringWithFormat:@"%ldx", (long)self.quantity];
+    self.quantityLabel.text = [NSString stringWithFormat:@"%ld", (long)self.quantity];
     self.menuOptionLabel.text = self.menuOption.mealDescription;
 }
 

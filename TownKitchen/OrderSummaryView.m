@@ -58,7 +58,7 @@
 }
 
 - (void)updateSubviews {
-    self.orderNumberLabel.text = [NSString stringWithFormat:@"Order #%@", self.order.objectId];
+    self.orderNumberLabel.text = [NSString stringWithFormat:@"#%@", self.order.objectId];
     self.deliveryDateAndTimeLabel.text = [[OrderSummaryView deliveryDateAndTimeFormatter] stringFromDate:self.order.deliveryTimeUtc];
     self.deliveryAddressLabel.text = self.order.deliveryAddress;
     [self setNeedsUpdateConstraints];
@@ -80,6 +80,11 @@
     NSString *shortName = self.menuOptions[indexPath.row];
     cell.menuOption = self.order.shortNameToMenuOptionObject[shortName];
     cell.quantity = [self.order.items[shortName] integerValue];
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1];
+    } else {
+        cell.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    }
     return cell;
 }
 

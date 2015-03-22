@@ -13,7 +13,7 @@
 #import "TKHeader.h"
 #import "TKOrderSummaryCell.h"
 
-@interface DeliveryStatusViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface DeliveryStatusViewController () <UITableViewDataSource, UITableViewDelegate, OrderStatusViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet TKHeader *headerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -115,9 +115,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
+    osvc.delegate = self;
     osvc.order = self.orders[indexPath.row];
     osvc.reportLocationAsDriverLocation = YES;
     [self presentViewController:osvc animated:YES completion:nil];
+}
+
+#pragma mark OrderStatusViewControllerDelegate
+
+- (void)orderStatusViewControllerShouldBeDismissed:(OrderStatusViewController *)orderStatusViewController {
+    [orderStatusViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

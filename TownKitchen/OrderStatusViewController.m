@@ -17,6 +17,7 @@
 #import "TKHeader.h"
 
 static const NSTimeInterval kUpdateInterval = 10.0;
+static const float kMapZoomMargin = 2.0;
 
 @interface OrderStatusViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
@@ -242,8 +243,8 @@ static const NSTimeInterval kUpdateInterval = 10.0;
                                    (nwCorner.longitude + seCorner.longitude) / 2 - 360);
     MKCoordinateSpan span =
         MKCoordinateSpanMake(
-                             (nwCorner.latitude - seCorner.latitude) * 1.2,
-                             (seCorner.longitude - nwCorner.longitude) * 1.2);
+                             (nwCorner.latitude - seCorner.latitude) * kMapZoomMargin,
+                             (seCorner.longitude - nwCorner.longitude) * kMapZoomMargin);
     
     return MKCoordinateRegionMake(center, span);
 }
