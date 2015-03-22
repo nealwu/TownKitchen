@@ -68,4 +68,9 @@
     }];
 }
 
+- (IBAction)onTapScreen:(id)sender {
+    [self.emailTextField endEditing:YES];
+    [self.passwordTextField endEditing:YES];
+}
+
 @end

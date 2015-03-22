@@ -25,6 +25,10 @@
                 <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZn-4Q-5PJ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="fnU-kn-22x" appends="YES" id="qBB-R5-nbx"/>
+                    </connections>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="town-kitchen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="g2F-2p-eMm">
                     <rect key="frame" x="60" y="40" width="200" height="160"/>
@@ -118,6 +122,11 @@
             <nil key="simulatedTopBarMetrics"/>
             <point key="canvasLocation" x="208" y="577"/>
         </view>
+        <tapGestureRecognizer id="fnU-kn-22x">
+            <connections>
+                <action selector="onTapScreen:" destination="-1" id="Rzr-AX-INt"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="tofu-rice-plate-overhead-boxed" width="1000" height="667"/>
