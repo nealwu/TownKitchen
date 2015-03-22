@@ -51,8 +51,6 @@
 @property (strong, nonatomic) PaymentView *paymentView;
 @property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
 
-//@property (strong, nonatomic) 
-
 @end
 
 @implementation OrderCreationViewController
@@ -280,6 +278,13 @@
 - (void)orderButtonPressedFromOrderButtonView:(OrderButtonView *)view {
     if (self.order.items.count > 0) {
         [self createOrder];
+    } else {
+        // bounce plus buttons
+//        [[NSNotificationCenter defaultCenter]
+//         postNotificationName:@"BouncePlusButton"
+//         object:self];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BouncePlusButton" object:self];
     }
 }
 
@@ -299,7 +304,7 @@
 
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-
+    
     return cell;
 }
 
