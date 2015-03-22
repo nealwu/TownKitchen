@@ -34,6 +34,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
+@property (strong, nonatomic) UIButton *backButton;
+@property (strong, nonatomic) UIButton *cancelButton;
 
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
@@ -43,7 +45,9 @@
 @property (strong, nonatomic) Order *order;
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 @property (strong, nonatomic) CheckoutView *checkoutView;
+@property (strong, nonatomic) UIView *filterView;
 @property (strong, nonatomic) PaymentView *paymentView;
+@property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
 
 //@property (strong, nonatomic) 
 
@@ -76,6 +80,9 @@
         self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
     }
 
+    self.locationSelectViewController = [[LocationSelectViewController alloc] init];
+    self.locationSelectViewController.delegate = self;
+    
     // Set up tableView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -90,13 +97,24 @@
     [self.header.titleView addSubview:dateLabelsViewSmall];
     
     // Create back button
-    UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
     CGRect backButtonFrame = self.header.leftView.bounds;
     backButtonFrame.origin.x -= 12;
-    UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
-    [backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setImage:backButtonImage forState:UIControlStateNormal];
-    [self.header.leftView addSubview:backButton];
+    self.backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
+    [self.backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.backButton setImage:[UIImage imageNamed:@"back-button"] forState:UIControlStateNormal];
+    [self.backButton setImage:[UIImage imageNamed:@"back-button-highlighted"] forState:UIControlStateHighlighted];
+    [self.header.leftView addSubview:self.backButton];
+    
+    // Create cancel button
+    CGRect cancelButtonFrame = self.header.leftView.bounds;
+    cancelButtonFrame.origin.x -= 6;
+    self.cancelButton = [[UIButton alloc] initWithFrame:cancelButtonFrame];
+    [self.cancelButton addTarget:self action:@selector(onCancelOrder) forControlEvents:UIControlEventTouchUpInside];
+    [self.cancelButton setImage:[UIImage imageNamed:@"cancel-button"] forState:UIControlStateNormal];
+    [self.cancelButton setImage:[UIImage imageNamed:@"cancel-button-highlighted"] forState:UIControlStateHighlighted];
+    self.cancelButton.hidden = YES;
+    self.cancelButton.enabled = NO;
+    [self.header.leftView addSubview:self.cancelButton];
     
     // define frame variables
     self.parentWidth = self.view.bounds.size.width;
@@ -126,9 +144,7 @@
 
 // create location select view and animate onto screen
 - (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view {
-    LocationSelectViewController *locationSelectVC = [[LocationSelectViewController alloc] init];
-    locationSelectVC.delegate = self;
-    [self displayViewControllerAnimatedFromBottom:locationSelectVC];
+    [self displayViewControllerAnimatedFromBottom:self.locationSelectViewController];
 }
 
 // create paymentView and animate onto screen
@@ -227,7 +243,6 @@
 
 // Dismiss paymentView and set payment
 - (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view withCardValidity:(BOOL)valid {
-    
     if (valid) {
         self.checkoutView.buttonState = ButtonStatePlaceOrder;
     } else {
@@ -387,6 +402,44 @@
     return CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
 }
 
+- (void)setLeftButtonToCancel {
+    self.backButton.alpha = 1.0;
+    self.cancelButton.alpha = 0.0;
+    self.cancelButton.hidden = NO;
+    self.cancelButton.enabled = YES;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.backButton.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        self.backButton.hidden = YES;
+        self.backButton.enabled = NO;
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.cancelButton.alpha = 1.0;
+        } completion:nil];
+    }];
+}
+
+- (void)setLeftButtonToBack {
+    self.cancelButton.alpha = 1.0;
+    self.backButton.alpha = 0.0;
+    self.backButton.hidden = NO;
+    self.backButton.enabled = YES;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.cancelButton.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        self.cancelButton.hidden = YES;
+        self.cancelButton.enabled = NO;
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.backButton.alpha = 1.0;
+        } completion:nil];
+    }];
+}
+
 #pragma mark - Actions
 
 // Create CheckoutView and animate onto screen
@@ -441,13 +494,15 @@
     self.checkoutView.layer.shadowPath = shadowPath.CGPath;
     
     // create gray filter view
-    UIView *filterView = [[UIView alloc] initWithFrame:CGRectMake(0, navigationBarHeight, parentWidth, parentHeight - navigationBarHeight)];
-    filterView.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
-    filterView.alpha = 0.0;
+    self.filterView = [[UIView alloc] initWithFrame:CGRectMake(0, navigationBarHeight, parentWidth, parentHeight - navigationBarHeight)];
+    self.filterView.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
+    self.filterView.alpha = 0.0;
     
-    [self.view addSubview:filterView];
+    [self.view addSubview:self.filterView];
     [self.view addSubview:self.checkoutView];
 
+    [self setLeftButtonToCancel];
+    
     // animate transition
     [UIView mt_animateWithViews:@[self.checkoutView]
                        duration:0.5
@@ -463,8 +518,47 @@
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         filterView.alpha = 1.0;
+                         self.filterView.alpha = 1.0;
                      } completion:nil];
+}
+
+- (void)onCancelOrder {
+    // dismiss checkout view
+    CGRect finalFrame = self.checkoutView.frame;
+    finalFrame.origin.y += (finalFrame.size.height);
+
+    [self setLeftButtonToBack];
+    
+    [UIView mt_animateWithViews:@[self.checkoutView, self.filterView]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         self.checkoutView.frame = finalFrame;
+                         self.filterView.alpha = 0.0;
+                     } completion:^{
+                         [self.checkoutView removeFromSuperview];
+                         [self.filterView removeFromSuperview];
+                     }];
+    
+    // dismiss payment view (if present)
+    if (self.paymentView) {
+        CGRect finalFrame = self.paymentView.frame;
+        finalFrame.origin.x += (finalFrame.size.width + self.horizontalGapSize);
+        [UIView mt_animateWithViews:@[self.paymentView]
+                           duration:0.5
+                              delay:0.0
+                     timingFunction:kMTEaseOutQuart
+                         animations:^{
+                             self.paymentView.frame = finalFrame;
+                         } completion:^{
+                             [self.paymentView removeFromSuperview];
+                         }];
+    }
+    
+    // dismiss location select view
+    [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
+
 }
 
 - (void)onBackButton {
