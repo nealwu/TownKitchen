@@ -114,7 +114,7 @@
     self.plusButtonPushBehavior.active = YES;
 }
 
-- (void)dealloc {
+- (void)dealloc { 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
