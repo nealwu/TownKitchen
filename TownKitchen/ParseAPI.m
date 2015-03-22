@@ -143,6 +143,9 @@
     review[@"order"] = order;
     review[@"starRating"] = stars;
     [review save];
+
+    order.status = @"reviewed";
+    [order save];
 }
 
 - (BFTask *)ordersForToday {
