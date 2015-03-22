@@ -15,18 +15,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="99.99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCG-8x-XqE" userLabel="Price Label">
-                        <rect key="frame" x="239" y="21" width="42" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCG-8x-XqE" userLabel="Price Label">
+                        <rect key="frame" x="242" y="21" width="42" height="22"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Simple Name" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000027" translatesAutoresizingMaskIntoConstraints="NO" id="7QL-5s-fef" userLabel="Description Label">
-                        <rect key="frame" x="58" y="10" width="173" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="0Xb-pu-3ff"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -57,17 +48,26 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Simple Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000027" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7QL-5s-fef" userLabel="Description Label">
+                        <rect key="frame" x="58" y="10" width="174" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="0Xb-pu-3ff"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hkG-2a-RIO" firstAttribute="leading" secondItem="KwJ-wN-muc" secondAttribute="leading" id="1dR-iv-F38"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="CCG-8x-XqE" secondAttribute="trailing" constant="11" id="6hm-dq-JAK"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="CCG-8x-XqE" secondAttribute="trailing" constant="8" id="6hm-dq-JAK"/>
                     <constraint firstItem="KwJ-wN-muc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="D76-R6-efC"/>
                     <constraint firstItem="7QL-5s-fef" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Lc9-PR-RnE"/>
                     <constraint firstItem="hkG-2a-RIO" firstAttribute="top" secondItem="KwJ-wN-muc" secondAttribute="top" id="Mka-jy-rym"/>
                     <constraint firstItem="hkG-2a-RIO" firstAttribute="width" secondItem="KwJ-wN-muc" secondAttribute="width" id="Njk-z7-pzX"/>
                     <constraint firstItem="7QL-5s-fef" firstAttribute="centerY" secondItem="KwJ-wN-muc" secondAttribute="centerY" id="Opj-M7-10O"/>
                     <constraint firstItem="uhp-j6-qxi" firstAttribute="centerX" secondItem="KwJ-wN-muc" secondAttribute="centerX" id="OsP-js-Fsp"/>
-                    <constraint firstItem="CCG-8x-XqE" firstAttribute="leading" secondItem="7QL-5s-fef" secondAttribute="trailing" constant="8" id="U9e-WU-DEA"/>
+                    <constraint firstItem="CCG-8x-XqE" firstAttribute="leading" secondItem="7QL-5s-fef" secondAttribute="trailing" constant="10" id="U9e-WU-DEA"/>
                     <constraint firstItem="uhp-j6-qxi" firstAttribute="centerY" secondItem="KwJ-wN-muc" secondAttribute="centerY" id="Ua8-MR-Krt"/>
                     <constraint firstItem="7QL-5s-fef" firstAttribute="centerY" secondItem="CCG-8x-XqE" secondAttribute="centerY" id="Xm4-FE-fUn"/>
                     <constraint firstItem="hkG-2a-RIO" firstAttribute="height" secondItem="KwJ-wN-muc" secondAttribute="height" id="jah-cx-FVu"/>

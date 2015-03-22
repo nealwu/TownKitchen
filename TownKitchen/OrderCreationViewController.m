@@ -14,7 +14,7 @@
 #import "LocationSelectViewController.h"
 #import "Order.h"
 #import "OrderCreationCell.h"
-#import "TKHeader.h"
+#import "TKNavigationBar.h"
 #import "DateLabelsViewSmall.h"
 #import "CheckoutView.h"
 #import <UIView+MTAnimation.h>
@@ -33,7 +33,7 @@
 @property (assign, nonatomic) CGFloat navigationBarHeight;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet TKHeader *header;
+@property (weak, nonatomic) IBOutlet TKNavigationBar *customNavigationBar;
 
 @property (strong, nonatomic) OrderCreationCell *sizingCell;
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
@@ -82,16 +82,23 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderCreationCell" bundle:nil] forCellReuseIdentifier:@"OrderCreationCell"];
     [self.tableView reloadData];
     
-    // set up header
-    self.dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:self.header.titleView.bounds];
-    self.dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
-    self.dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
-    [self.header.titleView addSubview:self.dateLabelsViewSmall];
+    // set up custom navigation bar
+    UINavigationItem *navItem = [[UINavigationItem alloc] init];
+
+    // Create date label
+    DateLabelsViewSmall *dateLabelsViewSmall = [[DateLabelsViewSmall alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    dateLabelsViewSmall.weekdayLabel.text = [DateUtils dayOfTheWeekFromDate:firstInventory.dateOffered];
+    dateLabelsViewSmall.monthAndDayLabel.text = [DateUtils monthAndDayFromDate:firstInventory.dateOffered];
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(onBackButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.header.leftView addSubview:backButton];
+    // Create back button
+    UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(onBackButton)];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    [negativeSpacer setWidth:-10];
+    
+    navItem.titleView = dateLabelsViewSmall;
+    navItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacer, backButtonItem, nil];
+    [self.customNavigationBar setItems:@[navItem]];
     
     // define frame variables
     self.parentWidth = self.view.bounds.size.width;
@@ -101,7 +108,7 @@
 }
 
 - (void)viewWillLayoutSubviews {
-    
+
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
@@ -462,7 +469,7 @@
                      } completion:nil];
 }
 
-- (IBAction)onBackButton:(id)sender {
+- (void)onBackButton {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
