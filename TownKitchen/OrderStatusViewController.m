@@ -14,11 +14,13 @@
 #import "OrderSummaryView.h"
 #import "ParseAPI.h"
 #import "ReviewViewController.h"
+#import "TKHeader.h"
 
 static const NSTimeInterval kUpdateInterval = 10.0;
 
 @interface OrderStatusViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
+@property (weak, nonatomic) IBOutlet TKHeader *headerView;
 @property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
 
 @property (weak, nonatomic) IBOutlet UIView *ETAView;
@@ -62,7 +64,16 @@ static const NSTimeInterval kUpdateInterval = 10.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Order Status";
+    UIButton *backButton = [[UIButton alloc] initWithFrame:self.headerView.leftView.bounds];
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
+    backButton.autoresizingMask =
+    UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleTopMargin
+    | UIViewAutoresizingFlexibleBottomMargin;
+    [self.headerView.leftView addSubview:backButton];
+    
     self.mapView.delegate = self;
     if (self.order) {
         [self startTimer];
@@ -330,6 +341,12 @@ static const NSTimeInterval kUpdateInterval = 10.0;
             self.driverLocationAnnotation.coordinate = self.order.driverLocationMapItem.placemark.location.coordinate;
         }];
     }
+}
+
+#pragma mark - Button Actions
+
+- (void)onBackButton {
+    [self.delegate orderStatusViewControllerShouldBeDismissed:self];
 }
 
 - (void)onReview {

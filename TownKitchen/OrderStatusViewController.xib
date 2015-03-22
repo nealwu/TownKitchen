@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="ETAView" destination="aHD-zz-brZ" id="bdq-pn-RQf"/>
                 <outlet property="absoluteETALabel" destination="ffL-zp-mXj" id="Wcx-KK-mnw"/>
+                <outlet property="headerView" destination="r1B-fN-ZMw" id="qPn-NE-E2W"/>
                 <outlet property="mapView" destination="MOd-L2-Jdp" id="Es6-Fy-6tl"/>
                 <outlet property="orderSummaryView" destination="aBj-Mv-dHS" id="J9s-cz-tqG"/>
                 <outlet property="relativeETALabel" destination="0td-lQ-wC6" id="J1j-0O-xU4"/>
@@ -21,20 +22,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MOd-L2-Jdp">
-                    <rect key="frame" x="0.0" y="240" width="320" height="240"/>
-                </mapView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHD-zz-brZ" userLabel="ETA View">
                     <rect key="frame" x="0.0" y="176" width="320" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order should arrive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRK-Ov-uwA">
-                            <rect key="frame" x="68" y="8" width="183" height="21"/>
+                            <rect key="frame" x="68" y="8" width="183" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0td-lQ-wC6">
-                            <rect key="frame" x="57" y="38" width="47" height="18"/>
+                            <rect key="frame" x="57" y="38" width="46.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -58,22 +56,35 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBj-Mv-dHS" customClass="OrderSummaryView">
-                    <rect key="frame" x="0.0" y="48" width="320" height="128"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="112"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MOd-L2-Jdp">
+                    <rect key="frame" x="0.0" y="240" width="320" height="240"/>
+                </mapView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1B-fN-ZMw" customClass="TKHeader">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="A1s-Wv-eni"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="aHD-zz-brZ" firstAttribute="top" secondItem="aBj-Mv-dHS" secondAttribute="bottom" id="5i8-Nq-RIZ"/>
+                <constraint firstItem="r1B-fN-ZMw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5nC-7L-8DX"/>
                 <constraint firstItem="aBj-Mv-dHS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ab5-2Y-QGg"/>
                 <constraint firstAttribute="trailing" secondItem="aHD-zz-brZ" secondAttribute="trailing" id="I1p-qX-2cy"/>
                 <constraint firstAttribute="bottom" secondItem="MOd-L2-Jdp" secondAttribute="bottom" id="NA2-mA-Juz"/>
-                <constraint firstItem="aBj-Mv-dHS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="48" id="S1Y-dH-nPF"/>
+                <constraint firstItem="aBj-Mv-dHS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="S1Y-dH-nPF"/>
                 <constraint firstItem="MOd-L2-Jdp" firstAttribute="top" secondItem="aHD-zz-brZ" secondAttribute="bottom" id="VLz-sY-ouk"/>
                 <constraint firstItem="MOd-L2-Jdp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.5" id="dWF-sP-5hG"/>
                 <constraint firstItem="MOd-L2-Jdp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hAs-9h-zrT"/>
+                <constraint firstAttribute="trailing" secondItem="r1B-fN-ZMw" secondAttribute="trailing" id="jSr-ra-yd0"/>
                 <constraint firstAttribute="trailing" secondItem="aBj-Mv-dHS" secondAttribute="trailing" id="jW2-Ya-mEY"/>
                 <constraint firstItem="aHD-zz-brZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="poj-jt-qIe"/>
+                <constraint firstItem="r1B-fN-ZMw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qqL-y2-hOv"/>
                 <constraint firstAttribute="trailing" secondItem="MOd-L2-Jdp" secondAttribute="trailing" id="rfH-tV-WUl"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>

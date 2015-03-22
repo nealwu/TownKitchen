@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class OrdersViewController;
+
+@protocol OrdersViewControllerDelegate
+
+- (void)ordersViewControllerShouldBeDismissed:(OrdersViewController *)ordersViewController;
+
+@end
+
 @interface OrdersViewController : UIViewController
+
+@property (weak, nonatomic) id<OrdersViewControllerDelegate> delegate;
 
 @end

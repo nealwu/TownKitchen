@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "Order.h"
 
+@class OrderStatusViewController;
+
+@protocol OrderStatusViewControllerDelegate
+
+- (void)orderStatusViewControllerShouldBeDismissed:(OrderStatusViewController *)orderStatusViewController;
+
+@end
+
 @interface OrderStatusViewController : UIViewController
 
+@property (weak, nonatomic) id<OrderStatusViewControllerDelegate> delegate;
 @property (strong, nonatomic) Order *order;
 @property (nonatomic) BOOL reportLocationAsDriverLocation;
 

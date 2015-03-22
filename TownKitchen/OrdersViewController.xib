@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrdersViewController">
             <connections>
+                <outlet property="headerView" destination="fmR-Hf-R2i" id="cBX-Vh-fqc"/>
                 <outlet property="tableView" destination="gS4-eG-Omm" id="7Vd-UE-pF9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,16 +18,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gS4-eG-Omm">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmR-Hf-R2i" userLabel="TKHeader" customClass="TKHeader">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="UK0-aA-SSg"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="gS4-eG-Omm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="295-HZ-cLs"/>
+                <constraint firstItem="fmR-Hf-R2i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2id-Pm-WjO"/>
                 <constraint firstItem="gS4-eG-Omm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pui-wE-zN4"/>
                 <constraint firstAttribute="bottom" secondItem="gS4-eG-Omm" secondAttribute="bottom" id="QSe-P8-KvS"/>
+                <constraint firstAttribute="trailing" secondItem="fmR-Hf-R2i" secondAttribute="trailing" id="V4c-RP-ga7"/>
+                <constraint firstItem="fmR-Hf-R2i" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="haF-z3-GxH"/>
                 <constraint firstAttribute="trailing" secondItem="gS4-eG-Omm" secondAttribute="trailing" id="qlQ-gz-Z0K"/>
+                <constraint firstItem="gS4-eG-Omm" firstAttribute="top" secondItem="fmR-Hf-R2i" secondAttribute="bottom" id="xIl-3W-c5s"/>
             </constraints>
             <point key="canvasLocation" x="328" y="355"/>
         </view>

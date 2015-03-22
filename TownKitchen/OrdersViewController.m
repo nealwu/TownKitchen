@@ -12,9 +12,11 @@
 #import "ReviewViewController.h"
 #import "OrderStatusViewController.h"
 #import "DayCell.h"
+#import "TKHeader.h"
 
-@interface OrdersViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface OrdersViewController () <UITableViewDataSource, UITableViewDelegate, OrderStatusViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet TKHeader *headerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) DayCell *sizingCell;
 
@@ -27,7 +29,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneButton)];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:self.headerView.leftView.bounds];
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
+    backButton.autoresizingMask =
+    UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleTopMargin
+    | UIViewAutoresizingFlexibleBottomMargin;
+    [self.headerView.leftView addSubview:backButton];
 
     self.title = @"Orders";
     self.orders = [[ParseAPI getInstance] ordersForUser:[PFUser currentUser]];
@@ -67,6 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    ReviewViewController *rvc = [[ReviewViewController alloc] init];
     OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
+    osvc.delegate = self;
     osvc.order = self.orders[indexPath.row];
     [self presentViewController:osvc animated:YES completion:nil];
 }
@@ -99,8 +110,14 @@
 
 #pragma mark - Button Actions
 
-- (void)onDoneButton {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)onBackButton {
+    [self.delegate ordersViewControllerShouldBeDismissed:self];
+}
+
+#pragma mark - OrderStatusViewControllerDelegate methods
+
+- (void)orderStatusViewControllerShouldBeDismissed:(OrderStatusViewController *)orderStatusViewController {
+    [orderStatusViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
