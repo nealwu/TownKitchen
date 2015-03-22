@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderCreationViewController">
             <connections>
-                <outlet property="customNavigationBar" destination="8d3-yv-X55" id="7AQ-8s-tNS"/>
+                <outlet property="header" destination="8d3-yv-X55" id="rjv-3f-oXo"/>
                 <outlet property="tableView" destination="fYM-bp-3Bk" id="ScR-ZJ-Y4E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -46,7 +46,7 @@
                         <constraint firstAttribute="trailing" secondItem="35d-Lv-lba" secondAttribute="trailing" id="wM6-B5-4BU"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8d3-yv-X55" userLabel="TKNavBar" customClass="TKNavigationBar">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8d3-yv-X55" userLabel="TKHeader" customClass="TKHeader">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
