@@ -48,7 +48,7 @@
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl];
     
     [self.mealImage setImageWithURLRequest:imageRequest
-                                    placeholderImage:[UIImage imageNamed:@"day-image-placeholder"]
+                                    placeholderImage:[UIImage imageNamed:@"order-creation-image-placeholder"]
                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) { 
                                                  [UIView transitionWithView:self.mealImage
                                                                    duration:0.3
