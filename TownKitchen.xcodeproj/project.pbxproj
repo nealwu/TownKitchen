@@ -23,6 +23,8 @@
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
 		2B4DF8A61ABF944900D20303 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A41ABF944900D20303 /* ProfileViewController.m */; };
 		2B4DF8A71ABF944900D20303 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A51ABF944900D20303 /* ProfileViewController.xib */; };
+		2B4DF8AB1ABF97B500D20303 /* OrderConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */; };
+		2B4DF8AC1ABF97B500D20303 /* OrderConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */; };
 		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
 		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
 		2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */; };
@@ -125,6 +127,9 @@
 		2B4DF8A31ABF944900D20303 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		2B4DF8A41ABF944900D20303 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		2B4DF8A51ABF944900D20303 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		2B4DF8A81ABF97B500D20303 /* OrderConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmationViewController.h; sourceTree = "<group>"; };
+		2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmationViewController.m; sourceTree = "<group>"; };
+		2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderConfirmationViewController.xib; sourceTree = "<group>"; };
 		2B58D0141ABBC36500BE5EFA /* PaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView.h; sourceTree = "<group>"; };
 		2B58D0151ABBC36500BE5EFA /* PaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView.m; sourceTree = "<group>"; };
 		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
@@ -383,6 +388,9 @@
 				9FF2AE8C1AB66B5A001BF6BA /* LoginViewController.h */,
 				9FF2AE8D1AB66B5A001BF6BA /* LoginViewController.m */,
 				9FF2AE8E1AB66B5A001BF6BA /* LoginViewController.xib */,
+				2B4DF8A81ABF97B500D20303 /* OrderConfirmationViewController.h */,
+				2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */,
+				2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */,
 				91788D5B1AA940930038FE1F /* OrderCreationViewController.h */,
 				91788D5C1AA940930038FE1F /* OrderCreationViewController.m */,
 				91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */,
@@ -611,6 +619,7 @@
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
 				2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */,
+				2B4DF8AC1ABF97B500D20303 /* OrderConfirmationViewController.xib in Resources */,
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
 				2B7110051ABE84F100A9B896 /* OrderButtonView.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
@@ -689,6 +698,7 @@
 				2B01870C1ABF834500A3FCB4 /* OrderStatusDetailView.m in Sources */,
 				2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */,
 				2B7110031ABE84E900A9B896 /* OrderButtonView.m in Sources */,
+				2B4DF8AB1ABF97B500D20303 /* OrderConfirmationViewController.m in Sources */,
 				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
 				2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */,
 				2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */,
