@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (assign, nonatomic) int previousQuantity;
+@property (assign, nonatomic) float previousPrice;
+
 
 @end
 
@@ -71,9 +73,11 @@
 }
 
 - (void)setPrice:(NSNumber *)price {
+    self.previousPrice = [_price floatValue];
     _price = price;
-    if ([price isEqualToNumber:[NSNumber numberWithInt:0]]) {
-        self.priceLabel.text = @"";
+    
+    if (self.previousPrice > 0 && [price isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+        return;
     } else {
         self.priceLabel.text = [NSString stringWithFormat:@"%.2f", [price floatValue]];
     }
