@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2755364638D9F2E44A876E03 /* libPods-TownKitchen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */; };
+		2B01870C1ABF834500A3FCB4 /* OrderStatusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01870B1ABF834500A3FCB4 /* OrderStatusDetailView.m */; };
+		2B01870E1ABF836A00A3FCB4 /* OrderStatusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B01870D1ABF836A00A3FCB4 /* OrderStatusDetailView.xib */; };
+		2B0187121ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0187101ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m */; };
+		2B0187131ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0187111ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib */; };
 		2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0719831AB6B7A600976A43 /* DateLabelsView.m */; };
 		2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0719851AB6B7B100976A43 /* DateLabelsView.xib */; };
 		2B13D09A1AA81B9100FC0689 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0991AA81B9100FC0689 /* main.m */; };
@@ -92,6 +96,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B01870A1ABF834500A3FCB4 /* OrderStatusDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderStatusDetailView.h; sourceTree = "<group>"; };
+		2B01870B1ABF834500A3FCB4 /* OrderStatusDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderStatusDetailView.m; sourceTree = "<group>"; };
+		2B01870D1ABF836A00A3FCB4 /* OrderStatusDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderStatusDetailView.xib; sourceTree = "<group>"; };
+		2B01870F1ABF84E500A3FCB4 /* OrderStatusDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderStatusDetailViewCell.h; sourceTree = "<group>"; };
+		2B0187101ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderStatusDetailViewCell.m; sourceTree = "<group>"; };
+		2B0187111ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderStatusDetailViewCell.xib; sourceTree = "<group>"; };
 		2B0719821AB6B7A600976A43 /* DateLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateLabelsView.h; sourceTree = "<group>"; };
 		2B0719831AB6B7A600976A43 /* DateLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateLabelsView.m; sourceTree = "<group>"; };
 		2B0719851AB6B7B100976A43 /* DateLabelsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateLabelsView.xib; sourceTree = "<group>"; };
@@ -416,6 +426,9 @@
 				2B7110011ABE84E900A9B896 /* OrderButtonView.h */,
 				2B7110021ABE84E900A9B896 /* OrderButtonView.m */,
 				2B7110041ABE84F100A9B896 /* OrderButtonView.xib */,
+				2B01870A1ABF834500A3FCB4 /* OrderStatusDetailView.h */,
+				2B01870B1ABF834500A3FCB4 /* OrderStatusDetailView.m */,
+				2B01870D1ABF836A00A3FCB4 /* OrderStatusDetailView.xib */,
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
@@ -446,6 +459,9 @@
 				2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */,
 				2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */,
 				2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */,
+				2B01870F1ABF84E500A3FCB4 /* OrderStatusDetailViewCell.h */,
+				2B0187101ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m */,
+				2B0187111ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib */,
 				91788D8E1AAD0BCA0038FE1F /* TKMenuOptionCell.h */,
 				91788D8F1AAD0BCA0038FE1F /* TKMenuOptionCell.m */,
 				91788D901AAD0BCA0038FE1F /* TKMenuOptionCell.xib */,
@@ -572,6 +588,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B01870E1ABF836A00A3FCB4 /* OrderStatusDetailView.xib in Resources */,
 				2BA78A1D1AB65FE400F5FAB0 /* TKHeader.xib in Resources */,
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
 				91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */,
@@ -595,6 +612,7 @@
 				9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
+				2B0187131ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
 				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
 				2BE81F991ABABCD0009A887C /* PaymentViewController.xib in Resources */,
@@ -659,6 +677,7 @@
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */,
+				2B01870C1ABF834500A3FCB4 /* OrderStatusDetailView.m in Sources */,
 				2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */,
 				2B7110031ABE84E900A9B896 /* OrderButtonView.m in Sources */,
 				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
@@ -666,6 +685,7 @@
 				2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
+				2B0187121ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m in Sources */,
 				2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
