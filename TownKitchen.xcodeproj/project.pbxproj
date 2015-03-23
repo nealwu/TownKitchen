@@ -320,6 +320,8 @@
 		2BEC493E1AB7F3C000A8A267 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9FC8AB021AB0D93100610500 /* DateUtils.h */,
+				9FC8AB031AB0D93100610500 /* DateUtils.m */,
 				2BEC493F1AB7F3D700A8A267 /* UIImageEffects.h */,
 				2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */,
 			);
@@ -329,8 +331,6 @@
 		91788D4A1AA93F660038FE1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9FC8AB021AB0D93100610500 /* DateUtils.h */,
-				9FC8AB031AB0D93100610500 /* DateUtils.m */,
 				91788D511AA93FF50038FE1F /* Inventory.h */,
 				91788D521AA93FF50038FE1F /* Inventory.m */,
 				91788D4B1AA93FB60038FE1F /* MenuOption.h */,

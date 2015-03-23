@@ -10,6 +10,10 @@
 
 static const NSCalendarUnit kYmdHmsComponents = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
 
+static const long kSecondsPerMinute = 60;
+static const long kMinutesPerHour = 60;
+static const long kSecondsPerHour = kSecondsPerMinute * kMinutesPerHour;
+
 @implementation DateUtils
 
 + (NSString *)dayOfTheWeekFromDate:(NSDate *)date {
@@ -48,6 +52,19 @@ static const NSCalendarUnit kYmdHmsComponents = NSCalendarUnitYear | NSCalendarU
 
 + (BOOL)compareDayFromDate:(NSDate *)date1 withDate:(NSDate *)date2 {
     return [[self beginningOfDay:date1] isEqualToDate:[self beginningOfDay:date2]];
+}
+
++ (NSString *)approximateTimeStringFromInterval:(NSTimeInterval)interval {
+    if (interval > 2 * kSecondsPerHour) {
+        return [NSString stringWithFormat:@"%.0f hours", interval / kSecondsPerHour];
+    }
+    if (interval > kSecondsPerHour) {
+        return @"an hour";
+    }
+    if (interval > 5 * kSecondsPerMinute) {
+        return [NSString stringWithFormat:@"%.0f minutes", interval / kSecondsPerMinute];
+    }
+    return @"under 5 minutes";
 }
 
 @end

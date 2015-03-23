@@ -78,7 +78,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderStatusDetailViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CheckoutOrderItemCell"];
+    OrderStatusDetailViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderStatusDetailViewCell"];
     
     NSString *shortName = self.menuOptionShortNames[indexPath.row];
     MenuOption *menuOption = self.shortNameToMenuOptionObject[shortName];

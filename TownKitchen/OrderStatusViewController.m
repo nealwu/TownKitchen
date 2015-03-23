@@ -12,20 +12,22 @@
 #import <Bolts.h>
 #import "NSValue+CLLocationCoordinate2D.h"
 #import "OrderStatusViewController.h"
-#import "OrderSummaryView.h"
+#import "OrderStatusDetailView.h"
 #import "ParseAPI.h"
 #import "ReviewViewController.h"
 #import "TKHeader.h"
+#import "DateUtils.h"
 
 static const NSTimeInterval kUpdateInterval = 5.0;
 static const float kMapZoomMargin = 1.8;
+static const float kEtaFudgeFactor = 1.5;
 
 @interface OrderStatusViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet TKHeader *headerView;
-@property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
+@property (weak, nonatomic) IBOutlet OrderStatusDetailView *orderSummaryView;
 
-@property (weak, nonatomic) IBOutlet UIView *ETAView;
+@property (weak, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UILabel *relativeETALabel;
 @property (weak, nonatomic) IBOutlet UILabel *absoluteETALabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -38,6 +40,9 @@ static const float kMapZoomMargin = 1.8;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) NSTimeInterval timeOfLastUpdate;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoViewConstraint;
+@property (nonatomic) CGFloat originalInfoViewOffset;
 
 @end
 
@@ -68,6 +73,7 @@ static const float kMapZoomMargin = 1.8;
     // Do any additional setup after loading the view from its nib.
     UIButton *backButton = [[UIButton alloc] initWithFrame:self.headerView.leftView.bounds];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    backButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
     [backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
     backButton.autoresizingMask =
     UIViewAutoresizingFlexibleLeftMargin
@@ -75,6 +81,18 @@ static const float kMapZoomMargin = 1.8;
     | UIViewAutoresizingFlexibleTopMargin
     | UIViewAutoresizingFlexibleBottomMargin;
     [self.headerView.leftView addSubview:backButton];
+                                  
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.headerView.titleView.bounds];
+    titleLabel.text = @"Delivery Status";
+    titleLabel.font = [UIFont fontWithName:@"Futura" size:24];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.autoresizingMask =
+    UIViewAutoresizingFlexibleLeftMargin
+    | UIViewAutoresizingFlexibleRightMargin
+    | UIViewAutoresizingFlexibleTopMargin
+    | UIViewAutoresizingFlexibleBottomMargin;
+    [self.headerView.titleView addSubview:titleLabel];
     
     self.mapView.delegate = self;
     if (self.order) {
@@ -139,25 +157,25 @@ static const float kMapZoomMargin = 1.8;
     MKDirectionsRequest *dirReq = [[MKDirectionsRequest alloc] init];
     dirReq.source = self.order.driverLocationMapItem;
     
-    [[[[self geocodeString:self.order.deliveryAddress] continueWithSuccessBlock:^id(BFTask *task) {
+    [[[[[self geocodeString:self.order.deliveryAddress] continueWithSuccessBlock:^id(BFTask *task) {
         MKMapItem *mapItem = task.result;
         NSLog(@"mapItem = %@", mapItem);
         dirReq.destination = mapItem;
         self.deliveryAddressAnnotation = mapItem.placemark;
         [self.mapView addAnnotation:self.deliveryAddressAnnotation];
         [self updateMapRegion];
-        return [[self calculateRouteWithRequest:dirReq] continueWithSuccessBlock:^id(BFTask *task) {
-            MKRoute *route = task.result;
-            self.estimatedDeliveryTime = [NSDate dateWithTimeIntervalSinceNow:route.expectedTravelTime];
-            return route;
-        }];
-    }] continueWithExecutor:[BFExecutor mainThreadExecutor] withSuccessBlock:^id(BFTask *task) {
+        return [self calculateRouteWithRequest:dirReq];
+    }] continueWithSuccessBlock:^id(BFTask *task) {
         MKRoute *route = task.result;
+        self.estimatedDeliveryTime = [NSDate dateWithTimeIntervalSinceNow:route.expectedTravelTime * kEtaFudgeFactor];
+        return route;
+    }] continueWithExecutor:[BFExecutor mainThreadExecutor] withSuccessBlock:^id(BFTask *task) {
+//        MKRoute *route = task.result;
 //        [self updateMapViewWithRoute:route];
-        self.absoluteETALabel.text = [[self.class timeFormatter] stringFromDate:self.estimatedDeliveryTime];
-        self.ETAView.alpha = 0;
+        [self updateEta];
+        self.infoView.alpha = 0;
         [UIView animateWithDuration:0.3 animations:^{
-            self.ETAView.alpha = 1;
+            self.infoView.alpha = 1;
             self.mapView.alpha = 1;
         }];
         return nil;
@@ -328,7 +346,7 @@ static const float kMapZoomMargin = 1.8;
             [self updateDriverLocation];
         }
         if (self.estimatedDeliveryTime) {
-            self.relativeETALabel.text = [[self.class timeIntervalFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:self.estimatedDeliveryTime];
+            [self updateEta];
         }
 
         return nil;
@@ -347,6 +365,11 @@ static const float kMapZoomMargin = 1.8;
         self.driverLocationAnnotation.coordinate = self.order.driverLocationMapItem.placemark.location.coordinate;
     }];
     [self updateMapRegion];
+}
+
+- (void)updateEta {
+    self.absoluteETALabel.text = [[self.class timeFormatter] stringFromDate:self.estimatedDeliveryTime];
+    self.relativeETALabel.text = [DateUtils approximateTimeStringFromInterval:[self.estimatedDeliveryTime timeIntervalSinceNow]];
 }
 
 - (void)updateMapRegion {
@@ -369,6 +392,19 @@ static const float kMapZoomMargin = 1.8;
     ReviewViewController *rvc = [[ReviewViewController alloc] init];
     rvc.order = self.order;
     [self.navigationController pushViewController:rvc animated:YES];
+}
+
+#pragma mark - Gesture Actions
+
+- (IBAction)onInfoViewTap:(UITapGestureRecognizer *)sender {
+    if (!self.originalInfoViewOffset) {
+        self.originalInfoViewOffset = self.infoViewConstraint.constant;
+    }
+    CGFloat newOffset = (self.infoViewConstraint.constant == self.originalInfoViewOffset) ? -CGRectGetHeight(self.infoView.bounds) : self.originalInfoViewOffset;
+    self.infoViewConstraint.constant = newOffset;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.infoView.superview layoutIfNeeded];
+    }];
 }
 
 @end

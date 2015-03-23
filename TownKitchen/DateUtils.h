@@ -15,5 +15,6 @@
 + (NSDate *)beginningOfDay:(NSDate *)date;
 + (NSDate *)endOfDay:(NSDate *)date;
 + (BOOL)compareDayFromDate:(NSDate *)date1 withDate:(NSDate *)date2;
++ (NSString *)approximateTimeStringFromInterval:(NSTimeInterval)interval;
 
 @end
