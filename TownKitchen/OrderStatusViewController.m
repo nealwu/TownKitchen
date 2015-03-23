@@ -10,14 +10,15 @@
 #import <FormatterKit/TTTTimeIntervalFormatter.h>
 #import <RNTimer.h>
 #import <Bolts.h>
+#import "NSValue+CLLocationCoordinate2D.h"
 #import "OrderStatusViewController.h"
 #import "OrderSummaryView.h"
 #import "ParseAPI.h"
 #import "ReviewViewController.h"
 #import "TKHeader.h"
 
-static const NSTimeInterval kUpdateInterval = 10.0;
-static const float kMapZoomMargin = 2.0;
+static const NSTimeInterval kUpdateInterval = 5.0;
+static const float kMapZoomMargin = 1.8;
 
 @interface OrderStatusViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
@@ -143,6 +144,8 @@ static const float kMapZoomMargin = 2.0;
         NSLog(@"mapItem = %@", mapItem);
         dirReq.destination = mapItem;
         self.deliveryAddressAnnotation = mapItem.placemark;
+        [self.mapView addAnnotation:self.deliveryAddressAnnotation];
+        [self updateMapRegion];
         return [[self calculateRouteWithRequest:dirReq] continueWithSuccessBlock:^id(BFTask *task) {
             MKRoute *route = task.result;
             self.estimatedDeliveryTime = [NSDate dateWithTimeIntervalSinceNow:route.expectedTravelTime];
@@ -150,15 +153,13 @@ static const float kMapZoomMargin = 2.0;
         }];
     }] continueWithExecutor:[BFExecutor mainThreadExecutor] withSuccessBlock:^id(BFTask *task) {
         MKRoute *route = task.result;
-        [self.mapView addAnnotation:self.deliveryAddressAnnotation];
-        [self updateMapViewWithRoute:route];
+//        [self updateMapViewWithRoute:route];
         self.absoluteETALabel.text = [[self.class timeFormatter] stringFromDate:self.estimatedDeliveryTime];
         self.ETAView.alpha = 0;
-        self.ETAView.hidden = NO;
         [UIView animateWithDuration:0.3 animations:^{
             self.ETAView.alpha = 1;
+            self.mapView.alpha = 1;
         }];
-        [self refresh];
         return nil;
     }] continueWithBlock:^id(BFTask *task) {
         if (task.isFaulted) {
@@ -210,24 +211,23 @@ static const float kMapZoomMargin = 2.0;
 - (MKCoordinateRegion)regionForRoute:(MKRoute *)route {
     NSUInteger pointCount = route.polyline.pointCount;
     MKMapPoint *points = route.polyline.points;
-    NSMutableArray *locations = [NSMutableArray arrayWithCapacity:pointCount];
+    NSMutableArray *coordinates = [NSMutableArray arrayWithCapacity:pointCount];
     for (int i = 0; i < pointCount; i++) {
         CLLocationCoordinate2D coordinate = MKCoordinateForMapPoint(points[i]);
-        [locations addObject:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude]];
+        [coordinates addObject:[NSValue valueWithCoordinate:coordinate]];
     }
-    return [self regionForLocations:locations];
+    return [self regionForCoordinates:coordinates];
 }
 
-- (MKCoordinateRegion)regionForLocations:(NSArray *)locations {
+- (MKCoordinateRegion)regionForCoordinates:(NSArray *)coordinates {
     /* Add 360 degrees so we can properly find the bounding box without sign problems */
-    CLLocation *firstLocation = locations.firstObject;
-    CLLocationCoordinate2D nwCorner = firstLocation.coordinate;
+    CLLocationCoordinate2D nwCorner = [coordinates.firstObject coordinateValue];
     nwCorner.latitude += 360;
     nwCorner.longitude += 360;
     CLLocationCoordinate2D seCorner = nwCorner;
     
-    for (CLLocation *location in locations) {
-        CLLocationCoordinate2D coordinate = location.coordinate;
+    for (NSValue *coordinateValue in coordinates) {
+        CLLocationCoordinate2D coordinate = coordinateValue.coordinateValue;
         coordinate.latitude += 360;
         coordinate.longitude += 360;
         if (coordinate.latitude  < seCorner.latitude)  seCorner.latitude  = coordinate.latitude;
@@ -252,19 +252,25 @@ static const float kMapZoomMargin = 2.0;
 #pragma mark UIMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"PinAnnotationView"];
-    pinView.animatesDrop = YES;
-    pinView.canShowCallout = YES;
-
+    NSString *reuseIdentifier;
+    NSString *imageName;
     if (annotation == self.driverLocationAnnotation) {
-        pinView.pinColor = MKPinAnnotationColorGreen;
+        reuseIdentifier = @"driverLocationAnnotation";
+        imageName = @"map-car-icon";
     } else if (annotation == self.deliveryAddressAnnotation) {
-        pinView.pinColor = MKPinAnnotationColorRed;
+        reuseIdentifier = @"deliveryAddressAnnotation";
+        imageName = @"map-pointer-icon";
     } else {
         NSLog(@"Unknown annotation in viewForAnnotation");
     }
 
-    return pinView;
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
+    if (!annotationView) {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+        annotationView.image = [UIImage imageNamed:imageName];
+    }
+
+    return annotationView;
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
@@ -318,8 +324,7 @@ static const float kMapZoomMargin = 2.0;
         if (self.order.driverLocation && !self.didStartRouteCalculation) {
             self.didStartRouteCalculation = YES;
             [self displayMap];
-        }
-        if (self.order.driverLocation) {
+        } else if (self.order.driverLocation) {
             [self updateDriverLocation];
         }
         if (self.estimatedDeliveryTime) {
@@ -337,9 +342,19 @@ static const float kMapZoomMargin = 2.0;
         annotation.coordinate = self.order.driverLocationMapItem.placemark.location.coordinate;
         [self.mapView addAnnotation:annotation];
         self.driverLocationAnnotation = annotation;
-    } else {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.driverLocationAnnotation.coordinate = self.order.driverLocationMapItem.placemark.location.coordinate;
+    }
+    [UIView animateWithDuration:0.5 animations:^{
+        self.driverLocationAnnotation.coordinate = self.order.driverLocationMapItem.placemark.location.coordinate;
+    }];
+    [self updateMapRegion];
+}
+
+- (void)updateMapRegion {
+    if (self.driverLocationAnnotation && self.deliveryAddressAnnotation) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.mapView.region = [self regionForCoordinates:@[
+                                                               [NSValue valueWithCoordinate:self.driverLocationAnnotation.coordinate],
+                                                               [NSValue valueWithCoordinate:self.deliveryAddressAnnotation.coordinate]]];
         }];
     }
 }
