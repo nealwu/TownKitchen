@@ -235,13 +235,16 @@
             self.order.status = @"paid";
             self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
             [[ParseAPI getInstance] createOrder:self.order];
+            
+            OrdersViewController *ovc = [[OrdersViewController alloc] init];
+            [self presentViewController:ovc animated:YES completion:nil];
+            
+        } else {
+            NSLog(@"Order failed");
         }
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     });
-    
-    OrdersViewController *ovc = [[OrdersViewController alloc] init];
-    [self presentViewController:ovc animated:YES completion:nil];
 }
 
 #pragma mark - LocationSelectViewControllerDelegate Methods
