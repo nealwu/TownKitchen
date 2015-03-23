@@ -8,6 +8,8 @@
 
 #import "DateUtils.h"
 
+static const NSCalendarUnit kYmdHmsComponents = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+
 @implementation DateUtils
 
 + (NSString *)dayOfTheWeekFromDate:(NSDate *)date {
@@ -24,7 +26,7 @@
 
 + (NSDate *)beginningOfDay:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
+    NSDateComponents *components = [calendar components:kYmdHmsComponents fromDate:date];
 
     [components setHour:0];
     [components setMinute:0];
@@ -35,7 +37,7 @@
 
 + (NSDate *)endOfDay:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
+    NSDateComponents *components = [calendar components:kYmdHmsComponents fromDate:date];
 
     [components setHour:23];
     [components setMinute:59];
