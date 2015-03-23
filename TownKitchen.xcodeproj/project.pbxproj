@@ -40,8 +40,6 @@
 		2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D51AB61503003624DD /* CircleStepperView.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
 		2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */; };
-		2BE81F981ABABCD0009A887C /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE81F961ABABCD0009A887C /* PaymentViewController.m */; };
-		2BE81F991ABABCD0009A887C /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE81F971ABABCD0009A887C /* PaymentViewController.xib */; };
 		2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */; };
 		2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */; };
 		2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */; };
@@ -51,6 +49,7 @@
 		2BF8B5241ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
+		9103FB8B1ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103FB8A1ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.m */; };
 		91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4C1AA93FB60038FE1F /* MenuOption.m */; };
 		91788D501AA93FEC0038FE1F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D4F1AA93FEC0038FE1F /* Order.m */; };
 		91788D531AA93FF50038FE1F /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D521AA93FF50038FE1F /* Inventory.m */; };
@@ -58,8 +57,6 @@
 		91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D5D1AA940930038FE1F /* OrderCreationViewController.xib */; };
 		91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D611AA940B10038FE1F /* DaySelectViewController.m */; };
 		91788D641AA940B10038FE1F /* DaySelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D621AA940B10038FE1F /* DaySelectViewController.xib */; };
-		91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D661AA940DF0038FE1F /* CheckoutViewController.m */; };
-		91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D671AA940DF0038FE1F /* CheckoutViewController.xib */; };
 		91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */; };
 		91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91788D6C1AA941620038FE1F /* DeliveryStatusViewController.xib */; };
 		91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91788D751AA941BC0038FE1F /* LocationSelectViewController.m */; };
@@ -83,8 +80,6 @@
 		9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AAFE1AB0D3DB00610500 /* OrderCell.m */; };
 		9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AAFF1AB0D3DB00610500 /* OrderCell.xib */; };
 		9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AB031AB0D93100610500 /* DateUtils.m */; };
-		9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */; };
-		9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */; };
 		9FF2AE8F1AB66B5A001BF6BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF2AE8D1AB66B5A001BF6BA /* LoginViewController.m */; };
 		9FF2AE901AB66B5A001BF6BA /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF2AE8E1AB66B5A001BF6BA /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
@@ -153,9 +148,6 @@
 		2BD9E65C1AAFE6D20072BB59 /* CheckoutOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderItemCell.h; sourceTree = "<group>"; };
 		2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderItemCell.m; sourceTree = "<group>"; };
 		2BD9E65E1AAFE6D20072BB59 /* CheckoutOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutOrderItemCell.xib; sourceTree = "<group>"; };
-		2BE81F951ABABCD0009A887C /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
-		2BE81F961ABABCD0009A887C /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
-		2BE81F971ABABCD0009A887C /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
 		2BEC493F1AB7F3D700A8A267 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		2BEC49401AB7F3D700A8A267 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		2BEC49421AB7FD2E00A8A267 /* DateLabelsViewSmall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateLabelsViewSmall.h; sourceTree = "<group>"; };
@@ -172,6 +164,8 @@
 		2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreationCell.m; sourceTree = "<group>"; };
 		2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCreationCell.xib; sourceTree = "<group>"; };
 		825F5B3F4F21BA28A6689DB1 /* Pods-TownKitchen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TownKitchen.release.xcconfig"; path = "Pods/Target Support Files/Pods-TownKitchen/Pods-TownKitchen.release.xcconfig"; sourceTree = "<group>"; };
+		9103FB891ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+CLLocationCoordinate2D.h"; sourceTree = "<group>"; };
+		9103FB8A1ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CLLocationCoordinate2D.m"; sourceTree = "<group>"; };
 		91788D4B1AA93FB60038FE1F /* MenuOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuOption.h; sourceTree = "<group>"; };
 		91788D4C1AA93FB60038FE1F /* MenuOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuOption.m; sourceTree = "<group>"; };
 		91788D4E1AA93FEC0038FE1F /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
@@ -184,9 +178,6 @@
 		91788D601AA940B10038FE1F /* DaySelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySelectViewController.h; sourceTree = "<group>"; };
 		91788D611AA940B10038FE1F /* DaySelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySelectViewController.m; sourceTree = "<group>"; };
 		91788D621AA940B10038FE1F /* DaySelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaySelectViewController.xib; sourceTree = "<group>"; };
-		91788D651AA940DF0038FE1F /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
-		91788D661AA940DF0038FE1F /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
-		91788D671AA940DF0038FE1F /* CheckoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutViewController.xib; sourceTree = "<group>"; };
 		91788D6A1AA941620038FE1F /* DeliveryStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryStatusViewController.h; sourceTree = "<group>"; };
 		91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryStatusViewController.m; sourceTree = "<group>"; };
 		91788D6C1AA941620038FE1F /* DeliveryStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeliveryStatusViewController.xib; sourceTree = "<group>"; };
@@ -222,9 +213,6 @@
 		9FC8AAFF1AB0D3DB00610500 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		9FC8AB021AB0D93100610500 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
 		9FC8AB031AB0D93100610500 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
-		9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectViewController.h; sourceTree = "<group>"; };
-		9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectViewController.m; sourceTree = "<group>"; };
-		9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSelectViewController.xib; sourceTree = "<group>"; };
 		9FF2AE8C1AB66B5A001BF6BA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9FF2AE8D1AB66B5A001BF6BA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FF2AE8E1AB66B5A001BF6BA /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -318,22 +306,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2B18A1611ABBE3B200F189BE /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				2BE81F951ABABCD0009A887C /* PaymentViewController.h */,
-				2BE81F961ABABCD0009A887C /* PaymentViewController.m */,
-				2BE81F971ABABCD0009A887C /* PaymentViewController.xib */,
-				91788D651AA940DF0038FE1F /* CheckoutViewController.h */,
-				91788D661AA940DF0038FE1F /* CheckoutViewController.m */,
-				91788D671AA940DF0038FE1F /* CheckoutViewController.xib */,
-				9FC8AB051AB0DD4600610500 /* TimeSelectViewController.h */,
-				9FC8AB061AB0DD4600610500 /* TimeSelectViewController.m */,
-				9FC8AB071AB0DD4600610500 /* TimeSelectViewController.xib */,
-			);
-			name = Unused;
-			sourceTree = "<group>";
-		};
 		2BA78A151AB63B3700F5FAB0 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,7 +344,6 @@
 		91788D5A1AA940700038FE1F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2B18A1611ABBE3B200F189BE /* Unused */,
 				2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */,
 				2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */,
 				2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */,
@@ -494,6 +465,8 @@
 				2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */,
 				2BF8B5221ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.h */,
 				2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */,
+				9103FB891ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.h */,
+				9103FB8A1ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -627,13 +600,10 @@
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
 				91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */,
 				2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */,
-				9FC8AB091AB0DD4600610500 /* TimeSelectViewController.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				2B0187131ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
-				91788D691AA940DF0038FE1F /* CheckoutViewController.xib in Resources */,
-				2BE81F991ABABCD0009A887C /* PaymentViewController.xib in Resources */,
 				2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,13 +688,11 @@
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
 				2B4DF8A61ABF944900D20303 /* ProfileViewController.m in Sources */,
 				2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */,
+				9103FB8B1ABF8CE600B28441 /* NSValue+CLLocationCoordinate2D.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
-				91788D681AA940DF0038FE1F /* CheckoutViewController.m in Sources */,
-				2BE81F981ABABCD0009A887C /* PaymentViewController.m in Sources */,
 				91788D9F1AB8D60F0038FE1F /* TKOrderSummaryCell.m in Sources */,
 				2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */,
-				9FC8AB081AB0DD4600610500 /* TimeSelectViewController.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
 				2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */,
 				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
@@ -836,7 +804,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TownKitchen/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -851,7 +818,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TownKitchen/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
