@@ -41,8 +41,9 @@
     [self.header.titleView addSubview:titleLabel];
 
     UIButton *cancelButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
-    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(onCancelButton) forControlEvents:UIControlEventTouchUpInside];
+    [cancelButton setImage:[UIImage imageNamed:@"cancel-button"] forState:UIControlStateNormal];
+    [cancelButton setImage:[UIImage imageNamed:@"cancel-button-highlighted"] forState:UIControlStateHighlighted];
     [self.header.leftView addSubview:cancelButton];
 
     self.orderSummaryView.order = self.order;
