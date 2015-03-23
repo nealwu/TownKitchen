@@ -21,6 +21,8 @@
 		2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */; };
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
+		2B4DF8A61ABF944900D20303 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A41ABF944900D20303 /* ProfileViewController.m */; };
+		2B4DF8A71ABF944900D20303 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A51ABF944900D20303 /* ProfileViewController.xib */; };
 		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
 		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
 		2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */; };
@@ -120,6 +122,9 @@
 		2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInputViewController.xib; sourceTree = "<group>"; };
 		2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavigationBar.h; sourceTree = "<group>"; };
 		2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavigationBar.m; sourceTree = "<group>"; };
+		2B4DF8A31ABF944900D20303 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		2B4DF8A41ABF944900D20303 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		2B4DF8A51ABF944900D20303 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		2B58D0141ABBC36500BE5EFA /* PaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView.h; sourceTree = "<group>"; };
 		2B58D0151ABBC36500BE5EFA /* PaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView.m; sourceTree = "<group>"; };
 		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
@@ -387,6 +392,9 @@
 				9FC8AAF81AB0D37700610500 /* OrdersViewController.h */,
 				9FC8AAF91AB0D37700610500 /* OrdersViewController.m */,
 				9FC8AAFA1AB0D37700610500 /* OrdersViewController.xib */,
+				2B4DF8A31ABF944900D20303 /* ProfileViewController.h */,
+				2B4DF8A41ABF944900D20303 /* ProfileViewController.m */,
+				2B4DF8A51ABF944900D20303 /* ProfileViewController.xib */,
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
@@ -606,6 +614,7 @@
 				91788D921AAD0BCA0038FE1F /* TKMenuOptionCell.xib in Resources */,
 				2B7110051ABE84F100A9B896 /* OrderButtonView.xib in Resources */,
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
+				2B4DF8A71ABF944900D20303 /* ProfileViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
 				91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */,
 				2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */,
@@ -697,6 +706,7 @@
 				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,
 				2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */,
 				91788D501AA93FEC0038FE1F /* Order.m in Sources */,
+				2B4DF8A61ABF944900D20303 /* ProfileViewController.m in Sources */,
 				2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */,
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
