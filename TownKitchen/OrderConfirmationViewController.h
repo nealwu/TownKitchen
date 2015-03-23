@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class OrderConfirmationViewController;
+
+@protocol OrderConfirmationViewControllerDelegate <NSObject>
+
+- (void)onDoneButtonTappedFromOrderConfirmationViewController:(OrderConfirmationViewController *)viewController;
+
+@end
+
 @interface OrderConfirmationViewController : UIViewController
 
 @property (strong, nonatomic) NSString *email;
+@property (weak, nonatomic) id<OrderConfirmationViewControllerDelegate> delegate;
 
 @end

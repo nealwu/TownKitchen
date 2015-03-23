@@ -42,7 +42,7 @@
 }
 
 - (IBAction)onDoneButton:(UIButton *)sender {
-    NSLog(@"done button pressed");
+    [self.delegate  onDoneButtonTappedFromOrderConfirmationViewController:self];
 }
 
 @end

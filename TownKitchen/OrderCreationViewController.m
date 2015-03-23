@@ -27,7 +27,7 @@
 #import <UIView+MTAnimation.h>
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -51,6 +51,7 @@
 @property (strong, nonatomic) UIView *filterView;
 @property (strong, nonatomic) PaymentView *paymentView;
 @property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
+@property (strong, nonatomic) OrderConfirmationViewController *orderConfirmationViewController;
 
 @end
 
@@ -133,11 +134,7 @@
 }
 
 - (void)viewWillLayoutSubviews {
-    OrderConfirmationViewController *orderConfirmationVC = [[OrderConfirmationViewController alloc] init];
 
-    NSLog(@"current user email: %@", [[PFUser currentUser] email]);
-    orderConfirmationVC.email = [[PFUser currentUser] email];
-    [self displayPopupViewController:orderConfirmationVC];
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
@@ -241,6 +238,10 @@
             self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
             [[ParseAPI getInstance] createOrder:self.order];
 
+            self.orderConfirmationViewController = [[OrderConfirmationViewController alloc] init];
+            self.orderConfirmationViewController.delegate = self;
+            self.orderConfirmationViewController.email = [[PFUser currentUser] email];
+            [self displayPopupViewController:self.orderConfirmationViewController];
 
 //            OrdersViewController *ovc = [[OrdersViewController alloc] init];
 //            [self presentViewController:ovc animated:YES completion:nil];
@@ -301,6 +302,13 @@
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BouncePlusButton" object:self];
     }
+}
+
+#pragma mark - OrderConfirmationViewControllerDelegate Methods
+
+- (void)onDoneButtonTappedFromOrderConfirmationViewController:(OrderConfirmationViewController *)viewController {
+    [self hideViewController:self.orderConfirmationViewController];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table View Methods
