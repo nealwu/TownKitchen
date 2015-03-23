@@ -15,6 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4g-4Z-IH1">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGC-Kp-UFb">
                     <rect key="frame" x="20" y="506" width="280" height="50"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.36078431370000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -22,7 +26,7 @@
                         <constraint firstAttribute="height" constant="50" id="UGI-YR-yNF"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
-                    <state key="normal" title="Order">
+                    <state key="normal" title="Done">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -37,7 +41,11 @@
             <constraints>
                 <constraint firstItem="WGC-Kp-UFb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="6uX-JC-04X"/>
                 <constraint firstAttribute="bottom" secondItem="WGC-Kp-UFb" secondAttribute="bottom" constant="12" id="Dts-zr-i6B"/>
+                <constraint firstItem="A4g-4Z-IH1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GWs-bp-YxX"/>
+                <constraint firstAttribute="trailing" secondItem="A4g-4Z-IH1" secondAttribute="trailing" id="PKL-Ml-8ot"/>
+                <constraint firstItem="A4g-4Z-IH1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="daG-ap-2Oj"/>
                 <constraint firstAttribute="trailing" secondItem="WGC-Kp-UFb" secondAttribute="trailing" constant="20" id="fZO-mB-g8a"/>
+                <constraint firstAttribute="bottom" secondItem="A4g-4Z-IH1" secondAttribute="bottom" id="ove-de-UJD"/>
             </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </view>
