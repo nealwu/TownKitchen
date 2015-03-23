@@ -13,6 +13,7 @@ pod 'Stripe'
 pod 'PaymentKit'
 pod 'MTAnimation'
 pod 'MBProgressHUD'
+pod 'pop'
 
 end
 

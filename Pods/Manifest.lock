@@ -48,6 +48,7 @@ PODS:
   - Parse (1.6.4):
     - Bolts (~> 1.1)
   - PaymentKit (1.1.1)
+  - pop (1.0.7)
   - RNTimer (0.0.1)
   - Stripe (3.1.0):
     - Stripe/Core (= 3.1.0)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - MTAnimation
   - Parse
   - PaymentKit
+  - pop
   - RNTimer
   - Stripe
 
@@ -77,6 +79,7 @@ SPEC CHECKSUMS:
   MTAnimation: eeedb417b12eb293ad2e32a02f113d9e98641ae0
   Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
   PaymentKit: f77b4d5cee45947949429c3d587e8eb160a3c9e2
+  pop: 2f14a1ea61339767af9e66741b418c831b3844df
   RNTimer: cbcfbf2a146cd41a65637f214548ecb0900f2f12
   Stripe: aaa174b50fac40a16958cbc892457a241d0b4b08
 

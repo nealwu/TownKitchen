@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "02494631E48464F73B4C88C9"
+               BlueprintIdentifier = "823B1AAB68633D845E60FF9C"
                BuildableName = "libPods-TownKitchen-Stripe.a"
                BlueprintName = "Pods-TownKitchen-Stripe"
                ReferencedContainer = "container:Pods.xcodeproj">

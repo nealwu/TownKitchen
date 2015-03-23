@@ -1,0 +1,7 @@
+#include "Pods-TownKitchen-pop.xcconfig"
+CLANG_CXX_LANGUAGE_STANDARD = ${PODS_TOWNKITCHEN_POP_CLANG_CXX_LANGUAGE_STANDARD}
+CLANG_CXX_LIBRARY = ${PODS_TOWNKITCHEN_POP_CLANG_CXX_LIBRARY}
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/pop" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/FXBlurView" "${PODS_ROOT}/Headers/Public/FormatterKit" "${PODS_ROOT}/Headers/Public/GoogleKit" "${PODS_ROOT}/Headers/Public/LMGeocoder" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/MTAnimation" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/PaymentKit" "${PODS_ROOT}/Headers/Public/RNTimer" "${PODS_ROOT}/Headers/Public/Stripe" "${PODS_ROOT}/Headers/Public/pop"
+OTHER_LDFLAGS = ${PODS_TOWNKITCHEN_POP_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}
