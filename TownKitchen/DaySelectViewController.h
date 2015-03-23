@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Order.h"
 
 @interface DaySelectViewController : UIViewController
+
+@property (readonly, nonatomic) Order *activeOrder;
 
 @end

@@ -13,6 +13,7 @@
 #import "DateLabelsView.h"
 #import "DateLabelsViewSmall.h"
 #import <UIView+MTAnimation.h>
+#import "DaySelectViewController.h"
 
 CGFloat const transitionImageInitialHeight = 130;
 CGFloat const transitionImageFinalHeight = 200;
@@ -69,6 +70,17 @@ CGFloat const statusBarHeight = 20.0;
     UIButton *profileButton = [[UIButton alloc] initWithFrame:header.leftView.bounds];
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
     [header.leftView addSubview:profileButton];
+    
+    // Create active delivery button
+    CGRect activeDeliveryButtonFrame = header.rightView.bounds;
+    UIButton *activeDeliveryButton = [[UIButton alloc] initWithFrame:activeDeliveryButtonFrame];
+    if ([(DaySelectViewController *)self.fromViewController activeOrder]) {
+        activeDeliveryButton.alpha = 1.0;
+    } else {
+        activeDeliveryButton.alpha = 0.5;
+    }
+    [activeDeliveryButton setImage:[UIImage imageNamed:@"map-button"] forState:UIControlStateNormal];
+    [header.rightView addSubview:activeDeliveryButton];
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
@@ -180,6 +192,7 @@ CGFloat const statusBarHeight = 20.0;
     [UIView animateWithDuration:duration * 0.5
                      animations:^{
                          profileButton.alpha = 0.0;
+                         activeDeliveryButton.alpha = 0.0;
                      } completion:^(BOOL finished) {
                          [UIView animateWithDuration:duration * 0.5
                                           animations:^{
@@ -216,6 +229,20 @@ CGFloat const statusBarHeight = 20.0;
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
     [header.leftView addSubview:profileButton];
     profileButton.alpha = 0.0;
+    
+    // Create active delivery button
+    CGRect activeDeliveryButtonFrame = header.rightView.bounds;
+    UIButton *activeDeliveryButton = [[UIButton alloc] initWithFrame:activeDeliveryButtonFrame];
+    activeDeliveryButton.alpha = 0.0;
+    CGFloat finalActiveDeliveryButtonAlpha;
+    if ([(DaySelectViewController *)self.toViewController activeOrder]) {
+        finalActiveDeliveryButtonAlpha = 1.0;
+    } else {
+        finalActiveDeliveryButtonAlpha = 0.5;
+    }
+    
+    [activeDeliveryButton setImage:[UIImage imageNamed:@"map-button"] forState:UIControlStateNormal];
+    [header.rightView addSubview:activeDeliveryButton];
     
     // Define snapshot frame
     CGRect selectedCellFrame = self.selectedCell.frame;
@@ -267,6 +294,7 @@ CGFloat const statusBarHeight = 20.0;
                          [UIView animateWithDuration:duration * 0.5
                                           animations:^{
                                               profileButton.alpha = 1.0;
+                                              activeDeliveryButton.alpha = finalActiveDeliveryButtonAlpha;
                                           } completion:^(BOOL finished) {
                                               nil;
                                           }];
