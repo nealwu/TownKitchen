@@ -9,6 +9,8 @@
 #import "ReviewViewController.h"
 
 #import "ParseAPI.h"
+#import "OrderSummaryView.h"
+#import "TKHeader.h"
 
 @interface ReviewViewController () <UITextViewDelegate>
 
@@ -19,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fiveStarView;
 @property (weak, nonatomic) IBOutlet UITextView *commentView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
+@property (weak, nonatomic) IBOutlet TKHeader *header;
 
 @property (assign, nonatomic) NSInteger ratingStars;
 
@@ -28,7 +32,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Review";
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.header.titleView.bounds];
+    titleLabel.text = @"Review Your Order";
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [UIFont fontWithName:@"Futura" size:20];
+    [self.header.titleView addSubview:titleLabel];
+
+    UIButton *cancelButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton addTarget:self action:@selector(onCancelButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.header.leftView addSubview:cancelButton];
+
+    self.orderSummaryView.order = self.order;
     self.commentView.delegate = self;
     self.commentView.textColor = [UIColor grayColor];
     self.commentView.layer.borderWidth = 1;
@@ -118,6 +135,14 @@
 - (IBAction)onSubmit:(id)sender {
     [[ParseAPI getInstance] addReviewForOrder:self.order starCount:@(self.ratingStars) comment:self.commentView.text];
     NSLog(@"Submitted with %ld star(s) and comment %@", (long) self.ratingStars, self.commentView.text);
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Private methods
+
+- (void)onCancelButton {
+    self.order.status = @"review_declined";
+    [self.order save];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
