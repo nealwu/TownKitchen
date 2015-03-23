@@ -36,6 +36,8 @@
 		2BA78A1D1AB65FE400F5FAB0 /* TKHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */; };
 		2BBABFB91AB008DF0098124D /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBABFB71AB008DF0098124D /* DayCell.m */; };
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
+		2BC07CE91ABFDC3B00956822 /* PopupAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */; };
+		2BC07CEC1ABFE19600956822 /* PopupDismissAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC07CEB1ABFE19600956822 /* PopupDismissAnimationController.m */; };
 		2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D31AB614F6003624DD /* CircleStepperView.m */; };
 		2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D51AB61503003624DD /* CircleStepperView.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
@@ -142,6 +144,10 @@
 		2BBABFB61AB008DF0098124D /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
 		2BBABFB71AB008DF0098124D /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
 		2BBABFB81AB008DF0098124D /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
+		2BC07CE71ABFDC3B00956822 /* PopupAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupAnimationController.h; sourceTree = "<group>"; };
+		2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupAnimationController.m; sourceTree = "<group>"; };
+		2BC07CEA1ABFE19600956822 /* PopupDismissAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupDismissAnimationController.h; sourceTree = "<group>"; };
+		2BC07CEB1ABFE19600956822 /* PopupDismissAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupDismissAnimationController.m; sourceTree = "<group>"; };
 		2BC7C2D21AB614F6003624DD /* CircleStepperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleStepperView.h; sourceTree = "<group>"; };
 		2BC7C2D31AB614F6003624DD /* CircleStepperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleStepperView.m; sourceTree = "<group>"; };
 		2BC7C2D51AB61503003624DD /* CircleStepperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleStepperView.xib; sourceTree = "<group>"; };
@@ -313,6 +319,10 @@
 				2BA78A171AB6558500F5FAB0 /* DaySelectAnimationController.m */,
 				2B187CAB1AB9319B00FCCF78 /* CheckoutAnimationController.h */,
 				2B187CAC1AB9319B00FCCF78 /* CheckoutAnimationController.m */,
+				2BC07CE71ABFDC3B00956822 /* PopupAnimationController.h */,
+				2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */,
+				2BC07CEA1ABFE19600956822 /* PopupDismissAnimationController.h */,
+				2BC07CEB1ABFE19600956822 /* PopupDismissAnimationController.m */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -692,8 +702,10 @@
 				9FA5C0A81AAEC5B600080718 /* ReviewViewController.m in Sources */,
 				91788D7F1AA942A50038FE1F /* OrderStatusViewController.m in Sources */,
 				91788D9F1AB8D60F0038FE1F /* TKOrderSummaryCell.m in Sources */,
+				2BC07CE91ABFDC3B00956822 /* PopupAnimationController.m in Sources */,
 				2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
+				2BC07CEC1ABFE19600956822 /* PopupDismissAnimationController.m in Sources */,
 				2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */,
 				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,

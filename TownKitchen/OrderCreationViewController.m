@@ -21,13 +21,15 @@
 #import "OrdersViewController.h"
 #import "ParseAPI.h"
 #import "PaymentView.h"
+#import "PopupAnimationController.h"
+#import "PopupDismissAnimationController.h"
 #import "STPCard.h"
 #import "STPAPIClient.h"
 #import "TKHeader.h"
 #import <UIView+MTAnimation.h>
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate, UIViewControllerTransitioningDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -241,7 +243,9 @@
             self.orderConfirmationViewController = [[OrderConfirmationViewController alloc] init];
             self.orderConfirmationViewController.delegate = self;
             self.orderConfirmationViewController.email = [[PFUser currentUser] email];
-            [self displayPopupViewController:self.orderConfirmationViewController];
+            self.orderConfirmationViewController.transitioningDelegate = self;
+            self.orderConfirmationViewController.modalPresentationStyle = UIModalPresentationCustom;
+            [self presentViewController:self.orderConfirmationViewController animated:YES completion:nil];
 
 //            OrdersViewController *ovc = [[OrdersViewController alloc] init];
 //            [self presentViewController:ovc animated:YES completion:nil];
@@ -307,8 +311,28 @@
 #pragma mark - OrderConfirmationViewControllerDelegate Methods
 
 - (void)onDoneButtonTappedFromOrderConfirmationViewController:(OrderConfirmationViewController *)viewController {
-    [self hideViewController:self.orderConfirmationViewController];
+    [self.orderConfirmationViewController dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate Methods
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    if (presented == self.orderConfirmationViewController) {
+        return [PopupAnimationController new];
+    } else {
+        return nil;
+    }
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    if (dismissed == self.orderConfirmationViewController) {
+        return [PopupDismissAnimationController new];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - Table View Methods
