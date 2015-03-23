@@ -59,7 +59,7 @@ CGFloat const statusBarHeight = 20.0;
     // Create back button for header
     UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
     CGRect backButtonFrame = header.leftView.bounds;
-    backButtonFrame.origin.x -= 12;
+//    backButtonFrame.origin.x -= 12;
     UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
     [backButton setImage:backButtonImage forState:UIControlStateNormal];
     [header.leftView addSubview:backButton];
@@ -206,7 +206,7 @@ CGFloat const statusBarHeight = 20.0;
     // Create back button for header
     UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
     CGRect backButtonFrame = header.leftView.bounds;
-    backButtonFrame.origin.x -= 12;
+//    backButtonFrame.origin.x -= 12;
     UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
     [backButton setImage:backButtonImage forState:UIControlStateNormal];
     [header.leftView addSubview:backButton];

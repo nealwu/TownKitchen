@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6751"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TKHeader">
@@ -29,17 +28,23 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLR-70-BdH" userLabel="Left View">
-                            <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
+                            <rect key="frame" x="6" y="0.0" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="cyo-id-GtA"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RP4-Ih-J84" userLabel="Right View">
-                            <rect key="frame" x="260" y="0.0" width="60" height="44"/>
+                            <rect key="frame" x="270" y="0.0" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="6NO-DS-n6F"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="NLR-70-BdH" secondAttribute="bottom" id="LMe-cJ-Zhz"/>
-                        <constraint firstItem="NLR-70-BdH" firstAttribute="leading" secondItem="Tpx-sS-Icb" secondAttribute="leading" id="QoB-Vd-Jb9"/>
+                        <constraint firstItem="NLR-70-BdH" firstAttribute="leading" secondItem="Tpx-sS-Icb" secondAttribute="leading" constant="6" id="QoB-Vd-Jb9"/>
                         <constraint firstItem="RP4-Ih-J84" firstAttribute="top" secondItem="Tpx-sS-Icb" secondAttribute="top" id="THg-La-TTH"/>
-                        <constraint firstAttribute="trailing" secondItem="RP4-Ih-J84" secondAttribute="trailing" id="TVQ-tJ-dH3"/>
+                        <constraint firstAttribute="trailing" secondItem="RP4-Ih-J84" secondAttribute="trailing" constant="6" id="TVQ-tJ-dH3"/>
                         <constraint firstAttribute="centerY" secondItem="5xJ-ha-608" secondAttribute="centerY" id="d2o-3o-yLt"/>
                         <constraint firstAttribute="centerX" secondItem="5xJ-ha-608" secondAttribute="centerX" id="irE-3x-OCy"/>
                         <constraint firstAttribute="height" constant="44" id="k8h-gO-FeC"/>
@@ -48,6 +53,12 @@
                         <constraint firstItem="5xJ-ha-608" firstAttribute="leading" secondItem="NLR-70-BdH" secondAttribute="trailing" id="oYb-HV-NTP"/>
                         <constraint firstItem="RP4-Ih-J84" firstAttribute="leading" secondItem="5xJ-ha-608" secondAttribute="trailing" id="zXD-wG-nZJ"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="oYb-HV-NTP"/>
+                            <exclude reference="zXD-wG-nZJ"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.9215686917" green="0.36078432199999999" blue="0.34117648010000001" alpha="1" colorSpace="deviceRGB"/>
