@@ -19,6 +19,7 @@
 #import "DeliveryStatusViewController.h"
 #import "TKHeader.h"
 #import "LoginViewController.h"
+#import "ReviewViewController.h"
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate, OrderStatusViewControllerDelegate>
 
@@ -78,8 +79,27 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"current user = %@", [PFUser currentUser]);
+
     if (![PFUser currentUser]) {
         [self onLogoutButton];
+    } else {
+        NSArray *orders = [[ParseAPI getInstance] ordersForUser:[PFUser currentUser]];
+        NSDate *now = [NSDate date];
+
+        for (Order *order in orders) {
+            if ([order.status isEqualToString:@"delivered"]) {
+                double minuteTimeDifference = [now timeIntervalSinceDate:order.deliveryDateAndTime] / 60.0;
+                NSLog(@"Time difference: %lf minutes", minuteTimeDifference);
+
+                // Present the ReviewViewController if the order was delivered at least 30 minutes ago and at most 3 days ago
+                if (minuteTimeDifference > 30 && minuteTimeDifference < 3 * 24 * 60) {
+                    NSLog(@"Presenting ReviewViewController");
+                    ReviewViewController *rvc = [[ReviewViewController alloc] init];
+                    rvc.order = order;
+                    [self presentViewController:rvc animated:YES completion:nil];
+                }
+            }
+        }
     }
 }
 
@@ -153,9 +173,7 @@
     self.daySelectAnimationController.selectedCell = (DayCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     self.daySelectAnimationController.contentOffset = self.tableView.contentOffset;
     
-    [self presentViewController:ocvc animated:YES completion:^{
-        nil;
-    }];
+    [self presentViewController:ocvc animated:YES completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
