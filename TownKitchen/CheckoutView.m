@@ -142,6 +142,7 @@
     cell.quantity = [NSNumber numberWithFloat:quantity];
     cell.price = [NSNumber numberWithFloat:priceForQuantity];
     cell.itemDescription = menuOption.mealDescription;
+    cell.imageUrl = menuOption.imageURL;
     
     return cell;
 }

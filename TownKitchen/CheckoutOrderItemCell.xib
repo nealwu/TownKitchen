@@ -21,7 +21,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pasta-salad-front" translatesAutoresizingMaskIntoConstraints="NO" id="KwJ-wN-muc" userLabel="Image view">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KwJ-wN-muc" userLabel="Image view">
                         <rect key="frame" x="12" y="13" width="38" height="38"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="FBQ-ra-4Lu"/>
@@ -76,7 +76,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="menuOptionImage" destination="uhp-j6-qxi" id="a59-Wd-Vck"/>
+                <outlet property="menuOptionImage" destination="KwJ-wN-muc" id="EKR-XR-oeu"/>
                 <outlet property="nameLabel" destination="7QL-5s-fef" id="fbp-kN-ftt"/>
                 <outlet property="priceLabel" destination="CCG-8x-XqE" id="MDN-iF-tV1"/>
                 <outlet property="quantityLabel" destination="uhp-j6-qxi" id="B5G-y3-F5E"/>
@@ -84,7 +84,4 @@
             <point key="canvasLocation" x="193.5" y="162"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="pasta-salad-front" width="1000" height="667"/>
-    </resources>
 </document>
