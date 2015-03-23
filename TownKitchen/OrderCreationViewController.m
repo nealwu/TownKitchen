@@ -8,22 +8,22 @@
 
 #import "OrderCreationViewController.h"
 
-#import "ParseAPI.h"
+#import "CheckoutView.h"
+#import "DateLabelsViewSmall.h"
 #import "DateUtils.h"
 #import "Inventory.h"
 #import "LocationSelectViewController.h"
+#import <MBProgressHUD.h>
 #import "Order.h"
-#import "OrderCreationCell.h"
 #import "OrderButtonView.h"
-#import "TKHeader.h"
-#import "DateLabelsViewSmall.h"
-#import "CheckoutView.h"
-#import <UIView+MTAnimation.h>
+#import "OrderCreationCell.h"
+#import "OrdersViewController.h"
+#import "ParseAPI.h"
 #import "PaymentView.h"
 #import "STPCard.h"
 #import "STPAPIClient.h"
-
-#import "OrdersViewController.h"
+#import "TKHeader.h"
+#import <UIView+MTAnimation.h>
 
 
 @interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate>
@@ -204,35 +204,41 @@
 // Place order
 - (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"attempting to place order: %@", self.order);
-    
-    self.order.user = [PFUser currentUser];
-    
-    STPCard *card = [[STPCard alloc] init];
-    PTKView *paymentEntryView = self.paymentView.paymentEntryView;
-    
-    card.number = paymentEntryView.card.number;
-    card.expMonth = paymentEntryView.card.expMonth;
-    card.expYear = paymentEntryView.card.expYear;
-    card.cvc = paymentEntryView.card.cvc;
-    NSLog(@"Set up card: %@", card);
-    NSLog(@"%@ %ld %ld %@", paymentEntryView.card.number, (long) paymentEntryView.card.expMonth, (long) paymentEntryView.card.expYear, paymentEntryView.card.cvc);
-    
-    [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
-        if (error) {
-            NSLog(@"Error while handling card: %@", error);
-        } else {
-            [self createBackendChargeWithToken:token completion:nil];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);  // slight delay to let UI draw HUD
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.order.user = [PFUser currentUser];
+        
+        STPCard *card = [[STPCard alloc] init];
+        PTKView *paymentEntryView = self.paymentView.paymentEntryView;
+        
+        card.number = paymentEntryView.card.number;
+        card.expMonth = paymentEntryView.card.expMonth;
+        card.expYear = paymentEntryView.card.expYear;
+        card.cvc = paymentEntryView.card.cvc;
+        NSLog(@"Set up card: %@", card);
+        NSLog(@"%@ %ld %ld %@", paymentEntryView.card.number, (long) paymentEntryView.card.expMonth, (long) paymentEntryView.card.expYear, paymentEntryView.card.cvc);
+        
+        [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
+            if (error) {
+                NSLog(@"Error while handling card: %@", error);
+            } else {
+                [self createBackendChargeWithToken:token completion:nil];
+            }
+        }];
+        
+        NSLog(@"validating order: %@", self.order);
+        NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
+        
+        if ([[ParseAPI getInstance] validateOrder:self.order]) {
+            self.order.status = @"paid";
+            self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
+            [[ParseAPI getInstance] createOrder:self.order];
         }
-    }];
-    
-    NSLog(@"validating order: %@", self.order);
-    NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
-    
-    if ([[ParseAPI getInstance] validateOrder:self.order]) {
-        self.order.status = @"paid";
-        self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
-        [[ParseAPI getInstance] createOrder:self.order];
-    }
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
     
     OrdersViewController *ovc = [[OrdersViewController alloc] init];
     [self presentViewController:ovc animated:YES completion:nil];
