@@ -10,6 +10,8 @@
 
 @interface OrderConfirmationViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+
 @end
 
 @implementation OrderConfirmationViewController
@@ -19,19 +21,28 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillLayoutSubviews {
+    self.view.layer.cornerRadius = 8.0;
+    
+    self.emailLabel.text = self.email;
+    
+    // create shadow
+    self.view.layer.masksToBounds = NO;
+    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.view.layer.shadowRadius = 3;
+    self.view.layer.shadowOffset = CGSizeMake(0.0f, 4.0f);
+    self.view.layer.shadowOpacity = 0.1f;
+    self.view.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    self.view.layer.shouldRasterize = YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setEmail:(NSString *)email {
+    _email = email;
+    self.emailLabel.text = email;
 }
-*/
+
+- (IBAction)onDoneButton:(UIButton *)sender {
+    NSLog(@"done button pressed");
+}
 
 @end

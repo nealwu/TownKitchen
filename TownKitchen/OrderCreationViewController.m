@@ -17,6 +17,7 @@
 #import "Order.h"
 #import "OrderButtonView.h"
 #import "OrderCreationCell.h"
+#import "OrderConfirmationViewController.h"
 #import "OrdersViewController.h"
 #import "ParseAPI.h"
 #import "PaymentView.h"
@@ -132,7 +133,11 @@
 }
 
 - (void)viewWillLayoutSubviews {
+    OrderConfirmationViewController *orderConfirmationVC = [[OrderConfirmationViewController alloc] init];
 
+    NSLog(@"current user email: %@", [[PFUser currentUser] email]);
+    orderConfirmationVC.email = [[PFUser currentUser] email];
+    [self displayPopupViewController:orderConfirmationVC];
 }
 
 #pragma mark - OrderCreationTableViewCellDelegate Methods
@@ -235,9 +240,10 @@
             self.order.status = @"paid";
             self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
             [[ParseAPI getInstance] createOrder:self.order];
-            
-            OrdersViewController *ovc = [[OrdersViewController alloc] init];
-            [self presentViewController:ovc animated:YES completion:nil];
+
+
+//            OrdersViewController *ovc = [[OrdersViewController alloc] init];
+//            [self presentViewController:ovc animated:YES completion:nil];
             
         } else {
             NSLog(@"Order failed");
@@ -426,6 +432,13 @@
                      }];
 }
 
+- (void)displayPopupViewController:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    viewController.view.frame = [self frameForPopupViewController];
+    [self.view addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self];
+}
+
 - (CGRect)frameForModalViewController {
     CGFloat parentWidth = self.view.bounds.size.width;
     CGFloat parentHeight = self.view.bounds.size.height;
@@ -433,6 +446,19 @@
     CGFloat navigationBarHeight = 64;
     
     return CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
+}
+
+- (CGRect)frameForPopupViewController {
+    CGFloat popupWidth = 240;
+    CGFloat popupHeight = 280;
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    
+    CGRect popupFrame = CGRectMake(parentWidth / 2.0 - popupWidth / 2.0,
+                                   parentHeight / 2.0 - popupHeight / 2.0,
+                                   popupWidth,
+                                   popupHeight);
+    return popupFrame;
 }
 
 - (void)setLeftButtonToCancel {

@@ -10,4 +10,6 @@
 
 @interface OrderConfirmationViewController : UIViewController
 
+@property (strong, nonatomic) NSString *email;
+
 @end
