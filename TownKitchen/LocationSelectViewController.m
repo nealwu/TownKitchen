@@ -33,16 +33,20 @@
 
 @implementation LocationSelectViewController
 
+#pragma mark Life Cycle Methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.locationManager) {
+        [self.locationManager startUpdatingLocation];
+    }
+}
 
-#pragma mark Life Cycle Methods
-
-- (void) dealloc
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [self.locationManager stopUpdatingLocation];
 }
 
@@ -74,6 +78,9 @@
     if (!self.didMoveToCurrentLocation) {
         [self moveToCoordinates:self.currentLocation.coordinate withVisibleDistance:200];
         self.didMoveToCurrentLocation = YES;
+    }
+    if (self.currentLocation.horizontalAccuracy < 10) {
+        [self.locationManager stopUpdatingLocation];
     }
 }
 
