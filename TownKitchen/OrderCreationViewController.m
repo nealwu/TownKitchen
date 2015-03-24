@@ -107,7 +107,6 @@
     
     // Create back button
     CGRect backButtonFrame = self.header.leftView.bounds;
-//    backButtonFrame.origin.x -= 12;
     self.backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
     [self.backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
     [self.backButton setImage:[UIImage imageNamed:@"back-button"] forState:UIControlStateNormal];
@@ -116,7 +115,6 @@
     
     // Create cancel button
     CGRect cancelButtonFrame = self.header.leftView.bounds;
-    cancelButtonFrame.origin.x -= 6;
     self.cancelButton = [[UIButton alloc] initWithFrame:cancelButtonFrame];
     [self.cancelButton addTarget:self action:@selector(onCancelOrder) forControlEvents:UIControlEventTouchUpInside];
     [self.cancelButton setImage:[UIImage imageNamed:@"cancel-button"] forState:UIControlStateNormal];
