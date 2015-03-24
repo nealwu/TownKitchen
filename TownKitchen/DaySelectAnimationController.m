@@ -100,8 +100,16 @@ CGFloat const statusBarHeight = 20.0;
     [transitionView addSubview:transitionImageView];
 
     UIView *darkFilterView = [[UIView alloc] initWithFrame:transitionView.bounds];
-    darkFilterView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    darkFilterView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
     [transitionView addSubview:darkFilterView];
+    
+        // add gradient to darkFilterView
+    CAGradientLayer *gradientMask = [CAGradientLayer layer];
+    gradientMask.frame = darkFilterView.bounds;
+    gradientMask.colors = @[(id)[UIColor colorWithWhite:0 alpha:0.8].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:1.0].CGColor];
+    gradientMask.locations = @[@0.57, @0.84];
+    darkFilterView.layer.mask = gradientMask;
     
     [self.containerView addSubview:transitionView];
     

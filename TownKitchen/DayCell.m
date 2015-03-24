@@ -16,6 +16,7 @@
 @interface DayCell ()
 
 @property (weak, nonatomic) IBOutlet DateLabelsView *dateLabelsView;
+@property (weak, nonatomic) IBOutlet UIView *darkViewFilter;
 
 @property (readwrite, nonatomic) UIImage *originalImage;
 @property (readwrite, nonatomic) UIImage *darkenedImage;
@@ -28,6 +29,18 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
 
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    // add gradient to darkViewFilter
+    CAGradientLayer *gradientMask = [CAGradientLayer layer];
+    gradientMask.frame = self.darkViewFilter.bounds;
+    gradientMask.colors = @[(id)[UIColor colorWithWhite:0 alpha:0.8].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:1.0].CGColor];
+    gradientMask.locations = @[@0.6, @1.0];
+    self.darkViewFilter.layer.mask = gradientMask;
 }
 
 #pragma mark - Custom Setters
