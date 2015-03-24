@@ -20,7 +20,7 @@
      fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
      
      UIView *dimmingView = [[UIView alloc] initWithFrame:fromView.bounds];
-     dimmingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+     dimmingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
      dimmingView.layer.opacity = 0.0;
      
      UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
@@ -45,7 +45,7 @@
      scaleAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(1.2, 1.4)];
      
      POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-     opacityAnimation.toValue = @(0.2);
+     opacityAnimation.toValue = @(0.4);
      
      [toView.layer pop_addAnimation:positionAnimation forKey:@"positionAnimation"];
      [toView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
