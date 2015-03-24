@@ -67,8 +67,10 @@
         }
     } else if (quantity > 1) {
         self.quantityLabel.text = [NSString stringWithFormat:@"%d boxes", quantity];
-    } else if (quantity == 0){
-        [self hideLabels];
+    } else if (quantity == 0) {
+        if (self.previousPrice > 0) {
+            [self hideLabels];
+        }
     }
 }
 
@@ -76,7 +78,8 @@
     self.previousPrice = [_price floatValue];
     _price = price;
     
-    if (self.previousPrice > 0 && [price isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+    // don't change price label when animating off
+    if ([price isEqualToNumber:[NSNumber numberWithInteger:0]]) {
         return;
     } else {
         self.priceLabel.text = [NSString stringWithFormat:@"%.2f", [price floatValue]];
