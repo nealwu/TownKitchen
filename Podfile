@@ -14,6 +14,7 @@ pod 'PaymentKit'
 pod 'MTAnimation'
 pod 'MBProgressHUD'
 pod 'pop'
+pod 'SwipeView'
 
 end
 

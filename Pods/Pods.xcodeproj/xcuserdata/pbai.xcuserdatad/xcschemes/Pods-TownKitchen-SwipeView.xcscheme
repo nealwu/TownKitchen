@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAA30E4F420D2402B63D0D4C"
-               BuildableName = "libPods-TownKitchen-FXBlurView.a"
-               BlueprintName = "Pods-TownKitchen-FXBlurView"
+               BlueprintIdentifier = "848814C80BDB4E0801E9FBBB"
+               BuildableName = "libPods-TownKitchen-SwipeView.a"
+               BlueprintName = "Pods-TownKitchen-SwipeView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
