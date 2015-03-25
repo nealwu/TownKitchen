@@ -46,24 +46,20 @@
 //    self.window.rootViewController = osvc;
 
     // Show intro if first time launching app
-    
-    
-    
-    IntroViewController *introViewController = [[IntroViewController alloc] init];
-    self.window.rootViewController = introViewController;
-    
-    /*
-    // If logged in, go directly to day select VC. Otherwise, go to login screen
-    if ([PFUser currentUser]) {
-        DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenIntro"]) {
+        IntroViewController *introViewController = [[IntroViewController alloc] init];
         self.window.rootViewController = introViewController;
 
+    } else if ([PFUser currentUser]) {
+        // If logged in, go directly to day select VC
+        DaySelectViewController *daySelectViewController = [[DaySelectViewController alloc] init];
+        self.window.rootViewController = daySelectViewController;
+
     } else {
+        // Otherwise, go to login screen
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         self.window.rootViewController = loginViewController;
     }
-     */
-    
     [self.window makeKeyAndVisible];
     return YES;
 }
