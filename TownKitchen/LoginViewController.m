@@ -41,7 +41,11 @@
             NSLog(@"Login succeeded!");
             [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
         } else {
-            NSLog(@"Login failed: %@", error);
+            NSString *errorString = [error userInfo][@"error"];
+            NSLog(@"Login failed: %@", errorString);
+
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid email or password" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
         }
     }];
 }
@@ -62,6 +66,11 @@
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Signup failed: %@", errorString);
+
+            NSString *capitalizedError = [errorString stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[errorString substringToIndex:1] capitalizedString]];
+
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:capitalizedError message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
         }
     }];
 }
