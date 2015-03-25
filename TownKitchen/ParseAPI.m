@@ -133,6 +133,7 @@
 
 - (BFTask *)updateOrder:(Order *)order withDriverLocation:(CLLocation *)location {
     PFGeoPoint *newLocation = [PFGeoPoint geoPointWithLocation:location];
+    order.status = @"delivering";
     order.driverLocation = newLocation;
     return [order saveInBackground];
 }
