@@ -117,7 +117,7 @@
 }
 
 - (void)animateCommentBoxAndSubmitButton {
-    [UIView animateWithDuration:1.5 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         self.commentView.alpha = 1;
         self.submitButton.alpha = 1;
     }];
