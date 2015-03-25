@@ -39,7 +39,11 @@
     [PFUser logInWithUsernameInBackground:email password:password block:^(PFUser *user, NSError *error) {
         if (user && !error) {
             NSLog(@"Login succeeded!");
-            [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
+            if (self.delegate) {
+                [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
+            } else {
+                [self goToDaySelectVC];
+            }
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Login failed: %@", errorString);
@@ -62,7 +66,11 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             NSLog(@"Signup succeeded!");
-            [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
+            if (self.delegate) {
+                [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
+            } else {
+                [self goToDaySelectVC];
+            }
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Signup failed: %@", errorString);
@@ -81,7 +89,7 @@
     [self.passwordTextField endEditing:YES];
 }
 
-#pragma mark UITextFieldDelegate
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSLog(@"textFieldShouldReturn:");
@@ -92,6 +100,13 @@
         [self onLogin:self];
     }
     return YES;
+}
+
+#pragma mark - Private Methods
+
+- (void)goToDaySelectVC {
+    DaySelectViewController *daySelectViewController = [[DaySelectViewController alloc] init];
+    [self presentViewController:daySelectViewController animated:YES completion:nil];
 }
 
 @end

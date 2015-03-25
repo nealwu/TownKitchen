@@ -20,7 +20,6 @@
 #import "ReviewViewController.h"
 #import "Stripe.h"
 
-
 @interface AppDelegate ()
 
 @end
@@ -46,22 +45,24 @@
 //
 //    self.window.rootViewController = osvc;
 
-    IntroViewController *introViewController = [[IntroViewController alloc] init];
+    // Show intro if first time launching app
     
-    DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+    
+    
+    IntroViewController *introViewController = [[IntroViewController alloc] init];
     self.window.rootViewController = introViewController;
     
-//    LoginViewController *lvc = [[LoginViewController alloc] init];
-//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
-//    nvc.navigationBar.translucent = NO;
-//    nvc.navigationBar.barTintColor = [UIColor colorWithRed:235.0 / 255
-//                                                     green:92.0 / 255
-//                                                      blue:87.0 / 255
-//                                                     alpha:1.0];
-//    nvc.navigationBar.tintColor = [UIColor whiteColor];
-//    self.window.rootViewController = nvc;
-    
-//    self.window.rootViewController = [[PaymentViewController alloc] init];
+    /*
+    // If logged in, go directly to day select VC. Otherwise, go to login screen
+    if ([PFUser currentUser]) {
+        DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
+        self.window.rootViewController = introViewController;
+
+    } else {
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        self.window.rootViewController = loginViewController;
+    }
+     */
     
     [self.window makeKeyAndVisible];
     return YES;
