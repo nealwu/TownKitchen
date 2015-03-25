@@ -14,7 +14,6 @@
 #import "OrderStatusViewController.h"
 #import "OrderStatusDetailView.h"
 #import "ParseAPI.h"
-#import "ReviewViewController.h"
 #import "TKHeader.h"
 #import "DateUtils.h"
 
@@ -27,10 +26,15 @@ static const float kEtaFudgeFactor = 1.5;
 @property (weak, nonatomic) IBOutlet TKHeader *headerView;
 @property (weak, nonatomic) IBOutlet OrderStatusDetailView *orderSummaryView;
 
+@property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UILabel *relativeETALabel;
 @property (weak, nonatomic) IBOutlet UILabel *absoluteETALabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (nonatomic) BOOL awaitingInitialRender;
+@property (nonatomic) BOOL awaitingRegionChange;
+@property (nonatomic) BOOL awaitingEtaUpdate;
 
 @property (nonatomic) BOOL didStartRouteCalculation;
 @property (strong, nonatomic) NSDate *estimatedDeliveryTime;
@@ -95,11 +99,6 @@ static const float kEtaFudgeFactor = 1.5;
     [self.headerView.titleView addSubview:titleLabel];
     
     self.mapView.delegate = self;
-    if (self.order) {
-        [self startTimer];
-
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Review" style:UIBarButtonItemStylePlain target:self action:@selector(onReview)];
-    }
     [self updateSubviews];
 }
 
@@ -116,6 +115,10 @@ static const float kEtaFudgeFactor = 1.5;
         }
         [self.locationManager startUpdatingLocation];
     }
+    
+    if (self.order) {
+        [self startTimer];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -123,6 +126,7 @@ static const float kEtaFudgeFactor = 1.5;
     if (self.reportLocationAsDriverLocation) {
         [self.locationManager stopUpdatingLocation];
     }
+    [self stopTimer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,6 +158,8 @@ static const float kEtaFudgeFactor = 1.5;
         self.deliveryAddressAnnotation = mapItem.placemark;
         [self.mapView addAnnotation:self.deliveryAddressAnnotation];
         [self updateMapRegion];
+        self.awaitingRegionChange = YES;
+        self.awaitingEtaUpdate = YES;
         return [self calculateRouteWithRequest:dirReq];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         MKRoute *route = task.result;
@@ -163,11 +169,12 @@ static const float kEtaFudgeFactor = 1.5;
 //        MKRoute *route = task.result;
 //        [self updateMapViewWithRoute:route];
         [self updateEta];
-        self.infoView.alpha = 0;
-        [UIView animateWithDuration:0.3 animations:^{
+        self.awaitingEtaUpdate = NO;
+        [self revealMapIfReady];
+//        [UIView animateWithDuration:0.3 animations:^{
             self.infoView.alpha = 1;
             self.mapView.alpha = 1;
-        }];
+//        }];
         return nil;
     }] continueWithBlock:^id(BFTask *task) {
         if (task.isFaulted) {
@@ -288,6 +295,29 @@ static const float kEtaFudgeFactor = 1.5;
     return renderer;
 }
 
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    self.awaitingRegionChange = NO;
+    self.awaitingInitialRender = YES;
+}
+
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
+    NSLog(@"mapViewDidFinishRenderingMap");
+    self.awaitingInitialRender = NO;
+    [self revealMapIfReady];
+}
+
+- (void)revealMapIfReady {
+    if (!self.awaitingRegionChange && !self.awaitingInitialRender && !self.awaitingEtaUpdate) {
+        [self revealMap];
+    }
+}
+
+- (void)revealMap {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.maskView.alpha = 0.0;
+    }];
+}
+
 #pragma mark CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -376,12 +406,6 @@ static const float kEtaFudgeFactor = 1.5;
 
 - (void)onBackButton {
     [self.delegate orderStatusViewControllerShouldBeDismissed:self];
-}
-
-- (void)onReview {
-    ReviewViewController *rvc = [[ReviewViewController alloc] init];
-    rvc.order = self.order;
-    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 #pragma mark - Gesture Actions
