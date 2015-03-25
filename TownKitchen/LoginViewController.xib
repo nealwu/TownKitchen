@@ -10,6 +10,8 @@
                 <outlet property="loginButton" destination="taK-F0-zgH" id="bUG-Is-Woc"/>
                 <outlet property="passwordTextField" destination="tbO-Pe-7xe" id="geL-ux-RDa"/>
                 <outlet property="signupButton" destination="4Y3-rC-pU7" id="wMf-4L-DcH"/>
+                <outlet property="singleTapGesture" destination="fnU-kn-22x" id="seF-jg-Mxu"/>
+                <outlet property="tripleTapGesture" destination="yzm-EZ-sEe" id="U06-0t-IkM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,10 +29,12 @@
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="fnU-kn-22x" appends="YES" id="qBB-R5-nbx"/>
+                        <outletCollection property="gestureRecognizers" destination="yzm-EZ-sEe" appends="YES" id="u00-Zn-h2W"/>
                     </connections>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="town-kitchen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="g2F-2p-eMm">
                     <rect key="frame" x="60" y="40" width="200" height="160"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="TEF-Rl-IEE"/>
                         <constraint firstAttribute="height" constant="160" id="bxj-CM-YEA"/>
@@ -130,6 +134,11 @@
         <tapGestureRecognizer id="fnU-kn-22x">
             <connections>
                 <action selector="onTapScreen:" destination="-1" id="Rzr-AX-INt"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer cancelsTouchesInView="NO" numberOfTapsRequired="3" id="yzm-EZ-sEe" userLabel="Triple Tap Gesture Recognizer">
+            <connections>
+                <action selector="onTripleTap:" destination="-1" id="4Nm-MM-Fdt"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

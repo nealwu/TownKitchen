@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tripleTapGesture;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTapGesture;
 
 @end
 
@@ -84,9 +86,17 @@
     }];
 }
 
+#pragma mark - Actions
+
 - (IBAction)onTapScreen:(id)sender {
     [self.emailTextField endEditing:YES];
     [self.passwordTextField endEditing:YES];
+}
+
+- (IBAction)onTripleTap:(UITapGestureRecognizer *)sender {
+    NSLog(@"detected triple tap");
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"hasSeenIntro"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - UITextFieldDelegate

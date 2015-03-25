@@ -126,6 +126,7 @@
 - (void)swipeViewDidEndDecelerating:(SwipeView *)swipeView {
     if (swipeView.currentItemIndex == 4) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenIntro"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self transitionToNextVC];
     }
 }

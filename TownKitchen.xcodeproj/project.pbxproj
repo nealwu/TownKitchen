@@ -370,6 +370,9 @@
 				91788D6A1AA941620038FE1F /* DeliveryStatusViewController.h */,
 				91788D6B1AA941620038FE1F /* DeliveryStatusViewController.m */,
 				91788D6C1AA941620038FE1F /* DeliveryStatusViewController.xib */,
+				2B0F10BC1AC26312001CD067 /* IntroViewController.h */,
+				2B0F10BD1AC26312001CD067 /* IntroViewController.m */,
+				2B0F10BE1AC26312001CD067 /* IntroViewController.xib */,
 				91788D741AA941BC0038FE1F /* LocationSelectViewController.h */,
 				91788D751AA941BC0038FE1F /* LocationSelectViewController.m */,
 				91788D761AA941BC0038FE1F /* LocationSelectViewController.xib */,
@@ -391,9 +394,6 @@
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
-				2B0F10BC1AC26312001CD067 /* IntroViewController.h */,
-				2B0F10BD1AC26312001CD067 /* IntroViewController.m */,
-				2B0F10BE1AC26312001CD067 /* IntroViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
