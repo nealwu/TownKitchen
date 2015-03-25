@@ -67,6 +67,7 @@
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Signup failed: %@", errorString);
 
+            errorString = [errorString stringByReplacingOccurrencesOfString:@"username" withString:@"email"];
             NSString *capitalizedError = [errorString stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[errorString substringToIndex:1] capitalizedString]];
 
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:capitalizedError message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

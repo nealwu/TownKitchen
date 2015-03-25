@@ -56,7 +56,8 @@
     self.commentView.textColor = [UIColor grayColor];
     self.commentView.layer.borderWidth = 1;
     self.commentView.layer.cornerRadius = 5;
-    self.submitButton.hidden = YES;
+    self.commentView.alpha = 0;
+    self.submitButton.alpha = 0;
     self.ratingStars = 0;
 }
 
@@ -67,8 +68,8 @@
     self.threeStarView.image = [UIImage imageNamed:@"star-off"];
     self.fourStarView.image = [UIImage imageNamed:@"star-off"];
     self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
-    self.submitButton.hidden = NO;
     self.ratingStars = 1;
+    [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onTwoStarTap:(id)sender {
@@ -78,9 +79,8 @@
     self.threeStarView.image = [UIImage imageNamed:@"star-off"];
     self.fourStarView.image = [UIImage imageNamed:@"star-off"];
     self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
-    self.submitButton.hidden = NO;
     self.ratingStars = 2;
-
+    [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onThreeStarTap:(id)sender {
@@ -90,8 +90,8 @@
     self.threeStarView.image = [UIImage imageNamed:@"star-on"];
     self.fourStarView.image = [UIImage imageNamed:@"star-off"];
     self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
-    self.submitButton.hidden = NO;
     self.ratingStars = 3;
+    [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onFourStarTap:(id)sender {
@@ -101,8 +101,8 @@
     self.threeStarView.image = [UIImage imageNamed:@"star-on"];
     self.fourStarView.image = [UIImage imageNamed:@"star-on"];
     self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
-    self.submitButton.hidden = NO;
     self.ratingStars = 4;
+    [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onFiveStarTap:(id)sender {
@@ -112,8 +112,15 @@
     self.threeStarView.image = [UIImage imageNamed:@"star-on"];
     self.fourStarView.image = [UIImage imageNamed:@"star-on"];
     self.fiveStarView.image = [UIImage imageNamed:@"star-on"];
-    self.submitButton.hidden = NO;
     self.ratingStars = 5;
+    [self animateCommentBoxAndSubmitButton];
+}
+
+- (void)animateCommentBoxAndSubmitButton {
+    [UIView animateWithDuration:1.5 animations:^{
+        self.commentView.alpha = 1;
+        self.submitButton.alpha = 1;
+    }];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
