@@ -89,6 +89,7 @@
         [self.passwordTextField becomeFirstResponder];
     } else if (textField == self.passwordTextField) {
         [self.passwordTextField resignFirstResponder];
+        [self onLogin:self];
     }
     return YES;
 }
