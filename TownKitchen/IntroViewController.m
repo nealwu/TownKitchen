@@ -8,6 +8,8 @@
 
 #import "IntroViewController.h"
 #import "IntroSlideView.h"
+#import "LoginViewController.h"
+#import <UIView+MTAnimation.h>
 #import <SwipeView/SwipeView.h>
 
 @interface IntroViewController () <SwipeViewDataSource, SwipeViewDelegate>
@@ -15,6 +17,7 @@
 @property (nonatomic, weak) IBOutlet SwipeView *swipeView;
 @property (nonatomic, strong) NSArray *introSlideData;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (assign, nonatomic) BOOL hasAnimatedOntoScreen;
 
 @end
 
@@ -36,11 +39,44 @@
     self.swipeView.dataSource = nil;
 }
 
+- (void)viewWillLayoutSubviews {
+    if (!self.hasAnimatedOntoScreen) {
+        [self animateOntoScreen];
+        self.hasAnimatedOntoScreen = YES;
+    }
+}
 
-#pragma mark SwipeView Methods
+#pragma mark - Private Methods
+
+- (void)animateOntoScreen {
+    CGRect finalFrame = self.swipeView.frame;
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.x += initialFrame.size.width;
+    
+    self.swipeView.frame = initialFrame;
+    
+    [UIView mt_animateWithViews:@[self.swipeView]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseInOutCubic
+                     animations:^{
+                         self.swipeView.frame = finalFrame;
+                     } completion:^{
+                         nil;
+                     }];
+}
+
+- (void)transitionToNextVC {
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    loginViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    loginViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:loginViewController animated:YES completion:nil];
+}
+
+#pragma mark - SwipeView Methods
 
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView {
-    return 4;
+    return 5;
 }
 
 -(UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
@@ -72,6 +108,10 @@
             slideView.text = @"We believe that great food and great jobs create stronger communities.";
             break;
         }
+        case 4:
+        {
+            return [UIView new];
+        }
         default:
             break;
     }
@@ -81,6 +121,12 @@
 
 - (void)swipeViewCurrentItemIndexDidChange:(SwipeView *)swipeView {
     self.pageControl.currentPage = swipeView.currentItemIndex;
+}
+
+- (void)swipeViewDidEndDecelerating:(SwipeView *)swipeView {
+    if (swipeView.currentItemIndex == 4) {
+        [self transitionToNextVC];
+    }
 }
 
 @end

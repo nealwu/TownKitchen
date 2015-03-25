@@ -18,12 +18,12 @@
             <rect key="frame" x="0.0" y="64" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tofu-rice-plate-overhead-boxed" translatesAutoresizingMaskIntoConstraints="NO" id="HQc-nT-mEz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro-background" translatesAutoresizingMaskIntoConstraints="NO" id="HQc-nT-mEz" userLabel="Background Image">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZn-4Q-5PJ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZn-4Q-5PJ" userLabel="Filter View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="fnU-kn-22x" appends="YES" id="qBB-R5-nbx"/>
@@ -52,7 +52,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taK-F0-zgH">
-                    <rect key="frame" x="20" y="414" width="280" height="48"/>
+                    <rect key="frame" x="20" y="420" width="280" height="48"/>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.36078431372549019" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="446-BU-6Kz"/>
@@ -108,14 +108,14 @@
                 <constraint firstItem="8VR-qk-xp4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="JAg-Zc-IbA"/>
                 <constraint firstAttribute="trailing" secondItem="QZn-4Q-5PJ" secondAttribute="trailing" id="Qtb-Ho-rbd"/>
                 <constraint firstAttribute="trailing" secondItem="QV9-Rd-heu" secondAttribute="trailing" constant="20" id="RFR-8Z-X1V"/>
-                <constraint firstItem="4Y3-rC-pU7" firstAttribute="top" secondItem="taK-F0-zgH" secondAttribute="bottom" constant="18" id="ZY8-I5-yvu"/>
+                <constraint firstItem="4Y3-rC-pU7" firstAttribute="top" secondItem="taK-F0-zgH" secondAttribute="bottom" constant="12" id="ZY8-I5-yvu"/>
                 <constraint firstItem="tbO-Pe-7xe" firstAttribute="leading" secondItem="45S-HC-Tuw" secondAttribute="trailing" constant="8" id="bF4-YE-dtD"/>
                 <constraint firstItem="HQc-nT-mEz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eA7-9C-qre"/>
                 <constraint firstItem="HQc-nT-mEz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kE1-Kw-RbF"/>
                 <constraint firstItem="QV9-Rd-heu" firstAttribute="centerX" secondItem="tbO-Pe-7xe" secondAttribute="centerX" id="kOC-Rr-sgE"/>
                 <constraint firstAttribute="centerX" secondItem="g2F-2p-eMm" secondAttribute="centerX" id="kRg-Py-pcU"/>
                 <constraint firstItem="QZn-4Q-5PJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o1k-SY-8dK"/>
-                <constraint firstItem="taK-F0-zgH" firstAttribute="top" secondItem="tbO-Pe-7xe" secondAttribute="bottom" constant="80" id="ogQ-BO-Ndt"/>
+                <constraint firstItem="taK-F0-zgH" firstAttribute="top" secondItem="tbO-Pe-7xe" secondAttribute="bottom" constant="86" id="ogQ-BO-Ndt"/>
                 <constraint firstAttribute="trailing" secondItem="HQc-nT-mEz" secondAttribute="trailing" id="p80-It-8V1"/>
                 <constraint firstAttribute="trailing" secondItem="taK-F0-zgH" secondAttribute="trailing" constant="20" id="scx-VE-l0b"/>
                 <constraint firstItem="QV9-Rd-heu" firstAttribute="leading" secondItem="tbO-Pe-7xe" secondAttribute="leading" id="shH-Nr-nkr"/>
@@ -134,7 +134,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="tofu-rice-plate-overhead-boxed" width="1000" height="667"/>
+        <image name="intro-background" width="375" height="667"/>
         <image name="town-kitchen-logo" width="200" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
