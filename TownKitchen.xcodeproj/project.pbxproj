@@ -14,6 +14,10 @@
 		2B0187131ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0187111ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib */; };
 		2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0719831AB6B7A600976A43 /* DateLabelsView.m */; };
 		2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0719851AB6B7B100976A43 /* DateLabelsView.xib */; };
+		2B0F10BF1AC26312001CD067 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0F10BD1AC26312001CD067 /* IntroViewController.m */; };
+		2B0F10C01AC26312001CD067 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0F10BE1AC26312001CD067 /* IntroViewController.xib */; };
+		2B0F10C31AC2668C001CD067 /* IntroSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0F10C21AC2668C001CD067 /* IntroSlideView.m */; };
+		2B0F10C51AC266AE001CD067 /* IntroSlideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0F10C41AC266AE001CD067 /* IntroSlideView.xib */; };
 		2B13D09A1AA81B9100FC0689 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0991AA81B9100FC0689 /* main.m */; };
 		2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D09C1AA81B9100FC0689 /* AppDelegate.m */; };
 		2B13D0B41AA81B9100FC0689 /* TownKitchenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B13D0B31AA81B9100FC0689 /* TownKitchenTests.m */; };
@@ -106,6 +110,12 @@
 		2B0719821AB6B7A600976A43 /* DateLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateLabelsView.h; sourceTree = "<group>"; };
 		2B0719831AB6B7A600976A43 /* DateLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateLabelsView.m; sourceTree = "<group>"; };
 		2B0719851AB6B7B100976A43 /* DateLabelsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateLabelsView.xib; sourceTree = "<group>"; };
+		2B0F10BC1AC26312001CD067 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		2B0F10BD1AC26312001CD067 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		2B0F10BE1AC26312001CD067 /* IntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
+		2B0F10C11AC2668C001CD067 /* IntroSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroSlideView.h; sourceTree = "<group>"; };
+		2B0F10C21AC2668C001CD067 /* IntroSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroSlideView.m; sourceTree = "<group>"; };
+		2B0F10C41AC266AE001CD067 /* IntroSlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroSlideView.xib; sourceTree = "<group>"; };
 		2B13D0941AA81B9100FC0689 /* TownKitchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TownKitchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B13D0981AA81B9100FC0689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B13D0991AA81B9100FC0689 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -387,6 +397,9 @@
 				9FA5C0A51AAEC5B600080718 /* ReviewViewController.h */,
 				9FA5C0A61AAEC5B600080718 /* ReviewViewController.m */,
 				9FA5C0A71AAEC5B600080718 /* ReviewViewController.xib */,
+				2B0F10BC1AC26312001CD067 /* IntroViewController.h */,
+				2B0F10BD1AC26312001CD067 /* IntroViewController.m */,
+				2B0F10BE1AC26312001CD067 /* IntroViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -418,6 +431,9 @@
 				2BEC49421AB7FD2E00A8A267 /* DateLabelsViewSmall.h */,
 				2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */,
 				2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */,
+				2B0F10C11AC2668C001CD067 /* IntroSlideView.h */,
+				2B0F10C21AC2668C001CD067 /* IntroSlideView.m */,
+				2B0F10C41AC266AE001CD067 /* IntroSlideView.xib */,
 				2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */,
 				2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */,
 				2B7110011ABE84E900A9B896 /* OrderButtonView.h */,
@@ -599,6 +615,8 @@
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */,
 				2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */,
+				2B0F10C01AC26312001CD067 /* IntroViewController.xib in Resources */,
+				2B0F10C51AC266AE001CD067 /* IntroSlideView.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
 				9FC8AB011AB0D3DB00610500 /* OrderCell.xib in Resources */,
 				2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */,
@@ -671,6 +689,7 @@
 				2BBABFB91AB008DF0098124D /* DayCell.m in Sources */,
 				2BF8B5241ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m in Sources */,
 				2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */,
+				2B0F10C31AC2668C001CD067 /* IntroSlideView.m in Sources */,
 				91788D911AAD0BCA0038FE1F /* TKMenuOptionCell.m in Sources */,
 				91788D5E1AA940930038FE1F /* OrderCreationViewController.m in Sources */,
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
@@ -682,6 +701,7 @@
 				2BEC49411AB7F3D700A8A267 /* UIImageEffects.m in Sources */,
 				2BA78A181AB6558500F5FAB0 /* DaySelectAnimationController.m in Sources */,
 				2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */,
+				2B0F10BF1AC26312001CD067 /* IntroViewController.m in Sources */,
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
 				2B0187121ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m in Sources */,
