@@ -1,4 +1,4 @@
-# TownKitchen
+# The Town Kitchen
 
 ### User Stories
 * Tomás is an administrative assistant at a 20-person startup and needs to order next Tuesday's lunch. He opens up The Town Kitchen app and thumbs through Tuesday's menu, quickly selecting a 20 meal order. After tapping the pay button, he receives an email receipt and sits comfortably back, knowing his task is done.
