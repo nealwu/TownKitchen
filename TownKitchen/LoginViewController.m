@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "DaySelectViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -24,9 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
-    self.emailTextField.text = @"neal@nealwu.com";
-    self.passwordTextField.text = @"password";
-
+    
     // Rounded corners
     self.loginButton.layer.cornerRadius = 8;
     self.loginButton.clipsToBounds = YES;
@@ -71,6 +69,18 @@
 - (IBAction)onTapScreen:(id)sender {
     [self.emailTextField endEditing:YES];
     [self.passwordTextField endEditing:YES];
+}
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textFieldShouldReturn:");
+    if (textField == self.emailTextField) {
+        [self.passwordTextField becomeFirstResponder];
+    } else if (textField == self.passwordTextField) {
+        [self.passwordTextField resignFirstResponder];
+    }
+    return YES;
 }
 
 @end
