@@ -106,6 +106,7 @@
 
 - (Order *)orderBeingDeliveredForUser:(PFUser *)user {
     PFQuery *query = [PFQuery queryWithClassName:@"Order"];
+    [query whereKey:@"user" equalTo:user];
     [query whereKey:@"status" equalTo:@"delivering"];
     [query orderByAscending:@"deliveryDateAndTime"];
     NSArray *orders = [query findObjects];
