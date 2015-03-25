@@ -26,7 +26,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1B-fN-ZMw" userLabel="TKHeader" customClass="TKHeader">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.9215686917" green="0.36078432199999999" blue="0.34117648010000001" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="A1s-Wv-eni"/>
                     </constraints>
@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="320"/>
                 </mapView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kv3-ej-evP" userLabel="Info View">
-                    <rect key="frame" x="0.0" y="384" width="320" height="356"/>
+                    <rect key="frame" x="0.0" y="384" width="320" height="376"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0td-lQ-wC6">
                             <rect key="frame" x="48" y="58" width="62.5" height="27.5"/>
@@ -67,10 +67,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBj-Mv-dHS" customClass="OrderStatusDetailView">
-                            <rect key="frame" x="0.0" y="96" width="320" height="260"/>
+                            <rect key="frame" x="0.0" y="96" width="320" height="280"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="260" id="McX-hL-92g"/>
+                                <constraint firstAttribute="height" constant="280" id="McX-hL-92g"/>
                             </constraints>
                         </view>
                     </subviews>

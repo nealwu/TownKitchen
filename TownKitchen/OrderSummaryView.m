@@ -13,7 +13,7 @@
 @interface OrderSummaryView () <UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryDateAndTimeLabel;
@@ -58,7 +58,8 @@
 }
 
 - (void)updateSubviews {
-    self.orderNumberLabel.text = [NSString stringWithFormat:@"#%@", self.order.objectId];
+    [self.order.user fetchIfNeeded];
+    self.userNameLabel.text = self.order.user.username;
     self.deliveryDateAndTimeLabel.text = [[OrderSummaryView deliveryDateAndTimeFormatter] stringFromDate:self.order.deliveryTimeUtc];
     self.deliveryAddressLabel.text = self.order.deliveryAddress;
     [self setNeedsUpdateConstraints];
