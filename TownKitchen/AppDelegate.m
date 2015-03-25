@@ -8,16 +8,18 @@
 
 #import "AppDelegate.h"
 #import <Bolts.h>
-#import "OrderStatusViewController.h"
-#import "Order.h"
-#import <Parse/Parse.h>
-#import "Stripe.h"
-#import "OrderCreationViewController.h"
 #import "DaySelectViewController.h"
-#import "ReviewViewController.h"
-#import "OrderCell.h"
-#import "OrdersViewController.h"
+#import "IntroViewController.h"
 #import "LoginViewController.h"
+#import "Order.h"
+#import "OrderCell.h"
+#import "OrderCreationViewController.h"
+#import "OrderStatusViewController.h"
+#import "OrdersViewController.h"
+#import <Parse/Parse.h>
+#import "ReviewViewController.h"
+#import "Stripe.h"
+
 
 @interface AppDelegate ()
 
@@ -44,8 +46,10 @@
 //
 //    self.window.rootViewController = osvc;
 
+    IntroViewController *introViewController = [[IntroViewController alloc] init];
+    
     DaySelectViewController *dsvc = [[DaySelectViewController alloc] init];
-    self.window.rootViewController = dsvc;
+    self.window.rootViewController = introViewController;
     
 //    LoginViewController *lvc = [[LoginViewController alloc] init];
 //    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];

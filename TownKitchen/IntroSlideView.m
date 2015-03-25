@@ -11,6 +11,8 @@
 @interface IntroSlideView ()
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
 
@@ -34,10 +36,20 @@
 
 - (void)initSubViews {
     // Load nib
-    UINib *nib = [UINib nibWithNibName:@"CheckoutView" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"IntroSlideView" bundle:nil];
     [nib instantiateWithOwner:self options:nil];
     self.contentView.frame = self.bounds;
     [self addSubview:self.contentView];
+}
+
+- (void)setImage:(UIImage *)image {
+    _image = image;
+    self.imageView.image = image;
+}
+
+- (void)setText:(NSString *)text {
+    _text = text;
+    self.descriptionLabel.text = text;
 }
 
 @end

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface IntroSlideView : UIView
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+
+@property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) NSString *text;
 
 @end

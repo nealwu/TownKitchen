@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
+                <outlet property="swipeView" destination="CJr-qj-Xr1" id="kin-aA-3Y6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,10 +14,44 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro-background" translatesAutoresizingMaskIntoConstraints="NO" id="ogY-9M-JCT">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKU-Vy-EdC" userLabel="filter view">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJr-qj-Xr1" userLabel="Swipe View" customClass="SwipeView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="88Z-WL-Wxm"/>
+                        <outlet property="delegate" destination="-1" id="umT-MN-9zx"/>
+                    </connections>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="CJr-qj-Xr1" secondAttribute="bottom" id="1h9-gF-L01"/>
+                <constraint firstItem="CJr-qj-Xr1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7uo-fF-5R7"/>
+                <constraint firstItem="qKU-Vy-EdC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AeQ-JT-b8T"/>
+                <constraint firstAttribute="bottom" secondItem="qKU-Vy-EdC" secondAttribute="bottom" id="Chi-CQ-I60"/>
+                <constraint firstItem="ogY-9M-JCT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GiH-qs-I3k"/>
+                <constraint firstAttribute="trailing" secondItem="CJr-qj-Xr1" secondAttribute="trailing" id="NAh-JT-GVv"/>
+                <constraint firstItem="ogY-9M-JCT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aT7-MZ-yoF"/>
+                <constraint firstItem="qKU-Vy-EdC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="f95-89-ysA"/>
+                <constraint firstItem="CJr-qj-Xr1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oFN-NT-vcO"/>
+                <constraint firstAttribute="bottom" secondItem="ogY-9M-JCT" secondAttribute="bottom" id="swc-o8-xpi"/>
+                <constraint firstAttribute="trailing" secondItem="qKU-Vy-EdC" secondAttribute="trailing" id="u7i-67-Cm8"/>
+                <constraint firstAttribute="trailing" secondItem="ogY-9M-JCT" secondAttribute="trailing" id="yZh-MR-wnG"/>
+            </constraints>
             <point key="canvasLocation" x="453" y="399"/>
         </view>
     </objects>
+    <resources>
+        <image name="intro-background" width="375" height="667"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

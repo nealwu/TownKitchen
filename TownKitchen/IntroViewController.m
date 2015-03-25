@@ -7,11 +7,13 @@
 //
 
 #import "IntroViewController.h"
+#import "IntroSlideView.h"
 #import <SwipeView/SwipeView.h>
 
 @interface IntroViewController () <SwipeViewDataSource, SwipeViewDelegate>
 
 @property (nonatomic, weak) IBOutlet SwipeView *swipeView;
+@property (nonatomic, strong) NSArray *introSlideData;
 
 @end
 
@@ -20,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.swipeView.pagingEnabled = YES;
+    [self.swipeView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,15 +39,48 @@
 #pragma mark SwipeView Methods
 
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView {
-    return 3;
+    return 4;
 }
 
 -(UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
-    return [UIView new];
+
+    IntroSlideView *slideView = [[IntroSlideView alloc] initWithFrame:self.swipeView.bounds];
+    
+    switch (index) {
+        case 0:
+        {
+            slideView.image = [UIImage imageNamed:@"intro-slide-01"];
+            slideView.text = @"The Town Kitchen:\nCommunity-Driven Lunch";
+            break;
+        }
+        case 1:
+        {
+            slideView.image = [UIImage imageNamed:@"intro-slide-02"];
+            slideView.text = @"We deliver chef-crafted,\nboxed lunch and employ\nlow-income youth.";
+            break;
+        }
+        case 2:
+        {
+            slideView.image = [UIImage imageNamed:@"intro-slide-03"];
+            slideView.text = @"We partner with local food artisans like Kika's Treats & Sugar Knife Sweets.";
+            break;
+        }
+            case 3:
+        {
+            slideView.image = [UIImage imageNamed:@"intro-slide-04"];
+            slideView.text = @"We believe that great food and great jobs create stronger communities.";
+            break;
+        }
+        default:
+            break;
+    }
+
+    return slideView;
 }
 
-- (CGSize)swipeViewItemSize:(SwipeView *)swipeView {
-    return self.swipeView.bounds.size;
-}
+//- (CGSize)swipeViewItemSize:(SwipeView *)swipeView {
+//    NSLog(@"swipeview size: %@", NSStringFromCGSize(self.swipeView.bounds.size));
+//    return self.swipeView.bounds.size;
+//}
 
 @end
