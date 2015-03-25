@@ -8,6 +8,7 @@
 
 #import "ReviewViewController.h"
 
+#import "DateUtils.h"
 #import "ParseAPI.h"
 #import "OrderSummaryView.h"
 #import "TKHeader.h"
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (assign, nonatomic) NSInteger ratingStars;
 
@@ -46,7 +48,10 @@
     [cancelButton setImage:[UIImage imageNamed:@"cancel-button-highlighted"] forState:UIControlStateHighlighted];
     [self.header.leftView addSubview:cancelButton];
 
+    self.dateLabel.text = [NSString stringWithFormat:@"%@, %@", [DateUtils dayOfTheWeekFromDate:self.order.deliveryTimeUtc], [DateUtils monthAndDayFromDate:self.order.deliveryTimeUtc]];
+    
     self.orderSummaryView.order = self.order;
+    
     self.commentView.delegate = self;
     self.commentView.textColor = [UIColor grayColor];
     self.commentView.layer.borderWidth = 1;
