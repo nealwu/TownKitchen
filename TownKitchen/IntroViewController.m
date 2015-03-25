@@ -14,6 +14,7 @@
 
 @property (nonatomic, weak) IBOutlet SwipeView *swipeView;
 @property (nonatomic, strong) NSArray *introSlideData;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @end
 
@@ -78,9 +79,8 @@
     return slideView;
 }
 
-//- (CGSize)swipeViewItemSize:(SwipeView *)swipeView {
-//    NSLog(@"swipeview size: %@", NSStringFromCGSize(self.swipeView.bounds.size));
-//    return self.swipeView.bounds.size;
-//}
+- (void)swipeViewCurrentItemIndexDidChange:(SwipeView *)swipeView {
+    self.pageControl.currentPage = swipeView.currentItemIndex;
+}
 
 @end

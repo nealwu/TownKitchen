@@ -40,6 +40,7 @@
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
 		2BC07CE91ABFDC3B00956822 /* PopupAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */; };
 		2BC07CEC1ABFE19600956822 /* PopupDismissAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC07CEB1ABFE19600956822 /* PopupDismissAnimationController.m */; };
+		2BC3DF3A1AC28F9E003971D1 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3DF391AC28F9E003971D1 /* Launch Screen.xib */; };
 		2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D31AB614F6003624DD /* CircleStepperView.m */; };
 		2BC7C2D61AB61503003624DD /* CircleStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC7C2D51AB61503003624DD /* CircleStepperView.xib */; };
 		2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9E65D1AAFE6D20072BB59 /* CheckoutOrderItemCell.m */; };
@@ -153,6 +154,7 @@
 		2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupAnimationController.m; sourceTree = "<group>"; };
 		2BC07CEA1ABFE19600956822 /* PopupDismissAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupDismissAnimationController.h; sourceTree = "<group>"; };
 		2BC07CEB1ABFE19600956822 /* PopupDismissAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupDismissAnimationController.m; sourceTree = "<group>"; };
+		2BC3DF391AC28F9E003971D1 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		2BC7C2D21AB614F6003624DD /* CircleStepperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleStepperView.h; sourceTree = "<group>"; };
 		2BC7C2D31AB614F6003624DD /* CircleStepperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleStepperView.m; sourceTree = "<group>"; };
 		2BC7C2D51AB61503003624DD /* CircleStepperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleStepperView.xib; sourceTree = "<group>"; };
@@ -414,9 +416,6 @@
 				2BC7C2D21AB614F6003624DD /* CircleStepperView.h */,
 				2BC7C2D31AB614F6003624DD /* CircleStepperView.m */,
 				2BC7C2D51AB61503003624DD /* CircleStepperView.xib */,
-				2BA78A191AB65FDB00F5FAB0 /* TKHeader.h */,
-				2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */,
-				2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */,
 				2B0719821AB6B7A600976A43 /* DateLabelsView.h */,
 				2B0719831AB6B7A600976A43 /* DateLabelsView.m */,
 				2B0719851AB6B7B100976A43 /* DateLabelsView.xib */,
@@ -426,8 +425,7 @@
 				2B0F10C11AC2668C001CD067 /* IntroSlideView.h */,
 				2B0F10C21AC2668C001CD067 /* IntroSlideView.m */,
 				2B0F10C41AC266AE001CD067 /* IntroSlideView.xib */,
-				2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */,
-				2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */,
+				2BC3DF391AC28F9E003971D1 /* Launch Screen.xib */,
 				2B7110011ABE84E900A9B896 /* OrderButtonView.h */,
 				2B7110021ABE84E900A9B896 /* OrderButtonView.m */,
 				2B7110041ABE84F100A9B896 /* OrderButtonView.xib */,
@@ -442,6 +440,11 @@
 				2B58D0141ABBC36500BE5EFA /* PaymentView.h */,
 				2B58D0151ABBC36500BE5EFA /* PaymentView.m */,
 				2B58D0171ABBC37100BE5EFA /* PaymentView.xib */,
+				2BA78A191AB65FDB00F5FAB0 /* TKHeader.h */,
+				2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */,
+				2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */,
+				2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */,
+				2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				2B0187131ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib in Resources */,
 				91788D8C1AAD0A390038FE1F /* OrderSummaryView.xib in Resources */,
 				2B0719861AB6B7B100976A43 /* DateLabelsView.xib in Resources */,
+				2BC3DF3A1AC28F9E003971D1 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
+                <outlet property="pageControl" destination="wdJ-rH-7m5" id="UBl-CA-kE1"/>
                 <outlet property="swipeView" destination="CJr-qj-Xr1" id="kin-aA-3Y6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -15,6 +16,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-2S-qa7" userLabel="Sizing View">
+                    <rect key="frame" x="10" y="74" width="300" height="420"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="420" id="25K-ji-Oe4"/>
+                        <constraint firstAttribute="width" constant="300" id="H1W-jV-gTK"/>
+                    </constraints>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro-background" translatesAutoresizingMaskIntoConstraints="NO" id="ogY-9M-JCT">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
@@ -30,6 +39,9 @@
                         <outlet property="delegate" destination="-1" id="umT-MN-9zx"/>
                     </connections>
                 </view>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-rH-7m5">
+                    <rect key="frame" x="132" y="506" width="55" height="37"/>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -37,8 +49,12 @@
                 <constraint firstItem="CJr-qj-Xr1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7uo-fF-5R7"/>
                 <constraint firstItem="qKU-Vy-EdC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AeQ-JT-b8T"/>
                 <constraint firstAttribute="bottom" secondItem="qKU-Vy-EdC" secondAttribute="bottom" id="Chi-CQ-I60"/>
+                <constraint firstItem="wdJ-rH-7m5" firstAttribute="top" secondItem="eCY-2S-qa7" secondAttribute="bottom" constant="12" id="Cw5-I2-PwW"/>
+                <constraint firstAttribute="centerY" secondItem="eCY-2S-qa7" secondAttribute="centerY" id="Edu-C6-E4S"/>
                 <constraint firstItem="ogY-9M-JCT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GiH-qs-I3k"/>
+                <constraint firstAttribute="centerX" secondItem="eCY-2S-qa7" secondAttribute="centerX" id="IyA-xj-cCf"/>
                 <constraint firstAttribute="trailing" secondItem="CJr-qj-Xr1" secondAttribute="trailing" id="NAh-JT-GVv"/>
+                <constraint firstAttribute="centerX" secondItem="wdJ-rH-7m5" secondAttribute="centerX" id="Nm1-id-zNr"/>
                 <constraint firstItem="ogY-9M-JCT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aT7-MZ-yoF"/>
                 <constraint firstItem="qKU-Vy-EdC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="f95-89-ysA"/>
                 <constraint firstItem="CJr-qj-Xr1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oFN-NT-vcO"/>

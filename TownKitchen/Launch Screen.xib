@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro-background" translatesAutoresizingMaskIntoConstraints="NO" id="n5q-0J-WRl" userLabel="Background Image">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spW-4Q-17D" userLabel="Filter View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="town-kitchen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-4y-sP6">
+                    <rect key="frame" x="60" y="78" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="Wzo-nM-uiR"/>
+                        <constraint firstAttribute="width" constant="200" id="nWm-lN-he3"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="spW-4Q-17D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3yj-xi-xwA"/>
+                <constraint firstAttribute="trailing" secondItem="n5q-0J-WRl" secondAttribute="trailing" id="AtQ-Nh-PpC"/>
+                <constraint firstAttribute="centerX" secondItem="aiV-4y-sP6" secondAttribute="centerX" id="EaD-aw-9yJ"/>
+                <constraint firstItem="n5q-0J-WRl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IFg-rL-qob"/>
+                <constraint firstItem="spW-4Q-17D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IU8-U9-6i3"/>
+                <constraint firstAttribute="bottom" secondItem="n5q-0J-WRl" secondAttribute="bottom" id="L1C-U4-goz"/>
+                <constraint firstAttribute="centerY" secondItem="aiV-4y-sP6" secondAttribute="centerY" multiplier="1.6" id="OYY-bi-gwa"/>
+                <constraint firstAttribute="bottom" secondItem="spW-4Q-17D" secondAttribute="bottom" id="X3j-Hp-NfZ"/>
+                <constraint firstAttribute="trailing" secondItem="spW-4Q-17D" secondAttribute="trailing" id="nz2-wn-0Cg"/>
+                <constraint firstItem="n5q-0J-WRl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qf3-az-KXy"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="404" y="445"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="intro-background" width="375" height="667"/>
+        <image name="town-kitchen-logo" width="200" height="200"/>
+    </resources>
+</document>
