@@ -63,8 +63,6 @@
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
 
-    self.activeOrder = [[ParseAPI getInstance] orderBeingDeliveredForUser:[PFUser currentUser]];
-    
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
@@ -74,6 +72,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.activeOrder = [[ParseAPI getInstance] orderBeingDeliveredForUser:[PFUser currentUser]];
     [self setupButtons];
 }
 
@@ -105,14 +104,14 @@
 
 - (void)setupButtons {
     UIButton *deliveriesButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
-    [deliveriesButton setTitle:@"Deliver" forState:UIControlStateNormal];
-    deliveriesButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
+    [deliveriesButton setImage:[UIImage imageNamed:@"car-button"] forState:UIControlStateNormal];
+//    deliveriesButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
     [deliveriesButton addTarget:self action:@selector(onDeliveriesButton) forControlEvents:UIControlEventTouchUpInside];
-    deliveriesButton.autoresizingMask =
-          UIViewAutoresizingFlexibleLeftMargin
-        | UIViewAutoresizingFlexibleRightMargin
-        | UIViewAutoresizingFlexibleTopMargin
-        | UIViewAutoresizingFlexibleBottomMargin;
+//    deliveriesButton.autoresizingMask =
+//          UIViewAutoresizingFlexibleLeftMargin
+//        | UIViewAutoresizingFlexibleRightMargin
+//        | UIViewAutoresizingFlexibleTopMargin
+//        | UIViewAutoresizingFlexibleBottomMargin;
     
     // Create profile button
     CGRect profileButtonFrame = self.header.leftView.bounds;
