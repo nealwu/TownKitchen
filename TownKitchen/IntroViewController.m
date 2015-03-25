@@ -131,4 +131,10 @@
     }
 }
 
+#pragma mark - Private Methods
+
+- (IBAction)onPageControlChanged:(UIPageControl *)pageControl {
+    [self.swipeView scrollToItemAtIndex:pageControl.currentPage duration:0.5];
+}
+
 @end
