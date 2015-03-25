@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
 #import <Bolts.h>
 #import "DeliveryStatusViewController.h"
 #import "OrderStatusViewController.h"
@@ -13,13 +14,19 @@
 #import "TKHeader.h"
 #import "TKOrderSummaryCell.h"
 
-@interface DeliveryStatusViewController () <UITableViewDataSource, UITableViewDelegate, OrderStatusViewControllerDelegate>
+static const NSTimeInterval kUpdateInterval = 5.0;
+
+@interface DeliveryStatusViewController () <UITableViewDataSource, UITableViewDelegate, OrderStatusViewControllerDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet TKHeader *headerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) TKOrderSummaryCell *sizingCell;
 
 @property (strong, nonatomic) NSArray *orders;
+@property (strong, nonatomic) Order *activeOrder;
+@property (weak, nonatomic) TKOrderSummaryCell *activeOrderCell;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) NSTimeInterval timeOfLastUpdate;
 
 @end
 
@@ -78,6 +85,8 @@
 #pragma mark - Button Actions
 
 - (void)onDoneButton {
+    self.activeOrderCell.isTrackingForDelivery = NO;
+    [self.locationManager stopUpdatingLocation];
     [self.delegate deliveryStatusViewControllerShouldBeDismissed:self];
 }
 
@@ -104,17 +113,62 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
-    osvc.delegate = self;
-    osvc.order = self.orders[indexPath.row];
-    osvc.reportLocationAsDriverLocation = YES;
-    [self presentViewController:osvc animated:YES completion:nil];
+//    OrderStatusViewController *osvc = [[OrderStatusViewController alloc] init];
+//    osvc.delegate = self;
+//    osvc.order = self.orders[indexPath.row];
+//    osvc.reportLocationAsDriverLocation = YES;
+//    [self presentViewController:osvc animated:YES completion:nil];
+    self.activeOrderCell.isTrackingForDelivery = NO;
+    self.activeOrder = self.orders[indexPath.row];
+    TKOrderSummaryCell *cell = (TKOrderSummaryCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.isTrackingForDelivery = YES;
+    self.activeOrderCell = cell;
+    
+    [self startTrackingOrder];
 }
 
 #pragma mark OrderStatusViewControllerDelegate
 
 - (void)orderStatusViewControllerShouldBeDismissed:(OrderStatusViewController *)orderStatusViewController {
     [orderStatusViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Delivery Tracking
+
+- (void)startTrackingOrder {
+    if (!self.locationManager) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        self.locationManager.delegate = self;
+    }
+    [self.locationManager startUpdatingLocation];
+
+
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:self.activeOrder.deliveryAddress completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"Error during geocodeAddressString: %@", error);
+        } else {
+            MKPlacemark *firstMatch = placemarks[0];
+            NSLog(@"geocodeAddressString first match: %@ @ %@", firstMatch.name, firstMatch.location);
+            MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:firstMatch];
+            [mapItem openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving}];
+        }
+    }];
+}
+
+#pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    /* keep network activity low by only updating occassionally */
+    if (self.timeOfLastUpdate < CACurrentMediaTime() - kUpdateInterval) {
+        NSLog(@"Update location of %@ to %@", self.activeOrder, locations.lastObject);
+        [[ParseAPI getInstance] updateOrder:self.activeOrder withDriverLocation:locations.lastObject];
+        self.timeOfLastUpdate = CACurrentMediaTime();
+    }
 }
 
 @end

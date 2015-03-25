@@ -12,6 +12,7 @@
 @interface TKOrderSummaryCell ()
 
 @property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
+@property (weak, nonatomic) IBOutlet UIView *deliveringView;
 
 @end
 
@@ -33,8 +34,17 @@
     [self updateSubviews];
 }
 
+- (void)setIsTrackingForDelivery:(BOOL)isTrackingForDelivery {
+    _isTrackingForDelivery = isTrackingForDelivery;
+    [self updateSubviews];
+}
+
 - (void)updateSubviews {
     self.orderSummaryView.order = self.order;
+    CGFloat desiredAlpha = (self.isTrackingForDelivery) ? 1.0 : 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.deliveringView.alpha = desiredAlpha;
+    }];
 }
 
 @end

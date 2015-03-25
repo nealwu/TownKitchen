@@ -12,5 +12,6 @@
 @interface TKOrderSummaryCell : UITableViewCell
 
 @property (strong, nonatomic) Order *order;
+@property (nonatomic) BOOL isTrackingForDelivery;
 
 @end
