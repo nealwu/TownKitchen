@@ -34,6 +34,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    [self.darkViewFilter setNeedsLayout];
+    [self.darkViewFilter layoutIfNeeded];
+    
     // add gradient to darkViewFilter
     CAGradientLayer *gradientMask = [CAGradientLayer layer];
     gradientMask.frame = self.darkViewFilter.bounds;
