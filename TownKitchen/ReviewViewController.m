@@ -56,7 +56,6 @@
     self.commentView.textColor = [UIColor grayColor];
     self.commentView.layer.borderWidth = 1;
     self.commentView.layer.cornerRadius = 5;
-    self.commentView.alpha = 0;
     self.submitButton.alpha = 0;
     self.ratingStars = 0;
 }
@@ -118,7 +117,6 @@
 
 - (void)animateCommentBoxAndSubmitButton {
     [UIView animateWithDuration:1 animations:^{
-        self.commentView.alpha = 1;
         self.submitButton.alpha = 1;
     }];
 }
