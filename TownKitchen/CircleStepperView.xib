@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircleStepperView">
@@ -17,26 +16,40 @@
             <rect key="frame" x="0.0" y="0.0" width="232" height="53"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzM-aZ-E63" userLabel="Minus Button">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stepper-minus" translatesAutoresizingMaskIntoConstraints="NO" id="nFh-26-ugn" userLabel="Minus Image">
                     <rect key="frame" x="34" y="10" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Iha-0W-8rS"/>
-                        <constraint firstAttribute="width" constant="40" id="wb4-CW-qM3"/>
+                        <constraint firstAttribute="height" constant="40" id="OJx-iF-L1O"/>
+                        <constraint firstAttribute="width" constant="40" id="cku-ks-yM8"/>
                     </constraints>
-                    <state key="normal" image="stepper-minus">
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzM-aZ-E63" userLabel="Minus Button">
+                    <rect key="frame" x="4" y="0.0" width="100" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Iha-0W-8rS"/>
+                        <constraint firstAttribute="width" constant="100" id="wb4-CW-qM3"/>
+                    </constraints>
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="onMinusButton:" destination="-1" eventType="touchUpInside" id="pdN-Ac-fTJ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEF-b4-4uf" userLabel="Plus Button">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stepper-plus" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-G7-wgu">
                     <rect key="frame" x="159" y="10" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="aeu-8q-s22"/>
-                        <constraint firstAttribute="height" constant="40" id="wtw-VX-6JR"/>
+                        <constraint firstAttribute="width" constant="40" id="2mj-Dh-YIl"/>
+                        <constraint firstAttribute="height" constant="40" id="F5C-Ew-gvM"/>
                     </constraints>
-                    <state key="normal" image="stepper-plus">
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEF-b4-4uf" userLabel="Plus Button">
+                    <rect key="frame" x="129" y="0.0" width="100" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="aeu-8q-s22"/>
+                        <constraint firstAttribute="height" constant="60" id="wtw-VX-6JR"/>
+                    </constraints>
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -63,17 +76,29 @@
             </subviews>
             <constraints>
                 <constraint firstItem="iEF-b4-4uf" firstAttribute="leading" secondItem="1zr-nn-oar" secondAttribute="trailing" constant="20" id="1WP-tx-DqI"/>
+                <constraint firstItem="nFh-26-ugn" firstAttribute="centerX" secondItem="yzM-aZ-E63" secondAttribute="centerX" id="2nU-fH-jUf"/>
+                <constraint firstItem="iEF-b4-4uf" firstAttribute="centerX" secondItem="1zr-nn-oar" secondAttribute="centerX" constant="62.5" id="9ww-ZJ-yrP"/>
                 <constraint firstItem="iEF-b4-4uf" firstAttribute="centerY" secondItem="yzM-aZ-E63" secondAttribute="centerY" id="JjJ-q2-WoW"/>
                 <constraint firstItem="bvl-wQ-BZ6" firstAttribute="centerY" secondItem="1zr-nn-oar" secondAttribute="centerY" constant="0.5" id="PLO-gv-dw4"/>
+                <constraint firstItem="gjE-G7-wgu" firstAttribute="centerX" secondItem="iEF-b4-4uf" secondAttribute="centerX" id="SNw-ua-aFy"/>
                 <constraint firstItem="1zr-nn-oar" firstAttribute="leading" secondItem="yzM-aZ-E63" secondAttribute="trailing" constant="20" id="VNE-bF-aGy"/>
+                <constraint firstItem="nFh-26-ugn" firstAttribute="centerY" secondItem="yzM-aZ-E63" secondAttribute="centerY" id="Vfj-Ts-Zpq"/>
                 <constraint firstItem="iEF-b4-4uf" firstAttribute="centerY" secondItem="1zr-nn-oar" secondAttribute="centerY" id="cDI-D9-1Xq"/>
                 <constraint firstItem="bvl-wQ-BZ6" firstAttribute="centerX" secondItem="1zr-nn-oar" secondAttribute="centerX" constant="0.5" id="heM-rk-62N"/>
                 <constraint firstAttribute="centerX" secondItem="1zr-nn-oar" secondAttribute="centerX" id="iV2-Z6-GTB"/>
+                <constraint firstItem="gjE-G7-wgu" firstAttribute="centerY" secondItem="iEF-b4-4uf" secondAttribute="centerY" id="k29-xr-8PB"/>
+                <constraint firstItem="yzM-aZ-E63" firstAttribute="centerX" secondItem="1zr-nn-oar" secondAttribute="centerX" constant="-62.5" id="mU6-ne-xkc"/>
                 <constraint firstAttribute="centerY" secondItem="1zr-nn-oar" secondAttribute="centerY" constant="-2.5" id="voN-GN-oU3"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="41" y="-166.5"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="VNE-bF-aGy"/>
+                    <exclude reference="1WP-tx-DqI"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="-95" y="-166.5"/>
         </view>
     </objects>
     <resources>
