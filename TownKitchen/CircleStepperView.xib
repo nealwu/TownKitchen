@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircleStepperView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="qJ9-Up-3ef"/>
+                <outlet property="minusImage" destination="nFh-26-ugn" id="Og8-DR-oXd"/>
                 <outlet property="plusButton" destination="iEF-b4-4uf" id="cwc-HK-Wfu"/>
+                <outlet property="plusImage" destination="gjE-G7-wgu" id="SwD-H7-2jH"/>
                 <outlet property="quantityLabel" destination="bvl-wQ-BZ6" id="heH-Iu-QpK"/>
             </connections>
         </placeholder>
@@ -36,7 +38,7 @@
                         <action selector="onMinusButton:" destination="-1" eventType="touchUpInside" id="pdN-Ac-fTJ"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stepper-plus" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-G7-wgu">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stepper-plus" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-G7-wgu" userLabel="Plus Image">
                     <rect key="frame" x="159" y="10" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="2mj-Dh-YIl"/>

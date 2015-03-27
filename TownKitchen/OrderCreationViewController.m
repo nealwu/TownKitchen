@@ -298,10 +298,6 @@
         [self createOrder];
     } else {
         // bounce plus buttons
-//        [[NSNotificationCenter defaultCenter]
-//         postNotificationName:@"BouncePlusButton"
-//         object:self];
-
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BouncePlusButton" object:self];
     }
 }

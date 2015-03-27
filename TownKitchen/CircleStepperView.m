@@ -19,6 +19,9 @@
 @property (strong, nonatomic) UIGravityBehavior *gravityBehavior;
 @property (strong, nonatomic) UIPushBehavior *plusButtonPushBehavior;
 
+@property (weak, nonatomic) IBOutlet UIImageView *minusImage;
+@property (weak, nonatomic) IBOutlet UIImageView *plusImage;
+
 @end
 
 @implementation CircleStepperView
@@ -92,21 +95,21 @@
     
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.contentView];
     
-    CGFloat bottomInset = self.bounds.size.height / 2 - self.plusButton.bounds.size.height / 2;
+    CGFloat bottomInset = self.bounds.size.height / 2 - self.plusImage.bounds.size.height / 2;
     
-    UICollisionBehavior *collisionBehaviour = [[UICollisionBehavior alloc] initWithItems:@[self.plusButton]];
+    UICollisionBehavior *collisionBehaviour = [[UICollisionBehavior alloc] initWithItems:@[self.plusImage]];
     [collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(-200, 0, bottomInset, 0)];
     [self.animator addBehavior:collisionBehaviour];
     
-    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.plusButton]];
+    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.plusImage]];
     [self.animator addBehavior:self.gravityBehavior];
     
-    self.plusButtonPushBehavior = [[UIPushBehavior alloc] initWithItems:@[self.plusButton] mode:UIPushBehaviorModeInstantaneous];
+    self.plusButtonPushBehavior = [[UIPushBehavior alloc] initWithItems:@[self.plusImage] mode:UIPushBehaviorModeInstantaneous];
     self.plusButtonPushBehavior.magnitude = 0.0f;
     self.plusButtonPushBehavior.angle = 0.0f;
     [self.animator addBehavior:self.plusButtonPushBehavior];
     
-    UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.plusButton]];
+    UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.plusImage]];
     itemBehaviour.elasticity = 0.45f;
     [self.animator addBehavior:itemBehaviour];
     
