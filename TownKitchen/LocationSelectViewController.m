@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *setAddressButton;
-@property (weak, nonatomic) IBOutlet UIView *centerIndicatorView;
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;

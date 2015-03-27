@@ -29,6 +29,10 @@
     [self setup];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.searchBar becomeFirstResponder];
+}
+
 #pragma mark Custom Setters
 
 - (void)setCurrentLocation:(CLLocation *)currentLocation {
@@ -41,7 +45,6 @@
     // Set up search bar
     self.searchBar.delegate = self;
     self.searchBar.text = self.initialSearchTerm;
-    [self.searchBar becomeFirstResponder];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
      setDefaultTextAttributes:@{
                                 NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:14],
