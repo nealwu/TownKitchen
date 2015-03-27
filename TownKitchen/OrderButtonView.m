@@ -62,15 +62,12 @@
     _quantity = quantity;
     if (quantity == 1) {
         self.quantityLabel.text = [NSString stringWithFormat:@"%d box", quantity];
-        if (self.previousQuantity == 0) {
-            [self showLabels];
-        }
+        [self showLabels];
     } else if (quantity > 1) {
         self.quantityLabel.text = [NSString stringWithFormat:@"%d boxes", quantity];
+        [self showLabels];
     } else if (quantity == 0) {
-        if (self.previousPrice > 0) {
-            [self hideLabels];
-        }
+        [self hideLabels];
     }
 }
 
@@ -95,52 +92,72 @@
 #pragma mark - Private Methods
 
 - (void)showLabels {
-    self.quantityLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    self.priceLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    self.quantityLabel.hidden = NO;
-    self.priceLabel.hidden = NO;
-    
-    [UIView animateWithDuration:0.3
-                          delay:0.0
-         usingSpringWithDamping:0.6
-          initialSpringVelocity:0.0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.quantityLabel.transform = CGAffineTransformIdentity;
-                     } completion:^(BOOL finished) {
-                         nil;
-                     }];
-    
-    [UIView animateWithDuration:0.3
-                          delay:0.1
-         usingSpringWithDamping:0.6
-          initialSpringVelocity:0.0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.priceLabel.transform = CGAffineTransformIdentity;
-                     } completion:^(BOOL finished) {
-                         nil;
-                     }];
+    if (self.quantityLabel.hidden == YES) {
+        [self.quantityLabel.layer removeAllAnimations];
+        self.quantityLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        self.quantityLabel.hidden = NO;
+        [UIView animateWithDuration:0.3
+                              delay:0.0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:0.0
+                            options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.quantityLabel.transform = CGAffineTransformIdentity;
+                         } completion:^(BOOL finished) {
+                             if (finished == NO) {
+                                 self.quantityLabel.hidden = YES;
+                             }
+                         }];
+    }
+
+    if (self.priceLabel.hidden == YES) {
+        [self.priceLabel.layer removeAllAnimations];
+        self.priceLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        self.priceLabel.hidden = NO;
+        [UIView animateWithDuration:0.3
+                              delay:0.1
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:0.0
+                            options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.priceLabel.transform = CGAffineTransformIdentity;
+                         } completion:^(BOOL finished) {
+                             if (finished == NO) {
+                                 self.priceLabel.hidden = YES;
+                             }
+                             nil;
+                         }];
+    }
 }
 
 - (void)hideLabels {
-    [UIView animateWithDuration:0.3
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.quantityLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
-                     } completion:^(BOOL finished) {
-                         self.quantityLabel.hidden = YES;
-                     }];
+    if (self.quantityLabel.hidden == NO) {
+        [self.quantityLabel.layer removeAllAnimations];
+        [UIView animateWithDuration:0.3
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.quantityLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
+                         } completion:^(BOOL finished) {
+                             if (finished) {
+                                 self.quantityLabel.hidden = YES;
+                             }
+                         }];
+    }
     
-    [UIView animateWithDuration:0.3
-                          delay:0.1
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.priceLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
-                     } completion:^(BOOL finished) {
-                         self.priceLabel.hidden = YES;
-                     }];
+    if (self.priceLabel.hidden == NO) {
+        [self.priceLabel.layer removeAllAnimations];
+        [UIView animateWithDuration:0.3
+                              delay:0.1
+                            options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.priceLabel.transform = CGAffineTransformMakeScale(0.01, 0.01);
+                         } completion:^(BOOL finished) {
+                             if (finished) {
+                                 self.priceLabel.hidden = YES;
+                             }
+                         }];
+    }
 }
 
 @end
