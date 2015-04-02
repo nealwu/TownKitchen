@@ -53,6 +53,9 @@
     self.layer.shadowRadius = 1.0;
     self.layer.shadowOffset = CGSizeMake(0.0f, 3.0f);
     self.layer.shadowOpacity = 0.4f;
+    
+    self.priceLabel.hidden = YES;
+    self.quantityLabel.hidden = YES;
 }
 
 #pragma mark - Custom Setters
