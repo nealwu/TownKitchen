@@ -344,16 +344,16 @@ CGFloat const statusBarHeight = 20.0;
     return belowCellsImageView;
 }
 
-- (UIImage *)imageFromView:(UIView *)view {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(view.bounds.size.width, view.bounds.size.height), view.opaque, 0.0);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+- (UIImage *)snapshot:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
 
 - (UIImage *)imageInRect:(CGRect)rect fromView:(UIView *)view {
-    UIImage *viewImage = [self imageFromView:view];
+    UIImage *viewImage = [self snapshot:view];
     CGFloat scale = [[UIScreen mainScreen] scale];
     CGImageRef image = CGImageCreateWithImageInRect(viewImage.CGImage, CGRectMake(rect.origin.x * scale, rect.origin.y * scale, rect.size.width * scale, rect.size.height * scale));
     UIImage *imageInRect = [UIImage imageWithCGImage:image];
