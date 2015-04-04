@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewLabelsView">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="RIV-Uj-zk0"/>
+                <outlet property="dateLabel" destination="QrB-dv-iIw" id="sRe-Gj-qDf"/>
+                <outlet property="titleLabel" destination="i85-Ob-6hd" id="Rr3-Pf-Wjt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="March 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrB-dv-iIw" userLabel="Date Label">
+                    <rect key="frame" x="75" y="24" width="50" height="15"/>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" misplaced="YES" text="How Was Lunch?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i85-Ob-6hd" userLabel="Title Label">
+                    <rect key="frame" x="22" y="0.0" width="156" height="26"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.9215686917" green="0.36078432199999999" blue="0.34117648010000001" alpha="1" colorSpace="deviceRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="i85-Ob-6hd" secondAttribute="centerX" id="Gip-sX-1bN"/>
+                <constraint firstItem="QrB-dv-iIw" firstAttribute="top" secondItem="i85-Ob-6hd" secondAttribute="bottom" constant="-2" id="GrF-9p-3lO"/>
+                <constraint firstItem="QrB-dv-iIw" firstAttribute="top" secondItem="i85-Ob-6hd" secondAttribute="bottom" constant="-2" id="VC8-uv-Xzk"/>
+                <constraint firstItem="i85-Ob-6hd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kMD-3L-J5J"/>
+                <constraint firstAttribute="centerX" secondItem="QrB-dv-iIw" secondAttribute="centerX" id="tOW-c7-O47"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="8" y="487"/>
+        </view>
+    </objects>
+</document>

@@ -9,8 +9,9 @@
 #import "ReviewViewController.h"
 
 #import "DateUtils.h"
-#import "ParseAPI.h"
 #import "OrderSummaryView.h"
+#import "ParseAPI.h"
+#import "ReviewLabelsView.h"
 #import "TKHeader.h"
 
 @interface ReviewViewController () <UITextViewDelegate>
@@ -35,12 +36,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up header
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.header.titleView.bounds];
     titleLabel.text = @"Review Your Order";
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont fontWithName:@"Futura" size:20];
-    [self.header.titleView addSubview:titleLabel];
+    
+    ReviewLabelsView *titleView = [[ReviewLabelsView alloc] initWithFrame:self.header.titleView.bounds];
+    titleView.dateLabel.text = [NSString stringWithFormat:@"%@, %@", [DateUtils dayOfTheWeekFromDate:self.order.deliveryTimeUtc], [DateUtils monthAndDayFromDate:self.order.deliveryTimeUtc]];
+    [self.header.titleView addSubview:titleView];
 
     UIButton *cancelButton = [[UIButton alloc] initWithFrame:self.header.leftView.bounds];
     [cancelButton addTarget:self action:@selector(onCancelButton) forControlEvents:UIControlEventTouchUpInside];
@@ -54,8 +59,7 @@
     
     self.commentView.delegate = self;
     self.commentView.textColor = [UIColor grayColor];
-    self.commentView.layer.borderWidth = 1;
-    self.commentView.layer.cornerRadius = 5;
+    self.commentView.layer.cornerRadius = 6;
     self.submitButton.alpha = 0;
     self.ratingStars = 0;
 }

@@ -77,6 +77,10 @@
     return self.shortNameToMenuOptionObject.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 68;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderStatusDetailViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OrderStatusDetailViewCell"];
     

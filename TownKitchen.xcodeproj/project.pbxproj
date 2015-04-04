@@ -29,6 +29,8 @@
 		2B4DF8AC1ABF97B500D20303 /* OrderConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */; };
 		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
 		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
+		2B6808641ACF8EBB009784D1 /* ReviewLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */; };
+		2B6808661ACF8EE8009784D1 /* ReviewLabelsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */; };
 		2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */; };
 		2B7110031ABE84E900A9B896 /* OrderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7110021ABE84E900A9B896 /* OrderButtonView.m */; };
 		2B7110051ABE84F100A9B896 /* OrderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7110041ABE84F100A9B896 /* OrderButtonView.xib */; };
@@ -136,6 +138,9 @@
 		2B58D0141ABBC36500BE5EFA /* PaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView.h; sourceTree = "<group>"; };
 		2B58D0151ABBC36500BE5EFA /* PaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView.m; sourceTree = "<group>"; };
 		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
+		2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewLabelsView.h; sourceTree = "<group>"; };
+		2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewLabelsView.m; sourceTree = "<group>"; };
+		2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewLabelsView.xib; sourceTree = "<group>"; };
 		2B710FFE1ABE7B2600A9B896 /* UIImage+SolidColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SolidColors.h"; sourceTree = "<group>"; };
 		2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SolidColors.m"; sourceTree = "<group>"; };
 		2B7110011ABE84E900A9B896 /* OrderButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderButtonView.h; sourceTree = "<group>"; };
@@ -440,6 +445,9 @@
 				2B58D0141ABBC36500BE5EFA /* PaymentView.h */,
 				2B58D0151ABBC36500BE5EFA /* PaymentView.m */,
 				2B58D0171ABBC37100BE5EFA /* PaymentView.xib */,
+				2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */,
+				2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */,
+				2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */,
 				2BA78A191AB65FDB00F5FAB0 /* TKHeader.h */,
 				2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */,
 				2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */,
@@ -599,6 +607,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6808661ACF8EE8009784D1 /* ReviewLabelsView.xib in Resources */,
 				2B01870E1ABF836A00A3FCB4 /* OrderStatusDetailView.xib in Resources */,
 				2BA78A1D1AB65FE400F5FAB0 /* TKHeader.xib in Resources */,
 				91788D5F1AA940930038FE1F /* OrderCreationViewController.xib in Resources */,
@@ -724,6 +733,7 @@
 				2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */,
 				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,
+				2B6808641ACF8EBB009784D1 /* ReviewLabelsView.m in Sources */,
 				91788D961AAD25830038FE1F /* NSArray+ArrayOps.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
