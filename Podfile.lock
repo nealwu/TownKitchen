@@ -54,6 +54,7 @@ PODS:
     - Stripe/Core (= 3.1.0)
   - Stripe/Core (3.1.0)
   - SwipeView (1.3.2)
+  - SZTextView (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -69,21 +70,23 @@ DEPENDENCIES:
   - RNTimer
   - Stripe
   - SwipeView
+  - SZTextView
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
-  FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
-  FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
-  GoogleKit: c2aa0e3fb0db571fb11f5b41e23cac6f5cdeceec
-  LMGeocoder: 48debc3f1fa96895738e6c53449c95b511a93718
-  MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
-  MTAnimation: eeedb417b12eb293ad2e32a02f113d9e98641ae0
-  Parse: c2610f7a12ad0defc974803b819c4efe7746e6db
-  PaymentKit: f77b4d5cee45947949429c3d587e8eb160a3c9e2
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
-  RNTimer: cbcfbf2a146cd41a65637f214548ecb0900f2f12
-  Stripe: aaa174b50fac40a16958cbc892457a241d0b4b08
-  SwipeView: 0093c212acf3d715b09334c50d568a4418404150
+  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+  FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
+  FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
+  GoogleKit: 9471ac3372617265cae4f6ddcc23844c92c10b90
+  LMGeocoder: c81e081869805cae12d667c85b61e6304d5cebe5
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MTAnimation: 1079f4ff38c0282779ced010d7363a8f893fd3ee
+  Parse: 6ada00e82e77f73eb00f35accfe52a5f54e3c2aa
+  PaymentKit: 323c25233af5060880daa0c31366d4b688c34487
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  RNTimer: d4109a8a977d8d7ac81a1115bd4abdfa3e71841b
+  Stripe: 8a456332f4db97bd0b8457fc8cce1e1a69ac0cd1
+  SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
+  SZTextView: a51ef616064ed07ca44403de1e125bb6f4d4f1fa
 
 COCOAPODS: 0.35.0
