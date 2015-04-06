@@ -1,0 +1,1 @@
+../../../GoogleKit/GoogleKit/GKPlacesTextSearchQuery.h

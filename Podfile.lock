@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.1):
-    - AFNetworking/NSURLConnection (= 2.5.1)
-    - AFNetworking/NSURLSession (= 2.5.1)
-    - AFNetworking/Reachability (= 2.5.1)
-    - AFNetworking/Security (= 2.5.1)
-    - AFNetworking/Serialization (= 2.5.1)
-    - AFNetworking/UIKit (= 2.5.1)
-  - AFNetworking/NSURLConnection (2.5.1):
+  - AFNetworking (2.5.2):
+    - AFNetworking/NSURLConnection (= 2.5.2)
+    - AFNetworking/NSURLSession (= 2.5.2)
+    - AFNetworking/Reachability (= 2.5.2)
+    - AFNetworking/Security (= 2.5.2)
+    - AFNetworking/Serialization (= 2.5.2)
+    - AFNetworking/UIKit (= 2.5.2)
+  - AFNetworking/NSURLConnection (2.5.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.1):
+  - AFNetworking/NSURLSession (2.5.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.1)
-  - AFNetworking/Security (2.5.1)
-  - AFNetworking/Serialization (2.5.1)
-  - AFNetworking/UIKit (2.5.1):
+  - AFNetworking/Reachability (2.5.2)
+  - AFNetworking/Security (2.5.2)
+  - AFNetworking/Serialization (2.5.2)
+  - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.4)
@@ -45,7 +45,7 @@ PODS:
   - LMGeocoder (1.0.1)
   - MBProgressHUD (0.9.1)
   - MTAnimation (1.2.2)
-  - Parse (1.6.4):
+  - Parse (1.7.1):
     - Bolts (~> 1.1)
   - PaymentKit (1.1.1)
   - pop (1.0.7)
@@ -73,7 +73,7 @@ DEPENDENCIES:
   - SZTextView
 
 SPEC CHECKSUMS:
-  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
@@ -81,7 +81,7 @@ SPEC CHECKSUMS:
   LMGeocoder: c81e081869805cae12d667c85b61e6304d5cebe5
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MTAnimation: 1079f4ff38c0282779ced010d7363a8f893fd3ee
-  Parse: 6ada00e82e77f73eb00f35accfe52a5f54e3c2aa
+  Parse: fa8ec29de6d82035635986c11946299fb1b38316
   PaymentKit: 323c25233af5060880daa0c31366d4b688c34487
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   RNTimer: d4109a8a977d8d7ac81a1115bd4abdfa3e71841b
@@ -89,4 +89,4 @@ SPEC CHECKSUMS:
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
   SZTextView: a51ef616064ed07ca44403de1e125bb6f4d4f1fa
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.3
