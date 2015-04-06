@@ -14,11 +14,11 @@
 		<string>https://github.com/nealwu/TownKitchen.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TownKitchen/TownKitchen.xcodeproj</string>
+	<string>TownKitchen.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>23922A35174EADB07815D3604A2737562C80893B</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/nealwu/TownKitchen.git</string>

@@ -15,7 +15,6 @@ pod 'MTAnimation'
 pod 'MBProgressHUD'
 pod 'pop'
 pod 'SwipeView'
-pod 'SZTextView'
 
 end
 
