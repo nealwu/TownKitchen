@@ -77,70 +77,56 @@
 #pragma mark - Private Methods
 
 - (void)setButtonToValidState {    
-    CGFloat heightChange = self.contentView.frame.size.height;
-    CGRect finalBackButtonFrame = self.contentView.frame;
-    finalBackButtonFrame.origin.y -= heightChange;
-    CGRect finalSaveButtonFrame = self.contentView.frame;
-    
-    self.backButton.frame = finalBackButtonFrame;
-    self.saveButton.frame = finalSaveButtonFrame;
+    CGFloat yPositionChange = self.contentView.frame.size.height;
+    CGAffineTransform yPositionShiftTransform = CGAffineTransformMakeTranslation(0, -yPositionChange);
+
+    self.backButton.transform = yPositionShiftTransform;
+    self.saveButton.transform =yPositionShiftTransform;
     self.backgroundViewValid.alpha = 1.0;
     NSLog(@"setting button to valid");
 }
 
 - (void)setButtonToInvalidState {
-    CGFloat heightChange = self.contentView.frame.size.height;
-    CGRect finalBackButtonFrame = self.contentView.frame;
-    CGRect finalSaveButtonFrame = self.contentView.frame;
-    finalSaveButtonFrame.origin.y += heightChange;
-    
-    self.backButton.frame = finalBackButtonFrame;
-    self.saveButton.frame = finalSaveButtonFrame;
+    self.backButton.transform = CGAffineTransformIdentity;
+    self.saveButton.transform = CGAffineTransformIdentity;
     self.backgroundViewValid.alpha = 0.0;
     NSLog(@"setting button to in-valid");
 }
 
 - (void)animateButtonToValidState {
-    CGFloat heightChange = self.contentView.frame.size.height;
-    CGRect finalBackButtonFrame = self.contentView.frame;
-    finalBackButtonFrame.origin.y -= heightChange;
-    CGRect finalSaveButtonFrame = self.contentView.frame;
+    CGFloat yPositionChange = self.contentView.frame.size.height;
+    CGAffineTransform yPositionShiftTransform = CGAffineTransformMakeTranslation(0, -yPositionChange);
     
-    [UIView animateWithDuration:0.25
+    [UIView animateWithDuration:0.3
                           delay:0.0
          usingSpringWithDamping:0.6
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.backButton.frame = finalBackButtonFrame;
-                         self.saveButton.frame = finalSaveButtonFrame;
+                         self.backButton.transform = yPositionShiftTransform;
+                         self.saveButton.transform = yPositionShiftTransform;
                      } completion:^(BOOL finished) {
                          nil;
                      }];
     
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         self.backgroundViewValid.alpha = 1.0;
     }];
 }
 
 - (void)animateButtonToInvalidState {
-    CGFloat heightChange = self.contentView.frame.size.height;
-    CGRect finalBackButtonFrame = self.contentView.frame;
-    CGRect finalSaveButtonFrame = self.contentView.frame;
-    finalSaveButtonFrame.origin.y += heightChange;
-    
-    [UIView animateWithDuration:0.25
+    [UIView animateWithDuration:0.3
                           delay:0.0
          usingSpringWithDamping:0.6
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.backButton.frame = finalBackButtonFrame;
-                         self.saveButton.frame = finalSaveButtonFrame;
+                         self.backButton.transform = CGAffineTransformIdentity;
+                         self.saveButton.transform = CGAffineTransformIdentity;
                      } completion:^(BOOL finished) {
                          nil;
                      }];
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         self.backgroundViewValid.alpha = 0.0;
     }];
 }

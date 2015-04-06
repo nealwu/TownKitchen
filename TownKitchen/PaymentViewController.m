@@ -34,6 +34,11 @@
     self.paymentEntryView.frame = self.paymentViewPlaceholder.frame;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.setPaymentButtonView setPaymentButtonValidity:self.valid];
+    NSLog(@"view will appear, setting validity: %hhd", self.valid);
+}
+
 #pragma mark - PTKViewDelegate methods
 
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
