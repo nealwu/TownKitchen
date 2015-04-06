@@ -56,7 +56,9 @@
     
     self.commentView.delegate = self;
     self.commentView.textColor = [UIColor grayColor];
-    self.commentView.layer.cornerRadius = 6;
+    self.commentView.layer.cornerRadius = 8;
+    [self.commentView setTextContainerInset:UIEdgeInsetsMake(8, 8, 8, 8)];
+
     self.submitButton.alpha = 0;
     self.submitButton.enabled = NO;
     self.ratingStars = 0;
