@@ -156,60 +156,12 @@
 
 #pragma mark - CheckoutViewDelegate Methods
 
-// create location select view and animate onto screen
 - (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view {
     [self displayViewControllerAnimatedFromBottom:self.locationSelectViewController];
 }
 
-// create paymentView and animate onto screen
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
-    NSLog(@"orderCreationViewController heard payment button pressed");
-  
-    [self displayViewControllerAnimatedFromBottom:self.paymentViewController];
-    
-    /*
-    // initialize paymentView
-    if (!self.paymentView) {
-        self.paymentView = [[PaymentView alloc] init];
-        self.paymentView.delegate = self;
-    }
-    
-    // define frame variables
-    CGFloat parentWidth = self.view.bounds.size.width;
-    CGFloat parentHeight = self.view.bounds.size.height;
-    CGFloat horizontalGapSize = 20.0;
-    CGFloat navigationBarHeight = 64;
-    
-    // define initial and final frames, set initial
-    CGRect finalFrame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
-    CGRect initialFrame = finalFrame;
-    initialFrame.origin.x += initialFrame.size.width;
-    self.paymentView.frame = initialFrame;
-    
-    // set paymentView shadow
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.paymentView.bounds];
-    self.paymentView.layer.masksToBounds = NO;
-    self.paymentView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.paymentView.layer.shadowRadius = 6;
-    self.paymentView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    self.paymentView.layer.shadowOpacity = 0.3f;
-    self.paymentView.layer.shadowPath = shadowPath.CGPath;
-
-    [self.view addSubview:self.paymentView];
-    
-    // animate transition
-    [UIView mt_animateWithViews:@[self.paymentView]
-                       duration:0.5
-                          delay:0.0
-                 timingFunction:kMTEaseOutQuart
-                     animations:^{
-                         self.paymentView.frame = finalFrame;
-                     } completion:^{
-                         nil;
-                     }];
-     */
-    
-    
+    [self displayViewControllerAnimatedFromRight:self.paymentViewController];
 }
 
 // Place order
@@ -253,9 +205,6 @@
             self.orderConfirmationViewController.transitioningDelegate = self;
             self.orderConfirmationViewController.modalPresentationStyle = UIModalPresentationCustom;
             [self presentViewController:self.orderConfirmationViewController animated:YES completion:nil];
-
-//            OrdersViewController *ovc = [[OrdersViewController alloc] init];
-//            [self presentViewController:ovc animated:YES completion:nil];
             
         } else {
             NSLog(@"Order failed");
@@ -284,7 +233,7 @@
     } else {
         self.checkoutView.buttonState = ButtonStateEnterPayment;
     }
-    [self hideViewControllerAnimateToBottom:self.paymentViewController];
+    [self hideViewControllerAnimateToRight:self.paymentViewController];
 }
 
 #pragma mark - OrderButtonViewDelegate Methods
@@ -436,11 +385,62 @@
                      }];
 }
 
+- (void)displayViewControllerAnimatedFromRight:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    
+    // define initial and final frames
+    CGRect finalFrame = [self frameForModalViewController];
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.x += initialFrame.size.width;
+    viewController.view.frame = initialFrame;
+    
+    [self.view addSubview:viewController.view];
+    
+    // set shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:viewController.view.bounds];
+    viewController.view.layer.masksToBounds = NO;
+    viewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    viewController.view.layer.shadowRadius = 6;
+    viewController.view.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    viewController.view.layer.shadowOpacity = 0.3;
+    viewController.view.layer.shadowPath = shadowPath.CGPath;
+    
+    // animate transition
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         // complete the transition
+                         [viewController didMoveToParentViewController:self];
+                     }];
+}
+
 - (void)hideViewControllerAnimateToBottom:(UIViewController *)viewController {
     [viewController willMoveToParentViewController:nil];
     
     CGRect finalFrame = [self frameForModalViewController];
     finalFrame.origin.y += finalFrame.size.height;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         [viewController.view removeFromSuperview];
+                         [viewController removeFromParentViewController];
+                     }];
+}
+
+- (void)hideViewControllerAnimateToRight:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    
+    CGRect finalFrame = [self frameForModalViewController];
+    finalFrame.origin.x += finalFrame.size.width + (self.view.frame.size.width - finalFrame.size.width) / 2;
     
     [UIView mt_animateWithViews:@[viewController.view]
                        duration:0.5
@@ -464,10 +464,10 @@
 - (CGRect)frameForModalViewController {
     CGFloat parentWidth = self.view.bounds.size.width;
     CGFloat parentHeight = self.view.bounds.size.height;
-    CGFloat horizontalGapSize = 20.0;
+    CGFloat horizontalGapSize = 10.0;
     CGFloat navigationBarHeight = 64;
     
-    return CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
+    return CGRectMake(horizontalGapSize, navigationBarHeight + horizontalGapSize, parentWidth - horizontalGapSize * 2, parentHeight - horizontalGapSize - navigationBarHeight);
 }
 
 - (CGRect)frameForPopupViewController {
@@ -639,22 +639,8 @@
                          [self.filterView removeFromSuperview];
                      }];
     
-    /*
-    // dismiss payment view (if present)
-    if (self.paymentView) {
-        CGRect finalFrame = self.paymentView.frame;
-        finalFrame.origin.x += (finalFrame.size.width + self.horizontalGapSize);
-        [UIView mt_animateWithViews:@[self.paymentView]
-                           duration:0.5
-                              delay:0.0
-                     timingFunction:kMTEaseOutQuart
-                         animations:^{
-                             self.paymentView.frame = finalFrame;
-                         } completion:^{
-                             [self.paymentView removeFromSuperview];
-                         }];
-    }
-    */
+    // dismiss payment view
+    [self hideViewControllerAnimateToBottom:self.paymentViewController];
     
     // dismiss location select view
     [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
