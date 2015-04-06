@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet OrderSummaryView *orderSummaryView;
 @property (weak, nonatomic) IBOutlet TKHeader *header;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (assign, nonatomic) NSInteger ratingStars;
 
@@ -53,74 +52,74 @@
     [cancelButton setImage:[UIImage imageNamed:@"cancel-button-highlighted"] forState:UIControlStateHighlighted];
     [self.header.leftView addSubview:cancelButton];
 
-    self.dateLabel.text = [NSString stringWithFormat:@"%@, %@", [DateUtils dayOfTheWeekFromDate:self.order.deliveryTimeUtc], [DateUtils monthAndDayFromDate:self.order.deliveryTimeUtc]];
-    
     self.orderSummaryView.order = self.order;
     
     self.commentView.delegate = self;
     self.commentView.textColor = [UIColor grayColor];
     self.commentView.layer.cornerRadius = 6;
     self.submitButton.alpha = 0;
+    self.submitButton.enabled = NO;
     self.ratingStars = 0;
 }
 
 - (IBAction)onOneStarTap:(id)sender {
     NSLog(@"One star tap");
-    self.oneStarView.image = [UIImage imageNamed:@"star-on"];
-    self.twoStarView.image = [UIImage imageNamed:@"star-off"];
-    self.threeStarView.image = [UIImage imageNamed:@"star-off"];
-    self.fourStarView.image = [UIImage imageNamed:@"star-off"];
-    self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
+    self.oneStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.twoStarView.image = [UIImage imageNamed:@"star"];
+    self.threeStarView.image = [UIImage imageNamed:@"star"];
+    self.fourStarView.image = [UIImage imageNamed:@"star"];
+    self.fiveStarView.image = [UIImage imageNamed:@"star"];
     self.ratingStars = 1;
     [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onTwoStarTap:(id)sender {
     NSLog(@"Two star tap");
-    self.oneStarView.image = [UIImage imageNamed:@"star-on"];
-    self.twoStarView.image = [UIImage imageNamed:@"star-on"];
-    self.threeStarView.image = [UIImage imageNamed:@"star-off"];
-    self.fourStarView.image = [UIImage imageNamed:@"star-off"];
-    self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
+    self.oneStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.twoStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.threeStarView.image = [UIImage imageNamed:@"star"];
+    self.fourStarView.image = [UIImage imageNamed:@"star"];
+    self.fiveStarView.image = [UIImage imageNamed:@"star"];
     self.ratingStars = 2;
     [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onThreeStarTap:(id)sender {
     NSLog(@"Three star tap");
-    self.oneStarView.image = [UIImage imageNamed:@"star-on"];
-    self.twoStarView.image = [UIImage imageNamed:@"star-on"];
-    self.threeStarView.image = [UIImage imageNamed:@"star-on"];
-    self.fourStarView.image = [UIImage imageNamed:@"star-off"];
-    self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
+    self.oneStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.twoStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.threeStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.fourStarView.image = [UIImage imageNamed:@"star"];
+    self.fiveStarView.image = [UIImage imageNamed:@"star"];
     self.ratingStars = 3;
     [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onFourStarTap:(id)sender {
     NSLog(@"Four star tap");
-    self.oneStarView.image = [UIImage imageNamed:@"star-on"];
-    self.twoStarView.image = [UIImage imageNamed:@"star-on"];
-    self.threeStarView.image = [UIImage imageNamed:@"star-on"];
-    self.fourStarView.image = [UIImage imageNamed:@"star-on"];
-    self.fiveStarView.image = [UIImage imageNamed:@"star-off"];
+    self.oneStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.twoStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.threeStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.fourStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.fiveStarView.image = [UIImage imageNamed:@"star"];
     self.ratingStars = 4;
     [self animateCommentBoxAndSubmitButton];
 }
 
 - (IBAction)onFiveStarTap:(id)sender {
     NSLog(@"Five star tap");
-    self.oneStarView.image = [UIImage imageNamed:@"star-on"];
-    self.twoStarView.image = [UIImage imageNamed:@"star-on"];
-    self.threeStarView.image = [UIImage imageNamed:@"star-on"];
-    self.fourStarView.image = [UIImage imageNamed:@"star-on"];
-    self.fiveStarView.image = [UIImage imageNamed:@"star-on"];
+    self.oneStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.twoStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.threeStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.fourStarView.image = [UIImage imageNamed:@"star-selected"];
+    self.fiveStarView.image = [UIImage imageNamed:@"star-selected"];
     self.ratingStars = 5;
     [self animateCommentBoxAndSubmitButton];
 }
 
 - (void)animateCommentBoxAndSubmitButton {
-    [UIView animateWithDuration:1 animations:^{
+    self.submitButton.enabled = YES;
+    [UIView animateWithDuration:0.25 animations:^{
         self.submitButton.alpha = 1;
     }];
 }
