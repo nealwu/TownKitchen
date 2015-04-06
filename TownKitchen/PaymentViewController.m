@@ -8,7 +8,11 @@
 
 #import "PaymentViewController.h"
 
-@interface PaymentViewController ()
+@interface PaymentViewController () <PTKViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *paymentViewPlaceholder;
+@property (weak, nonatomic) IBOutlet UIButton *setPaymentButton;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -16,22 +20,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.paymentEntryView = [[PTKView alloc] init];
+    self.paymentEntryView.delegate = self;
+    [self.view addSubview:self.paymentEntryView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillLayoutSubviews {
+    [self.paymentViewPlaceholder setNeedsLayout];
+    [self.paymentViewPlaceholder layoutIfNeeded];
+    self.paymentEntryView.frame = self.paymentViewPlaceholder.frame;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark PTKViewDelegate methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
+    NSLog(@"Got payment with paymentView %@ and card %@, valid: %hhd", paymentView, card, (char)valid);
+    self.valid = valid;
 }
-*/
+
+#pragma mark Private Methods
+
+- (IBAction)onSetPayment:(id)sender {
+    [self.delegate onSetPaymentButtonFromPaymentViewController:self withCardValidity:self.valid];
+}
 
 @end

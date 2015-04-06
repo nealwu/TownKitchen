@@ -29,8 +29,6 @@
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
 		2B4DF8AB1ABF97B500D20303 /* OrderConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */; };
 		2B4DF8AC1ABF97B500D20303 /* OrderConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */; };
-		2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B58D0151ABBC36500BE5EFA /* PaymentView.m */; };
-		2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B58D0171ABBC37100BE5EFA /* PaymentView.xib */; };
 		2B6808641ACF8EBB009784D1 /* ReviewLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */; };
 		2B6808661ACF8EE8009784D1 /* ReviewLabelsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */; };
 		2B7110001ABE7B2600A9B896 /* UIImage+SolidColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B710FFF1ABE7B2600A9B896 /* UIImage+SolidColors.m */; };
@@ -140,9 +138,6 @@
 		2B4DF8A81ABF97B500D20303 /* OrderConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmationViewController.h; sourceTree = "<group>"; };
 		2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmationViewController.m; sourceTree = "<group>"; };
 		2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderConfirmationViewController.xib; sourceTree = "<group>"; };
-		2B58D0141ABBC36500BE5EFA /* PaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentView.h; sourceTree = "<group>"; };
-		2B58D0151ABBC36500BE5EFA /* PaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentView.m; sourceTree = "<group>"; };
-		2B58D0171ABBC37100BE5EFA /* PaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
 		2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewLabelsView.h; sourceTree = "<group>"; };
 		2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewLabelsView.m; sourceTree = "<group>"; };
 		2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewLabelsView.xib; sourceTree = "<group>"; };
@@ -450,9 +445,6 @@
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
 				2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */,
 				2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */,
-				2B58D0141ABBC36500BE5EFA /* PaymentView.h */,
-				2B58D0151ABBC36500BE5EFA /* PaymentView.m */,
-				2B58D0171ABBC37100BE5EFA /* PaymentView.xib */,
 				2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */,
 				2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */,
 				2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */,
@@ -640,7 +632,6 @@
 				9FA5C0A91AAEC5B600080718 /* ReviewViewController.xib in Resources */,
 				2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */,
 				91788DA01AB8D60F0038FE1F /* TKOrderSummaryCell.xib in Resources */,
-				2B58D0181ABBC37100BE5EFA /* PaymentView.xib in Resources */,
 				91788D6E1AA941620038FE1F /* DeliveryStatusViewController.xib in Resources */,
 				91788D801AA942A50038FE1F /* OrderStatusViewController.xib in Resources */,
 				2B0187131ABF84E500A3FCB4 /* OrderStatusDetailViewCell.xib in Resources */,
@@ -720,7 +711,6 @@
 				91788D6D1AA941620038FE1F /* DeliveryStatusViewController.m in Sources */,
 				2B13D09D1AA81B9100FC0689 /* AppDelegate.m in Sources */,
 				2B0187121ABF84E500A3FCB4 /* OrderStatusDetailViewCell.m in Sources */,
-				2B58D0161ABBC36500BE5EFA /* PaymentView.m in Sources */,
 				91788D771AA941BC0038FE1F /* LocationSelectViewController.m in Sources */,
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */,

@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentViewController">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="paymentViewPlaceholder" destination="dQA-FF-KUq" id="yWD-NT-DAu"/>
+                <outlet property="setPaymentButton" destination="STu-Gu-ojo" id="4c5-Mz-yVm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="Kgj-Hb-em0"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,13 +38,16 @@
                             <integer key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onSetPayment:" destination="-1" eventType="touchUpInside" id="jSM-RR-G0k"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQA-FF-KUq" userLabel="Payment View Placeholder">
-                    <rect key="frame" x="18" y="73" width="284" height="46"/>
+                    <rect key="frame" x="15" y="73" width="290" height="46"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="PHu-6t-DJz"/>
-                        <constraint firstAttribute="width" constant="284" id="faF-ZS-szD"/>
+                        <constraint firstAttribute="width" constant="290" id="faF-ZS-szD"/>
                     </constraints>
                 </view>
             </subviews>

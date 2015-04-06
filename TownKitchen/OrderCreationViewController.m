@@ -20,7 +20,7 @@
 #import "OrderConfirmationViewController.h"
 #import "OrdersViewController.h"
 #import "ParseAPI.h"
-#import "PaymentView.h"
+#import "PaymentViewController.h"
 #import "PopupAnimationController.h"
 #import "PopupDismissAnimationController.h"
 #import "STPCard.h"
@@ -29,7 +29,7 @@
 #import <UIView+MTAnimation.h>
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate, UIViewControllerTransitioningDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewControllerDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate, UIViewControllerTransitioningDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -51,7 +51,7 @@
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 @property (strong, nonatomic) CheckoutView *checkoutView;
 @property (strong, nonatomic) UIView *filterView;
-@property (strong, nonatomic) PaymentView *paymentView;
+@property (strong, nonatomic) PaymentViewController *paymentViewController;
 @property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
 @property (strong, nonatomic) OrderConfirmationViewController *orderConfirmationViewController;
 
@@ -86,6 +86,9 @@
 
     self.locationSelectViewController = [[LocationSelectViewController alloc] init];
     self.locationSelectViewController.delegate = self;
+    
+    self.paymentViewController = [[PaymentViewController alloc] init];
+    self.paymentViewController.delegate = self;
     
     // Set up tableView
     self.tableView.delegate = self;
@@ -161,7 +164,10 @@
 // create paymentView and animate onto screen
 - (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
     NSLog(@"orderCreationViewController heard payment button pressed");
+  
+    [self displayViewControllerAnimatedFromBottom:self.paymentViewController];
     
+    /*
     // initialize paymentView
     if (!self.paymentView) {
         self.paymentView = [[PaymentView alloc] init];
@@ -201,6 +207,9 @@
                      } completion:^{
                          nil;
                      }];
+     */
+    
+    
 }
 
 // Place order
@@ -213,7 +222,7 @@
         self.order.user = [PFUser currentUser];
         
         STPCard *card = [[STPCard alloc] init];
-        PTKView *paymentEntryView = self.paymentView.paymentEntryView;
+        PTKView *paymentEntryView = self.paymentViewController.paymentEntryView;
         
         card.number = paymentEntryView.card.number;
         card.expMonth = paymentEntryView.card.expMonth;
@@ -266,29 +275,16 @@
     [self hideViewControllerAnimateToBottom:locationSelectViewController];
 }
 
-#pragma mark - PaymentViewDelegate Methods
+#pragma mark - PaymentViewControllerDelegate Methods
 
-// Dismiss paymentView and set payment
-- (void)onSetPaymentButtonFromPaymentView:(PaymentView *)view withCardValidity:(BOOL)valid {
+- (void)onSetPaymentButtonFromPaymentViewController:(PaymentViewController *)pvc withCardValidity:(BOOL)valid {
+    NSLog(@"PaymentViewControllerDelegate method called");
     if (valid) {
         self.checkoutView.buttonState = ButtonStatePlaceOrder;
     } else {
         self.checkoutView.buttonState = ButtonStateEnterPayment;
     }
-    
-    CGRect finalFrame = self.paymentView.frame;
-    finalFrame.origin.x += (finalFrame.size.width + self.horizontalGapSize);
-    
-    [UIView mt_animateWithViews:@[self.paymentView]
-                       duration:0.5
-                          delay:0.0
-                 timingFunction:kMTEaseOutQuart
-                     animations:^{
-                         self.paymentView.frame = finalFrame;
-                     } completion:^{
-                         [self.paymentView removeFromSuperview];
-                     }];
-
+    [self hideViewControllerAnimateToBottom:self.paymentViewController];
 }
 
 #pragma mark - OrderButtonViewDelegate Methods
@@ -643,6 +639,7 @@
                          [self.filterView removeFromSuperview];
                      }];
     
+    /*
     // dismiss payment view (if present)
     if (self.paymentView) {
         CGRect finalFrame = self.paymentView.frame;
@@ -657,6 +654,7 @@
                              [self.paymentView removeFromSuperview];
                          }];
     }
+    */
     
     // dismiss location select view
     [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
