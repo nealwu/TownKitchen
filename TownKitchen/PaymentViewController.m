@@ -7,12 +7,12 @@
 //
 
 #import "PaymentViewController.h"
+#import "SetPaymentButton.h"
 
-@interface PaymentViewController () <PTKViewDelegate>
+@interface PaymentViewController () <PTKViewDelegate, SetPaymentButtonDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *paymentViewPlaceholder;
-@property (weak, nonatomic) IBOutlet UIButton *setPaymentButton;
-@property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet SetPaymentButton *setPaymentButtonView;
 
 @end
 
@@ -24,6 +24,8 @@
     self.paymentEntryView = [[PTKView alloc] init];
     self.paymentEntryView.delegate = self;
     [self.view addSubview:self.paymentEntryView];
+    
+    self.setPaymentButtonView.delegate = self;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -32,16 +34,17 @@
     self.paymentEntryView.frame = self.paymentViewPlaceholder.frame;
 }
 
-#pragma mark PTKViewDelegate methods
+#pragma mark - PTKViewDelegate methods
 
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
     NSLog(@"Got payment with paymentView %@ and card %@, valid: %hhd", paymentView, card, (char)valid);
     self.valid = valid;
+    [self.setPaymentButtonView setPaymentButtonValidity:valid animated:YES];
 }
 
-#pragma mark Private Methods
+#pragma mark - SetPaymentButtonDelegate Methods
 
-- (IBAction)onSetPayment:(id)sender {
+- (void)setPaymentButtonTapped:(SetPaymentButton *)setPaymentButton withValidity:(BOOL)validity {
     [self.delegate onSetPaymentButtonFromPaymentViewController:self withCardValidity:self.valid];
 }
 

@@ -26,6 +26,8 @@
 		2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */; };
 		2B2F8D491AD20E6900FB4DE3 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F8D471AD20E6900FB4DE3 /* PaymentViewController.m */; };
 		2B2F8D4A1AD20E6900FB4DE3 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B2F8D481AD20E6900FB4DE3 /* PaymentViewController.xib */; };
+		2B2F8D4D1AD220B100FB4DE3 /* SetPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F8D4C1AD220B100FB4DE3 /* SetPaymentButton.m */; };
+		2B2F8D511AD2210400FB4DE3 /* SetPaymentButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B2F8D501AD2210400FB4DE3 /* SetPaymentButton.xib */; };
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
 		2B4DF8AB1ABF97B500D20303 /* OrderConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */; };
 		2B4DF8AC1ABF97B500D20303 /* OrderConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */; };
@@ -133,6 +135,9 @@
 		2B2F8D461AD20E6900FB4DE3 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		2B2F8D471AD20E6900FB4DE3 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		2B2F8D481AD20E6900FB4DE3 /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
+		2B2F8D4B1AD220B100FB4DE3 /* SetPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPaymentButton.h; sourceTree = "<group>"; };
+		2B2F8D4C1AD220B100FB4DE3 /* SetPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPaymentButton.m; sourceTree = "<group>"; };
+		2B2F8D501AD2210400FB4DE3 /* SetPaymentButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetPaymentButton.xib; sourceTree = "<group>"; };
 		2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavigationBar.h; sourceTree = "<group>"; };
 		2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavigationBar.m; sourceTree = "<group>"; };
 		2B4DF8A81ABF97B500D20303 /* OrderConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmationViewController.h; sourceTree = "<group>"; };
@@ -448,6 +453,9 @@
 				2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */,
 				2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */,
 				2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */,
+				2B2F8D4B1AD220B100FB4DE3 /* SetPaymentButton.h */,
+				2B2F8D4C1AD220B100FB4DE3 /* SetPaymentButton.m */,
+				2B2F8D501AD2210400FB4DE3 /* SetPaymentButton.xib */,
 				2BA78A191AB65FDB00F5FAB0 /* TKHeader.h */,
 				2BA78A1A1AB65FDB00F5FAB0 /* TKHeader.m */,
 				2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */,
@@ -618,6 +626,7 @@
 				9F198EE41AAF7B0D00C0055D /* Images.xcassets in Resources */,
 				9FC8AAFC1AB0D37700610500 /* OrdersViewController.xib in Resources */,
 				2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */,
+				2B2F8D511AD2210400FB4DE3 /* SetPaymentButton.xib in Resources */,
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */,
 				2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */,
@@ -691,6 +700,7 @@
 				91788D631AA940B10038FE1F /* DaySelectViewController.m in Sources */,
 				2BD9E65F1AAFE6D20072BB59 /* CheckoutOrderItemCell.m in Sources */,
 				9FF2AE8F1AB66B5A001BF6BA /* LoginViewController.m in Sources */,
+				2B2F8D4D1AD220B100FB4DE3 /* SetPaymentButton.m in Sources */,
 				2BBABFB91AB008DF0098124D /* DayCell.m in Sources */,
 				2BF8B5241ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m in Sources */,
 				2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */,
