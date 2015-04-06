@@ -82,7 +82,7 @@
                     <rect key="frame" x="8" y="252" width="304" height="244"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="212" id="J6D-N8-XlT"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="60" id="J6D-N8-XlT"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vge-uh-efA" customClass="TKHeader">
