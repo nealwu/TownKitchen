@@ -171,4 +171,19 @@
     return [query findObjectsInBackground];
 }
 
+- (void)sendEmailConfirmationForOrder:(Order *)order {
+    [PFCloud callFunctionInBackground:@"sendConfirmationMail"
+                       withParameters:@{@"email": order.user.email,
+                                        @"items": order.items,
+                                        @"deliveryDateAndTime": order.deliveryDateAndTime,
+                                        @"totalPrice": order.totalPrice}
+                                block:^(id object, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"sendConfirmationMail successful. Response: %@", object);
+                                    } else {
+                                        NSLog(@"%@", error);
+                                    }
+                                }];
+}
+
 @end

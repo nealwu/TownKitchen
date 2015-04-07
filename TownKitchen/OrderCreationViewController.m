@@ -206,6 +206,8 @@
             self.orderConfirmationViewController.modalPresentationStyle = UIModalPresentationCustom;
             [self presentViewController:self.orderConfirmationViewController animated:YES completion:nil];
             
+            [[ParseAPI getInstance] sendEmailConfirmationForOrder:self.order];
+            
         } else {
             NSLog(@"Order failed");
         }

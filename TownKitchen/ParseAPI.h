@@ -28,5 +28,6 @@
 - (BOOL)createOrder:(Order *)order;
 - (BFTask *)updateOrder:(Order *)order withDriverLocation:(CLLocation *)location;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;
+- (void)sendEmailConfirmationForOrder:(Order *)order;
 
 @end
