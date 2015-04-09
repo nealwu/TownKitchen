@@ -223,6 +223,7 @@
     self.order.deliveryAddress = address;
     self.checkoutViewController.addressLabel.text = shortString;
     self.checkoutViewController.didSetAddress = YES;
+    self.checkoutViewController.buttonState = ButtonStateEnterTime;
     [self hideViewControllerAnimateToBottom:locationSelectViewController];
 }
 
@@ -354,7 +355,7 @@
     
     // call these after UI elements are loaded
     self.checkoutViewController.order = self.order;
-    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
+    self.checkoutViewController.buttonState = ButtonStateEnterAddess;
 }
 
 - (void)updateOrderObjectItems {

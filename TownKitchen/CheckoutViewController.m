@@ -131,13 +131,28 @@
 #pragma mark - CheckoutOrderButtonDelegate Methods
 
 - (void)onCheckoutOrderButton:(CheckoutOrderButton *)button withButtonState:(ButtonState)buttonState {
-    if (buttonState == ButtonStateEnterPayment) {
-        [self.delegate paymentButtonPressedFromCheckoutViewController:self];
-        
-    } else if (buttonState == ButtonStatePlaceOrder) {
-        if ([self validateInput]){
-            [self.delegate orderButtonPressedFromCheckoutViewController:self];
+    
+    switch (buttonState) {
+        case ButtonStateEnterAddess: {
+            [self.delegate addressButtonPressedFromCheckoutViewController:self];
+            break;
         }
+        case ButtonStateEnterTime: {
+            
+            break;
+        }
+        case ButtonStateEnterPayment: {
+            [self.delegate paymentButtonPressedFromCheckoutViewController:self];
+            break;
+        }
+        case ButtonStatePlaceOrder: {
+            if ([self validateInput]){
+                [self.delegate orderButtonPressedFromCheckoutViewController:self];
+            }
+            break;
+        }
+        default:
+            break;
     }
 }
 
