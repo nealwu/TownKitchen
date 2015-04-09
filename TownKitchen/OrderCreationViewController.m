@@ -242,7 +242,7 @@
 
 - (void)orderButtonPressedFromOrderButtonView:(OrderButtonView *)view {
     if (self.order.items.count > 0) {
-        [self createOrder];
+        [self createOrderAndCheckout];
     } else {
         // bounce plus buttons
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BouncePlusButton" object:self];
@@ -322,6 +322,75 @@
 
 #pragma mark - Private methods
 
+- (void)createOrderAndCheckout {
+    if (!self.order) {
+        self.order = [Order object];
+    }
+    self.order.items = self.shortNameToQuantity;
+    self.order.user = [PFUser currentUser];
+    Inventory *firstInventory = self.inventoryItems[0];
+    self.order.deliveryDateAndTime = [firstInventory dateOffered];
+    self.order.shortNameToMenuOptionObject = self.shortNameToObject;
+    
+    self.order.totalPrice = @0;
+    
+    for (NSString *shortName in self.order.items) {
+        MenuOption *menuOption = self.order.shortNameToMenuOptionObject[shortName];
+        self.order.totalPrice = @([self.order.totalPrice doubleValue] + [menuOption.price doubleValue] * [self.order.items[shortName] doubleValue]);
+    }
+    
+    NSLog(@"Creating order: %@", self.order);
+    
+    if (!self.checkoutViewController) {
+        self.checkoutViewController = [[CheckoutViewController alloc] init];
+    }
+    
+    self.checkoutViewController.shortNameToObject = self.shortNameToObject;
+    self.checkoutViewController.menuOptionShortNames = self.menuOptionShortNames;
+    self.checkoutViewController.delegate = self;
+    
+    [self setLeftButtonToCancel];
+    [self displayViewControllerAnimatedFromBottomWithFilter:self.checkoutViewController];
+    
+    // call these after UI elements are loaded
+    self.checkoutViewController.order = self.order;
+    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
+}
+
+- (void)updateOrderObjectItems {
+    if (!self.order) {
+        self.order = [Order object];
+    }
+    self.order.items = self.shortNameToQuantity;
+    self.order.totalPrice = @0;
+    int totalQuantity = 0;
+    
+    for (NSString *shortName in self.order.items) {
+        MenuOption *menuOption = self.shortNameToObject[shortName];
+        self.order.totalPrice = @([self.order.totalPrice doubleValue] + [menuOption.price doubleValue] * [self.order.items[shortName] doubleValue]);
+        
+        totalQuantity += [self.shortNameToQuantity[shortName] intValue];
+    }
+    self.orderButtonView.price = self.order.totalPrice;
+    self.orderButtonView.quantity = totalQuantity;
+}
+
+- (void)onCancelOrder {
+    // dismiss checkout view
+    [self setLeftButtonToBack];
+    [self hideViewControllerAnimateToBottomRemoveFilter:self.checkoutViewController];
+    
+    // dismiss payment view
+    [self hideViewControllerAnimateToBottom:self.paymentViewController];
+    
+    // dismiss location select view
+    [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
+}
+
+- (void)onBackButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)createBackendChargeWithToken:(STPToken *)token completion:(void (^)(NSError *))completion {
     NSLog(@"Got the token: %@", token);
     //    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
@@ -340,6 +409,8 @@
     //                               }
     //                           }];
 }
+
+#pragma mark - View Controller Presentation Methods
 
 - (void)displayViewController:(UIViewController *)viewController {
     [self addChildViewController:viewController];
@@ -385,6 +456,47 @@
                          // complete the transition
                          [viewController didMoveToParentViewController:self];
                      }];
+}
+
+- (void)displayViewControllerAnimatedFromBottomWithFilter:(UIViewController *)viewController {
+    // create gray filter view
+    self.filterView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationBarHeight, self.parentWidth, self.parentHeight - self.navigationBarHeight)];
+    self.filterView.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
+    self.filterView.alpha = 0.0;
+    [self.view addSubview:self.filterView];
+
+    [self addChildViewController:viewController];
+
+    CGRect finalFrame = [self frameForModalViewController];
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.y += initialFrame.size.height;
+    viewController.view.frame = initialFrame;
+    [self.view addSubview:viewController.view];
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:viewController.view.bounds];
+    viewController.view.layer.masksToBounds = NO;
+    viewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    viewController.view.layer.shadowRadius = 6;
+    viewController.view.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    viewController.view.layer.shadowOpacity = 0.3;
+    viewController.view.layer.shadowPath = shadowPath.CGPath;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         [viewController didMoveToParentViewController:self];
+                     }];
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.filterView.alpha = 1.0;
+                     } completion:nil];
 }
 
 - (void)displayViewControllerAnimatedFromRight:(UIViewController *)viewController {
@@ -437,6 +549,27 @@
                          [viewController removeFromParentViewController];
                      }];
 }
+
+- (void)hideViewControllerAnimateToBottomRemoveFilter:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    
+    CGRect finalFrame = [self frameForModalViewController];
+    finalFrame.origin.y += finalFrame.size.height;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                         self.filterView.alpha = 0.0;
+                     } completion:^{
+                         [viewController.view removeFromSuperview];
+                         [viewController removeFromParentViewController];
+                         [self.filterView removeFromSuperview];
+                     }];
+}
+
 
 - (void)hideViewControllerAnimateToRight:(UIViewController *)viewController {
     [viewController willMoveToParentViewController:nil];
@@ -521,104 +654,6 @@
             self.backButton.alpha = 1.0;
         } completion:nil];
     }];
-}
-
-#pragma mark - Actions
-
-- (void)updateOrderObjectItems {
-    if (!self.order) {
-        self.order = [Order object];
-    }
-    self.order.items = self.shortNameToQuantity;
-    self.order.totalPrice = @0;
-    int totalQuantity = 0;
-    
-    for (NSString *shortName in self.order.items) {
-        MenuOption *menuOption = self.shortNameToObject[shortName];
-        self.order.totalPrice = @([self.order.totalPrice doubleValue] + [menuOption.price doubleValue] * [self.order.items[shortName] doubleValue]);
-        
-        totalQuantity += [self.shortNameToQuantity[shortName] intValue];
-    }
-    self.orderButtonView.price = self.order.totalPrice;
-    self.orderButtonView.quantity = totalQuantity;
-}
-
-// Create CheckoutView and animate onto screen
-- (void)createOrder {
-    if (!self.order) {
-        self.order = [Order object];
-    }
-    self.order.items = self.shortNameToQuantity;
-    self.order.user = [PFUser currentUser];
-    Inventory *firstInventory = self.inventoryItems[0];
-    self.order.deliveryDateAndTime = [firstInventory dateOffered];
-    self.order.shortNameToMenuOptionObject = self.shortNameToObject;
-
-    self.order.totalPrice = @0;
-
-    for (NSString *shortName in self.order.items) {
-        MenuOption *menuOption = self.order.shortNameToMenuOptionObject[shortName];
-        self.order.totalPrice = @([self.order.totalPrice doubleValue] + [menuOption.price doubleValue] * [self.order.items[shortName] doubleValue]);
-    }
-
-    NSLog(@"Creating order: %@", self.order);
-    
-    if (!self.checkoutViewController) {
-        self.checkoutViewController = [[CheckoutViewController alloc] init];
-    }
-    
-    self.checkoutViewController.shortNameToObject = self.shortNameToObject;
-    self.checkoutViewController.menuOptionShortNames = self.menuOptionShortNames;
-    self.checkoutViewController.order = self.order;
-    self.checkoutViewController.delegate = self;
-
-    [self setLeftButtonToCancel];
-    [self displayViewControllerAnimatedFromBottom:self.checkoutViewController];
-    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
-    
-    /*
-    // create gray filter view
-    self.filterView = [[UIView alloc] initWithFrame:CGRectMake(0, navigationBarHeight, parentWidth, parentHeight - navigationBarHeight)];
-    self.filterView.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
-    self.filterView.alpha = 0.0;
-    
-    [self.view addSubview:self.filterView];
-    [self.view addSubview:self.checkoutView];
-    
-    // animate transition
-    [UIView mt_animateWithViews:@[self.checkoutView]
-                       duration:0.5
-                          delay:0.0
-                 timingFunction:kMTEaseOutQuart
-                     animations:^{
-                         self.checkoutView.frame = finalFrame;
-                     } completion:^{
-                         nil;
-                     }];
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.filterView.alpha = 1.0;
-                     } completion:nil];
-     */
-}
-
-- (void)onCancelOrder {
-    // dismiss checkout view
-    [self setLeftButtonToBack];
-    [self hideViewControllerAnimateToBottom:self.checkoutViewController];
-    
-    // dismiss payment view
-    [self hideViewControllerAnimateToBottom:self.paymentViewController];
-    
-    // dismiss location select view
-    [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
-}
-
-- (void)onBackButton {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
