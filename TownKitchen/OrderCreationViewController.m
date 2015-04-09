@@ -638,22 +638,23 @@
 }
 
 - (void)setLeftButtonToBack {
-    self.cancelButton.alpha = 1.0;
     self.backButton.alpha = 0.0;
     self.backButton.hidden = NO;
     self.backButton.enabled = YES;
     
-    [UIView animateWithDuration:0.25 animations:^{
-        self.cancelButton.alpha = 0.0;
-        
-    } completion:^(BOOL finished) {
-        self.cancelButton.hidden = YES;
-        self.cancelButton.enabled = NO;
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            self.backButton.alpha = 1.0;
-        } completion:nil];
-    }];
+    [UIView transitionWithView:self.cancelButton
+                      duration:0.25
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.cancelButton.alpha = 0.0;
+                    } completion:^(BOOL finished) {
+                        self.cancelButton.hidden = YES;
+                        self.cancelButton.enabled = NO;
+                        
+                        [UIView animateWithDuration:0.25 animations:^{
+                            self.backButton.alpha = 1.0;
+                        } completion:nil];
+                    }];
 }
 
 @end
