@@ -426,6 +426,8 @@
 		91788D871AAD0A1B0038FE1F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */,
+				2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */,
 				2BC7C2D21AB614F6003624DD /* CircleStepperView.h */,
 				2BC7C2D31AB614F6003624DD /* CircleStepperView.m */,
 				2BC7C2D51AB61503003624DD /* CircleStepperView.xib */,
@@ -448,8 +450,6 @@
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
-				2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */,
-				2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */,
 				2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */,
 				2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */,
 				2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */,

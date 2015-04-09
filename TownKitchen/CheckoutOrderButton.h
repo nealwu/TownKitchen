@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, ButtonState) {
     ButtonStateEnterAddess,
     ButtonStateEnterTime,
     ButtonStateEnterPayment,
-    ButtonStatePlaceOrder
+    ButtonStatePlaceOrder,
+    ButtonStateEmpty
 };
 
 @class CheckoutOrderButton;
