@@ -75,17 +75,16 @@ static const float kEtaFudgeFactor = 1.5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIButton *backButton = [[UIButton alloc] initWithFrame:self.headerView.leftView.bounds];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
-    [backButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
-    backButton.autoresizingMask =
-    UIViewAutoresizingFlexibleLeftMargin
-    | UIViewAutoresizingFlexibleRightMargin
-    | UIViewAutoresizingFlexibleTopMargin
-    | UIViewAutoresizingFlexibleBottomMargin;
-    [self.headerView.leftView addSubview:backButton];
-                                  
+    
+    // Create cancel button
+    CGRect cancelButtonFrame = self.headerView.leftView.bounds;
+    UIButton *cancelButton = [[UIButton alloc] initWithFrame:cancelButtonFrame];
+    [cancelButton addTarget:self action:@selector(onBackButton) forControlEvents:UIControlEventTouchUpInside];
+    [cancelButton setImage:[UIImage imageNamed:@"cancel-button"] forState:UIControlStateNormal];
+    [cancelButton setImage:[UIImage imageNamed:@"cancel-button-highlighted"] forState:UIControlStateHighlighted];
+    [self.headerView.leftView addSubview:cancelButton];
+    
+    // Add title
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.headerView.titleView.bounds];
     titleLabel.text = @"Delivery Status";
     titleLabel.font = [UIFont fontWithName:@"Futura" size:24];
