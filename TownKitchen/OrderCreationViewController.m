@@ -8,7 +8,7 @@
 
 #import "OrderCreationViewController.h"
 
-#import "CheckoutView.h"
+#import "CheckoutViewController.h"
 #import "DateLabelsViewSmall.h"
 #import "DateUtils.h"
 #import "Inventory.h"
@@ -29,7 +29,7 @@
 #import <UIView+MTAnimation.h>
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewDelegate, PaymentViewControllerDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate, UIViewControllerTransitioningDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewControllerDelegate, PaymentViewControllerDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate, UIViewControllerTransitioningDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -49,7 +49,7 @@
 
 @property (strong, nonatomic) Order *order;
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
-@property (strong, nonatomic) CheckoutView *checkoutView;
+@property (strong, nonatomic) CheckoutViewController *checkoutViewController;
 @property (strong, nonatomic) UIView *filterView;
 @property (strong, nonatomic) PaymentViewController *paymentViewController;
 @property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
@@ -154,18 +154,18 @@
     NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
 
-#pragma mark - CheckoutViewDelegate Methods
+#pragma mark - CheckoutViewControllerDelegate Methods
 
-- (void)addressButtonPressedFromCheckoutView:(CheckoutView *)view {
+- (void)addressButtonPressedFromCheckoutViewController:(CheckoutViewController *)cvc {
     [self displayViewControllerAnimatedFromBottom:self.locationSelectViewController];
 }
 
-- (void)paymentButtonPressedFromCheckoutView:(CheckoutView *)view {
+- (void)paymentButtonPressedFromCheckoutViewController:(CheckoutViewController *)cvc {
     [self displayViewControllerAnimatedFromRight:self.paymentViewController];
 }
 
 // Place order
-- (void)orderButtonPressedFromCheckoutView:(CheckoutView *)view {
+- (void)orderButtonPressedFromCheckoutViewController:(CheckoutViewController *)cvc {
     NSLog(@"attempting to place order: %@", self.order);
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -221,8 +221,8 @@
 // user selected delivery address
 - (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address withShortString:(NSString *)shortString {
     self.order.deliveryAddress = address;
-    self.checkoutView.addressLabel.text = shortString;
-    self.checkoutView.didSetAddress = YES;
+    self.checkoutViewController.addressLabel.text = shortString;
+    self.checkoutViewController.didSetAddress = YES;
     [self hideViewControllerAnimateToBottom:locationSelectViewController];
 }
 
@@ -231,9 +231,9 @@
 - (void)onSetPaymentButtonFromPaymentViewController:(PaymentViewController *)pvc withCardValidity:(BOOL)valid {
     NSLog(@"PaymentViewControllerDelegate method called");
     if (valid) {
-        self.checkoutView.buttonState = ButtonStatePlaceOrder;
+        self.checkoutViewController.buttonState = ButtonStatePlaceOrder;
     } else {
-        self.checkoutView.buttonState = ButtonStateEnterPayment;
+        self.checkoutViewController.buttonState = ButtonStateEnterPayment;
     }
     [self hideViewControllerAnimateToRight:self.paymentViewController];
 }
@@ -563,36 +563,20 @@
 
     NSLog(@"Creating order: %@", self.order);
     
-    // initialize checkoutView
-    self.checkoutView = [[CheckoutView alloc] init];
-    self.checkoutView.shortNameToObject = self.shortNameToObject;
-    self.checkoutView.menuOptionShortNames = self.menuOptionShortNames;
-    self.checkoutView.order = self.order;
+    if (!self.checkoutViewController) {
+        self.checkoutViewController = [[CheckoutViewController alloc] init];
+    }
+    
+    self.checkoutViewController.shortNameToObject = self.shortNameToObject;
+    self.checkoutViewController.menuOptionShortNames = self.menuOptionShortNames;
+    self.checkoutViewController.order = self.order;
 
-    self.checkoutView.buttonState = ButtonStateEnterPayment;
-    self.checkoutView.delegate = self;
+    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
+    self.checkoutViewController.delegate = self;
     
-    // set checkoutView frame
-    CGFloat parentWidth = self.view.bounds.size.width;
-    CGFloat parentHeight = self.view.bounds.size.height;
-    CGFloat horizontalGapSize = 20.0;
-    CGFloat navigationBarHeight = 64;
+    [self displayViewControllerAnimatedFromBottom:self.checkoutViewController];
     
-    // define initial and final frames, set initial
-    CGRect finalFrame = CGRectMake(horizontalGapSize / 2, navigationBarHeight + horizontalGapSize / 2, parentWidth - horizontalGapSize, parentHeight - horizontalGapSize / 2 - navigationBarHeight);
-    CGRect initialFrame = finalFrame;
-    initialFrame.origin.y += initialFrame.size.height;
-    self.checkoutView.frame = initialFrame;
-    
-    // set checkoutView shadow
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.checkoutView.bounds];
-    self.checkoutView.layer.masksToBounds = NO;
-    self.checkoutView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.checkoutView.layer.shadowRadius = 6;
-    self.checkoutView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    self.checkoutView.layer.shadowOpacity = 0.3f;
-    self.checkoutView.layer.shadowPath = shadowPath.CGPath;
-    
+    /*
     // create gray filter view
     self.filterView = [[UIView alloc] initWithFrame:CGRectMake(0, navigationBarHeight, parentWidth, parentHeight - navigationBarHeight)];
     self.filterView.backgroundColor = [UIColor colorWithWhite:0.75 alpha:0.75];
@@ -620,33 +604,19 @@
                      animations:^{
                          self.filterView.alpha = 1.0;
                      } completion:nil];
+     */
 }
 
 - (void)onCancelOrder {
     // dismiss checkout view
-    CGRect finalFrame = self.checkoutView.frame;
-    finalFrame.origin.y += (finalFrame.size.height);
-
     [self setLeftButtonToBack];
-    
-    [UIView mt_animateWithViews:@[self.checkoutView, self.filterView]
-                       duration:0.5
-                          delay:0.0
-                 timingFunction:kMTEaseOutQuart
-                     animations:^{
-                         self.checkoutView.frame = finalFrame;
-                         self.filterView.alpha = 0.0;
-                     } completion:^{
-                         [self.checkoutView removeFromSuperview];
-                         [self.filterView removeFromSuperview];
-                     }];
+    [self hideViewControllerAnimateToBottom:self.checkoutViewController];
     
     // dismiss payment view
     [self hideViewControllerAnimateToBottom:self.paymentViewController];
     
     // dismiss location select view
     [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
-
 }
 
 - (void)onBackButton {

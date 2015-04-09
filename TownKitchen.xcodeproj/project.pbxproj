@@ -42,6 +42,7 @@
 		2BA78A1D1AB65FE400F5FAB0 /* TKHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BA78A1C1AB65FE400F5FAB0 /* TKHeader.xib */; };
 		2BBABFB91AB008DF0098124D /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBABFB71AB008DF0098124D /* DayCell.m */; };
 		2BBABFBA1AB008DF0098124D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBABFB81AB008DF0098124D /* DayCell.xib */; };
+		2BBB437D1AD60B4D00FA72C2 /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB437B1AD60B4D00FA72C2 /* CheckoutViewController.m */; };
 		2BC07CE91ABFDC3B00956822 /* PopupAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */; };
 		2BC07CEC1ABFE19600956822 /* PopupDismissAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC07CEB1ABFE19600956822 /* PopupDismissAnimationController.m */; };
 		2BC3DF3A1AC28F9E003971D1 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BC3DF391AC28F9E003971D1 /* Launch Screen.xib */; };
@@ -53,7 +54,7 @@
 		2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */; };
 		2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */; };
 		2BF8B5191ABA8C4700D1C5B5 /* CheckoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */; };
-		2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */; };
+		2BF8B51B1ABA8C6700D1C5B5 /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B51A1ABA8C6700D1C5B5 /* CheckoutViewController.xib */; };
 		2BF8B51E1ABA8FF100D1C5B5 /* PayAndOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */; };
 		2BF8B5241ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
@@ -160,6 +161,8 @@
 		2BBABFB61AB008DF0098124D /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCell.h; sourceTree = "<group>"; };
 		2BBABFB71AB008DF0098124D /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCell.m; sourceTree = "<group>"; };
 		2BBABFB81AB008DF0098124D /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
+		2BBB437A1AD60B4D00FA72C2 /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
+		2BBB437B1AD60B4D00FA72C2 /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		2BC07CE71ABFDC3B00956822 /* PopupAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupAnimationController.h; sourceTree = "<group>"; };
 		2BC07CE81ABFDC3B00956822 /* PopupAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupAnimationController.m; sourceTree = "<group>"; };
 		2BC07CEA1ABFE19600956822 /* PopupDismissAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupDismissAnimationController.h; sourceTree = "<group>"; };
@@ -178,7 +181,7 @@
 		2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateLabelsViewSmall.xib; sourceTree = "<group>"; };
 		2BF8B5171ABA8C4700D1C5B5 /* CheckoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutView.h; sourceTree = "<group>"; };
 		2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutView.m; sourceTree = "<group>"; };
-		2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutView.xib; sourceTree = "<group>"; };
+		2BF8B51A1ABA8C6700D1C5B5 /* CheckoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutViewController.xib; sourceTree = "<group>"; };
 		2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAndOrderButton.h; sourceTree = "<group>"; };
 		2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayAndOrderButton.m; sourceTree = "<group>"; };
 		2BF8B5221ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TKColorPalette.h"; sourceTree = "<group>"; };
@@ -374,6 +377,9 @@
 				2B29EB2A1AAD26C1001FA846 /* AddressInputViewController.h */,
 				2B29EB2B1AAD26C1001FA846 /* AddressInputViewController.m */,
 				2B29EB2C1AAD26C1001FA846 /* AddressInputViewController.xib */,
+				2BBB437A1AD60B4D00FA72C2 /* CheckoutViewController.h */,
+				2BBB437B1AD60B4D00FA72C2 /* CheckoutViewController.m */,
+				2BF8B51A1ABA8C6700D1C5B5 /* CheckoutViewController.xib */,
 				91788D601AA940B10038FE1F /* DaySelectViewController.h */,
 				91788D611AA940B10038FE1F /* DaySelectViewController.m */,
 				91788D621AA940B10038FE1F /* DaySelectViewController.xib */,
@@ -425,7 +431,6 @@
 			children = (
 				2BF8B5171ABA8C4700D1C5B5 /* CheckoutView.h */,
 				2BF8B5181ABA8C4700D1C5B5 /* CheckoutView.m */,
-				2BF8B51A1ABA8C6700D1C5B5 /* CheckoutView.xib */,
 				2BC7C2D21AB614F6003624DD /* CircleStepperView.h */,
 				2BC7C2D31AB614F6003624DD /* CircleStepperView.m */,
 				2BC7C2D51AB61503003624DD /* CircleStepperView.xib */,
@@ -629,7 +634,7 @@
 				2B2F8D511AD2210400FB4DE3 /* SetPaymentButton.xib in Resources */,
 				2BD9E6601AAFE6D20072BB59 /* CheckoutOrderItemCell.xib in Resources */,
 				2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */,
-				2BF8B51B1ABA8C6700D1C5B5 /* CheckoutView.xib in Resources */,
+				2BF8B51B1ABA8C6700D1C5B5 /* CheckoutViewController.xib in Resources */,
 				2B0F10C01AC26312001CD067 /* IntroViewController.xib in Resources */,
 				2B0F10C51AC266AE001CD067 /* IntroSlideView.xib in Resources */,
 				2B29EB2E1AAD26C1001FA846 /* AddressInputViewController.xib in Resources */,
@@ -740,6 +745,7 @@
 				2BA78A1B1AB65FDB00F5FAB0 /* TKHeader.m in Sources */,
 				91788D4D1AA93FB60038FE1F /* MenuOption.m in Sources */,
 				2BC07CEC1ABFE19600956822 /* PopupDismissAnimationController.m in Sources */,
+				2BBB437D1AD60B4D00FA72C2 /* CheckoutViewController.m in Sources */,
 				2B0719841AB6B7A600976A43 /* DateLabelsView.m in Sources */,
 				9FC8AAFB1AB0D37700610500 /* OrdersViewController.m in Sources */,
 				91788D531AA93FF50038FE1F /* Inventory.m in Sources */,
