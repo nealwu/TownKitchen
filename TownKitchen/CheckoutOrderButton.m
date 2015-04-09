@@ -13,13 +13,30 @@
 
 - (void)setButtonState:(ButtonState)buttonState {
     _buttonState = buttonState;
-    if (buttonState == ButtonStatePlaceOrder) {
-        self.backgroundColor = [UIColor TKRedColor];
-        [self setTitle:@"Place Order" forState:UIControlStateNormal];
-    }
-    else if (buttonState == ButtonStateEnterPayment) {
-        self.backgroundColor = [UIColor TKOrangeColor];
-        [self setTitle:@"Enter Payment Info" forState:UIControlStateNormal];
+    
+    switch (buttonState) {
+        case ButtonStateEnterAddess: {
+            self.backgroundColor = [UIColor TKOrangeColor];
+            [self setTitle:@"Set Address" forState:UIControlStateNormal];
+            break;
+        }
+        case ButtonStateEnterTime: {
+            self.backgroundColor = [UIColor TKOrangeColor];
+            [self setTitle:@"Set Time" forState:UIControlStateNormal];
+            break;
+        }
+        case ButtonStateEnterPayment: {
+            self.backgroundColor = [UIColor TKOrangeColor];
+            [self setTitle:@"Enter Payment Info" forState:UIControlStateNormal];
+            break;
+        }
+        case ButtonStatePlaceOrder: {
+            self.backgroundColor = [UIColor TKRedColor];
+            [self setTitle:@"Place Order" forState:UIControlStateNormal];
+            break;
+        }
+        default:
+            break;
     }
 }
 

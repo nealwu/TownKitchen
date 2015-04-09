@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, ButtonState) {
-    ButtonStateEnterPayment = 1,
-    ButtonStatePlaceOrder = 2
+    ButtonStateEnterAddess,
+    ButtonStateEnterTime,
+    ButtonStateEnterPayment,
+    ButtonStatePlaceOrder
 };
 
 @class CheckoutOrderButton;
