@@ -570,11 +570,11 @@
     self.checkoutViewController.shortNameToObject = self.shortNameToObject;
     self.checkoutViewController.menuOptionShortNames = self.menuOptionShortNames;
     self.checkoutViewController.order = self.order;
-
-    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
     self.checkoutViewController.delegate = self;
-    
+
+    [self setLeftButtonToCancel];
     [self displayViewControllerAnimatedFromBottom:self.checkoutViewController];
+    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
     
     /*
     // create gray filter view
@@ -584,8 +584,6 @@
     
     [self.view addSubview:self.filterView];
     [self.view addSubview:self.checkoutView];
-
-    [self setLeftButtonToCancel];
     
     // animate transition
     [UIView mt_animateWithViews:@[self.checkoutView]
