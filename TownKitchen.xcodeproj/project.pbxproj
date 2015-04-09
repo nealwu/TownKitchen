@@ -54,7 +54,7 @@
 		2BEC49441AB7FD2E00A8A267 /* DateLabelsViewSmall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */; };
 		2BEC49481AB7FD4E00A8A267 /* DateLabelsViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */; };
 		2BF8B51B1ABA8C6700D1C5B5 /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B51A1ABA8C6700D1C5B5 /* CheckoutViewController.xib */; };
-		2BF8B51E1ABA8FF100D1C5B5 /* PayAndOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */; };
+		2BF8B51E1ABA8FF100D1C5B5 /* CheckoutOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */; };
 		2BF8B5241ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */; };
 		2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8B67C1AAE5D6A00700F3A /* OrderCreationCell.m */; };
 		2BF8B67F1AAE5D6A00700F3A /* OrderCreationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BF8B67D1AAE5D6A00700F3A /* OrderCreationCell.xib */; };
@@ -179,8 +179,8 @@
 		2BEC49431AB7FD2E00A8A267 /* DateLabelsViewSmall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateLabelsViewSmall.m; sourceTree = "<group>"; };
 		2BEC49471AB7FD4E00A8A267 /* DateLabelsViewSmall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateLabelsViewSmall.xib; sourceTree = "<group>"; };
 		2BF8B51A1ABA8C6700D1C5B5 /* CheckoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutViewController.xib; sourceTree = "<group>"; };
-		2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAndOrderButton.h; sourceTree = "<group>"; };
-		2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayAndOrderButton.m; sourceTree = "<group>"; };
+		2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutOrderButton.h; sourceTree = "<group>"; };
+		2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutOrderButton.m; sourceTree = "<group>"; };
 		2BF8B5221ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TKColorPalette.h"; sourceTree = "<group>"; };
 		2BF8B5231ABAA3FD00D1C5B5 /* UIColor+TKColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TKColorPalette.m"; sourceTree = "<group>"; };
 		2BF8B67B1AAE5D6A00700F3A /* OrderCreationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreationCell.h; sourceTree = "<group>"; };
@@ -448,8 +448,8 @@
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
-				2BF8B51C1ABA8FF100D1C5B5 /* PayAndOrderButton.h */,
-				2BF8B51D1ABA8FF100D1C5B5 /* PayAndOrderButton.m */,
+				2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */,
+				2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */,
 				2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */,
 				2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */,
 				2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */,
@@ -724,7 +724,7 @@
 				2B13D09A1AA81B9100FC0689 /* main.m in Sources */,
 				2BF8B67E1AAE5D6A00700F3A /* OrderCreationCell.m in Sources */,
 				91788D841AA947E20038FE1F /* ParseAPI.m in Sources */,
-				2BF8B51E1ABA8FF100D1C5B5 /* PayAndOrderButton.m in Sources */,
+				2BF8B51E1ABA8FF100D1C5B5 /* CheckoutOrderButton.m in Sources */,
 				9FC8AB001AB0D3DB00610500 /* OrderCell.m in Sources */,
 				2B29EB2D1AAD26C1001FA846 /* AddressInputViewController.m in Sources */,
 				9FC8AB041AB0D93100610500 /* DateUtils.m in Sources */,

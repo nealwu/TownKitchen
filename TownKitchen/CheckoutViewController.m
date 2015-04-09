@@ -12,7 +12,7 @@
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
 
-@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, PayAndOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, CheckoutOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
@@ -45,7 +45,7 @@
     [self.tableView reloadData];
     
     // initialize button
-    self.payAndOrderButton.delegate = self;
+    self.checkoutOrderButton.delegate = self;
     
     // initialize time picker view
     self.timeOptionTitles = @[@"Set time",
@@ -102,7 +102,7 @@
 
 - (void)setButtonState:(ButtonState)buttonState {
     _buttonState = buttonState;
-    self.payAndOrderButton.buttonState = buttonState;
+    self.checkoutOrderButton.buttonState = buttonState;
 }
 
 #pragma mark - Table view methods
@@ -128,9 +128,9 @@
     return cell;
 }
 
-#pragma mark - PayAndOrderButtonDelegate Methods
+#pragma mark - CheckoutOrderButtonDelegate Methods
 
-- (void)onPayAndOrderButton:(PayAndOrderButton *)button withButtonState:(ButtonState)buttonState {
+- (void)onCheckoutOrderButton:(CheckoutOrderButton *)button withButtonState:(ButtonState)buttonState {
     if (buttonState == ButtonStateEnterPayment) {
         [self.delegate paymentButtonPressedFromCheckoutViewController:self];
         

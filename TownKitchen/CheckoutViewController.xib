@@ -9,7 +9,7 @@
                 <outlet property="addressAndTimeView" destination="AOA-OB-1Dy" id="apH-KB-AQ5"/>
                 <outlet property="addressButton" destination="bm0-nc-KXZ" id="VuP-Ea-sgn"/>
                 <outlet property="addressLabel" destination="IDY-s4-GfD" id="KrY-Yr-JNe"/>
-                <outlet property="payAndOrderButton" destination="OGD-Ds-T7N" id="H8Q-Rk-SHU"/>
+                <outlet property="checkoutOrderButton" destination="OGD-Ds-T7N" id="cor-7E-6WH"/>
                 <outlet property="tableView" destination="aeg-9W-wnG" id="Q96-2u-Nhn"/>
                 <outlet property="timePickerView" destination="HoM-o7-q09" id="GZG-cS-XAX"/>
                 <outlet property="totalPriceLabel" destination="a1r-IL-fC0" id="jFt-dJ-O4K"/>
@@ -123,7 +123,7 @@
                         <constraint firstAttribute="height" constant="60" id="s27-aP-diK"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-Ds-T7N" userLabel="Place Order Button" customClass="PayAndOrderButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-Ds-T7N" userLabel="Place Order Button" customClass="CheckoutOrderButton">
                     <rect key="frame" x="20" y="430" width="260" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="kHO-0C-tUe"/>

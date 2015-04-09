@@ -13,17 +13,17 @@ typedef NS_ENUM(NSInteger, ButtonState) {
     ButtonStatePlaceOrder = 2
 };
 
-@class PayAndOrderButton;
+@class CheckoutOrderButton;
 
-@protocol PayAndOrderButtonDelegate <NSObject>
+@protocol CheckoutOrderButtonDelegate <NSObject>
 
-- (void)onPayAndOrderButton:(PayAndOrderButton *)button withButtonState:(ButtonState)buttonState;
+- (void)onCheckoutOrderButton:(CheckoutOrderButton *)button withButtonState:(ButtonState)buttonState;
 
 @end
 
-@interface PayAndOrderButton : UIButton
+@interface CheckoutOrderButton : UIButton
 
 @property (assign, nonatomic) ButtonState buttonState;
-@property (weak, nonatomic) id<PayAndOrderButtonDelegate> delegate;
+@property (weak, nonatomic) id<CheckoutOrderButtonDelegate> delegate;
 
 @end

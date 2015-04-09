@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Order.h"
-#import "PayAndOrderButton.h"
+#import "CheckoutOrderButton.h"
 
 @class CheckoutViewController;
 
@@ -26,7 +26,7 @@
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
 @property (assign, nonatomic) ButtonState buttonState;
-@property (weak, nonatomic) IBOutlet PayAndOrderButton *payAndOrderButton;
+@property (weak, nonatomic) IBOutlet CheckoutOrderButton *checkoutOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @property (assign, nonatomic) BOOL didSetAddress;

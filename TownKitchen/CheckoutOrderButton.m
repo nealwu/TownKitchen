@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 The Town Kitchen. All rights reserved.
 //
 
-#import "PayAndOrderButton.h"
+#import "CheckoutOrderButton.h"
 #import "UIColor+TKColorPalette.h"
 
-@implementation PayAndOrderButton
+@implementation CheckoutOrderButton
 
 - (void)setButtonState:(ButtonState)buttonState {
     _buttonState = buttonState;
@@ -31,7 +31,7 @@
 }
 
 - (void)onButton {
-    [self.delegate onPayAndOrderButton:self withButtonState:self.buttonState];
+    [self.delegate onCheckoutOrderButton:self withButtonState:self.buttonState];
 }
 
 @end
