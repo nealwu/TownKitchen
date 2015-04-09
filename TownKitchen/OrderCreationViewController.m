@@ -223,7 +223,7 @@
     self.order.deliveryAddress = address;
     self.checkoutViewController.addressLabel.text = shortString;
     self.checkoutViewController.didSetAddress = YES;
-    self.checkoutViewController.buttonState = ButtonStateEnterTime;
+    self.checkoutViewController.buttonState = ButtonStateEnterPayment;
     [self hideViewControllerAnimateToBottom:locationSelectViewController];
 }
 
