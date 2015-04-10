@@ -146,6 +146,8 @@ static const NSTimeInterval kUpdateInterval = 5.0;
     }
     [self.locationManager startUpdatingLocation];
 
+    NSString *channel = self.activeOrder.user.objectId;
+    [PFPush sendPushMessageToChannel:channel withMessage:@"Your order is on the way!" error:nil];
 
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:self.activeOrder.deliveryAddress completionHandler:^(NSArray *placemarks, NSError *error) {

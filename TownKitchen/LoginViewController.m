@@ -41,6 +41,7 @@
     [PFUser logInWithUsernameInBackground:email password:password block:^(PFUser *user, NSError *error) {
         if (user && !error) {
             NSLog(@"Login succeeded!");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TKCurrentUserDidChange" object:self];
             if (self.delegate) {
                 [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
             } else {
@@ -68,6 +69,7 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             NSLog(@"Signup succeeded!");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TKCurrentUserDidChange" object:self];
             if (self.delegate) {
                 [self.delegate loginViewController:self didLoginUser:[PFUser currentUser]];
             } else {

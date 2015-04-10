@@ -8,6 +8,7 @@
 
 #import "OrderCreationViewController.h"
 
+#import "AppDelegate.h"
 #import "CheckoutViewController.h"
 #import "DateLabelsViewSmall.h"
 #import "DateUtils.h"
@@ -207,7 +208,8 @@
             [self presentViewController:self.orderConfirmationViewController animated:YES completion:nil];
             
             [[ParseAPI getInstance] sendEmailConfirmationForOrder:self.order];
-            
+            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            [appDelegate registerForNotifications];
         } else {
             NSLog(@"Order failed");
         }

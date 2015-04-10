@@ -69,11 +69,12 @@
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onDidReceiveNotification:) name:@"TKDidReceiveNotification" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.activeOrder = [[ParseAPI getInstance] orderBeingDeliveredForUser:[PFUser currentUser]];
-    [self setupButtons];
+    [self checkForActiveDelivery];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -100,6 +101,16 @@
             }
         }
     }
+}
+
+- (void)onDidReceiveNotification:(NSNotification *)notification {
+    NSLog(@"DaySelectViewController received notification: %@", notification);
+    [self checkForActiveDelivery];
+}
+
+- (void)checkForActiveDelivery {
+    self.activeOrder = [[ParseAPI getInstance] orderBeingDeliveredForUser:[PFUser currentUser]];
+    [self setupButtons];
 }
 
 - (void)setupButtons {
