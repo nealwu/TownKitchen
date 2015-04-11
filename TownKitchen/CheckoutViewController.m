@@ -214,21 +214,30 @@
 
 - (IBAction)onAddressButton:(UIButton *)sender {
     [self.delegate addressButtonPressedFromCheckoutViewController:self];
-    [self unhighlightAddressLabel];
+    [self unDimAddressLabel];
 }
 
 - (IBAction)onAddressButtonTouchDown:(UIButton *)sender {
-    [self highlightAddressLabel];
+    [self dimAddressLabel];
 }
 
 - (IBAction)onAddressButtonTouchDragOutside:(UIButton *)sender {
-    [self unhighlightAddressLabel];
+    [self unDimAddressLabel];
 }
 
 - (IBAction)onTimeButton:(UIButton *)sender {
     self.timeButton.hidden = YES;
+    [self unDimTimeLabel];
     [self.timePickerView selectRow:2 inComponent:0 animated:YES];
     [self pickerView:self.timePickerView didSelectRow:2 inComponent:0];
+}
+
+- (IBAction)onTimeButtonTouchDown:(UIButton *)sender {
+    [self dimTimeLabel];
+}
+
+- (IBAction)onTimeButtonTouchDragOutside:(UIButton *)sender {
+    [self unDimTimeLabel];
 }
 
 #pragma mark - Private Methods
@@ -298,15 +307,27 @@
     self.addressLabelPushBehavior.active = YES;
 }
 
-- (void)highlightAddressLabel {
+- (void)dimAddressLabel {
     [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.addressLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
     } completion:nil];
 }
 
-- (void)unhighlightAddressLabel {
+- (void)unDimAddressLabel {
     [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.addressLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
+    } completion:nil];
+}
+
+- (void)dimTimeLabel {
+    [UIView transitionWithView:self.timePickerView duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.timePickerView.alpha = 0.5;
+    } completion:nil];
+}
+
+- (void)unDimTimeLabel {
+    [UIView transitionWithView:self.timePickerView duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.timePickerView.alpha = 1.0;
     } completion:nil];
 }
 

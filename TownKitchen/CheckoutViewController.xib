@@ -79,6 +79,8 @@
                             </state>
                             <connections>
                                 <action selector="onTimeButton:" destination="-1" eventType="touchUpInside" id="MRP-eF-Efq"/>
+                                <action selector="onTimeButtonTouchDown:" destination="-1" eventType="touchDown" id="cq1-tL-bCF"/>
+                                <action selector="onTimeButtonTouchDragOutside:" destination="-1" eventType="touchDragOutside" id="9EA-Uv-rWE"/>
                             </connections>
                         </button>
                     </subviews>
