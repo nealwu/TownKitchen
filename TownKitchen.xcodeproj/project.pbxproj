@@ -293,6 +293,7 @@
 				2BA78A151AB63B3700F5FAB0 /* Animations */,
 				91788D811AA947D20038FE1F /* API */,
 				91788D931AAD25210038FE1F /* Categories */,
+				2B45F4641AD8AB8300F6077A /* Controls */,
 				2BEC493E1AB7F3C000A8A267 /* Helpers */,
 				91788D4A1AA93F660038FE1F /* Models */,
 				2B13D0971AA81B9100FC0689 /* Supporting Files */,
@@ -327,6 +328,15 @@
 				2B13D0B21AA81B9100FC0689 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B45F4641AD8AB8300F6077A /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */,
+				2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */,
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 		2BA78A151AB63B3700F5FAB0 /* Animations */ = {
@@ -448,8 +458,6 @@
 				91788D881AAD0A2B0038FE1F /* OrderSummaryView.h */,
 				91788D891AAD0A2B0038FE1F /* OrderSummaryView.m */,
 				91788D8B1AAD0A390038FE1F /* OrderSummaryView.xib */,
-				2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */,
-				2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */,
 				2B6808621ACF8EBB009784D1 /* ReviewLabelsView.h */,
 				2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */,
 				2B6808651ACF8EE8009784D1 /* ReviewLabelsView.xib */,
