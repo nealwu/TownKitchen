@@ -11,6 +11,7 @@
                 <outlet property="addressLabel" destination="IDY-s4-GfD" id="KrY-Yr-JNe"/>
                 <outlet property="checkoutOrderButton" destination="OGD-Ds-T7N" id="cor-7E-6WH"/>
                 <outlet property="tableView" destination="aeg-9W-wnG" id="Q96-2u-Nhn"/>
+                <outlet property="timeButton" destination="IBX-VA-ugp" id="myH-pB-Wvh"/>
                 <outlet property="timePickerView" destination="HoM-o7-q09" id="GZG-cS-XAX"/>
                 <outlet property="totalPriceLabel" destination="a1r-IL-fC0" id="jFt-dJ-O4K"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7qS-4k-evC"/>
@@ -42,12 +43,6 @@
                                 <constraint firstAttribute="height" constant="30" id="ESY-YF-Mft"/>
                             </constraints>
                         </imageView>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="12:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydh-Lx-xVc">
-                            <rect key="frame" x="226" y="4" width="68" height="22"/>
-                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Set address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDY-s4-GfD" userLabel="Address Label">
                             <rect key="frame" x="6" y="-2" width="198" height="34"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -73,19 +68,30 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="162" id="GVN-Se-Mne"/>
                             </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="7rg-f4-zkb" appends="YES" id="bk3-Ur-rxa"/>
-                            </connections>
                         </pickerView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBX-VA-ugp" userLabel="Set Time Button">
+                            <rect key="frame" x="220" y="0.0" width="80" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onTimeButton:" destination="-1" eventType="touchUpInside" id="MRP-eF-Efq"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="HoM-o7-q09" secondAttribute="trailing" id="0YI-p9-BDX"/>
-                        <constraint firstAttribute="centerY" secondItem="ydh-Lx-xVc" secondAttribute="centerY" id="0mA-YL-aYT"/>
-                        <constraint firstItem="ydh-Lx-xVc" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" constant="6" id="2cR-8G-Jre"/>
+                        <constraint firstAttribute="centerY" secondItem="IBX-VA-ugp" secondAttribute="centerY" id="2od-ry-Te7"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="height" secondItem="bm0-nc-KXZ" secondAttribute="height" id="5xG-vK-zaR"/>
+                        <constraint firstAttribute="height" secondItem="IBX-VA-ugp" secondAttribute="height" id="Gmi-Uh-rAc"/>
                         <constraint firstAttribute="centerY" secondItem="IDY-s4-GfD" secondAttribute="centerY" id="Hqw-Nb-1xE"/>
                         <constraint firstItem="HoM-o7-q09" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" id="LEH-ho-u5N"/>
+                        <constraint firstItem="HoM-o7-q09" firstAttribute="trailing" secondItem="IBX-VA-ugp" secondAttribute="trailing" id="P6i-fn-KSK"/>
+                        <constraint firstItem="HoM-o7-q09" firstAttribute="width" secondItem="IBX-VA-ugp" secondAttribute="width" id="Pc0-dg-Nb3"/>
                         <constraint firstAttribute="height" constant="30" id="RYO-Yj-juX"/>
                         <constraint firstAttribute="centerY" secondItem="HoM-o7-q09" secondAttribute="centerY" id="ScV-Ej-ioq"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="width" secondItem="bm0-nc-KXZ" secondAttribute="width" id="TzJ-Ac-nHo"/>
@@ -94,7 +100,6 @@
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="dfX-TU-Pzl"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="top" secondItem="bm0-nc-KXZ" secondAttribute="top" id="mMy-ub-B21"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="leading" secondItem="AOA-OB-1Dy" secondAttribute="leading" constant="6" id="r23-9j-PX5"/>
-                        <constraint firstAttribute="trailing" secondItem="ydh-Lx-xVc" secondAttribute="trailing" constant="6" id="tMp-gr-6fO"/>
                         <constraint firstAttribute="trailing" secondItem="MSK-i1-eVp" secondAttribute="trailing" constant="80" id="ymZ-Tq-TXv"/>
                     </constraints>
                 </view>
@@ -157,12 +162,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="196" y="402"/>
         </view>
-        <tapGestureRecognizer id="7rg-f4-zkb">
-            <connections>
-                <action selector="onTimePickerViewTapped:" destination="-1" id="M0a-6n-bwk"/>
-                <outlet property="delegate" destination="-1" id="V8X-HD-cfS"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="address-time-view-separator" width="10" height="30"/>

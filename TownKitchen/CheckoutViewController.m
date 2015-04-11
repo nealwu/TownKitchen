@@ -15,11 +15,13 @@
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, CheckoutOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 @property (weak, nonatomic) IBOutlet UIView *addressAndTimeView;
+@property (weak, nonatomic) IBOutlet UIButton *addressButton;
+@property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
+@property (weak, nonatomic) IBOutlet UIButton *timeButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *addressButton;
 @property (strong, nonatomic) NSArray *timeOptionTitles;
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
 @property (strong, nonatomic) NSDateFormatter *timePickerDateFormatter;
@@ -76,6 +78,7 @@
     
     self.timePickerView.dataSource = self;
     self.timePickerView.delegate = self;
+//    self.timePickerView.userInteractionEnabled = NO;
     
 }
 
@@ -222,12 +225,10 @@
     [self unhighlightAddressLabel];
 }
 
-- (IBAction)onTimePickerViewTapped:(UITapGestureRecognizer *)sender {
-    // scroll two rows to show that more options exist
-    if ([self.timePickerView selectedRowInComponent:0] == 0) {
-        [self.timePickerView selectRow:2 inComponent:0 animated:YES];
-        [self pickerView:self.timePickerView didSelectRow:2 inComponent:0];
-    }
+- (IBAction)onTimeButton:(UIButton *)sender {
+    self.timeButton.hidden = YES;
+    [self.timePickerView selectRow:2 inComponent:0 animated:YES];
+    [self pickerView:self.timePickerView didSelectRow:2 inComponent:0];
 }
 
 #pragma mark - Private Methods
@@ -299,7 +300,7 @@
 
 - (void)highlightAddressLabel {
     [UIView transitionWithView:self.addressLabel duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        [self.addressLabel setTextColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+        [self.addressLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
     } completion:nil];
 }
 
