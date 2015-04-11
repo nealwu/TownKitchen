@@ -36,6 +36,9 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-OB-1Dy" userLabel="Address and Time View">
                     <rect key="frame" x="0.0" y="54" width="300" height="30"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address-select-bg" translatesAutoresizingMaskIntoConstraints="NO" id="qbE-Ej-gLx" userLabel="address image bg">
+                            <rect key="frame" x="0.0" y="0.0" width="218" height="30"/>
+                        </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address-time-view-separator" translatesAutoresizingMaskIntoConstraints="NO" id="MSK-i1-eVp">
                             <rect key="frame" x="210" y="0.0" width="10" height="30"/>
                             <constraints>
@@ -89,6 +92,7 @@
                         <constraint firstAttribute="trailing" secondItem="HoM-o7-q09" secondAttribute="trailing" id="0YI-p9-BDX"/>
                         <constraint firstAttribute="centerY" secondItem="IBX-VA-ugp" secondAttribute="centerY" id="2od-ry-Te7"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="height" secondItem="bm0-nc-KXZ" secondAttribute="height" id="5xG-vK-zaR"/>
+                        <constraint firstItem="qbE-Ej-gLx" firstAttribute="leading" secondItem="AOA-OB-1Dy" secondAttribute="leading" id="9u7-bR-g5W"/>
                         <constraint firstAttribute="height" secondItem="IBX-VA-ugp" secondAttribute="height" id="Gmi-Uh-rAc"/>
                         <constraint firstAttribute="centerY" secondItem="IDY-s4-GfD" secondAttribute="centerY" id="Hqw-Nb-1xE"/>
                         <constraint firstItem="HoM-o7-q09" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" id="LEH-ho-u5N"/>
@@ -97,11 +101,14 @@
                         <constraint firstAttribute="height" constant="30" id="RYO-Yj-juX"/>
                         <constraint firstAttribute="centerY" secondItem="HoM-o7-q09" secondAttribute="centerY" id="ScV-Ej-ioq"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="width" secondItem="bm0-nc-KXZ" secondAttribute="width" id="TzJ-Ac-nHo"/>
+                        <constraint firstAttribute="bottom" secondItem="qbE-Ej-gLx" secondAttribute="bottom" id="Vgi-vb-Fgc"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="leading" secondItem="bm0-nc-KXZ" secondAttribute="leading" id="Vwr-Pl-0Xg"/>
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="leading" secondItem="IDY-s4-GfD" secondAttribute="trailing" constant="6" id="YNE-XS-TAh"/>
                         <constraint firstItem="MSK-i1-eVp" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="dfX-TU-Pzl"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="top" secondItem="bm0-nc-KXZ" secondAttribute="top" id="mMy-ub-B21"/>
+                        <constraint firstItem="qbE-Ej-gLx" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="niY-GJ-ecM"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="leading" secondItem="AOA-OB-1Dy" secondAttribute="leading" constant="6" id="r23-9j-PX5"/>
+                        <constraint firstItem="MSK-i1-eVp" firstAttribute="leading" secondItem="qbE-Ej-gLx" secondAttribute="trailing" constant="-8" id="yOC-ye-SBp"/>
                         <constraint firstAttribute="trailing" secondItem="MSK-i1-eVp" secondAttribute="trailing" constant="80" id="ymZ-Tq-TXv"/>
                     </constraints>
                 </view>
@@ -166,6 +173,7 @@
         </view>
     </objects>
     <resources>
+        <image name="address-select-bg" width="6" height="30"/>
         <image name="address-time-view-separator" width="10" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
