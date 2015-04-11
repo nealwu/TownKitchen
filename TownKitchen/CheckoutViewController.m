@@ -15,8 +15,11 @@
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, CheckoutOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (weak, nonatomic) IBOutlet UIView *addressAndTimeView;
+@property (weak, nonatomic) IBOutlet UIImageView *addressButtonBackground;
 @property (weak, nonatomic) IBOutlet UIButton *addressButton;
+@property (weak, nonatomic) IBOutlet UIImageView *timeButtonBackground;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 @property (weak, nonatomic) IBOutlet UIButton *timeButton;
 
@@ -106,6 +109,13 @@
 - (void)setButtonState:(ButtonState)buttonState {
     _buttonState = buttonState;
     self.checkoutOrderButton.buttonState = buttonState;
+}
+
+- (void)setDidSetAddress:(BOOL)didSetAddress {
+    _didSetAddress = didSetAddress;
+    if (didSetAddress) {
+        [self hideAddressButtonBackground];
+    }
 }
 
 #pragma mark - Table view methods
@@ -204,12 +214,6 @@
     }
 }
 
-#pragma mark - UIGestureRecognizerDelegate Methods
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-
 #pragma mark - Actions
 
 - (IBAction)onAddressButton:(UIButton *)sender {
@@ -228,6 +232,7 @@
 - (IBAction)onTimeButton:(UIButton *)sender {
     self.timeButton.hidden = YES;
     [self unDimTimeLabel];
+    [self hideTimeButtonBackground];
     [self.timePickerView selectRow:2 inComponent:0 animated:YES];
     [self pickerView:self.timePickerView didSelectRow:2 inComponent:0];
 }
@@ -329,6 +334,19 @@
     [UIView transitionWithView:self.timePickerView duration:0.15 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.timePickerView.alpha = 1.0;
     } completion:nil];
+}
+
+- (void)hideAddressButtonBackground {
+    self.addressButtonBackground.alpha = 0.0;
+    self.addressButtonBackground.hidden = YES;
+}
+
+- (void)hideTimeButtonBackground {
+    [UIView transitionWithView:self.timeButtonBackground duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.timeButtonBackground.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        self.timeButtonBackground.hidden = YES;
+    }];
 }
 
 @end

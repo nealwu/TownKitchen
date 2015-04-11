@@ -8,10 +8,12 @@
             <connections>
                 <outlet property="addressAndTimeView" destination="AOA-OB-1Dy" id="apH-KB-AQ5"/>
                 <outlet property="addressButton" destination="bm0-nc-KXZ" id="VuP-Ea-sgn"/>
+                <outlet property="addressButtonBackground" destination="qbE-Ej-gLx" id="o8z-Fp-WBZ"/>
                 <outlet property="addressLabel" destination="IDY-s4-GfD" id="KrY-Yr-JNe"/>
                 <outlet property="checkoutOrderButton" destination="OGD-Ds-T7N" id="cor-7E-6WH"/>
                 <outlet property="tableView" destination="aeg-9W-wnG" id="Q96-2u-Nhn"/>
                 <outlet property="timeButton" destination="IBX-VA-ugp" id="myH-pB-Wvh"/>
+                <outlet property="timeButtonBackground" destination="2PE-SV-rQh" id="b95-Dz-vSm"/>
                 <outlet property="timePickerView" destination="HoM-o7-q09" id="GZG-cS-XAX"/>
                 <outlet property="totalPriceLabel" destination="a1r-IL-fC0" id="jFt-dJ-O4K"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7qS-4k-evC"/>
@@ -39,13 +41,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address-select-bg" translatesAutoresizingMaskIntoConstraints="NO" id="qbE-Ej-gLx" userLabel="address image bg">
                             <rect key="frame" x="0.0" y="0.0" width="218" height="30"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address-time-view-separator" translatesAutoresizingMaskIntoConstraints="NO" id="MSK-i1-eVp">
-                            <rect key="frame" x="210" y="0.0" width="10" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="10" id="DJu-eV-Sbh"/>
-                                <constraint firstAttribute="height" constant="30" id="ESY-YF-Mft"/>
-                            </constraints>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Set address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDY-s4-GfD" userLabel="Address Label">
                             <rect key="frame" x="6" y="-2" width="198" height="34"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -65,6 +60,9 @@
                                 <action selector="onAddressButtonTouchDragOutside:" destination="-1" eventType="touchDragOutside" id="rl1-q6-Y1b"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time-select-bg" translatesAutoresizingMaskIntoConstraints="NO" id="2PE-SV-rQh" userLabel="time image bg">
+                            <rect key="frame" x="213" y="0.0" width="87" height="30"/>
+                        </imageView>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-o7-q09" userLabel="Time Picker View">
                             <rect key="frame" x="220" y="-66" width="80" height="162"/>
                             <gestureRecognizers/>
@@ -86,15 +84,26 @@
                                 <action selector="onTimeButtonTouchDragOutside:" destination="-1" eventType="touchDragOutside" id="9EA-Uv-rWE"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address-time-view-separator" translatesAutoresizingMaskIntoConstraints="NO" id="MSK-i1-eVp">
+                            <rect key="frame" x="210" y="0.0" width="10" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="DJu-eV-Sbh"/>
+                                <constraint firstAttribute="height" constant="30" id="ESY-YF-Mft"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="HoM-o7-q09" secondAttribute="trailing" id="0YI-p9-BDX"/>
                         <constraint firstAttribute="centerY" secondItem="IBX-VA-ugp" secondAttribute="centerY" id="2od-ry-Te7"/>
+                        <constraint firstAttribute="trailing" secondItem="2PE-SV-rQh" secondAttribute="trailing" id="5Cp-ka-WBC"/>
                         <constraint firstItem="IDY-s4-GfD" firstAttribute="height" secondItem="bm0-nc-KXZ" secondAttribute="height" id="5xG-vK-zaR"/>
+                        <constraint firstItem="2PE-SV-rQh" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" constant="-7" id="7cE-G5-Ip3"/>
+                        <constraint firstItem="2PE-SV-rQh" firstAttribute="top" secondItem="AOA-OB-1Dy" secondAttribute="top" id="8iM-dZ-iBv"/>
                         <constraint firstItem="qbE-Ej-gLx" firstAttribute="leading" secondItem="AOA-OB-1Dy" secondAttribute="leading" id="9u7-bR-g5W"/>
                         <constraint firstAttribute="height" secondItem="IBX-VA-ugp" secondAttribute="height" id="Gmi-Uh-rAc"/>
                         <constraint firstAttribute="centerY" secondItem="IDY-s4-GfD" secondAttribute="centerY" id="Hqw-Nb-1xE"/>
+                        <constraint firstAttribute="bottom" secondItem="2PE-SV-rQh" secondAttribute="bottom" id="IUd-TR-qmT"/>
                         <constraint firstItem="HoM-o7-q09" firstAttribute="leading" secondItem="MSK-i1-eVp" secondAttribute="trailing" id="LEH-ho-u5N"/>
                         <constraint firstItem="HoM-o7-q09" firstAttribute="trailing" secondItem="IBX-VA-ugp" secondAttribute="trailing" id="P6i-fn-KSK"/>
                         <constraint firstItem="HoM-o7-q09" firstAttribute="width" secondItem="IBX-VA-ugp" secondAttribute="width" id="Pc0-dg-Nb3"/>
@@ -173,8 +182,9 @@
         </view>
     </objects>
     <resources>
-        <image name="address-select-bg" width="6" height="30"/>
+        <image name="address-select-bg" width="7" height="30"/>
         <image name="address-time-view-separator" width="10" height="30"/>
+        <image name="time-select-bg" width="6" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -12,12 +12,12 @@
           "width" : 1
         },
         "capInsets" : {
-          "right" : 12,
-          "left" : 0
+          "right" : 0,
+          "left" : 11
         }
       },
       "idiom" : "universal",
-      "filename" : "address-select-bg@2x.png",
+      "filename" : "time-select-bg@2x.png",
       "scale" : "2x"
     },
     {

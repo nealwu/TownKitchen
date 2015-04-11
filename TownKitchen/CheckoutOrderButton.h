@@ -12,6 +12,7 @@ typedef NS_ENUM(NSInteger, ButtonState) {
     ButtonStateEnterAddess,
     ButtonStateEnterTime,
     ButtonStateEnterPayment,
+    ButtonStatePlaceOrderInactive,
     ButtonStatePlaceOrder
 };
 
@@ -27,5 +28,7 @@ typedef NS_ENUM(NSInteger, ButtonState) {
 
 @property (assign, nonatomic) ButtonState buttonState;
 @property (weak, nonatomic) id<CheckoutOrderButtonDelegate> delegate;
+
+- (void)animateButtonToState:(ButtonState)buttonState;
 
 @end
