@@ -46,6 +46,10 @@
     self.darkViewFilter.layer.mask = gradientMask;
 }
 
+- (void)prepareForReuse {
+    self.backgroundImageView.image = nil;
+}
+
 #pragma mark - Custom Setters
 
 - (void)setDate:(NSDate *)date andMenuOption:(MenuOption *)menuOptionObject {
