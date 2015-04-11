@@ -62,10 +62,10 @@
 }
 
 - (void)animateToActiveState {
-    NSLog(@"scale animation");
     POPBasicAnimation *scaleSmallAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleSmallAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(0.8f, 0.8f)];
     scaleSmallAnimation.duration = 0.3;
+    scaleSmallAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     
     POPSpringAnimation *scaleSpringAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleSpringAnimation.velocity = [NSValue valueWithCGSize:CGSizeMake(20.f, 20.f)];

@@ -26,6 +26,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) DeliveryButton *deliveryButton;
+@property (assign, nonatomic) BOOL didAnimateActiveDeliveryButtonOnFirstLoad;
 @property (strong, nonatomic) NSArray *inventoryItems;
 @property (strong, nonatomic) NSArray *displayInventories;
 
@@ -41,21 +42,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.inventoryItems = [[ParseAPI getInstance] inventoryItems];
-
+    
     NSMutableArray *uniqueInventories = [NSMutableArray array];
     NSMutableSet *dates = [NSMutableSet set];
-
+    
     for (Inventory *inventory in self.inventoryItems) {
         NSString *monthAndDay = [DateUtils monthAndDayFromDate:inventory.dateOffered];
-
+        
         if (![dates containsObject:monthAndDay]) {
             [uniqueInventories addObject:inventory];
             [dates addObject:monthAndDay];
         }
     }
-
+    
     // Sort uniqueInventories by date
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateOffered" ascending:YES];
     self.displayInventories = [uniqueInventories sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
@@ -64,37 +65,43 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"DayCell" bundle:nil] forCellReuseIdentifier:@"DayCell"];
-
+    
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
-
-    self.deliveryButton = [[DeliveryButton alloc] init];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onDidReceiveNotification:) name:@"TKDidReceiveNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDidReceiveNotification:) name:@"TKDidReceiveNotification" object:nil];
+    
+    [self setupButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self checkForActiveDelivery];
+    // When loading view for first time, animate the button
+    if (!self.didAnimateActiveDeliveryButtonOnFirstLoad) {
+        [self checkForActiveDeliveryAnimated:YES];
+        
+    } else {
+        [self checkForActiveDeliveryAnimated:NO];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"current user = %@", [PFUser currentUser]);
-
+    
     if (![PFUser currentUser]) {
         [self onLogoutButton];
     } else {
         NSArray *orders = [[ParseAPI getInstance] ordersForUser:[PFUser currentUser]];
         NSDate *now = [NSDate date];
-
+        
         for (Order *order in orders) {
             if ([order.status isEqualToString:@"delivered"]) {
                 double minuteTimeDifference = [now timeIntervalSinceDate:order.deliveryDateAndTime] / 60.0;
                 NSLog(@"Time difference: %lf minutes", minuteTimeDifference);
-
+                
                 // Present the ReviewViewController if the order was delivered at least 30 minutes ago and at most 3 days ago
                 if (minuteTimeDifference > 30 && minuteTimeDifference < 3 * 24 * 60) {
                     NSLog(@"Presenting ReviewViewController");
@@ -109,23 +116,39 @@
 
 - (void)onDidReceiveNotification:(NSNotification *)notification {
     NSLog(@"DaySelectViewController received notification: %@", notification);
-    [self checkForActiveDelivery];
+    [self checkForActiveDeliveryAnimated:YES];
 }
 
 - (void)checkForActiveDelivery {
+    [self checkForActiveDeliveryAnimated:NO];
+}
+
+- (void)checkForActiveDeliveryAnimated:(BOOL)animated {
     self.activeOrder = [[ParseAPI getInstance] orderBeingDeliveredForUser:[PFUser currentUser]];
-    [self setupButtons];
+    
+    if (self.activeOrder && animated) {
+        if (!self.didAnimateActiveDeliveryButtonOnFirstLoad) {
+            // when loading view for first time, start the animation after a delay
+            self.didAnimateActiveDeliveryButtonOnFirstLoad = YES;
+            [self animateDeliveryButtonEnabledWithDelay];
+            
+        } else {
+            [self animateDeliveryButtonEnabled];
+        }
+        
+    } else if (self.activeOrder) {
+        self.deliveryButton.active = YES;
+        
+    } else {
+        self.deliveryButton.active = NO;
+    }
 }
 
 - (void)setupButtons {
+    NSLog(@"setup buttons");
     UIButton *deliveriesButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
     [deliveriesButton setImage:[UIImage imageNamed:@"car-button"] forState:UIControlStateNormal];
     [deliveriesButton addTarget:self action:@selector(onDeliveriesButton) forControlEvents:UIControlEventTouchUpInside];
-//    deliveriesButton.autoresizingMask =
-//          UIViewAutoresizingFlexibleLeftMargin
-//        | UIViewAutoresizingFlexibleRightMargin
-//        | UIViewAutoresizingFlexibleTopMargin
-//        | UIViewAutoresizingFlexibleBottomMargin;
     
     // Create profile button
     CGRect profileButtonFrame = self.header.leftView.bounds;
@@ -138,12 +161,9 @@
     
     // Create active delivery button
     CGRect activeDeliveryButtonFrame = self.header.rightView.bounds;
-    self.deliveryButton = [[DeliveryButton alloc] initWithFrame:activeDeliveryButtonFrame];
-    [self.deliveryButton addTarget:self action:@selector(onActiveOrderButton) forControlEvents:UIControlEventTouchUpInside];
-    if (self.activeOrder) {
-        self.deliveryButton.active = YES;
-    } else {
-        self.deliveryButton.active = NO;
+    if (!self.deliveryButton) {
+        self.deliveryButton = [[DeliveryButton alloc] initWithFrame:activeDeliveryButtonFrame];
+        [self.deliveryButton addTarget:self action:@selector(onActiveOrderButton) forControlEvents:UIControlEventTouchUpInside];
     }
     
     [self.header.rightView.subviews.firstObject removeFromSuperview];
@@ -162,13 +182,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Inventory *inventory = self.displayInventories[indexPath.row];
-
+    
     DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
     [cell setDate:inventory.dateOffered andMenuOption:inventory.menuOptionObject];
-
+    
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-
+    
     return cell;
 }
 
@@ -271,18 +291,22 @@
 
 - (NSArray *)filterInventoryItemsByDay:(NSDate *)date {
     NSMutableArray *filteredItems = [NSMutableArray array];
-
+    
     for (Inventory *inventory in self.inventoryItems) {
         if ([DateUtils compareDayFromDate:inventory.dateOffered withDate:date]) {
             [filteredItems addObject:inventory];
         }
     }
-
+    
     return filteredItems;
 }
 
 - (void)animateDeliveryButtonEnabled {
     [self.deliveryButton setButtonState:ButtonStateActive animated:YES];
+}
+
+- (void)animateDeliveryButtonEnabledWithDelay {
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animateDeliveryButtonEnabled) userInfo:nil repeats:NO];
 }
 
 @end
