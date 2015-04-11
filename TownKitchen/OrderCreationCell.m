@@ -41,8 +41,9 @@
 
 - (void)setMenuOption:(MenuOption *)menuOption {
     _menuOption = menuOption;
-    self.mealDescription.text = menuOption.mealDescription;
-//    [self.mealImage setImageWithURL:[NSURL URLWithString:menuOption.imageURL]];
+    NSString *mealDescriptionString = [NSString stringWithFormat:@"%@ %C $%.2f", menuOption.mealDescription, 0x2014, [menuOption.price floatValue]];
+    self.mealDescription.text = mealDescriptionString;
+    
     
     NSURL *imageUrl = [[NSURL alloc] initWithString:menuOption.imageURL];
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl];

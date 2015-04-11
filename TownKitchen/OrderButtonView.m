@@ -82,7 +82,7 @@
     if ([price isEqualToNumber:[NSNumber numberWithInteger:0]]) {
         return;
     } else {
-        self.priceLabel.text = [NSString stringWithFormat:@"%.2f", [price floatValue]];
+        self.priceLabel.text = [NSString stringWithFormat:@"$%.2f", [price floatValue]];
     }
 }
 
