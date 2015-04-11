@@ -29,6 +29,7 @@
 		2B2F8D4D1AD220B100FB4DE3 /* SetPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F8D4C1AD220B100FB4DE3 /* SetPaymentButton.m */; };
 		2B2F8D511AD2210400FB4DE3 /* SetPaymentButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B2F8D501AD2210400FB4DE3 /* SetPaymentButton.xib */; };
 		2B424BD51ABA6BC00064D1A1 /* TKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */; };
+		2B45F4671AD8AC2A00F6077A /* DeliveryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B45F4661AD8AC2A00F6077A /* DeliveryButton.m */; };
 		2B4DF8AB1ABF97B500D20303 /* OrderConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */; };
 		2B4DF8AC1ABF97B500D20303 /* OrderConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */; };
 		2B6808641ACF8EBB009784D1 /* ReviewLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6808631ACF8EBB009784D1 /* ReviewLabelsView.m */; };
@@ -140,6 +141,8 @@
 		2B2F8D501AD2210400FB4DE3 /* SetPaymentButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetPaymentButton.xib; sourceTree = "<group>"; };
 		2B424BD31ABA6BC00064D1A1 /* TKNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavigationBar.h; sourceTree = "<group>"; };
 		2B424BD41ABA6BC00064D1A1 /* TKNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavigationBar.m; sourceTree = "<group>"; };
+		2B45F4651AD8AC2A00F6077A /* DeliveryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryButton.h; sourceTree = "<group>"; };
+		2B45F4661AD8AC2A00F6077A /* DeliveryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryButton.m; sourceTree = "<group>"; };
 		2B4DF8A81ABF97B500D20303 /* OrderConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmationViewController.h; sourceTree = "<group>"; };
 		2B4DF8A91ABF97B500D20303 /* OrderConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmationViewController.m; sourceTree = "<group>"; };
 		2B4DF8AA1ABF97B500D20303 /* OrderConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderConfirmationViewController.xib; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 			children = (
 				2BF8B51C1ABA8FF100D1C5B5 /* CheckoutOrderButton.h */,
 				2BF8B51D1ABA8FF100D1C5B5 /* CheckoutOrderButton.m */,
+				2B45F4651AD8AC2A00F6077A /* DeliveryButton.h */,
+				2B45F4661AD8AC2A00F6077A /* DeliveryButton.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -718,6 +723,7 @@
 				91788D8A1AAD0A2B0038FE1F /* OrderSummaryView.m in Sources */,
 				2BC7C2D41AB614F6003624DD /* CircleStepperView.m in Sources */,
 				2B01870C1ABF834500A3FCB4 /* OrderStatusDetailView.m in Sources */,
+				2B45F4671AD8AC2A00F6077A /* DeliveryButton.m in Sources */,
 				2B187CAD1AB9319B00FCCF78 /* CheckoutAnimationController.m in Sources */,
 				2B7110031ABE84E900A9B896 /* OrderButtonView.m in Sources */,
 				2B4DF8AB1ABF97B500D20303 /* OrderConfirmationViewController.m in Sources */,

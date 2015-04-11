@@ -14,6 +14,7 @@
 #import "OrderCreationViewController.h"
 #import "DateUtils.h"
 #import "DaySelectAnimationController.h"
+#import "DeliveryButton.h"
 #import "OrdersViewController.h"
 #import "OrderStatusViewController.h"
 #import "DeliveryStatusViewController.h"
@@ -24,6 +25,7 @@
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate, OrderStatusViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) DeliveryButton *deliveryButton;
 @property (strong, nonatomic) NSArray *inventoryItems;
 @property (strong, nonatomic) NSArray *displayInventories;
 
@@ -66,6 +68,8 @@
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
+
+    self.deliveryButton = [[DeliveryButton alloc] init];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
@@ -116,7 +120,6 @@
 - (void)setupButtons {
     UIButton *deliveriesButton = [[UIButton alloc] initWithFrame:self.header.rightView.bounds];
     [deliveriesButton setImage:[UIImage imageNamed:@"car-button"] forState:UIControlStateNormal];
-//    deliveriesButton.titleLabel.font = [UIFont fontWithName:@"Futura" size:17];
     [deliveriesButton addTarget:self action:@selector(onDeliveriesButton) forControlEvents:UIControlEventTouchUpInside];
 //    deliveriesButton.autoresizingMask =
 //          UIViewAutoresizingFlexibleLeftMargin
@@ -135,22 +138,19 @@
     
     // Create active delivery button
     CGRect activeDeliveryButtonFrame = self.header.rightView.bounds;
-    UIButton *activeDeliveryButton = [[UIButton alloc] initWithFrame:activeDeliveryButtonFrame];
-    [activeDeliveryButton addTarget:self action:@selector(onActiveOrderButton) forControlEvents:UIControlEventTouchUpInside];
+    self.deliveryButton = [[DeliveryButton alloc] initWithFrame:activeDeliveryButtonFrame];
+    [self.deliveryButton addTarget:self action:@selector(onActiveOrderButton) forControlEvents:UIControlEventTouchUpInside];
     if (self.activeOrder) {
-        activeDeliveryButton.alpha = 1.0;
-        activeDeliveryButton.userInteractionEnabled = YES;
+        self.deliveryButton.active = YES;
     } else {
-        activeDeliveryButton.alpha = 0.5;
-        activeDeliveryButton.userInteractionEnabled = NO;
+        self.deliveryButton.active = NO;
     }
-    [activeDeliveryButton setImage:[UIImage imageNamed:@"map-button"] forState:UIControlStateNormal];
     
     [self.header.rightView.subviews.firstObject removeFromSuperview];
     if ([[[PFUser currentUser] valueForKey:@"isDriver"] boolValue]) {
         [self.header.rightView addSubview:deliveriesButton];
     } else {
-        [self.header.rightView addSubview:activeDeliveryButton];
+        [self.header.rightView addSubview:self.deliveryButton];
     }
 }
 
@@ -281,6 +281,8 @@
     return filteredItems;
 }
 
-- (void)animateDeliveryButton
+- (void)animateDeliveryButtonEnabled {
+    [self.deliveryButton setButtonState:ButtonStateActive animated:YES];
+}
 
 @end
