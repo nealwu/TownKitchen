@@ -223,14 +223,10 @@ CGFloat const statusBarHeight = 20.0;
     dateLabelsViewSmall.weekdayLabel.text = self.selectedCell.weekday;
     dateLabelsViewSmall.monthAndDayLabel.text = self.selectedCell.monthAndDay;
     [header.titleView addSubview:dateLabelsViewSmall];
-    
-    // Create back button for header
-    UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
-    CGRect backButtonFrame = header.leftView.bounds;
-//    backButtonFrame.origin.x -= 12;
-    UIButton *backButton = [[UIButton alloc] initWithFrame:backButtonFrame];
-    [backButton setImage:backButtonImage forState:UIControlStateNormal];
-    [header.leftView addSubview:backButton];
+
+    // snapshot existing header
+    UIImageView *fromViewControllerHeader = [[UIImageView alloc] initWithFrame:header.frame];
+    fromViewControllerHeader.image = [self imageInRect:header.frame fromView:self.fromViewController.view];
     
     // Create profile button for header
     UIButton *profileButton = [[UIButton alloc] initWithFrame:header.leftView.bounds];
@@ -264,6 +260,7 @@ CGFloat const statusBarHeight = 20.0;
     UIImageView *belowCellsImageView = [self imageViewFromCellsBelowSelectedCellFrame:selectedCellFrame inViewController:self.toViewController];
     [self.containerView addSubview:belowCellsImageView];
     [self.containerView addSubview:header];  // bring header to top
+    [self.containerView addSubview:fromViewControllerHeader];
     
     // Define and set initial frames
     CATransform3D headerTitleInitialTransform = CATransform3DIdentity;
@@ -293,11 +290,12 @@ CGFloat const statusBarHeight = 20.0;
                          self.toViewController.view.hidden = NO;
                          [self.toViewController removeFromParentViewController];
                          [header removeFromSuperview];
+                         [fromViewControllerHeader removeFromSuperview];
                          [transitionContext completeTransition:YES];
                      }];
     [UIView animateWithDuration:duration * 0.5
                      animations:^{
-                         backButton.alpha = 0.0;
+                         fromViewControllerHeader.alpha = 0.0;
                      } completion:^(BOOL finished) {
                          [UIView animateWithDuration:duration * 0.5
                                           animations:^{
