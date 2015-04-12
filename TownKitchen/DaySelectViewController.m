@@ -22,6 +22,7 @@
 #import "TKHeader.h"
 #import "LoginViewController.h"
 #import "ReviewViewController.h"
+#include <AudioToolbox/AudioToolbox.h>
 
 @interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate, OrderStatusViewControllerDelegate, ProfileViewControllerDelegate>
 
@@ -70,6 +71,12 @@
     // Set up header
     UIImageView *TKLogoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header-logo"]];
     [self.header.titleView addSubview:TKLogoImageView];
+    
+    // set up debug button for driver simulation
+    UIButton *startDriverSimulationButton = [[UIButton alloc] initWithFrame:self.header.titleView.bounds];
+    startDriverSimulationButton.backgroundColor = [UIColor clearColor];
+    [startDriverSimulationButton addTarget:self action:@selector(simulateDriver) forControlEvents:UIControlEventTouchUpInside];
+    [self.header.titleView addSubview:startDriverSimulationButton];
     
     // Initialize animation controller
     self.daySelectAnimationController = [DaySelectAnimationController new];
@@ -321,6 +328,10 @@
 
 - (void)animateDeliveryButtonEnabledWithDelay {
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animateDeliveryButtonEnabled) userInfo:nil repeats:NO];
+}
+
+- (void)simulateDriver {
+    [[ParseAPI getInstance] simulateDeliveryForCurrentUser];
 }
 
 @end

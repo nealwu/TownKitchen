@@ -33,5 +33,6 @@
 - (void)setCurrentUserPreferredTime:(NSDate *)date;
 - (void)setCurrentUserPaymentMethod:(NSString *)details;
 - (void)forgetCurrentUserOrderPreferences;
+- (void)simulateDeliveryForCurrentUser;
 
 @end

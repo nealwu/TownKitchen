@@ -20,6 +20,7 @@
 		2B0DE7CC1ADA352600B80201 /* ProfileMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0DE7CA1ADA352600B80201 /* ProfileMenuCell.xib */; };
 		2B0DE7D01ADA3A8400B80201 /* ProfileLogoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0DE7CE1ADA3A8400B80201 /* ProfileLogoutCell.m */; };
 		2B0DE7D11ADA3A8400B80201 /* ProfileLogoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0DE7CF1ADA3A8400B80201 /* ProfileLogoutCell.xib */; };
+		2B0DE7D31ADA597300B80201 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0DE7D21ADA597300B80201 /* AudioToolbox.framework */; };
 		2B0F10BF1AC26312001CD067 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0F10BD1AC26312001CD067 /* IntroViewController.m */; };
 		2B0F10C01AC26312001CD067 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0F10BE1AC26312001CD067 /* IntroViewController.xib */; };
 		2B0F10C31AC2668C001CD067 /* IntroSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0F10C21AC2668C001CD067 /* IntroSlideView.m */; };
@@ -129,6 +130,7 @@
 		2B0DE7CD1ADA3A8400B80201 /* ProfileLogoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileLogoutCell.h; sourceTree = "<group>"; };
 		2B0DE7CE1ADA3A8400B80201 /* ProfileLogoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileLogoutCell.m; sourceTree = "<group>"; };
 		2B0DE7CF1ADA3A8400B80201 /* ProfileLogoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileLogoutCell.xib; sourceTree = "<group>"; };
+		2B0DE7D21ADA597300B80201 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2B0F10BC1AC26312001CD067 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		2B0F10BD1AC26312001CD067 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		2B0F10BE1AC26312001CD067 /* IntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0DE7D31ADA597300B80201 /* AudioToolbox.framework in Frameworks */,
 				2BA0C18D1AACEDE700E9BBDB /* CoreLocation.framework in Frameworks */,
 				91788D861AA94BAF0038FE1F /* MapKit.framework in Frameworks */,
 				2755364638D9F2E44A876E03 /* libPods-TownKitchen.a in Frameworks */,
@@ -557,6 +560,7 @@
 		F1639EBC1984B8107DFB54BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B0DE7D21ADA597300B80201 /* AudioToolbox.framework */,
 				2BA0C18C1AACEDE700E9BBDB /* CoreLocation.framework */,
 				91788D851AA94BAF0038FE1F /* MapKit.framework */,
 				F07D65BDB4054CEC1A52289A /* libPods-TownKitchen.a */,

@@ -16,6 +16,8 @@
 #import "MenuOption.h"
 #import "Order.h"
 
+#include <AudioToolbox/AudioToolbox.h>
+
 @implementation ParseAPI
 
 + (ParseAPI *)getInstance {
@@ -233,6 +235,25 @@
             NSLog(@"%@", error);
         }
     }];
+}
+
+- (void)simulateDeliveryForCurrentUser {
+    [self vibrate];
+    [PFCloud callFunctionInBackground:@"simulateDelivery"
+                       withParameters:@{}
+                                block:^(id object, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"Request to simulate delivery successful. Response: %@", object);
+                                        [self vibrate];
+                                        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(vibrate) userInfo:nil repeats:NO];
+                                    } else {
+                                        NSLog(@"%@", error);
+                                    }
+                                }];
+}
+
+- (void)vibrate {
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 @end
