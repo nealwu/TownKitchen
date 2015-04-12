@@ -13,6 +13,7 @@
 #import "ParseAPI.h"
 #import "ReviewLabelsView.h"
 #import "TKHeader.h"
+#import <POP.h>
 
 @interface ReviewViewController () <UITextViewDelegate>
 
@@ -59,10 +60,42 @@
     self.commentView.layer.cornerRadius = 8;
     [self.commentView setTextContainerInset:UIEdgeInsetsMake(8, 8, 8, 8)];
 
-    self.submitButton.alpha = 0;
+    self.submitButton.layer.opacity = 0;
     self.submitButton.enabled = NO;
     self.ratingStars = 0;
 }
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqual:@"Leave a comment (optional)"]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    if (textView.text.length == 0) {
+        textView.text = @"Leave a comment (optional)";
+        textView.textColor = [UIColor grayColor];
+    }
+
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSRange resultRange = [text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:NSBackwardsSearch];
+    if ([text length] == 1 && resultRange.location != NSNotFound) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+
+    return YES;
+}
+
+#pragma mark - Actions
 
 - (IBAction)onOneStarTap:(id)sender {
     NSLog(@"One star tap");
@@ -119,31 +152,6 @@
     [self animateCommentBoxAndSubmitButton];
 }
 
-- (void)animateCommentBoxAndSubmitButton {
-    self.submitButton.enabled = YES;
-    [UIView animateWithDuration:0.25 animations:^{
-        self.submitButton.alpha = 1;
-    }];
-}
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    if ([textView.text isEqual:@"Leave a comment (optional)"]) {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-
-    return YES;
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    if (textView.text.length == 0) {
-        textView.text = @"Leave a comment (optional)";
-        textView.textColor = [UIColor grayColor];
-    }
-
-    return YES;
-}
-
 - (IBAction)onGeneralTap:(id)sender {
     [self.commentView endEditing:YES];
 }
@@ -160,6 +168,32 @@
     self.order.status = @"review_declined";
     [self.order save];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)animateCommentBoxAndSubmitButton {
+    if (self.submitButton.enabled) {
+        return;
+    }
+    self.submitButton.enabled = YES;
+    
+    POPBasicAnimation *scaleSmallAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleSmallAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(0.1f, 0.1f)];
+    scaleSmallAnimation.duration = 0.0;
+    
+    POPSpringAnimation *scaleSpringAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleSpringAnimation.velocity = [NSValue valueWithCGSize:CGSizeMake(8.f, 8.f)];
+    scaleSpringAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.f, 1.f)];
+    scaleSpringAnimation.springBounciness = 12.0f;
+    
+    POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    opacityAnimation.toValue = @(1.0);
+    opacityAnimation.duration = 0.5;
+    
+    [scaleSmallAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+        [self.submitButton.layer pop_addAnimation:scaleSpringAnimation forKey:@"layerScaleSpringAnimation"];
+    }];
+    [self.submitButton.layer pop_addAnimation:scaleSmallAnimation forKey:@"layerScaleSmallAnimation"];
+    [self.submitButton.layer pop_addAnimation:opacityAnimation forKey:@"layerFullOpacityAnimation"];
 }
 
 @end
