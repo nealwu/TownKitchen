@@ -209,4 +209,16 @@
     }];
 }
 
+- (void)setCurrentUserPaymentMethod:(NSString *)details {
+    // do not store actual card info on server
+    [[PFUser currentUser] setValue:details forKey:@"paymentMethod"];
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Successfully saved payment method");
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
 @end

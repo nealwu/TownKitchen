@@ -25,15 +25,15 @@
 @property (weak, nonatomic) Order *order;  // orderCreationViewController owns Order object
 @property (strong, nonatomic) NSArray *menuOptionShortNames;
 @property (strong, nonatomic) NSDictionary *shortNameToObject;
-@property (assign, nonatomic) ButtonState buttonState;
-@property (weak, nonatomic) IBOutlet CheckoutOrderButton *checkoutOrderButton;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSDate *deliveryTime;
-
+@property (strong, nonatomic) NSString *paymentMethod;
+@property (assign, nonatomic) ButtonState buttonState;
 @property (assign, nonatomic) BOOL didSetAddress;
 
 @property (weak, nonatomic) id<CheckoutViewControllerDelegate> delegate;
+
+@property (weak, nonatomic) IBOutlet CheckoutOrderButton *checkoutOrderButton;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @end

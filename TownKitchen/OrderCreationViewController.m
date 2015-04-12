@@ -234,6 +234,7 @@
 - (void)onSetPaymentButtonFromPaymentViewController:(PaymentViewController *)pvc withCardValidity:(BOOL)valid {
     NSLog(@"PaymentViewControllerDelegate method called");
     if (valid) {
+        [[ParseAPI getInstance] setCurrentUserPaymentMethod:@"card"];
         self.checkoutViewController.buttonState = ButtonStatePlaceOrder;
     } else {
         self.checkoutViewController.buttonState = ButtonStateEnterPayment;
@@ -363,12 +364,16 @@
     NSString *preferredAddress = (NSString *)[[PFUser currentUser] valueForKey:@"preferredAddress"];
     NSString *preferredAddressShort = (NSString *)[[PFUser currentUser] valueForKey:@"preferredAddressShort"];
     NSDate *preferredTime = (NSDate *)[[PFUser currentUser] valueForKey:@"preferredTime"];
+    NSString *paymentMethod = (NSString *)[[PFUser currentUser] valueForKey:@"paymentMethod"];
     if (preferredAddress && preferredAddressShort) {
         self.checkoutViewController.address = preferredAddress;
         self.checkoutViewController.addressLabel.text = preferredAddressShort;
     }
     if (preferredTime) {
         self.checkoutViewController.deliveryTime = preferredTime;
+    }
+    if (paymentMethod) {
+        self.checkoutViewController.paymentMethod = paymentMethod;
     }
 }
 

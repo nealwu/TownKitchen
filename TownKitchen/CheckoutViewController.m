@@ -143,6 +143,13 @@
     [self hideTimeButtonBackgroundInstant];
 }
 
+- (void)setPaymentMethod:(NSString *)paymentMethod {
+    _paymentMethod = paymentMethod;
+    if (paymentMethod) {
+        self.buttonState = ButtonStatePlaceOrder;
+    }
+}
+
 #pragma mark - Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
