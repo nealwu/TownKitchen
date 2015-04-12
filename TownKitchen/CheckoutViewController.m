@@ -608,33 +608,13 @@
                      }];
 }
 
-- (void)displayPopupViewController:(UIViewController *)viewController {
-    [self addChildViewController:viewController];
-    viewController.view.frame = [self frameForPopupViewController];
-    [self.view addSubview:viewController.view];
-    [viewController didMoveToParentViewController:self];
-}
-
 - (CGRect)frameForModalViewController {
-    CGFloat parentWidth = self.view.bounds.size.width;
-    CGFloat parentHeight = self.view.bounds.size.height;
+    CGFloat parentWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat parentHeight = [[UIScreen mainScreen] bounds].size.height;
     CGFloat horizontalGapSize = 10.0;
     CGFloat navigationBarHeight = 64;
     
-    return CGRectMake(horizontalGapSize, navigationBarHeight + horizontalGapSize, parentWidth - horizontalGapSize * 2, parentHeight - horizontalGapSize - navigationBarHeight);
-}
-
-- (CGRect)frameForPopupViewController {
-    CGFloat popupWidth = 240;
-    CGFloat popupHeight = 280;
-    CGFloat parentWidth = self.view.bounds.size.width;
-    CGFloat parentHeight = self.view.bounds.size.height;
-    
-    CGRect popupFrame = CGRectMake(parentWidth / 2.0 - popupWidth / 2.0,
-                                   parentHeight / 2.0 - popupHeight / 2.0,
-                                   popupWidth,
-                                   popupHeight);
-    return popupFrame;
+    return CGRectMake(0, 0, parentWidth - horizontalGapSize * 2, parentHeight - horizontalGapSize - navigationBarHeight);
 }
 
 @end
