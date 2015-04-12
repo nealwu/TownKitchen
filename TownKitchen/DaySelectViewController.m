@@ -17,12 +17,13 @@
 #import "DeliveryButton.h"
 #import "OrdersViewController.h"
 #import "OrderStatusViewController.h"
+#import "ProfileViewController.h"
 #import "DeliveryStatusViewController.h"
 #import "TKHeader.h"
 #import "LoginViewController.h"
 #import "ReviewViewController.h"
 
-@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate, OrderStatusViewControllerDelegate>
+@interface DaySelectViewController () <UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, DeliveryStatusViewControllerDelegate, LoginViewControllerDelegate, OrderStatusViewControllerDelegate, ProfileViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) DeliveryButton *deliveryButton;
@@ -153,7 +154,7 @@
     // Create profile button
     CGRect profileButtonFrame = self.header.leftView.bounds;
     UIButton *profileButton = [[UIButton alloc] initWithFrame:profileButtonFrame];
-    [profileButton addTarget:self action:@selector(onLogoutButton) forControlEvents:UIControlEventTouchUpInside];
+    [profileButton addTarget:self action:@selector(onProfileButton) forControlEvents:UIControlEventTouchUpInside];
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button"] forState:UIControlStateNormal];
     [profileButton setImage:[UIImage imageNamed:@"user-profile-button-highlighted"] forState:UIControlStateHighlighted];
     [self.header.leftView.subviews.firstObject removeFromSuperview];
@@ -243,6 +244,12 @@
     [self presentViewController:dsvc animated:YES completion:nil];
 }
 
+- (void)onProfileButton {
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+    profileViewController.delegate = self;
+    [self presentViewController:profileViewController animated:YES completion:nil];
+}
+
 - (void)onLogoutButton {
     [PFUser logOut];
     LoginViewController *lvc = [[LoginViewController alloc] init];
@@ -261,6 +268,12 @@
 
 - (void)loginViewController:(LoginViewController *)loginViewController didLoginUser:(PFUser *)user {
     [loginViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - ProfileViewControllerDelegate Methods
+
+- (void)profileViewControllerDidLogout:(ProfileViewController *)pvc {
+    [self onLogoutButton];
 }
 
 #pragma mark - DeliveryStatusViewControllerDelegate Methods

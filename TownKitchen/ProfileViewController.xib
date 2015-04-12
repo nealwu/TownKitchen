@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController">
+            <connections>
+                <outlet property="header" destination="UZm-WM-gHC" id="JeF-vG-PTc"/>
+                <outlet property="tableView" destination="FET-B4-VB4" id="Aii-4G-Yc3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZm-WM-gHC" customClass="TKHeader">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Ej8-9S-VbC"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="FET-B4-VB4">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="FET-B4-VB4" firstAttribute="top" secondItem="UZm-WM-gHC" secondAttribute="bottom" id="3kT-lq-kJ5"/>
+                <constraint firstAttribute="trailing" secondItem="UZm-WM-gHC" secondAttribute="trailing" id="4pW-lC-OmJ"/>
+                <constraint firstAttribute="bottom" secondItem="FET-B4-VB4" secondAttribute="bottom" id="MCW-1B-Zqc"/>
+                <constraint firstAttribute="trailing" secondItem="FET-B4-VB4" secondAttribute="trailing" id="Nrn-22-vEQ"/>
+                <constraint firstItem="FET-B4-VB4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ftc-3W-aWE"/>
+                <constraint firstItem="UZm-WM-gHC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kxv-KN-jXs"/>
+                <constraint firstItem="UZm-WM-gHC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yc0-ie-5vr"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="140" y="154"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
