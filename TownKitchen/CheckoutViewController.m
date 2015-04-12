@@ -126,7 +126,21 @@
 
 - (void)setDeliveryTime:(NSDate *)deliveryTime {
     _deliveryTime = deliveryTime;
-    [self hideTimeButtonBackground];
+    
+    NSDateComponents *deliveryTimeComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:deliveryTime];
+    
+    [self.timeOptionDateObjects enumerateObjectsUsingBlock:^(NSDate *date, NSUInteger idx, BOOL *stop) {
+        NSDateComponents *timeComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
+        if (deliveryTimeComponents.hour == timeComponents.hour &&
+            deliveryTimeComponents.minute == timeComponents.minute) {
+            NSLog(@"found match at index %d: %@, %@", idx, deliveryTimeComponents, timeComponents);
+            [self.timePickerView selectRow:idx inComponent:0 animated:NO];
+            [self pickerView:self.timePickerView didSelectRow:idx inComponent:0];
+            *stop = YES;
+        }
+    }];
+
+    [self hideTimeButtonBackgroundInstant];
 }
 
 #pragma mark - Table view methods
@@ -242,7 +256,6 @@
 }
 
 - (IBAction)onTimeButton:(UIButton *)sender {
-    self.timeButton.hidden = YES;
     [self unDimTimeLabel];
     [self hideTimeButtonBackground];
     [self.timePickerView selectRow:2 inComponent:0 animated:YES];
@@ -354,11 +367,18 @@
 }
 
 - (void)hideTimeButtonBackground {
+    self.timeButton.hidden = YES;
     [UIView transitionWithView:self.timeButtonBackground duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.timeButtonBackground.alpha = 0.0;
     } completion:^(BOOL finished) {
         self.timeButtonBackground.hidden = YES;
     }];
+}
+
+- (void)hideTimeButtonBackgroundInstant {
+    self.timeButton.hidden = YES;
+    self.timeButtonBackground.alpha = 0.0;
+    self.timeButtonBackground.hidden = YES;
 }
 
 @end
