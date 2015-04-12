@@ -8,11 +8,23 @@
 
 #import "CheckoutViewController.h"
 
-#import "AddressInputViewController.h"
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
 
-@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, CheckoutOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+#import "AppDelegate.h"
+#import "LocationSelectViewController.h"
+#import <MBProgressHUD.h>
+#import "OrderConfirmationViewController.h"
+#import "ParseAPI.h"
+#import "PaymentViewController.h"
+#import "PopupAnimationController.h"
+#import "PopupDismissAnimationController.h"
+#import "STPCard.h"
+#import "STPAPIClient.h"
+#import <UIView+MTAnimation.h>
+
+
+@interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, CheckoutOrderButtonDelegate, LocationSelectViewControllerDelegate, PaymentViewControllerDelegate, OrderConfirmationViewControllerDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -29,6 +41,10 @@
 @property (strong, nonatomic) NSArray *timeOptionDateObjects;
 @property (strong, nonatomic) NSDateFormatter *timePickerDateFormatter;
 
+@property (strong, nonatomic) PaymentViewController *paymentViewController;
+@property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
+@property (strong, nonatomic) OrderConfirmationViewController *orderConfirmationViewController;
+
 @property (assign, nonatomic) BOOL didSetTime;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
@@ -42,47 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // set up tableView
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
-    [self.tableView reloadData];
-    
-    // initialize button
-    self.checkoutOrderButton.delegate = self;
-    
-    // initialize time picker view
-    self.timeOptionTitles = @[@"Set time",
-                              @"11:00am",
-                              @"11:30am",
-                              @"12:00pm",
-                              @"12:30pm",
-                              @"1:00pm",
-                              @"1:30pm",
-                              @"2:00pm"];
-    self.timePickerDateFormatter = [[NSDateFormatter alloc] init];
-    [self.timePickerDateFormatter setDateFormat:@"hh:mma"];
-    
-    // populate corresponding date objects (UTC)
-    NSMutableArray *mutableTimeOptionDateObjects = [NSMutableArray array];
-    for (NSString *dateString in self.timeOptionTitles) {
-        NSDate *date = [self.timePickerDateFormatter dateFromString:dateString];
-        if (date) {
-            [mutableTimeOptionDateObjects addObject: date];
-            
-        } else {
-            NSDate *dummyDate = [NSDate dateWithTimeIntervalSince1970:0];
-            [mutableTimeOptionDateObjects addObject: dummyDate];
-        }
-    }
-    self.timeOptionDateObjects = [NSArray arrayWithArray:mutableTimeOptionDateObjects];
-    //    NSLog(@"date objects: %@", self.timeOptionDateObjects);
-    
-    self.timePickerView.dataSource = self;
-    self.timePickerView.delegate = self;
-//    self.timePickerView.userInteractionEnabled = NO;
-    
+    [self setup];
 }
 
 #pragma mark - Custom setters
@@ -141,17 +117,46 @@
     return cell;
 }
 
+#pragma mark - LocationSelectViewControllerDelegate Methods
+
+// user selected delivery address
+- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address withShortString:(NSString *)shortString {
+    self.order.deliveryAddress = address;
+    self.addressLabel.text = shortString;
+    self.didSetAddress = YES;
+    [self hideViewControllerAnimateToBottom:locationSelectViewController];
+}
+
+#pragma mark - PaymentViewControllerDelegate Methods
+
+- (void)onSetPaymentButtonFromPaymentViewController:(PaymentViewController *)pvc withCardValidity:(BOOL)valid {
+    NSLog(@"PaymentViewControllerDelegate method called");
+    if (valid) {
+        self.buttonState = ButtonStatePlaceOrder;
+    } else {
+        self.buttonState = ButtonStateEnterPayment;
+    }
+    [self hideViewControllerAnimateToRight:self.paymentViewController];
+}
+
 #pragma mark - CheckoutOrderButtonDelegate Methods
 
 - (void)onCheckoutOrderButton:(CheckoutOrderButton *)button withButtonState:(ButtonState)buttonState {
     if (buttonState == ButtonStateEnterPayment) {
-        [self.delegate paymentButtonPressedFromCheckoutViewController:self];
+        [self displayViewControllerAnimatedFromRight:self.paymentViewController];
         
     } else if (buttonState == ButtonStatePlaceOrder) {
         if ([self validateInput]){
-            [self.delegate orderButtonPressedFromCheckoutViewController:self];
+            [self placeOrder];
         }
     }
+}
+
+#pragma mark - OrderConfirmationViewControllerDelegate Methods
+
+- (void)onDoneButtonTappedFromOrderConfirmationViewController:(OrderConfirmationViewController *)viewController {
+    [self.orderConfirmationViewController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIPickerViewDataSource Methods
@@ -214,10 +219,30 @@
     }
 }
 
+#pragma mark - UIViewControllerTransitioningDelegate Methods
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    if (presented == self.orderConfirmationViewController) {
+        return [PopupAnimationController new];
+    } else {
+        return nil;
+    }
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    if (dismissed == self.orderConfirmationViewController) {
+        return [PopupDismissAnimationController new];
+    } else {
+        return nil;
+    }
+}
+
 #pragma mark - Actions
 
 - (IBAction)onAddressButton:(UIButton *)sender {
-    [self.delegate addressButtonPressedFromCheckoutViewController:self];
+    [self displayViewControllerAnimatedFromBottom:self.locationSelectViewController];
     [self unDimAddressLabel];
 }
 
@@ -246,6 +271,77 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)placeOrder {
+    NSLog(@"attempting to place order: %@", self.order);
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);  // slight delay to let UI draw HUD
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.order.user = [PFUser currentUser];
+        
+        STPCard *card = [[STPCard alloc] init];
+        PTKView *paymentEntryView = self.paymentViewController.paymentEntryView;
+        
+        card.number = paymentEntryView.card.number;
+        card.expMonth = paymentEntryView.card.expMonth;
+        card.expYear = paymentEntryView.card.expYear;
+        card.cvc = paymentEntryView.card.cvc;
+        NSLog(@"Set up card: %@", card);
+        NSLog(@"%@ %ld %ld %@", paymentEntryView.card.number, (long) paymentEntryView.card.expMonth, (long) paymentEntryView.card.expYear, paymentEntryView.card.cvc);
+        
+        [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
+            if (error) {
+                NSLog(@"Error while handling card: %@", error);
+            } else {
+                [self createBackendChargeWithToken:token completion:nil];
+            }
+        }];
+        
+        NSLog(@"validating order: %@", self.order);
+        NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
+        
+        if ([[ParseAPI getInstance] validateOrder:self.order]) {
+            self.order.status = @"paid";
+            self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
+            [[ParseAPI getInstance] createOrder:self.order];
+            
+            self.orderConfirmationViewController = [[OrderConfirmationViewController alloc] init];
+            self.orderConfirmationViewController.delegate = self;
+            self.orderConfirmationViewController.email = [[PFUser currentUser] email];
+            self.orderConfirmationViewController.transitioningDelegate = self;
+            self.orderConfirmationViewController.modalPresentationStyle = UIModalPresentationCustom;
+            [self presentViewController:self.orderConfirmationViewController animated:YES completion:nil];
+            
+            [[ParseAPI getInstance] sendEmailConfirmationForOrder:self.order];
+            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            [appDelegate registerForNotifications];
+        } else {
+            NSLog(@"Order failed");
+        }
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+}
+
+- (void)createBackendChargeWithToken:(STPToken *)token completion:(void (^)(NSError *))completion {
+    NSLog(@"Got the token: %@", token);
+    //    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
+    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    //    request.HTTPMethod = @"POST";
+    //    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
+    //    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
+    //
+    //    [NSURLConnection sendAsynchronousRequest:request
+    //                                       queue:[NSOperationQueue mainQueue]
+    //                           completionHandler:^(NSURLResponse *response,
+    //                                               NSData *data,
+    //                                               NSError *error) {
+    //                               if (completion != nil) {
+    //                                   completion(error);
+    //                               }
+    //                           }];
+}
 
 - (BOOL)validateInput {
     
@@ -347,6 +443,188 @@
     } completion:^(BOOL finished) {
         self.timeButtonBackground.hidden = YES;
     }];
+}
+
+- (void)setup {
+    // set up tableView
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"CheckoutOrderItemCell" bundle:nil] forCellReuseIdentifier:@"CheckoutOrderItemCell"];
+    [self.tableView reloadData];
+    
+    // initialize button
+    self.checkoutOrderButton.delegate = self;
+    
+    // initialize time picker view
+    self.timeOptionTitles = @[@"Set time",
+                              @"11:00am",
+                              @"11:30am",
+                              @"12:00pm",
+                              @"12:30pm",
+                              @"1:00pm",
+                              @"1:30pm",
+                              @"2:00pm"];
+    self.timePickerDateFormatter = [[NSDateFormatter alloc] init];
+    [self.timePickerDateFormatter setDateFormat:@"hh:mma"];
+    
+    // populate corresponding date objects (UTC)
+    NSMutableArray *mutableTimeOptionDateObjects = [NSMutableArray array];
+    for (NSString *dateString in self.timeOptionTitles) {
+        NSDate *date = [self.timePickerDateFormatter dateFromString:dateString];
+        if (date) {
+            [mutableTimeOptionDateObjects addObject: date];
+            
+        } else {
+            NSDate *dummyDate = [NSDate dateWithTimeIntervalSince1970:0];
+            [mutableTimeOptionDateObjects addObject: dummyDate];
+        }
+    }
+    self.timeOptionDateObjects = [NSArray arrayWithArray:mutableTimeOptionDateObjects];
+    //    NSLog(@"date objects: %@", self.timeOptionDateObjects);
+    
+    self.timePickerView.dataSource = self;
+    self.timePickerView.delegate = self;
+    
+    // set up viewcontrollers
+    self.locationSelectViewController = [[LocationSelectViewController alloc] init];
+    self.locationSelectViewController.delegate = self;
+    
+    self.paymentViewController = [[PaymentViewController alloc] init];
+    self.paymentViewController.delegate = self;
+}
+
+#pragma mark - ViewController presentation methods
+
+- (void)displayViewControllerAnimatedFromBottom:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    
+    // define initial and final frames
+    CGRect finalFrame = [self frameForModalViewController];
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.y += initialFrame.size.height;
+    viewController.view.frame = initialFrame;
+    
+    [self.view addSubview:viewController.view];
+    
+    // set shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:viewController.view.bounds];
+    viewController.view.layer.masksToBounds = NO;
+    viewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    viewController.view.layer.shadowRadius = 6;
+    viewController.view.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    viewController.view.layer.shadowOpacity = 0.3;
+    viewController.view.layer.shadowPath = shadowPath.CGPath;
+    
+    // animate transition
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         // complete the transition
+                         [viewController didMoveToParentViewController:self];
+                     }];
+}
+
+- (void)displayViewControllerAnimatedFromRight:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    
+    // define initial and final frames
+    CGRect finalFrame = [self frameForModalViewController];
+    CGRect initialFrame = finalFrame;
+    initialFrame.origin.x += initialFrame.size.width;
+    viewController.view.frame = initialFrame;
+    
+    [self.view addSubview:viewController.view];
+    
+    // set shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:viewController.view.bounds];
+    viewController.view.layer.masksToBounds = NO;
+    viewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    viewController.view.layer.shadowRadius = 6;
+    viewController.view.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    viewController.view.layer.shadowOpacity = 0.3;
+    viewController.view.layer.shadowPath = shadowPath.CGPath;
+    
+    // animate transition
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         // complete the transition
+                         [viewController didMoveToParentViewController:self];
+                     }];
+}
+
+- (void)hideViewControllerAnimateToBottom:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    
+    CGRect finalFrame = [self frameForModalViewController];
+    finalFrame.origin.y += finalFrame.size.height;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         [viewController.view removeFromSuperview];
+                         [viewController removeFromParentViewController];
+                     }];
+}
+
+
+- (void)hideViewControllerAnimateToRight:(UIViewController *)viewController {
+    [viewController willMoveToParentViewController:nil];
+    
+    CGRect finalFrame = [self frameForModalViewController];
+    finalFrame.origin.x += finalFrame.size.width + (self.view.frame.size.width - finalFrame.size.width) / 2;
+    
+    [UIView mt_animateWithViews:@[viewController.view]
+                       duration:0.5
+                          delay:0.0
+                 timingFunction:kMTEaseOutQuart
+                     animations:^{
+                         viewController.view.frame = finalFrame;
+                     } completion:^{
+                         [viewController.view removeFromSuperview];
+                         [viewController removeFromParentViewController];
+                     }];
+}
+
+- (void)displayPopupViewController:(UIViewController *)viewController {
+    [self addChildViewController:viewController];
+    viewController.view.frame = [self frameForPopupViewController];
+    [self.view addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self];
+}
+
+- (CGRect)frameForModalViewController {
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    CGFloat horizontalGapSize = 10.0;
+    CGFloat navigationBarHeight = 64;
+    
+    return CGRectMake(horizontalGapSize, navigationBarHeight + horizontalGapSize, parentWidth - horizontalGapSize * 2, parentHeight - horizontalGapSize - navigationBarHeight);
+}
+
+- (CGRect)frameForPopupViewController {
+    CGFloat popupWidth = 240;
+    CGFloat popupHeight = 280;
+    CGFloat parentWidth = self.view.bounds.size.width;
+    CGFloat parentHeight = self.view.bounds.size.height;
+    
+    CGRect popupFrame = CGRectMake(parentWidth / 2.0 - popupWidth / 2.0,
+                                   parentHeight / 2.0 - popupHeight / 2.0,
+                                   popupWidth,
+                                   popupHeight);
+    return popupFrame;
 }
 
 @end

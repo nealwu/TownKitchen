@@ -13,24 +13,16 @@
 #import "DateLabelsViewSmall.h"
 #import "DateUtils.h"
 #import "Inventory.h"
-#import "LocationSelectViewController.h"
-#import <MBProgressHUD.h>
 #import "Order.h"
 #import "OrderButtonView.h"
 #import "OrderCreationCell.h"
-#import "OrderConfirmationViewController.h"
 #import "OrdersViewController.h"
 #import "ParseAPI.h"
-#import "PaymentViewController.h"
-#import "PopupAnimationController.h"
-#import "PopupDismissAnimationController.h"
-#import "STPCard.h"
-#import "STPAPIClient.h"
 #import "TKHeader.h"
 #import <UIView+MTAnimation.h>
 
 
-@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, CheckoutViewControllerDelegate, PaymentViewControllerDelegate, LocationSelectViewControllerDelegate, OrderButtonViewDelegate, OrderConfirmationViewControllerDelegate, UIViewControllerTransitioningDelegate>
+@interface OrderCreationViewController () <UITableViewDelegate, UITableViewDataSource, OrderCreationTableViewCellDelegate, OrderButtonViewDelegate, UIViewControllerTransitioningDelegate>
 
 @property (assign, nonatomic) CGFloat parentWidth;
 @property (assign, nonatomic) CGFloat parentHeight;
@@ -52,9 +44,6 @@
 @property (strong, nonatomic) DateLabelsViewSmall *dateLabelsViewSmall;
 @property (strong, nonatomic) CheckoutViewController *checkoutViewController;
 @property (strong, nonatomic) UIView *filterView;
-@property (strong, nonatomic) PaymentViewController *paymentViewController;
-@property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
-@property (strong, nonatomic) OrderConfirmationViewController *orderConfirmationViewController;
 
 @end
 
@@ -84,12 +73,6 @@
         self.menuOptionShortNames = [NSArray arrayWithArray:mutableMenuOptionShortNames];
         self.shortNameToObject = [NSDictionary dictionaryWithDictionary:mutableShortNameToObject];
     }
-
-    self.locationSelectViewController = [[LocationSelectViewController alloc] init];
-    self.locationSelectViewController.delegate = self;
-    
-    self.paymentViewController = [[PaymentViewController alloc] init];
-    self.paymentViewController.delegate = self;
     
     // Set up tableView
     self.tableView.delegate = self;
@@ -137,10 +120,6 @@
     self.orderButtonView.delegate = self;
 }
 
-- (void)viewWillLayoutSubviews {
-
-}
-
 #pragma mark - OrderCreationTableViewCellDelegate Methods
 
 - (void)orderCreationTableViewCell:(OrderCreationCell *)cell didUpdateQuantity:(NSNumber *)quantity {
@@ -155,91 +134,6 @@
     NSLog(@"updated quantity for %@, quantities dictionary is now: %@", shortName, self.shortNameToQuantity);
 }
 
-#pragma mark - CheckoutViewControllerDelegate Methods
-
-- (void)addressButtonPressedFromCheckoutViewController:(CheckoutViewController *)cvc {
-    [self displayViewControllerAnimatedFromBottom:self.locationSelectViewController];
-}
-
-- (void)paymentButtonPressedFromCheckoutViewController:(CheckoutViewController *)cvc {
-    [self displayViewControllerAnimatedFromRight:self.paymentViewController];
-}
-
-// Place order
-- (void)orderButtonPressedFromCheckoutViewController:(CheckoutViewController *)cvc {
-    NSLog(@"attempting to place order: %@", self.order);
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);  // slight delay to let UI draw HUD
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        self.order.user = [PFUser currentUser];
-        
-        STPCard *card = [[STPCard alloc] init];
-        PTKView *paymentEntryView = self.paymentViewController.paymentEntryView;
-        
-        card.number = paymentEntryView.card.number;
-        card.expMonth = paymentEntryView.card.expMonth;
-        card.expYear = paymentEntryView.card.expYear;
-        card.cvc = paymentEntryView.card.cvc;
-        NSLog(@"Set up card: %@", card);
-        NSLog(@"%@ %ld %ld %@", paymentEntryView.card.number, (long) paymentEntryView.card.expMonth, (long) paymentEntryView.card.expYear, paymentEntryView.card.cvc);
-        
-        [[STPAPIClient sharedClient] createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
-            if (error) {
-                NSLog(@"Error while handling card: %@", error);
-            } else {
-                [self createBackendChargeWithToken:token completion:nil];
-            }
-        }];
-        
-        NSLog(@"validating order: %@", self.order);
-        NSLog(@"result: %hhd", (char)[[ParseAPI getInstance] validateOrder:self.order]);
-        
-        if ([[ParseAPI getInstance] validateOrder:self.order]) {
-            self.order.status = @"paid";
-            self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
-            [[ParseAPI getInstance] createOrder:self.order];
-
-            self.orderConfirmationViewController = [[OrderConfirmationViewController alloc] init];
-            self.orderConfirmationViewController.delegate = self;
-            self.orderConfirmationViewController.email = [[PFUser currentUser] email];
-            self.orderConfirmationViewController.transitioningDelegate = self;
-            self.orderConfirmationViewController.modalPresentationStyle = UIModalPresentationCustom;
-            [self presentViewController:self.orderConfirmationViewController animated:YES completion:nil];
-            
-            [[ParseAPI getInstance] sendEmailConfirmationForOrder:self.order];
-            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-            [appDelegate registerForNotifications];
-        } else {
-            NSLog(@"Order failed");
-        }
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
-}
-
-#pragma mark - LocationSelectViewControllerDelegate Methods
-
-// user selected delivery address
-- (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address withShortString:(NSString *)shortString {
-    self.order.deliveryAddress = address;
-    self.checkoutViewController.addressLabel.text = shortString;
-    self.checkoutViewController.didSetAddress = YES;
-    [self hideViewControllerAnimateToBottom:locationSelectViewController];
-}
-
-#pragma mark - PaymentViewControllerDelegate Methods
-
-- (void)onSetPaymentButtonFromPaymentViewController:(PaymentViewController *)pvc withCardValidity:(BOOL)valid {
-    NSLog(@"PaymentViewControllerDelegate method called");
-    if (valid) {
-        self.checkoutViewController.buttonState = ButtonStatePlaceOrder;
-    } else {
-        self.checkoutViewController.buttonState = ButtonStateEnterPayment;
-    }
-    [self hideViewControllerAnimateToRight:self.paymentViewController];
-}
-
 #pragma mark - OrderButtonViewDelegate Methods
 
 - (void)orderButtonPressedFromOrderButtonView:(OrderButtonView *)view {
@@ -248,33 +142,6 @@
     } else {
         // bounce plus buttons
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BouncePlusButton" object:self];
-    }
-}
-
-#pragma mark - OrderConfirmationViewControllerDelegate Methods
-
-- (void)onDoneButtonTappedFromOrderConfirmationViewController:(OrderConfirmationViewController *)viewController {
-    [self.orderConfirmationViewController dismissViewControllerAnimated:YES completion:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - UIViewControllerTransitioningDelegate Methods
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
-    if (presented == self.orderConfirmationViewController) {
-        return [PopupAnimationController new];
-    } else {
-        return nil;
-    }
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    if (dismissed == self.orderConfirmationViewController) {
-        return [PopupDismissAnimationController new];
-    } else {
-        return nil;
     }
 }
 
@@ -349,7 +216,6 @@
     
     self.checkoutViewController.shortNameToObject = self.shortNameToObject;
     self.checkoutViewController.menuOptionShortNames = self.menuOptionShortNames;
-    self.checkoutViewController.delegate = self;
     
     [self setLeftButtonToCancel];
     [self displayViewControllerAnimatedFromBottomWithFilter:self.checkoutViewController];
@@ -381,35 +247,19 @@
     // dismiss checkout view
     [self setLeftButtonToBack];
     [self hideViewControllerAnimateToBottomRemoveFilter:self.checkoutViewController];
+    self.checkoutViewController = nil;
     
+    /*
     // dismiss payment view
     [self hideViewControllerAnimateToBottom:self.paymentViewController];
     
     // dismiss location select view
     [self hideViewControllerAnimateToBottom:self.locationSelectViewController];
+    */
 }
 
 - (void)onBackButton {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)createBackendChargeWithToken:(STPToken *)token completion:(void (^)(NSError *))completion {
-    NSLog(@"Got the token: %@", token);
-    //    NSURL *url = [NSURL URLWithString:@"https://example.com/token"];
-    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    //    request.HTTPMethod = @"POST";
-    //    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
-    //    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
-    //
-    //    [NSURLConnection sendAsynchronousRequest:request
-    //                                       queue:[NSOperationQueue mainQueue]
-    //                           completionHandler:^(NSURLResponse *response,
-    //                                               NSData *data,
-    //                                               NSError *error) {
-    //                               if (completion != nil) {
-    //                                   completion(error);
-    //                               }
-    //                           }];
 }
 
 #pragma mark - View Controller Presentation Methods
