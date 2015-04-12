@@ -368,6 +368,7 @@
     if (preferredAddress && preferredAddressShort) {
         self.checkoutViewController.address = preferredAddress;
         self.checkoutViewController.addressLabel.text = preferredAddressShort;
+        self.order.deliveryAddress = preferredAddress;
     }
     if (preferredTime) {
         self.checkoutViewController.deliveryTime = preferredTime;
