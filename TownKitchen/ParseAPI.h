@@ -29,5 +29,7 @@
 - (BFTask *)updateOrder:(Order *)order withDriverLocation:(CLLocation *)location;
 - (void)addReviewForOrder:(Order *)order starCount:(NSNumber *)stars comment:(NSString *)comment;
 - (void)sendEmailConfirmationForOrder:(Order *)order;
+- (void)setCurrentUserPreferredAddress:(NSString *)address withShortString:(NSString *)shortString;
+- (void)setCurrentUserPreferredTime:(NSDate *)date;
 
 @end

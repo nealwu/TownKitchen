@@ -186,4 +186,27 @@
                                 }];
 }
 
+- (void)setCurrentUserPreferredAddress:(NSString *)address withShortString:(NSString *)shortString {
+    [[PFUser currentUser] setValue:address forKey:@"preferredAddress"];
+    [[PFUser currentUser] setValue:shortString forKey:@"preferredAddressShort"];
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Successfully saved preferred address");
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
+- (void)setCurrentUserPreferredTime:(NSDate *)date {
+    [[PFUser currentUser] setValue:date forKey:@"preferredTime"];
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Successfully saved preferred time");
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
 @end

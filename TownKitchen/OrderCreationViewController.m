@@ -223,8 +223,9 @@
 // user selected delivery address
 - (void)locationSelectViewController:(LocationSelectViewController *)locationSelectViewController didSelectAddress:(NSString *)address withShortString:(NSString *)shortString {
     self.order.deliveryAddress = address;
+    self.checkoutViewController.address = address;
     self.checkoutViewController.addressLabel.text = shortString;
-    self.checkoutViewController.didSetAddress = YES;
+    [[ParseAPI getInstance] setCurrentUserPreferredAddress:address withShortString:shortString];
     [self hideViewControllerAnimateToBottom:locationSelectViewController];
 }
 
@@ -357,6 +358,18 @@
     // call these after UI elements are loaded
     self.checkoutViewController.order = self.order;
     self.checkoutViewController.buttonState = ButtonStateEnterPayment;
+    
+    // prepopulate checkout fields if possible
+    NSString *preferredAddress = (NSString *)[[PFUser currentUser] valueForKey:@"preferredAddress"];
+    NSString *preferredAddressShort = (NSString *)[[PFUser currentUser] valueForKey:@"preferredAddressShort"];
+    NSDate *preferredTime = (NSDate *)[[PFUser currentUser] valueForKey:@"preferredTime"];
+    if (preferredAddress && preferredAddressShort) {
+        self.checkoutViewController.address = preferredAddress;
+        self.checkoutViewController.addressLabel.text = preferredAddressShort;
+    }
+    if (preferredTime) {
+        self.checkoutViewController.deliveryTime = preferredTime;
+    }
 }
 
 - (void)updateOrderObjectItems {

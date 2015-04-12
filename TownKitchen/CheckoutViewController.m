@@ -11,6 +11,7 @@
 #import "AddressInputViewController.h"
 #import "CheckoutOrderItemCell.h"
 #import "MenuOption.h"
+#import "ParseAPI.h"
 
 @interface CheckoutViewController () <UITableViewDataSource, UITableViewDelegate, CheckoutOrderButtonDelegate, UIPickerViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -111,11 +112,21 @@
     self.checkoutOrderButton.buttonState = buttonState;
 }
 
+- (void)setAddress:(NSString *)address {
+    _address = address;
+    self.didSetAddress = YES;
+}
+
 - (void)setDidSetAddress:(BOOL)didSetAddress {
     _didSetAddress = didSetAddress;
     if (didSetAddress) {
         [self hideAddressButtonBackground];
     }
+}
+
+- (void)setDeliveryTime:(NSDate *)deliveryTime {
+    _deliveryTime = deliveryTime;
+    [self hideTimeButtonBackground];
 }
 
 #pragma mark - Table view methods
@@ -209,7 +220,8 @@
         [dayComponents setMinute:timeComponents.minute];
         [dayComponents setSecond:timeComponents.second];
         self.order.deliveryDateAndTime = [calendar dateFromComponents:dayComponents];
-        
+        [[ParseAPI getInstance] setCurrentUserPreferredTime:[calendar dateFromComponents:dayComponents]];
+
         self.didSetTime = YES;
     }
 }

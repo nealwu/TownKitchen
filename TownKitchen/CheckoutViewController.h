@@ -29,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet CheckoutOrderButton *checkoutOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
+@property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSDate *deliveryTime;
+
 @property (assign, nonatomic) BOOL didSetAddress;
 
 @property (weak, nonatomic) id<CheckoutViewControllerDelegate> delegate;
