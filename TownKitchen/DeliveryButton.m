@@ -34,6 +34,7 @@
 
 - (void)setup {
     [self setImage:[UIImage imageNamed:@"map-button"] forState:UIControlStateNormal];
+    [self setImage:[UIImage imageNamed:@"map-button-highlighted"] forState:UIControlStateHighlighted];
 }
 
 - (void)setButtonState:(ButtonState)state animated:(BOOL)animated {
