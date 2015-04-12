@@ -221,4 +221,18 @@
     }];
 }
 
+- (void)forgetCurrentUserOrderPreferences {
+    [[PFUser currentUser] removeObjectForKey:@"preferredAddress"];
+    [[PFUser currentUser] removeObjectForKey:@"preferredAddressShort"];
+    [[PFUser currentUser] removeObjectForKey:@"preferredTime"];
+    [[PFUser currentUser] removeObjectForKey:@"paymentMethod"];
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Successfully cleared order preferences");
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
 @end

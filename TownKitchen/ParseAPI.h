@@ -32,5 +32,6 @@
 - (void)setCurrentUserPreferredAddress:(NSString *)address withShortString:(NSString *)shortString;
 - (void)setCurrentUserPreferredTime:(NSDate *)date;
 - (void)setCurrentUserPaymentMethod:(NSString *)details;
+- (void)forgetCurrentUserOrderPreferences;
 
 @end

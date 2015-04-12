@@ -273,6 +273,7 @@
 #pragma mark - ProfileViewControllerDelegate Methods
 
 - (void)profileViewControllerDidLogout:(ProfileViewController *)pvc {
+    [[ParseAPI getInstance] forgetCurrentUserOrderPreferences];
     [self onLogoutButton];
 }
 
