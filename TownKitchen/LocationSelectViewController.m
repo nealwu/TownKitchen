@@ -23,6 +23,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (strong, nonatomic) NSString *addressString;
+@property (strong, nonatomic) NSString *currentAddressLabelString;
 @property (assign, nonatomic) BOOL didMoveToCurrentLocation;
 @property (assign, nonatomic) BOOL didCompleteFirstRender;
 
@@ -59,6 +60,9 @@
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
     [self.mapRegionChangedTimer invalidate];
+    if (![self.currentAddressLabelString isEqualToString:@"Updating location..."]) {
+        [self fadeAddressLabelToString:@"Updating location..."];
+    }
 }
 
 
@@ -155,13 +159,11 @@
     self.locationButton.layer.shadowOpacity = 0.3;
     self.locationButton.layer.shadowRadius = 1.5f;
     self.locationButton.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    
-    //
 }
 
 - (void)runDelayedSearch {
     [self.mapRegionChangedTimer invalidate];
-    self.mapRegionChangedTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f
+    self.mapRegionChangedTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
                                                                   target:self
                                                                 selector:@selector(updateAddressFromMapCenter)
                                                                 userInfo:nil
@@ -169,8 +171,6 @@
 }
 
 - (void)updateAddressFromMapCenter {
-    NSLog(@"updating address from map center");
-    self.addressLabel.text = @"Updating location...";
     [[LMGeocoder sharedInstance]
      reverseGeocodeCoordinate:self.mapView.centerCoordinate
      service:kLMGeocoderGoogleService
@@ -178,19 +178,19 @@
          if (address && !error) {
              self.addressString = address.formattedAddress;
              if (address.streetNumber) {
-                 self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route];
+                 [self fadeAddressLabelToString:[NSString stringWithFormat:@"%@ %@", address.streetNumber, address.route]];
              }
              else if (address.route) {
-                 self.addressLabel.text = [NSString stringWithFormat:@"%@", address.route];
+                 [self fadeAddressLabelToString:[NSString stringWithFormat:@"%@", address.route]];
              }
              else {
-                 self.addressLabel.text = @"Unknown address";
+                 [self fadeAddressLabelToString:@"Unknown address"];
              }
              
          }
          else {
              NSLog(@"Error: %@", error.description);
-             self.addressLabel.text = @"Unable to find address";
+             [self fadeAddressLabelToString:@"Unable to find address"];
          }
      }];
 }
@@ -285,6 +285,24 @@
 
 - (CGRect)frameForModalViewController {
     return self.view.bounds;
+}
+
+- (void)fadeAddressLabelToString:(NSString *)string {
+    self.currentAddressLabelString = string;
+    [self.addressLabel.layer removeAllAnimations];
+    NSTimeInterval duration = 0.4f;
+    [UIView animateWithDuration:duration / 2.0
+                     animations:^{
+                         self.addressLabel.layer.opacity = 0.0;
+                     } completion:^(BOOL finished) {
+                         self.addressLabel.text = self.currentAddressLabelString;
+                         [UIView animateWithDuration:duration / 2.0
+                                          animations:^{
+                                              self.addressLabel.layer.opacity = 1.0;
+                                          } completion:^(BOOL finished) {
+                                              nil;
+                                          }];
+                     }];
 }
 
 @end
