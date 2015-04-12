@@ -12,6 +12,7 @@
 #import "MenuOption.h"
 
 #import "AppDelegate.h"
+#import "InsetModalAnimationController.h"
 #import "LocationSelectViewController.h"
 #import <MBProgressHUD.h>
 #import "OrderConfirmationViewController.h"
@@ -44,6 +45,8 @@
 @property (strong, nonatomic) PaymentViewController *paymentViewController;
 @property (strong, nonatomic) LocationSelectViewController *locationSelectViewController;
 @property (strong, nonatomic) OrderConfirmationViewController *orderConfirmationViewController;
+
+@property (strong, nonatomic) InsetModalAnimationController *animationController;
 
 @property (assign, nonatomic) BOOL didSetTime;
 
@@ -226,6 +229,8 @@
                                                                       sourceController:(UIViewController *)source {
     if (presented == self.orderConfirmationViewController) {
         return [PopupAnimationController new];
+    } else if (presented == self.locationSelectViewController) {
+        return self.animationController;
     } else {
         return nil;
     }
@@ -488,9 +493,14 @@
     // set up viewcontrollers
     self.locationSelectViewController = [[LocationSelectViewController alloc] init];
     self.locationSelectViewController.delegate = self;
+//    self.locationSelectViewController.transitioningDelegate = self;
     
     self.paymentViewController = [[PaymentViewController alloc] init];
     self.paymentViewController.delegate = self;
+//    self.paymentViewController.transitioningDelegate = self;
+    
+    // Initialize animation controller
+    self.animationController = [InsetModalAnimationController new];
 }
 
 #pragma mark - ViewController presentation methods
