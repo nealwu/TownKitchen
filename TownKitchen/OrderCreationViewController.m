@@ -197,7 +197,7 @@
         
         if ([[ParseAPI getInstance] validateOrder:self.order]) {
             self.order.status = @"paid";
-            self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.4 longitude:-122.1];
+            self.order.driverLocation = [PFGeoPoint geoPointWithLatitude:37.789329 longitude:-122.397533];
             [[ParseAPI getInstance] createOrder:self.order];
 
             self.orderConfirmationViewController = [[OrderConfirmationViewController alloc] init];
