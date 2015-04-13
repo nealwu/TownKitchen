@@ -344,7 +344,11 @@ CGFloat const statusBarHeight = 20.0;
 
 - (UIImage *)snapshot:(UIView *)view {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0);
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    if ([self.toViewController isKindOfClass:[DaySelectViewController class]]) {
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    } else {
+        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
+    }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
@@ -357,6 +361,7 @@ CGFloat const statusBarHeight = 20.0;
     UIImage *imageInRect = [UIImage imageWithCGImage:image];
     CGImageRelease(image);
     return imageInRect;
+    return [UIImage new];
 }
 
 @end
