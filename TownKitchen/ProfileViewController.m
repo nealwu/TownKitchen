@@ -25,6 +25,9 @@ typedef NS_ENUM(NSInteger, TableViewSection) {
 @property (weak, nonatomic) IBOutlet TKHeader *header;
 @property (strong, nonatomic) UIButton *cancelButton;
 
+@property (strong, nonatomic) NSArray *accountMenuOptions;
+@property (strong, nonatomic) NSArray *achievementsMenuOptions;
+
 @end
 
 @implementation ProfileViewController
@@ -70,9 +73,9 @@ typedef NS_ENUM(NSInteger, TableViewSection) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case TableViewSectionYourAccount:
-            return 4;
+            return self.accountMenuOptions.count;
         case TableViewSectionAchievements:
-            return 3;
+            return self.achievementsMenuOptions.count + 1;
         default:
             return 0;
     }
@@ -83,18 +86,16 @@ typedef NS_ENUM(NSInteger, TableViewSection) {
     
     if (indexPath.section == TableViewSectionYourAccount) {
         ProfileMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProfileMenuCell"];
-        NSArray *accountMenuOptions = @[@"Profile", @"Credit Cards", @"Addresses", @"Enter Code"];
-        cell.title = accountMenuOptions[indexPath.row];
+        cell.title = self.accountMenuOptions[indexPath.row];
         return cell;
         
     } else if (indexPath.section == TableViewSectionAchievements) {
         ProfileMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProfileMenuCell"];
-        if (indexPath.row < 2) {
-            NSArray *achievementsMenuOptions = @[@"Who You've Helped", @"Community Leaderboard"];
-            cell.title = achievementsMenuOptions[indexPath.row];
+        if (indexPath.row < self.achievementsMenuOptions.count) {
+            cell.title = self.achievementsMenuOptions[indexPath.row];
             return cell;
             
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == self.achievementsMenuOptions.count) {
             ProfileLogoutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProfileLogoutCell"];
             cell.delegate = self;
             return cell;
@@ -147,6 +148,11 @@ typedef NS_ENUM(NSInteger, TableViewSection) {
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ProfileMenuCell" bundle:nil] forCellReuseIdentifier:@"ProfileMenuCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ProfileLogoutCell" bundle:nil] forCellReuseIdentifier:@"ProfileLogoutCell"];
+    self.accountMenuOptions = @[@"Profile", @"Orders", @"Credit Cards", @"Enter Code"];
+    self.achievementsMenuOptions = @[@"Who You've Helped", @"Community Leaderboard"];
+    
+    [self.tableView reloadData];
+
     
 }
 
