@@ -4,8 +4,7 @@
 
 This app allows Bay Area locals to easily order tasty meals, track deliveries in real-time, and provide instant feedback.
 
-[![Image Gallery](./media/gallery.jpg)](http://www.thetownkitchen.com)
-![Sample Order Walkthrough](./media/fast-order-01.gif)
+[![Image Gallery](./media/gallery.jpg)](./media/gallery-large.jpg)
 
 ## Features
 * Short intro tour
@@ -16,6 +15,11 @@ This app allows Bay Area locals to easily order tasty meals, track deliveries in
 * Easy meal reviews following completed delivery
 * Staff (driver) login for getting directions and delivering meals
 * Custom navigation animation into each day's menu options
+
+### Example of Ordering
+
+![Sample Order Walkthrough](./media/fast-order-01.gif)
+
 
 ## Credits
 
