@@ -4,7 +4,7 @@
 
 This app allows Bay Area locals to easily order tasty meals, track deliveries in real-time, and provide instant feedback.
 
-[![Image Gallery](./media/gallery.jpg)](./media/gallery-large.jpg)
+![Image Gallery](./media/gallery.jpg)
 
 ## Features
 * Short intro tour
