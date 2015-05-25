@@ -1,6 +1,40 @@
 # The Town Kitchen
 
-### User Stories
-* Tomás is an administrative assistant at a 20-person startup and needs to order next Tuesday's lunch. He opens up The Town Kitchen app and thumbs through Tuesday's menu, quickly selecting a 20 meal order. After tapping the pay button, he receives an email receipt and sits comfortably back, knowing his task is done.
-* Julia placed an order last week for 10 Chicken Cobb Salads to be delivered at 12:00 noon. It's 11:45am on the day of delivery, and she opens up The Town Kitchen app to check how her order is doing. The app tells her Josh is 10 minutes away, and tracks his journey to Julia's office.
-* Andrew throughoughly enjoyed today's Ponzu Tuna lunch. He wants The Town Kitchen to stock it frequently in the future, so he opens The Town Kitchen app to leave feedback. The app detects his previous order, and pops open a review dialogue for Andrew to tap a 5-star rating. Andrew raves about the Tuna in the optional comment box.
+[The Town Kitchen](http://www.thetownkitchen.com) connects low-income Oakland youth with local chefs and artisans to plan, prepare, and deliver delicious curbside lunch.
+
+This app allows Bay Area locals to easily order tasty meals, track deliveries in real-time, and provide instant feedback.
+
+![Image Gallery](./media/gallery.jpg)
+
+## Features
+* Short intro tour
+* Clean menu option ordering page
+* Delivery map view for tracking order location
+* Stripe integration for simple payment entry
+* Email order confirmation through Mailgun
+* Easy meal reviews following completed delivery
+* Staff (driver) login for getting directions and delivering meals
+* Custom navigation animation into each day's menu options
+
+### Example of Ordering
+
+![Sample Order Walkthrough](./media/fast-order-01.gif)
+
+
+## Credits
+
+* [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+* [FormatterKit](https://github.com/mattt/FormatterKit)
+* [GoogleKit](https://github.com/maxsokolov/GoogleKit)
+* [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
+* [MTAnimation](https://github.com/mysterioustrousers/MTAnimation)
+* [Parse](https://parse.com/downloads/ios/parse-library/latest)
+* [PaymentKit](https://github.com/stripe/PaymentKit)
+* [pop](https://github.com/facebook/pop)
+* [Stripe](https://github.com/stripe/stripe-ios)
+* [SwipeView](https://github.com/nicklockwood/SwipeView)
+
+
+
+
+
